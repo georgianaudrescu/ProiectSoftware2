@@ -39,6 +39,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
+    
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque animated:YES];
     // Override point for customization after application launch.
     UIViewController *mapviewController = [[[MapViewController alloc] initWithNibName:@"MapViewController" bundle:nil] autorelease];
     UIViewController *viewController2 = [[[SearchViewController alloc] initWithNibName:@"SearchViewController" bundle:nil] autorelease];
@@ -47,7 +49,7 @@
     UIViewController *viewController5 = [[[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil] autorelease];
     UINavigationController *navControllerMap = [[[UINavigationController alloc] initWithRootViewController:mapviewController] autorelease];
    
-    navControllerMap.navigationBar.tintColor = [UIColor yellowColor];                                                        
+    navControllerMap.navigationBar.tintColor = [UIColor colorWithRed:0.976 green:0.827 blue:0.015 alpha:1.0];                                                       
    // navControllerMap.navigationBar.barStyle = UIBarStyleBlackTranslucent;
     
     

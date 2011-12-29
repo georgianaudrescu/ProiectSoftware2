@@ -29,10 +29,14 @@
         [self setTitle:@"Map"];
          self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStylePlain target:self action:@selector(goHome)]autorelease];
         self.navigationItem.leftBarButtonItem.tintColor = [UIColor blackColor];
-        self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Filter" style:UIBarButtonItemStylePlain target:self action:@selector(goHome)]autorelease];   
+        self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Filter" style:UIBarButtonItemStyleBordered target:self action:@selector(goHome)]autorelease];   
         self.navigationItem.rightBarButtonItem.tintColor = [UIColor blackColor];
-            }
+        self.navigationItem.leftBarButtonItem.image = [UIImage imageNamed:@"homepage.png"];
+    }
+    
+    
     return self;
+    
 }
 
 -(void)setTitle:(NSString *)title
@@ -151,7 +155,9 @@
         } else {
             annotationView.annotation = annotation;
         }
-        UIImageView *imgView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bluehouse.png"]]autorelease];
+    
+        UIImageView *imgView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"house.jpg"]]autorelease];
+        imgView.frame =CGRectMake(0, 0, 30, 30);
         annotationView.leftCalloutAccessoryView = imgView;
        // [imgView release];
         annotationView.enabled = YES;

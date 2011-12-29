@@ -13,9 +13,11 @@
     BOOL _doneInitialZoom;
     IBOutlet MKMapView *mapView;
     UINavigationItem *mapNavItem;
+   
    }
 @property (retain, nonatomic) IBOutlet MKMapView *mapView;
 @property (nonatomic,retain) UINavigationItem *mapNavItem;
+
 -(void)goHome;
 
 @end

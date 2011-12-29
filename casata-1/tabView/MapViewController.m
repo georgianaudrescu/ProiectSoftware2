@@ -18,6 +18,7 @@
 @synthesize mapNavItem;
 
 
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -27,8 +28,10 @@
         //self.navigationItem = mapNavItem;
         [self setTitle:@"Map"];
          self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStylePlain target:self action:@selector(goHome)]autorelease];
-        self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Filter" style:UIBarButtonItemStylePlain target:self action:@selector(goHome)]autorelease];        
-    }
+        self.navigationItem.leftBarButtonItem.tintColor = [UIColor blackColor];
+        self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Filter" style:UIBarButtonItemStylePlain target:self action:@selector(goHome)]autorelease];   
+        self.navigationItem.rightBarButtonItem.tintColor = [UIColor blackColor];
+            }
     return self;
 }
 

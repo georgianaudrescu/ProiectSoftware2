@@ -69,7 +69,8 @@
 
 - (void)viewDidLoad
 {
-    //[super viewDidLoad];
+    [super viewDidLoad];
+    self.mapView.delegate=self;
 	// Do any additional setup after loading the view, typically from a nib.
  
 }
@@ -150,7 +151,9 @@
         } else {
             annotationView.annotation = annotation;
         }
-        
+        UIImageView *imgView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bluehouse.png"]]autorelease];
+        annotationView.leftCalloutAccessoryView = imgView;
+       // [imgView release];
         annotationView.enabled = YES;
         annotationView.canShowCallout = YES;
         

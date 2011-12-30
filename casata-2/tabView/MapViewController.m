@@ -156,7 +156,7 @@
             annotationView.annotation = annotation;
         }
     
-        UIImageView *imgView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bluehouse"]]autorelease];
+        UIImageView *imgView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"house.jpg"]]autorelease];
         imgView.frame =CGRectMake(0, 0, 30, 30);
         annotationView.leftCalloutAccessoryView = imgView;
        // [imgView release];

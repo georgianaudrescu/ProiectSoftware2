@@ -9,6 +9,7 @@
 #import "MapViewController.h"
 #import "MyLocation.h"
 #import "AppDelegate.h"
+#import "FiltreTableViewController.h"
 
 #define myURL [NSURL URLWithString:@"http://flapptest.comule.com/get_ads/"]
 
@@ -23,25 +24,43 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.title = NSLocalizedString(@"Map", @"Map");
+        self.title = NSLocalizedString(@"Harta", @"Harta");
         self.tabBarItem.image = [UIImage imageNamed:@"mapicon"];
         //self.navigationItem = mapNavItem;
-        [self setTitle:@"Map"];
+        [self setTitle:@"Bucuresti"];
+        
          self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStylePlain target:self action:@selector(goHome)]autorelease];
         self.navigationItem.leftBarButtonItem.tintColor = [UIColor blackColor];
-        self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Filter" style:UIBarButtonItemStyleBordered target:self action:@selector(goHome)]autorelease];   
-        self.navigationItem.rightBarButtonItem.tintColor = [UIColor blackColor];
         self.navigationItem.leftBarButtonItem.image = [UIImage imageNamed:@"homepage.png"];
+        
+        self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Filtre" style:UIBarButtonItemStylePlain target:self action:@selector(selectFiltre)]autorelease];   
+        self.navigationItem.rightBarButtonItem.tintColor = [UIColor blackColor];
+        
+        UIBarButtonItem *anuleazaButton = [[UIBarButtonItem alloc] initWithTitle:@"Anuleaza" style:UIBarButtonItemStylePlain target:nil action:nil]; 
+                                           
+        anuleazaButton.tintColor = [UIColor blackColor];
+                                           
+        self.navigationItem.backBarButtonItem= anuleazaButton;        
+        
     }
     
     
     return self;
     
 }
+-(void) selectFiltre
+{
+    FiltreTableViewController *filtreViewController = [[[FiltreTableViewController alloc] initWithNibName:@"FiltreTableViewController" bundle:nil]autorelease];
+    
+    //filtreViewController.hidesBottomBarWhenPushed = YES;
+     
+    
+    [self.navigationController pushViewController:filtreViewController animated:YES];
+}
 
 -(void)setTitle:(NSString *)title
 {
-    [super setTitle:title];
+    [super setTitle:@"Harta"];
     UILabel *titleView = (UILabel *) self.navigationItem.titleView;
     if(!titleView)
     {titleView = [[UILabel alloc] initWithFrame:CGRectZero];
@@ -173,6 +192,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+     
 }
 
 - (void)viewWillDisappear:(BOOL)animated

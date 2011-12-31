@@ -14,7 +14,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.title = NSLocalizedString(@"Statistics", @"Statistics");
+        self.title = NSLocalizedString(@"Statistici", @"Statistici");
         self.tabBarItem.image = [UIImage imageNamed:@"linechart"];
     }
     return self;

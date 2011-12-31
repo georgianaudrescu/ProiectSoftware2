@@ -29,14 +29,17 @@
 		3A70A91C149BB89200203169 /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A70A918149BB89200203169 /* home.png */; };
 		3A70A924149BBB1000203169 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A70A923149BBB1000203169 /* MapKit.framework */; };
 		3A70A926149BBB3000203169 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A70A925149BBB3000203169 /* CoreLocation.framework */; };
+		8C6C8DC714AE002C00BAD7DB /* FiltreTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C6C8DC514AE002C00BAD7DB /* FiltreTableViewController.m */; };
+		8C6C8DC814AE002D00BAD7DB /* FiltreTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C6C8DC614AE002C00BAD7DB /* FiltreTableViewController.xib */; };
 		8C71BDD014ABF91700E77A77 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C71BDCE14ABF91700E77A77 /* ViewController.m */; };
 		8C71BDD114ABF91700E77A77 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C71BDCF14ABF91700E77A77 /* ViewController.xib */; };
+		8C725FC014AE4FF5002B26F4 /* Informatii.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C725FBF14AE4FF5002B26F4 /* Informatii.m */; };
 		8C800B3014ADCB5500F498A5 /* homepage.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C800B2F14ADCB5500F498A5 /* homepage.png */; };
-		8C800B3514ADCD3200F498A5 /* FavTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C800B3314ADCD3200F498A5 /* FavTableViewController.m */; };
-		8C800B3614ADCD3200F498A5 /* FavTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C800B3414ADCD3200F498A5 /* FavTableViewController.xib */; };
 		8C800B3914ADD59800F498A5 /* adauga_anunt.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C800B3814ADD59700F498A5 /* adauga_anunt.png */; };
 		8C800B4214ADD6EE00F498A5 /* AdaugAnuntViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C800B4014ADD6EC00F498A5 /* AdaugAnuntViewController.m */; };
 		8C800B4314ADD6EE00F498A5 /* AdaugAnuntViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C800B4114ADD6ED00F498A5 /* AdaugAnuntViewController.xib */; };
+		8CA9F8D714AE2D42008F7F42 /* FavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CA9F8D514AE2D42008F7F42 /* FavViewController.m */; };
+		8CA9F8D814AE2D42008F7F42 /* FavViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CA9F8D614AE2D42008F7F42 /* FavViewController.xib */; };
 		ACA19E3814ACC0B40066D760 /* griNegru.png in Resources */ = {isa = PBXBuildFile; fileRef = ACA19E3714ACC0B40066D760 /* griNegru.png */; };
 		ACA19E4F14ACC26D0066D760 /* cautari_salvate.png in Resources */ = {isa = PBXBuildFile; fileRef = ACA19E4314ACC26C0066D760 /* cautari_salvate.png */; };
 		ACA19E5014ACC26D0066D760 /* chart.png in Resources */ = {isa = PBXBuildFile; fileRef = ACA19E4414ACC26C0066D760 /* chart.png */; };
@@ -86,17 +89,22 @@
 		3A70A918149BB89200203169 /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
 		3A70A923149BBB1000203169 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		3A70A925149BBB3000203169 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		8C6C8DC414AE002C00BAD7DB /* FiltreTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FiltreTableViewController.h; sourceTree = "<group>"; };
+		8C6C8DC514AE002C00BAD7DB /* FiltreTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FiltreTableViewController.m; sourceTree = "<group>"; };
+		8C6C8DC614AE002C00BAD7DB /* FiltreTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FiltreTableViewController.xib; sourceTree = "<group>"; };
 		8C71BDCD14ABF91700E77A77 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		8C71BDCE14ABF91700E77A77 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		8C71BDCF14ABF91700E77A77 /* ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
+		8C725FBE14AE4FF5002B26F4 /* Informatii.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Informatii.h; sourceTree = "<group>"; };
+		8C725FBF14AE4FF5002B26F4 /* Informatii.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Informatii.m; sourceTree = "<group>"; };
 		8C800B2F14ADCB5500F498A5 /* homepage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homepage.png; sourceTree = "<group>"; };
-		8C800B3214ADCD3200F498A5 /* FavTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavTableViewController.h; sourceTree = "<group>"; };
-		8C800B3314ADCD3200F498A5 /* FavTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavTableViewController.m; sourceTree = "<group>"; };
-		8C800B3414ADCD3200F498A5 /* FavTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FavTableViewController.xib; sourceTree = "<group>"; };
 		8C800B3814ADD59700F498A5 /* adauga_anunt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = adauga_anunt.png; sourceTree = "<group>"; };
 		8C800B3F14ADD6EB00F498A5 /* AdaugAnuntViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AdaugAnuntViewController.h; path = ../AdaugAnuntViewController.h; sourceTree = "<group>"; };
 		8C800B4014ADD6EC00F498A5 /* AdaugAnuntViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AdaugAnuntViewController.m; path = ../AdaugAnuntViewController.m; sourceTree = "<group>"; };
 		8C800B4114ADD6ED00F498A5 /* AdaugAnuntViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AdaugAnuntViewController.xib; path = ../AdaugAnuntViewController.xib; sourceTree = "<group>"; };
+		8CA9F8D414AE2D42008F7F42 /* FavViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavViewController.h; sourceTree = "<group>"; };
+		8CA9F8D514AE2D42008F7F42 /* FavViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavViewController.m; sourceTree = "<group>"; };
+		8CA9F8D614AE2D42008F7F42 /* FavViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FavViewController.xib; sourceTree = "<group>"; };
 		ACA19E3714ACC0B40066D760 /* griNegru.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = griNegru.png; sourceTree = "<group>"; };
 		ACA19E4314ACC26C0066D760 /* cautari_salvate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cautari_salvate.png; sourceTree = "<group>"; };
 		ACA19E4414ACC26C0066D760 /* chart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chart.png; sourceTree = "<group>"; };
@@ -163,12 +171,15 @@
 		3A37A413149B6FF50053E39F /* casata */ = {
 			isa = PBXGroup;
 			children = (
+				8CA9F8DA14AE2D4F008F7F42 /* Favorite */,
+				8CB505DA14AE052E00290270 /* Filtre */,
 				8C800B4414ADD73700F498A5 /* AdaugAnunt */,
 				8C71BDB214ABEE9100E77A77 /* home */,
 				3A70A915149BB84700203169 /* images */,
 				3A37A41C149B6FF50053E39F /* AppDelegate.h */,
 				3A37A41D149B6FF50053E39F /* AppDelegate.m */,
-				8C800B3714ADCD4700F498A5 /* Fav */,
+				8C725FBE14AE4FF5002B26F4 /* Informatii.h */,
+				8C725FBF14AE4FF5002B26F4 /* Informatii.m */,
 				3A70A922149BBABB00203169 /* MAP */,
 				3A56AD1914AB866A00C6B6B0 /* Profiles */,
 				3A56AD1E14AB893000C6B6B0 /* Statistics */,
@@ -263,16 +274,6 @@
 			name = home;
 			sourceTree = "<group>";
 		};
-		8C800B3714ADCD4700F498A5 /* Fav */ = {
-			isa = PBXGroup;
-			children = (
-				8C800B3214ADCD3200F498A5 /* FavTableViewController.h */,
-				8C800B3314ADCD3200F498A5 /* FavTableViewController.m */,
-				8C800B3414ADCD3200F498A5 /* FavTableViewController.xib */,
-			);
-			name = Fav;
-			sourceTree = "<group>";
-		};
 		8C800B4414ADD73700F498A5 /* AdaugAnunt */ = {
 			isa = PBXGroup;
 			children = (
@@ -281,6 +282,26 @@
 				8C800B4114ADD6ED00F498A5 /* AdaugAnuntViewController.xib */,
 			);
 			name = AdaugAnunt;
+			sourceTree = "<group>";
+		};
+		8CA9F8DA14AE2D4F008F7F42 /* Favorite */ = {
+			isa = PBXGroup;
+			children = (
+				8CA9F8D414AE2D42008F7F42 /* FavViewController.h */,
+				8CA9F8D514AE2D42008F7F42 /* FavViewController.m */,
+				8CA9F8D614AE2D42008F7F42 /* FavViewController.xib */,
+			);
+			name = Favorite;
+			sourceTree = "<group>";
+		};
+		8CB505DA14AE052E00290270 /* Filtre */ = {
+			isa = PBXGroup;
+			children = (
+				8C6C8DC414AE002C00BAD7DB /* FiltreTableViewController.h */,
+				8C6C8DC514AE002C00BAD7DB /* FiltreTableViewController.m */,
+				8C6C8DC614AE002C00BAD7DB /* FiltreTableViewController.xib */,
+			);
+			name = Filtre;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -362,9 +383,10 @@
 				ACA19E5F14ACC2BD0066D760 /* 137-presentation.png in Resources */,
 				ACA19E6014ACC2BD0066D760 /* bg.png in Resources */,
 				8C800B3014ADCB5500F498A5 /* homepage.png in Resources */,
-				8C800B3614ADCD3200F498A5 /* FavTableViewController.xib in Resources */,
 				8C800B3914ADD59800F498A5 /* adauga_anunt.png in Resources */,
 				8C800B4314ADD6EE00F498A5 /* AdaugAnuntViewController.xib in Resources */,
+				8C6C8DC814AE002D00BAD7DB /* FiltreTableViewController.xib in Resources */,
+				8CA9F8D814AE2D42008F7F42 /* FavViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -382,8 +404,10 @@
 				3A37A476149BB6C70053E39F /* StatsViewController.m in Sources */,
 				3A56AD2914AB8C8100C6B6B0 /* MyLocation.m in Sources */,
 				8C71BDD014ABF91700E77A77 /* ViewController.m in Sources */,
-				8C800B3514ADCD3200F498A5 /* FavTableViewController.m in Sources */,
 				8C800B4214ADD6EE00F498A5 /* AdaugAnuntViewController.m in Sources */,
+				8C6C8DC714AE002C00BAD7DB /* FiltreTableViewController.m in Sources */,
+				8CA9F8D714AE2D42008F7F42 /* FavViewController.m in Sources */,
+				8C725FC014AE4FF5002B26F4 /* Informatii.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,11 +14,12 @@
 
 #import "StatsViewController.h"
 
-#import "FavTableViewController.h"
+#import "FavViewController.h"
 
 #import "LoginViewController.h"
 
 #import "ViewController.h"
+#import "Informatii.h"
 
 
 @implementation AppDelegate
@@ -45,15 +46,17 @@
     UIViewController *mapViewController = [[[MapViewController alloc] initWithNibName:@"MapViewController" bundle:nil] autorelease];
     UIViewController *adaugaAnuntViewController = [[[AdaugAnuntViewController alloc] initWithNibName:@"AdaugAnuntViewController" bundle:nil] autorelease];
     UIViewController *statsViewController = [[[StatsViewController alloc] initWithNibName:@"StatsViewController" bundle:nil] autorelease];
-    FavTableViewController *favTableViewController = [[[FavTableViewController alloc] initWithNibName:@"FavTableViewController" bundle:nil] autorelease];
-    favTableViewController.title = NSLocalizedString(@"Favorites", @"Favorites");
-    favTableViewController.tabBarItem.image = [UIImage imageNamed:@"star"];
+    FavViewController *favViewController = [[[FavViewController alloc] initWithNibName:@"FavViewController" bundle:nil] autorelease];
+    
     
     UIViewController *loginViewController = [[[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil] autorelease];
     UINavigationController *navControllerMap = [[[UINavigationController alloc] initWithRootViewController:mapViewController] autorelease];
    
-    navControllerMap.navigationBar.tintColor = [UIColor colorWithRed:0.976 green:0.827 blue:0.015 alpha:1.0];                                                       
-   // navControllerMap.navigationBar.barStyle = UIBarStyleBlackTranslucent;
+    navControllerMap.navigationBar.tintColor = [UIColor colorWithRed:0.976 green:0.827 blue:0.015 alpha:1.0];    
+    
+    UINavigationController *navControllerFav = [[[UINavigationController alloc] initWithRootViewController:favViewController] autorelease];
+    
+    navControllerFav.navigationBar.tintColor = [UIColor colorWithRed:0.976 green:0.827 blue:0.015 alpha:1.0]; 
     
     
     
@@ -61,7 +64,7 @@
     
     
     self.tabBarController = [[[UITabBarController alloc] init] autorelease];
-    self.tabBarController.viewControllers = [NSArray arrayWithObjects:navControllerMap, favTableViewController,adaugaAnuntViewController,statsViewController,loginViewController, nil];
+    self.tabBarController.viewControllers = [NSArray arrayWithObjects:navControllerMap, navControllerFav,adaugaAnuntViewController,statsViewController,loginViewController, nil];
     self.window.rootViewController = self.viewController;
     
     //self.window.rootViewController = self.tabBarController;
@@ -71,12 +74,18 @@
 
 -(void)pageSelectedInTab:(NSString*)bTitle
 {self.window.rootViewController = self.tabBarController;
+   
+    //in momentul in care se selecteaza un buton din home view, de aici se selecteaza si tab-ul corespunzator
     if([bTitle isEqualToString:@"Cauta anunturi"])
         self.tabBarController.selectedIndex =0;
     else if([bTitle isEqualToString:@" Anunturi in apropiere"])
         self.tabBarController.selectedIndex=0;
     else if([bTitle isEqualToString:@" Anunturi favorite"])
+    {
+        [Informatii selectedFavoriteChange:@"Anunturi"]; 
         self.tabBarController.selectedIndex=1;
+        
+    }
     else if([bTitle isEqualToString:@" Trends & statistics"])
         self.tabBarController.selectedIndex=3;
     else if([bTitle isEqualToString:@" Profile"])
@@ -84,9 +93,12 @@
     else if([bTitle isEqualToString:@" Setari & Feedback"])
         self.tabBarController.selectedIndex = 4;
     else if([bTitle isEqualToString:@" Cautari favorite"])
+    {
+        [Informatii selectedFavoriteChange:@"Cautari"];
         self.tabBarController.selectedIndex = 1;
+        
+    }
     
-
 }
 -(void)goToHomeScreen
 {self.window.rootViewController = self.viewController;

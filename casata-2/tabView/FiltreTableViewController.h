@@ -1,5 +1,5 @@
 //
-//  FavTableViewController.h
+//  FiltreTableViewController.h
 //  casata
 //
 //  Created by me on 12/30/11.
@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FavTableViewController : UITableViewController
+@interface FiltreTableViewController : UITableViewController
 {
-
+    
 }
-
+-(void)aplicaFiltre;
 @end

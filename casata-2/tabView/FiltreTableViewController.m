@@ -1,14 +1,18 @@
 //
-//  FavTableViewController.m
+//  FiltreTableViewController.m
 //  casata
 //
 //  Created by me on 12/30/11.
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "FavTableViewController.h"
+#import "FiltreTableViewController.h"
 
-@implementation FavTableViewController
+
+
+
+@implementation FiltreTableViewController
+
 
 
 
@@ -16,16 +20,16 @@
 {
     self = [super initWithStyle:style];
     if (self) {
-               // Custom initialization
-        
+        // Custom initialization
     }
     return self;
 }
 -(void)dealloc
 {
-        [super dealloc];
-}
+    
+    [super dealloc];
 
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -34,12 +38,45 @@
     
     // Release any cached data, images, etc that aren't in use.
 }
+-(void)setTitle:(NSString *)title
+{
+    [super setTitle:title];
+    UILabel *titleView = (UILabel *) self.navigationItem.titleView;
+    if(!titleView)
+    {titleView = [[UILabel alloc] initWithFrame:CGRectZero];
+        titleView.backgroundColor = [UIColor clearColor];
+        titleView.font = [UIFont boldSystemFontOfSize:20];
+        //titleView.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+        titleView.textColor = [UIColor blackColor];
+        self.navigationItem.titleView = titleView;
+        [titleView release];
+    }
+    titleView.text = title;
+    [titleView sizeToFit];
+    
+    
+}
+-(void)aplicaFiltre
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Selecteaza cel putin un filtru!" message:@"" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+    
+    [alert show];
+    
+    [alert release];
+    
+}
 
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self setTitle:@"Filtre"];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Aplica" style:UIBarButtonItemStylePlain target:self action:@selector(aplicaFiltre)];
+    self.navigationItem.rightBarButtonItem.tintColor = [UIColor blackColor];
+    
+ 
+    
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -68,6 +105,7 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+   // [self.navigationController popToRootViewControllerAnimated:NO];
 }
 
 - (void)viewDidDisappear:(BOOL)animated

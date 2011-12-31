@@ -19,5 +19,7 @@
 @property (nonatomic,retain) UINavigationItem *mapNavItem;
 
 -(void)goHome;
+-(void)selectFiltre;
+
 
 @end

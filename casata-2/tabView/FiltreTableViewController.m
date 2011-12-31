@@ -13,7 +13,7 @@
 
 @implementation FiltreTableViewController
 
-
+@synthesize tableContents, sortedKeys;
 
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -26,7 +26,8 @@
 }
 -(void)dealloc
 {
-    
+    [tableContents release];
+    [sortedKeys release];
     [super dealloc];
 
 }
@@ -38,6 +39,8 @@
     
     // Release any cached data, images, etc that aren't in use.
 }
+
+//pentru a schimba culoarea default a textului tiltului(care este alba initial)
 -(void)setTitle:(NSString *)title
 {
     [super setTitle:title];
@@ -70,12 +73,30 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
+    //[super viewDidLoad];
+    
+     
+    
     [self setTitle:@"Filtre"];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Aplica" style:UIBarButtonItemStylePlain target:self action:@selector(aplicaFiltre)];
     self.navigationItem.rightBarButtonItem.tintColor = [UIColor blackColor];
     
- 
+ //array pt continutul tabelului
+    NSArray *arraySection1 = [[NSArray alloc] initWithObjects:@"Tip imobil",@"Numar de camere", @"Suprafata", nil];
+    NSArray *arraySection2 = [[NSArray alloc] initWithObjects:@"Vanzare", @"Inchiriere", nil];
+    NSArray *arraySection3 = [[NSArray alloc] initWithObjects:@"Pret", nil];
+    
+    NSDictionary *temp = [[NSDictionary alloc] initWithObjectsAndKeys:arraySection1, @"Imobil", arraySection2, @"Tranzactie", arraySection3, @"Pret", nil];
+    
+    self.tableContents = temp;
+    [temp release];
+    self.sortedKeys = [[self.tableContents allKeys]sortedArrayUsingSelector:@selector(compare:)];
+    [arraySection1 release];
+    [arraySection2 release];
+    [arraySection3 release];
+    
+    
+    [super viewDidLoad];       
     
     
     // Uncomment the following line to preserve selection between presentations.
@@ -125,19 +146,38 @@
 {
 #warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+   
+    //return 0;
+    return [self.sortedKeys count];
+    
 }
+
+
+////////
+-(NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return [self.sortedKeys objectAtIndex:section];
+}
+
+
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    //return 0;
+    
+    NSArray *listData = [self.tableContents objectForKey:[self.sortedKeys objectAtIndex:section]];
+    return [listData count];                     
+    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
+    
+   NSArray *listData = [self.tableContents objectForKey:[self.sortedKeys objectAtIndex:[indexPath section]]];
+    
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
@@ -145,6 +185,14 @@
     }
     
     // Configure the cell...
+    
+    NSUInteger row = [indexPath row];
+    cell.textLabel.text = [listData objectAtIndex:row];
+    UIView *backgroundView = [[UIView alloc] init];
+    backgroundView.backgroundColor = [UIColor blackColor];
+    
+    cell.selectedBackgroundView = backgroundView;
+    [backgroundView release];
     
     return cell;
 }

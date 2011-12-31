@@ -36,6 +36,9 @@
         self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Filtre" style:UIBarButtonItemStylePlain target:self action:@selector(selectFiltre)]autorelease];   
         self.navigationItem.rightBarButtonItem.tintColor = [UIColor blackColor];
         
+       
+        
+        //butonul care va aparea ca back button pt view-ul child care va fi pus in stiva peste view-ul curent
         UIBarButtonItem *anuleazaButton = [[UIBarButtonItem alloc] initWithTitle:@"Anuleaza" style:UIBarButtonItemStylePlain target:nil action:nil]; 
                                            
         anuleazaButton.tintColor = [UIColor blackColor];
@@ -76,6 +79,8 @@
 
 
 }
+
+
 -(void)goHome
 {AppDelegate *apdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [apdelegate goToHomeScreen];

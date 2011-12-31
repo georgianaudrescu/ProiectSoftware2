@@ -10,4 +10,6 @@
 
 @interface AdaugAnuntViewController : UIViewController
 
+-(void)goHome;
+
 @end

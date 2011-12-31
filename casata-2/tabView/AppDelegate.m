@@ -50,21 +50,29 @@
     
     
     UIViewController *loginViewController = [[[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil] autorelease];
+    
+    //Navigation controllerul pt pagina de Map
     UINavigationController *navControllerMap = [[[UINavigationController alloc] initWithRootViewController:mapViewController] autorelease];
    
-    navControllerMap.navigationBar.tintColor = [UIColor colorWithRed:0.976 green:0.827 blue:0.015 alpha:1.0];    
+    navControllerMap.navigationBar.tintColor = [UIColor colorWithRed:0.976 green:0.827 blue:0.015 alpha:1.0]; 
     
+    //navigation controllerul pt pagina de Favorite
     UINavigationController *navControllerFav = [[[UINavigationController alloc] initWithRootViewController:favViewController] autorelease];
     
     navControllerFav.navigationBar.tintColor = [UIColor colorWithRed:0.976 green:0.827 blue:0.015 alpha:1.0]; 
     
+    //navigation controllerul pt pagina Adauga anunt
+    UINavigationController *navControllerAdaug = [[[UINavigationController alloc] initWithRootViewController:adaugaAnuntViewController] autorelease];
+    
+    navControllerAdaug.navigationBar.tintColor = [UIColor colorWithRed:0.976 green:0.827 blue:0.015 alpha:1.0];
     
     
+    //view controllerul pt Home
     self.viewController = [[[ViewController alloc] initWithNibName:@"ViewController" bundle:nil] autorelease];
     
     
     self.tabBarController = [[[UITabBarController alloc] init] autorelease];
-    self.tabBarController.viewControllers = [NSArray arrayWithObjects:navControllerMap, navControllerFav,adaugaAnuntViewController,statsViewController,loginViewController, nil];
+    self.tabBarController.viewControllers = [NSArray arrayWithObjects:navControllerMap, navControllerFav,navControllerAdaug,statsViewController,loginViewController, nil];
     self.window.rootViewController = self.viewController;
     
     //self.window.rootViewController = self.tabBarController;

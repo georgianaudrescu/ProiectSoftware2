@@ -10,7 +10,13 @@
 
 @interface FiltreTableViewController : UITableViewController
 {
+    NSDictionary *tableContents;
+    NSArray *sortedKeys;
+
     
 }
+@property(nonatomic,retain)NSDictionary *tableContents;
+@property(nonatomic,retain)NSArray *sortedKeys;
+
 -(void)aplicaFiltre;
 @end

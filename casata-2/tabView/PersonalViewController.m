@@ -72,7 +72,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    UITableViewController *syncView = [[SyncTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    UITableViewController *syncView = [[SyncTableViewController alloc]initWithStyle:UITableViewStyleGrouped];
     UITableViewController *prefView = [[PrefTableViewController alloc] init];
     UITableViewController *myAdsView = [[MyAdsTableViewController alloc] init];
     

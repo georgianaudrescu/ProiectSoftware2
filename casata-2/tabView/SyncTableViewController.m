@@ -13,9 +13,11 @@
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
-    self = [super initWithStyle:style];
+    self = [super initWithStyle: style];
     if (self) {
         // Custom initialization
+        self.view.backgroundColor =[UIColor whiteColor];
+        self.tableView.separatorColor = [UIColor colorWithRed:0.976 green:0.827 blue:0.015 alpha:1.0];
     }
     return self;
 }
@@ -143,11 +145,11 @@
     
     NSUInteger row = [indexPath row];
     cell.textLabel.text = [listData objectAtIndex:row];
-    UIView *backgroundView = [[UIView alloc] init];
-    backgroundView.backgroundColor = [UIColor blackColor];
+    //UIView *backgroundView = [[UIView alloc] init];
+    //backgroundView.backgroundColor = [UIColor blackColor];
     
-    cell.selectedBackgroundView = backgroundView;
-    [backgroundView release];
+    //cell.selectedBackgroundView = backgroundView;
+    //[backgroundView release];
     
     return cell;
 }

@@ -22,7 +22,7 @@
 @property (nonatomic,retain) IBOutlet UISearchBar *searchBar;
 
 -(void)goHome;
--(void)selectFiltre;
+-(void)selectOptiuni;
 
 
 @end

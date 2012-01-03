@@ -11,7 +11,7 @@
 #import "AppDelegate.h"
 
 @implementation ViewController
-@synthesize buttonSearch,buttonFav,buttonAbout,buttonLogin,buttonStats,buttonSetari,buttonSavedSearch,buttonAnunturiApropiere;
+@synthesize buttonSearch,buttonFav,buttonAbout,buttonLogin,buttonStats,buttonSetari,buttonSavedSearch,buttonAnunturiApropiere, buttonAdaugaAnunt;
 
 - (void)didReceiveMemoryWarning
 {

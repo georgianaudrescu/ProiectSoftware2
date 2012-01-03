@@ -77,9 +77,10 @@
     
      
     
-    [self setTitle:@"Filtre"];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Aplica" style:UIBarButtonItemStylePlain target:self action:@selector(aplicaFiltre)];
-    self.navigationItem.rightBarButtonItem.tintColor = [UIColor blackColor];
+    //[self setTitle:@"Filtre"];
+    //self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Aplica" style:UIBarButtonItemStylePlain target:self action:@selector(aplicaFiltre)];
+    //self.navigationItem.rightBarButtonItem.tintColor = [UIColor blackColor];
+    
     
  //array pt continutul tabelului
     NSArray *arraySection1 = [[NSArray alloc] initWithObjects:@"Tip imobil",@"Numar de camere", @"Suprafata", nil];

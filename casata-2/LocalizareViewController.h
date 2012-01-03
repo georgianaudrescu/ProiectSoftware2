@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
 
-@interface LocalizareViewController : UIViewController
+@interface LocalizareViewController : UIViewController<MKMapViewDelegate>
+{
+IBOutlet MKMapView *mapView;
+    
+}
+@property (retain, nonatomic) IBOutlet MKMapView *mapView;
 
 @end

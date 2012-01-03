@@ -9,7 +9,7 @@
 #import "MapViewController.h"
 #import "MyLocation.h"
 #import "AppDelegate.h"
-#import "FiltreTableViewController.h"
+#import "OptiuniHartaViewController.h"
 
 #define myURL [NSURL URLWithString:@"http://flapptest.comule.com/get_ads/"]
 
@@ -40,13 +40,13 @@
         self.navigationItem.leftBarButtonItem.tintColor = [UIColor blackColor];
         self.navigationItem.leftBarButtonItem.image = [UIImage imageNamed:@"homepage.png"];
         
-        self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Filtre" style:UIBarButtonItemStylePlain target:self action:@selector(selectFiltre)]autorelease];   
+        self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Filtre" style:UIBarButtonItemStylePlain target:self action:@selector(selectOptiuni)]autorelease];   
         self.navigationItem.rightBarButtonItem.tintColor = [UIColor blackColor];
-        
+        self.navigationItem.rightBarButtonItem.image = [UIImage imageNamed:@"rotita.png"];
        
         
         //butonul care va aparea ca back button pt view-ul child care va fi pus in stiva peste view-ul curent
-        UIBarButtonItem *anuleazaButton = [[UIBarButtonItem alloc] initWithTitle:@"Anuleaza" style:UIBarButtonItemStylePlain target:nil action:nil]; 
+        UIBarButtonItem *anuleazaButton = [[UIBarButtonItem alloc] initWithTitle:@"Inapoi" style:UIBarButtonItemStylePlain target:nil action:nil]; 
                                            
         anuleazaButton.tintColor = [UIColor blackColor];
                                            
@@ -58,14 +58,14 @@
     return self;
     
 }
--(void) selectFiltre
+-(void) selectOptiuni
 {
-    FiltreTableViewController *filtreViewController = [[[FiltreTableViewController alloc] initWithNibName:@"FiltreTableViewController" bundle:nil]autorelease];
+    OptiuniHartaViewController *optionsViewController = [[[OptiuniHartaViewController alloc] initWithNibName:@"OptiuniHartaViewController" bundle:nil]autorelease];
     
     //filtreViewController.hidesBottomBarWhenPushed = YES;
      
     
-    [self.navigationController pushViewController:filtreViewController animated:YES];
+    [self.navigationController pushViewController:optionsViewController animated:YES];
 }
 
 -(void)setTitle:(NSString *)title

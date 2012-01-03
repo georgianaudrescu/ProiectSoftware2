@@ -96,10 +96,12 @@
     }
     else if([bTitle isEqualToString:@" Trends & statistics"])
         self.tabBarController.selectedIndex=3;
-    else if([bTitle isEqualToString:@" Profile"])
+    else if([bTitle isEqualToString:@" Login"])
         self.tabBarController.selectedIndex = 4;
     else if([bTitle isEqualToString:@" Setari & Feedback"])
         self.tabBarController.selectedIndex = 4;
+    else if([bTitle isEqualToString:@" Adauga anunt"])
+        self.tabBarController.selectedIndex = 2;
     else if([bTitle isEqualToString:@" Cautari favorite"])
     {
         [Informatii selectedFavoriteChange:@"Cautari"];

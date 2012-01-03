@@ -1,15 +1,14 @@
 //
-//  LocalizareViewController.m
+//  MoreOptionsViewController.m
 //  casata
 //
 //  Created by me on 1/3/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "LocalizareViewController.h"
+#import "MoreOptionsViewController.h"
 
-@implementation LocalizareViewController
-@synthesize mapView=_mapView;
+@implementation MoreOptionsViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -18,11 +17,6 @@
         // Custom initialization
     }
     return self;
-}
--(void) dealloc
-{
-    [mapView release];
-    [super dealloc];
 }
 
 - (void)didReceiveMemoryWarning
@@ -46,16 +40,6 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
-    _mapView = nil;
-}
--(void)viewWillAppear:(BOOL)animated
-{
-    CLLocationCoordinate2D zoomLocation;
-    zoomLocation.latitude=44.4;
-    zoomLocation.longitude=26.1;
-    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation,50000,50000);
-    MKCoordinateRegion adjustedRegion = [_mapView regionThatFits:viewRegion];
-    [_mapView setRegion:adjustedRegion animated:YES];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

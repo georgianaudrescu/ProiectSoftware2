@@ -46,6 +46,11 @@
 		8CB2399514B3509B007BDFEE /* LocalizareViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CB2399314B3509B007BDFEE /* LocalizareViewController.xib */; };
 		8CB2399914B358C9007BDFEE /* AdaugaImaginiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB2399714B358C8007BDFEE /* AdaugaImaginiViewController.m */; };
 		8CB2399A14B358C9007BDFEE /* AdaugaImaginiViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CB2399814B358C9007BDFEE /* AdaugaImaginiViewController.xib */; };
+		8CB2399E14B35E03007BDFEE /* OptiuniHartaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB2399C14B35E02007BDFEE /* OptiuniHartaViewController.m */; };
+		8CB2399F14B35E03007BDFEE /* OptiuniHartaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CB2399D14B35E02007BDFEE /* OptiuniHartaViewController.xib */; };
+		8CB239A414B36F7E007BDFEE /* MoreOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB239A214B36F7E007BDFEE /* MoreOptionsViewController.m */; };
+		8CB239A514B36F7E007BDFEE /* MoreOptionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CB239A314B36F7E007BDFEE /* MoreOptionsViewController.xib */; };
+		8CB239A714B374F1007BDFEE /* rotita.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CB239A614B374F1007BDFEE /* rotita.png */; };
 		ACA19E3814ACC0B40066D760 /* griNegru.png in Resources */ = {isa = PBXBuildFile; fileRef = ACA19E3714ACC0B40066D760 /* griNegru.png */; };
 		ACA19E4F14ACC26D0066D760 /* cautari_salvate.png in Resources */ = {isa = PBXBuildFile; fileRef = ACA19E4314ACC26C0066D760 /* cautari_salvate.png */; };
 		ACA19E5014ACC26D0066D760 /* chart.png in Resources */ = {isa = PBXBuildFile; fileRef = ACA19E4414ACC26C0066D760 /* chart.png */; };
@@ -120,6 +125,13 @@
 		8CB2399614B358C8007BDFEE /* AdaugaImaginiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdaugaImaginiViewController.h; sourceTree = "<group>"; };
 		8CB2399714B358C8007BDFEE /* AdaugaImaginiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdaugaImaginiViewController.m; sourceTree = "<group>"; };
 		8CB2399814B358C9007BDFEE /* AdaugaImaginiViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdaugaImaginiViewController.xib; sourceTree = "<group>"; };
+		8CB2399B14B35E02007BDFEE /* OptiuniHartaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptiuniHartaViewController.h; sourceTree = "<group>"; };
+		8CB2399C14B35E02007BDFEE /* OptiuniHartaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptiuniHartaViewController.m; sourceTree = "<group>"; };
+		8CB2399D14B35E02007BDFEE /* OptiuniHartaViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OptiuniHartaViewController.xib; sourceTree = "<group>"; };
+		8CB239A114B36F7E007BDFEE /* MoreOptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreOptionsViewController.h; sourceTree = "<group>"; };
+		8CB239A214B36F7E007BDFEE /* MoreOptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreOptionsViewController.m; sourceTree = "<group>"; };
+		8CB239A314B36F7E007BDFEE /* MoreOptionsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoreOptionsViewController.xib; sourceTree = "<group>"; };
+		8CB239A614B374F1007BDFEE /* rotita.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rotita.png; sourceTree = "<group>"; };
 		ACA19E3714ACC0B40066D760 /* griNegru.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = griNegru.png; sourceTree = "<group>"; };
 		ACA19E4314ACC26C0066D760 /* cautari_salvate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cautari_salvate.png; sourceTree = "<group>"; };
 		ACA19E4414ACC26C0066D760 /* chart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chart.png; sourceTree = "<group>"; };
@@ -195,6 +207,7 @@
 				3A37A41D149B6FF50053E39F /* AppDelegate.m */,
 				8C725FBE14AE4FF5002B26F4 /* Informatii.h */,
 				8C725FBF14AE4FF5002B26F4 /* Informatii.m */,
+				8CB239A014B36F22007BDFEE /* Optiuni - harta */,
 				3A70A922149BBABB00203169 /* MAP */,
 				3A56AD1914AB866A00C6B6B0 /* Profiles */,
 				3A56AD1E14AB893000C6B6B0 /* Statistics */,
@@ -238,6 +251,7 @@
 		3A70A915149BB84700203169 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				8CB239A614B374F1007BDFEE /* rotita.png */,
 				8C800B3814ADD59700F498A5 /* adauga_anunt.png */,
 				8C800B2F14ADCB5500F498A5 /* homepage.png */,
 				ACA19E5B14ACC2BD0066D760 /* 07-map-marker.png */,
@@ -316,6 +330,19 @@
 				8CA9F8D614AE2D42008F7F42 /* FavViewController.xib */,
 			);
 			name = Favorite;
+			sourceTree = "<group>";
+		};
+		8CB239A014B36F22007BDFEE /* Optiuni - harta */ = {
+			isa = PBXGroup;
+			children = (
+				8CB2399B14B35E02007BDFEE /* OptiuniHartaViewController.h */,
+				8CB2399C14B35E02007BDFEE /* OptiuniHartaViewController.m */,
+				8CB2399D14B35E02007BDFEE /* OptiuniHartaViewController.xib */,
+				8CB239A114B36F7E007BDFEE /* MoreOptionsViewController.h */,
+				8CB239A214B36F7E007BDFEE /* MoreOptionsViewController.m */,
+				8CB239A314B36F7E007BDFEE /* MoreOptionsViewController.xib */,
+			);
+			name = "Optiuni - harta";
 			sourceTree = "<group>";
 		};
 		8CB505DA14AE052E00290270 /* Filtre */ = {
@@ -414,6 +441,9 @@
 				8C80DD2014B34ADF0039CA37 /* DetaliiAdaugaAnuntViewController.xib in Resources */,
 				8CB2399514B3509B007BDFEE /* LocalizareViewController.xib in Resources */,
 				8CB2399A14B358C9007BDFEE /* AdaugaImaginiViewController.xib in Resources */,
+				8CB2399F14B35E03007BDFEE /* OptiuniHartaViewController.xib in Resources */,
+				8CB239A514B36F7E007BDFEE /* MoreOptionsViewController.xib in Resources */,
+				8CB239A714B374F1007BDFEE /* rotita.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -438,6 +468,8 @@
 				8C80DD1F14B34ADF0039CA37 /* DetaliiAdaugaAnuntViewController.m in Sources */,
 				8CB2399414B3509B007BDFEE /* LocalizareViewController.m in Sources */,
 				8CB2399914B358C9007BDFEE /* AdaugaImaginiViewController.m in Sources */,
+				8CB2399E14B35E03007BDFEE /* OptiuniHartaViewController.m in Sources */,
+				8CB239A414B36F7E007BDFEE /* MoreOptionsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

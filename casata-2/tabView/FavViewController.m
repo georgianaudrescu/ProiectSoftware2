@@ -112,12 +112,14 @@
     // Do any additional setup after loading the view from its nib. 
     
     [super viewDidLoad];
-    favoritAles.text = @"Anunturi";
+    favoritAles.text = @"Anunturi";  //cazul default
     
+       
     //verifica daca cumva s-a facut deja selectia inainte de a se adauga la NotificationCenter
     if([[Informatii selectedFavorite] isEqualToString:@"Anunturi"])
     {segmentedControl.selectedSegmentIndex=0;
-        favoritAles.text=@"Anunturi";}
+        favoritAles.text=@"Anunturi";
+    }
     
     else if ([[Informatii selectedFavorite] isEqualToString:@"Cautari"])
     {segmentedControl.selectedSegmentIndex=2;

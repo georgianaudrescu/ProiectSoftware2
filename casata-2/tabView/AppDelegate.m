@@ -81,7 +81,7 @@
 }
 
 -(void)pageSelectedInTab:(NSString*)bTitle
-{self.window.rootViewController = self.tabBarController;
+{
    
     //in momentul in care se selecteaza un buton din home view, de aici se selecteaza si tab-ul corespunzator
     if([bTitle isEqualToString:@"Cauta anunturi"])
@@ -107,7 +107,9 @@
         
     }
     
+  self.window.rootViewController = self.tabBarController;    
 }
+
 -(void)goToHomeScreen
 {self.window.rootViewController = self.viewController;
 }

@@ -17,6 +17,7 @@
 @implementation MapViewController
 @synthesize mapView=_mapView;
 @synthesize mapNavItem;
+@synthesize searchBar;
 
 
 
@@ -27,7 +28,13 @@
         self.title = NSLocalizedString(@"Harta", @"Harta");
         self.tabBarItem.image = [UIImage imageNamed:@"mapicon"];
         //self.navigationItem = mapNavItem;
-        [self setTitle:@"Bucuresti"];
+        
+        
+        
+        //[self setTitle:@"Bucuresti"];
+           
+        
+        
         
          self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStylePlain target:self action:@selector(goHome)]autorelease];
         self.navigationItem.leftBarButtonItem.tintColor = [UIColor blackColor];
@@ -85,7 +92,8 @@
 {AppDelegate *apdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [apdelegate goToHomeScreen];
   }
-                                                  
+    
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -99,6 +107,16 @@
 {
     [super viewDidLoad];
     self.mapView.delegate=self;
+    
+    
+    /////searchBar
+    searchBar.tintColor = [UIColor colorWithRed:0.976 green:0.827 blue:0.015 alpha:1.0];
+    
+    self.navigationItem.titleView =searchBar;
+    
+    
+    
+    
 	// Do any additional setup after loading the view, typically from a nib.
  
 }
@@ -112,6 +130,7 @@
     [self setMapView:nil];
     [_mapView release];
     _mapView = nil;
+    [searchBar release];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;

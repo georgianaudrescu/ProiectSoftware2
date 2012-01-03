@@ -13,10 +13,13 @@
     BOOL _doneInitialZoom;
     IBOutlet MKMapView *mapView;
     UINavigationItem *mapNavItem;
-   
+    //
+    UISearchBar *searchBar;
    }
 @property (retain, nonatomic) IBOutlet MKMapView *mapView;
 @property (nonatomic,retain) UINavigationItem *mapNavItem;
+//
+@property (nonatomic,retain) IBOutlet UISearchBar *searchBar;
 
 -(void)goHome;
 -(void)selectFiltre;

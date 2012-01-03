@@ -38,8 +38,14 @@
 		8C800B3914ADD59800F498A5 /* adauga_anunt.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C800B3814ADD59700F498A5 /* adauga_anunt.png */; };
 		8C800B4214ADD6EE00F498A5 /* AdaugAnuntViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C800B4014ADD6EC00F498A5 /* AdaugAnuntViewController.m */; };
 		8C800B4314ADD6EE00F498A5 /* AdaugAnuntViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C800B4114ADD6ED00F498A5 /* AdaugAnuntViewController.xib */; };
+		8C80DD1F14B34ADF0039CA37 /* DetaliiAdaugaAnuntViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C80DD1D14B34ADE0039CA37 /* DetaliiAdaugaAnuntViewController.m */; };
+		8C80DD2014B34ADF0039CA37 /* DetaliiAdaugaAnuntViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C80DD1E14B34ADE0039CA37 /* DetaliiAdaugaAnuntViewController.xib */; };
 		8CA9F8D714AE2D42008F7F42 /* FavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CA9F8D514AE2D42008F7F42 /* FavViewController.m */; };
 		8CA9F8D814AE2D42008F7F42 /* FavViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CA9F8D614AE2D42008F7F42 /* FavViewController.xib */; };
+		8CB2399414B3509B007BDFEE /* LocalizareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB2399214B3509B007BDFEE /* LocalizareViewController.m */; };
+		8CB2399514B3509B007BDFEE /* LocalizareViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CB2399314B3509B007BDFEE /* LocalizareViewController.xib */; };
+		8CB2399914B358C9007BDFEE /* AdaugaImaginiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB2399714B358C8007BDFEE /* AdaugaImaginiViewController.m */; };
+		8CB2399A14B358C9007BDFEE /* AdaugaImaginiViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CB2399814B358C9007BDFEE /* AdaugaImaginiViewController.xib */; };
 		ACA19E3814ACC0B40066D760 /* griNegru.png in Resources */ = {isa = PBXBuildFile; fileRef = ACA19E3714ACC0B40066D760 /* griNegru.png */; };
 		ACA19E4F14ACC26D0066D760 /* cautari_salvate.png in Resources */ = {isa = PBXBuildFile; fileRef = ACA19E4314ACC26C0066D760 /* cautari_salvate.png */; };
 		ACA19E5014ACC26D0066D760 /* chart.png in Resources */ = {isa = PBXBuildFile; fileRef = ACA19E4414ACC26C0066D760 /* chart.png */; };
@@ -102,9 +108,18 @@
 		8C800B3F14ADD6EB00F498A5 /* AdaugAnuntViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AdaugAnuntViewController.h; path = ../AdaugAnuntViewController.h; sourceTree = "<group>"; };
 		8C800B4014ADD6EC00F498A5 /* AdaugAnuntViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AdaugAnuntViewController.m; path = ../AdaugAnuntViewController.m; sourceTree = "<group>"; };
 		8C800B4114ADD6ED00F498A5 /* AdaugAnuntViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AdaugAnuntViewController.xib; path = ../AdaugAnuntViewController.xib; sourceTree = "<group>"; };
+		8C80DD1C14B34ADE0039CA37 /* DetaliiAdaugaAnuntViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetaliiAdaugaAnuntViewController.h; sourceTree = "<group>"; };
+		8C80DD1D14B34ADE0039CA37 /* DetaliiAdaugaAnuntViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetaliiAdaugaAnuntViewController.m; sourceTree = "<group>"; };
+		8C80DD1E14B34ADE0039CA37 /* DetaliiAdaugaAnuntViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetaliiAdaugaAnuntViewController.xib; sourceTree = "<group>"; };
 		8CA9F8D414AE2D42008F7F42 /* FavViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavViewController.h; sourceTree = "<group>"; };
 		8CA9F8D514AE2D42008F7F42 /* FavViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavViewController.m; sourceTree = "<group>"; };
 		8CA9F8D614AE2D42008F7F42 /* FavViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FavViewController.xib; sourceTree = "<group>"; };
+		8CB2399114B3509B007BDFEE /* LocalizareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocalizareViewController.h; path = ../LocalizareViewController.h; sourceTree = "<group>"; };
+		8CB2399214B3509B007BDFEE /* LocalizareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocalizareViewController.m; path = ../LocalizareViewController.m; sourceTree = "<group>"; };
+		8CB2399314B3509B007BDFEE /* LocalizareViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LocalizareViewController.xib; path = ../LocalizareViewController.xib; sourceTree = "<group>"; };
+		8CB2399614B358C8007BDFEE /* AdaugaImaginiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdaugaImaginiViewController.h; sourceTree = "<group>"; };
+		8CB2399714B358C8007BDFEE /* AdaugaImaginiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdaugaImaginiViewController.m; sourceTree = "<group>"; };
+		8CB2399814B358C9007BDFEE /* AdaugaImaginiViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdaugaImaginiViewController.xib; sourceTree = "<group>"; };
 		ACA19E3714ACC0B40066D760 /* griNegru.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = griNegru.png; sourceTree = "<group>"; };
 		ACA19E4314ACC26C0066D760 /* cautari_salvate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cautari_salvate.png; sourceTree = "<group>"; };
 		ACA19E4414ACC26C0066D760 /* chart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chart.png; sourceTree = "<group>"; };
@@ -280,6 +295,15 @@
 				8C800B3F14ADD6EB00F498A5 /* AdaugAnuntViewController.h */,
 				8C800B4014ADD6EC00F498A5 /* AdaugAnuntViewController.m */,
 				8C800B4114ADD6ED00F498A5 /* AdaugAnuntViewController.xib */,
+				8C80DD1D14B34ADE0039CA37 /* DetaliiAdaugaAnuntViewController.m */,
+				8C80DD1C14B34ADE0039CA37 /* DetaliiAdaugaAnuntViewController.h */,
+				8C80DD1E14B34ADE0039CA37 /* DetaliiAdaugaAnuntViewController.xib */,
+				8CB2399114B3509B007BDFEE /* LocalizareViewController.h */,
+				8CB2399214B3509B007BDFEE /* LocalizareViewController.m */,
+				8CB2399314B3509B007BDFEE /* LocalizareViewController.xib */,
+				8CB2399614B358C8007BDFEE /* AdaugaImaginiViewController.h */,
+				8CB2399714B358C8007BDFEE /* AdaugaImaginiViewController.m */,
+				8CB2399814B358C9007BDFEE /* AdaugaImaginiViewController.xib */,
 			);
 			name = AdaugAnunt;
 			sourceTree = "<group>";
@@ -387,6 +411,9 @@
 				8C800B4314ADD6EE00F498A5 /* AdaugAnuntViewController.xib in Resources */,
 				8C6C8DC814AE002D00BAD7DB /* FiltreTableViewController.xib in Resources */,
 				8CA9F8D814AE2D42008F7F42 /* FavViewController.xib in Resources */,
+				8C80DD2014B34ADF0039CA37 /* DetaliiAdaugaAnuntViewController.xib in Resources */,
+				8CB2399514B3509B007BDFEE /* LocalizareViewController.xib in Resources */,
+				8CB2399A14B358C9007BDFEE /* AdaugaImaginiViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -408,6 +435,9 @@
 				8C6C8DC714AE002C00BAD7DB /* FiltreTableViewController.m in Sources */,
 				8CA9F8D714AE2D42008F7F42 /* FavViewController.m in Sources */,
 				8C725FC014AE4FF5002B26F4 /* Informatii.m in Sources */,
+				8C80DD1F14B34ADF0039CA37 /* DetaliiAdaugaAnuntViewController.m in Sources */,
+				8CB2399414B3509B007BDFEE /* LocalizareViewController.m in Sources */,
+				8CB2399914B358C9007BDFEE /* AdaugaImaginiViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

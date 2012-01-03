@@ -51,7 +51,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">bg.png</string>
+							<string key="NSResourceName">fundal.png</string>
 						</object>
 					</object>
 					<object class="IBUIImageView" id="99023515">
@@ -617,9 +617,9 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="adauga_anunt.png">{24, 24}</string>
-			<string key="bg.png">{320, 480}</string>
 			<string key="cautari_salvate.png">{26, 17}</string>
 			<string key="chart.png">{30, 24}</string>
+			<string key="fundal.png">{320, 480}</string>
 			<string key="griNegru.png">{275, 64}</string>
 			<string key="lightbulb.png">{14, 21}</string>
 			<string key="login.png">{14, 27}</string>

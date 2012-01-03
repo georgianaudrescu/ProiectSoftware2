@@ -9,15 +9,39 @@
 #import "LoginViewController.h"
 
 @implementation LoginViewController
+@synthesize usernameTextField;
+@synthesize passwordTextField;
+@synthesize loginButton,closeButton;
+
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.title = NSLocalizedString(@"Profil", @"Profil");
-        self.tabBarItem.image = [UIImage imageNamed:@"user"];
+        //self.title = NSLocalizedString(@"Profil", @"Profil");
+        //self.tabBarItem.image = [UIImage imageNamed:@"user"];
     }
     return self;
+}
+
+-(IBAction)getRidOfKeyboard:(id)sender
+{ [sender resignFirstResponder];
+}
+
+
+-(IBAction) clickBackground:(id) sender{
+    [usernameTextField resignFirstResponder];
+    [passwordTextField resignFirstResponder];
+}
+
+- (IBAction)closeModalViewController:(id)sender
+{
+[self dismissModalViewControllerAnimated:YES];
+}
+
+-(IBAction)login:(id)sender
+{
 }
 
 - (void)didReceiveMemoryWarning
@@ -34,6 +58,13 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+}
+-(void)dealloc
+{[usernameTextField release];
+    [passwordTextField release];
+    [loginButton release];
+    [closeButton release];
+    [super dealloc];
 }
 
 - (void)viewDidUnload

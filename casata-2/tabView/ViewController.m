@@ -52,6 +52,7 @@
 }
 -(IBAction)selectPage:(UIButton*)aButton
 {
+    //de tratat cazul login
     AppDelegate *apdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [apdelegate pageSelectedInTab:aButton.titleLabel.text];
     

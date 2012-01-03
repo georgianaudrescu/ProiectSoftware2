@@ -42,6 +42,14 @@
 		8C80DD2014B34ADF0039CA37 /* DetaliiAdaugaAnuntViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C80DD1E14B34ADE0039CA37 /* DetaliiAdaugaAnuntViewController.xib */; };
 		8CA9F8D714AE2D42008F7F42 /* FavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CA9F8D514AE2D42008F7F42 /* FavViewController.m */; };
 		8CA9F8D814AE2D42008F7F42 /* FavViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CA9F8D614AE2D42008F7F42 /* FavViewController.xib */; };
+		8CAF1E2214B39A540098F56B /* SyncTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CAF1E2014B39A540098F56B /* SyncTableViewController.m */; };
+		8CAF1E2314B39A540098F56B /* SyncTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CAF1E2114B39A540098F56B /* SyncTableViewController.xib */; };
+		8CAF1E2714B39AA30098F56B /* MyAdsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CAF1E2514B39AA30098F56B /* MyAdsTableViewController.m */; };
+		8CAF1E2814B39AA30098F56B /* MyAdsTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CAF1E2614B39AA30098F56B /* MyAdsTableViewController.xib */; };
+		8CAF1E2F14B39AE60098F56B /* PersonalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CAF1E2A14B39AE60098F56B /* PersonalViewController.m */; };
+		8CAF1E3014B39AE60098F56B /* PersonalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CAF1E2B14B39AE60098F56B /* PersonalViewController.xib */; };
+		8CAF1E3114B39AE60098F56B /* PrefTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CAF1E2D14B39AE60098F56B /* PrefTableViewController.m */; };
+		8CAF1E3214B39AE60098F56B /* PrefTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CAF1E2E14B39AE60098F56B /* PrefTableViewController.xib */; };
 		8CB2399414B3509B007BDFEE /* LocalizareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB2399214B3509B007BDFEE /* LocalizareViewController.m */; };
 		8CB2399514B3509B007BDFEE /* LocalizareViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CB2399314B3509B007BDFEE /* LocalizareViewController.xib */; };
 		8CB2399914B358C9007BDFEE /* AdaugaImaginiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB2399714B358C8007BDFEE /* AdaugaImaginiViewController.m */; };
@@ -119,6 +127,18 @@
 		8CA9F8D414AE2D42008F7F42 /* FavViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavViewController.h; sourceTree = "<group>"; };
 		8CA9F8D514AE2D42008F7F42 /* FavViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavViewController.m; sourceTree = "<group>"; };
 		8CA9F8D614AE2D42008F7F42 /* FavViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FavViewController.xib; sourceTree = "<group>"; };
+		8CAF1E1F14B39A540098F56B /* SyncTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncTableViewController.h; sourceTree = "<group>"; };
+		8CAF1E2014B39A540098F56B /* SyncTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncTableViewController.m; sourceTree = "<group>"; };
+		8CAF1E2114B39A540098F56B /* SyncTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SyncTableViewController.xib; sourceTree = "<group>"; };
+		8CAF1E2414B39AA30098F56B /* MyAdsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAdsTableViewController.h; sourceTree = "<group>"; };
+		8CAF1E2514B39AA30098F56B /* MyAdsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAdsTableViewController.m; sourceTree = "<group>"; };
+		8CAF1E2614B39AA30098F56B /* MyAdsTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyAdsTableViewController.xib; sourceTree = "<group>"; };
+		8CAF1E2914B39AE60098F56B /* PersonalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalViewController.h; sourceTree = "<group>"; };
+		8CAF1E2A14B39AE60098F56B /* PersonalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalViewController.m; sourceTree = "<group>"; };
+		8CAF1E2B14B39AE60098F56B /* PersonalViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonalViewController.xib; sourceTree = "<group>"; };
+		8CAF1E2C14B39AE60098F56B /* PrefTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefTableViewController.h; sourceTree = "<group>"; };
+		8CAF1E2D14B39AE60098F56B /* PrefTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrefTableViewController.m; sourceTree = "<group>"; };
+		8CAF1E2E14B39AE60098F56B /* PrefTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrefTableViewController.xib; sourceTree = "<group>"; };
 		8CB2399114B3509B007BDFEE /* LocalizareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocalizareViewController.h; path = ../LocalizareViewController.h; sourceTree = "<group>"; };
 		8CB2399214B3509B007BDFEE /* LocalizareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocalizareViewController.m; path = ../LocalizareViewController.m; sourceTree = "<group>"; };
 		8CB2399314B3509B007BDFEE /* LocalizareViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LocalizareViewController.xib; path = ../LocalizareViewController.xib; sourceTree = "<group>"; };
@@ -198,6 +218,7 @@
 		3A37A413149B6FF50053E39F /* casata */ = {
 			isa = PBXGroup;
 			children = (
+				8CAF1E1D14B3998D0098F56B /* Personal */,
 				8CA9F8DA14AE2D4F008F7F42 /* Favorite */,
 				8CB505DA14AE052E00290270 /* Filtre */,
 				8C800B4414ADD73700F498A5 /* AdaugAnunt */,
@@ -332,6 +353,25 @@
 			name = Favorite;
 			sourceTree = "<group>";
 		};
+		8CAF1E1D14B3998D0098F56B /* Personal */ = {
+			isa = PBXGroup;
+			children = (
+				8CAF1E2914B39AE60098F56B /* PersonalViewController.h */,
+				8CAF1E2A14B39AE60098F56B /* PersonalViewController.m */,
+				8CAF1E2B14B39AE60098F56B /* PersonalViewController.xib */,
+				8CAF1E2C14B39AE60098F56B /* PrefTableViewController.h */,
+				8CAF1E2D14B39AE60098F56B /* PrefTableViewController.m */,
+				8CAF1E2E14B39AE60098F56B /* PrefTableViewController.xib */,
+				8CAF1E2414B39AA30098F56B /* MyAdsTableViewController.h */,
+				8CAF1E2514B39AA30098F56B /* MyAdsTableViewController.m */,
+				8CAF1E2614B39AA30098F56B /* MyAdsTableViewController.xib */,
+				8CAF1E1F14B39A540098F56B /* SyncTableViewController.h */,
+				8CAF1E2014B39A540098F56B /* SyncTableViewController.m */,
+				8CAF1E2114B39A540098F56B /* SyncTableViewController.xib */,
+			);
+			name = Personal;
+			sourceTree = "<group>";
+		};
 		8CB239A014B36F22007BDFEE /* Optiuni - harta */ = {
 			isa = PBXGroup;
 			children = (
@@ -444,6 +484,10 @@
 				8CB2399F14B35E03007BDFEE /* OptiuniHartaViewController.xib in Resources */,
 				8CB239A514B36F7E007BDFEE /* MoreOptionsViewController.xib in Resources */,
 				8CB239A714B374F1007BDFEE /* rotita.png in Resources */,
+				8CAF1E2314B39A540098F56B /* SyncTableViewController.xib in Resources */,
+				8CAF1E2814B39AA30098F56B /* MyAdsTableViewController.xib in Resources */,
+				8CAF1E3014B39AE60098F56B /* PersonalViewController.xib in Resources */,
+				8CAF1E3214B39AE60098F56B /* PrefTableViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -470,6 +514,10 @@
 				8CB2399914B358C9007BDFEE /* AdaugaImaginiViewController.m in Sources */,
 				8CB2399E14B35E03007BDFEE /* OptiuniHartaViewController.m in Sources */,
 				8CB239A414B36F7E007BDFEE /* MoreOptionsViewController.m in Sources */,
+				8CAF1E2214B39A540098F56B /* SyncTableViewController.m in Sources */,
+				8CAF1E2714B39AA30098F56B /* MyAdsTableViewController.m in Sources */,
+				8CAF1E2F14B39AE60098F56B /* PersonalViewController.m in Sources */,
+				8CAF1E3114B39AE60098F56B /* PrefTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

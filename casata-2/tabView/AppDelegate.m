@@ -15,8 +15,7 @@
 #import "StatsViewController.h"
 
 #import "FavViewController.h"
-
-#import "LoginViewController.h"
+#import "PersonalViewController.h"
 
 #import "ViewController.h"
 #import "Informatii.h"
@@ -49,7 +48,7 @@
     FavViewController *favViewController = [[[FavViewController alloc] initWithNibName:@"FavViewController" bundle:nil] autorelease];
     
     
-    UIViewController *loginViewController = [[[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil] autorelease];
+    UIViewController *persViewController = [[[PersonalViewController alloc] initWithNibName:@"PersonalViewController" bundle:nil] autorelease];
     
     //Navigation controllerul pt pagina de Map
     UINavigationController *navControllerMap = [[[UINavigationController alloc] initWithRootViewController:mapViewController] autorelease];
@@ -66,13 +65,16 @@
     
     navControllerAdaug.navigationBar.tintColor = [UIColor colorWithRed:0.976 green:0.827 blue:0.015 alpha:1.0];
     
+    //navigation controllerul pt pagina Personal
+    UINavigationController *navControllerPersonal = [[[UINavigationController alloc] initWithRootViewController:persViewController] autorelease];
     
+    navControllerPersonal.navigationBar.tintColor = [UIColor colorWithRed:0.976 green:0.827 blue:0.015 alpha:1.0];    
     //view controllerul pt Home
     self.viewController = [[[ViewController alloc] initWithNibName:@"ViewController" bundle:nil] autorelease];
     
     
     self.tabBarController = [[[UITabBarController alloc] init] autorelease];
-    self.tabBarController.viewControllers = [NSArray arrayWithObjects:navControllerMap, navControllerFav,navControllerAdaug,statsViewController,loginViewController, nil];
+    self.tabBarController.viewControllers = [NSArray arrayWithObjects:navControllerMap, navControllerFav,navControllerAdaug,statsViewController,navControllerPersonal, nil];
     self.window.rootViewController = self.viewController;
     
     //self.window.rootViewController = self.tabBarController;

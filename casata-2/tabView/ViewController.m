@@ -9,6 +9,7 @@
 #import "ViewController.h"
 
 #import "AppDelegate.h"
+#import "LoginViewController.h"
 
 @implementation ViewController
 @synthesize buttonSearch,buttonFav,buttonAbout,buttonLogin,buttonStats,buttonSetari,buttonSavedSearch,buttonAnunturiApropiere, buttonAdaugaAnunt;
@@ -52,12 +53,18 @@
 }
 -(IBAction)selectPage:(UIButton*)aButton
 {
-    //de tratat cazul login
+    if([aButton.titleLabel.text isEqualToString:@" Login"])
+        {
+            LoginViewController *logViewController = [[[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil] autorelease];
+            [self presentModalViewController:logViewController animated:YES];
+        }
+        else
+        {
     AppDelegate *apdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [apdelegate pageSelectedInTab:aButton.titleLabel.text];
     
    // [apdelegate pageSelected:aButton.titleLabel.text];
-    
+        }
 }
 
 

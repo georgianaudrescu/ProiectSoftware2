@@ -9,5 +9,22 @@
 #import <UIKit/UIKit.h>
 
 @interface LoginViewController : UIViewController
+{
+IBOutlet UITextField *usernameTextField, *passwordTextField;
+IBOutlet UIButton *loginButton;   
+UIButton *closeButton;
+
+BOOL logat;
+}
+
+@property (retain, nonatomic) IBOutlet UITextField *usernameTextField;
+@property (retain, nonatomic) IBOutlet UITextField *passwordTextField;
+@property (retain, nonatomic) IBOutlet UIButton *loginButton;
+@property (nonatomic, retain) IBOutlet UIButton *closeButton;
+
+-(IBAction)getRidOfKeyboard:(id)sender;
+-(IBAction) clickBackground:(id) sender;
+-(IBAction)login:(id)sender;
+-(IBAction)closeModalViewController:(id)sender;
 
 @end

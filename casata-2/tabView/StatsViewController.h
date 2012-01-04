@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CorePlot-CocoaTouch.h"
 
 @interface StatsViewController : UIViewController
 
+-(void)goHome;
+-(void)clearChartStatistici;
 @end

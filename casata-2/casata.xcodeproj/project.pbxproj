@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A30EB3714B62F11003C2264 /* TRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A30EB3614B62F11003C2264 /* TRequest.m */; };
 		3A37A40E149B6FF50053E39F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A37A40D149B6FF50053E39F /* UIKit.framework */; };
 		3A37A410149B6FF50053E39F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A37A40F149B6FF50053E39F /* Foundation.framework */; };
 		3A37A412149B6FF50053E39F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A37A411149B6FF50053E39F /* CoreGraphics.framework */; };
@@ -82,6 +83,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3A30EB3514B62F11003C2264 /* TRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRequest.h; sourceTree = "<group>"; };
+		3A30EB3614B62F11003C2264 /* TRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRequest.m; sourceTree = "<group>"; };
 		3A37A409149B6FF50053E39F /* casata.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = casata.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A37A40D149B6FF50053E39F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3A37A40F149B6FF50053E39F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -324,6 +327,8 @@
 				3A56AD1914AB866A00C6B6B0 /* Profiles */,
 				3A56AD1E14AB893000C6B6B0 /* Statistics */,
 				3A37A414149B6FF50053E39F /* Supporting Files */,
+				3A30EB3514B62F11003C2264 /* TRequest.h */,
+				3A30EB3614B62F11003C2264 /* TRequest.m */,
 			);
 			name = casata;
 			path = tabView;
@@ -701,6 +706,7 @@
 				8CAF1E2714B39AA30098F56B /* MyAdsTableViewController.m in Sources */,
 				8CAF1E2F14B39AE60098F56B /* PersonalViewController.m in Sources */,
 				8CAF1E3114B39AE60098F56B /* PrefTableViewController.m in Sources */,
+				3A30EB3714B62F11003C2264 /* TRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

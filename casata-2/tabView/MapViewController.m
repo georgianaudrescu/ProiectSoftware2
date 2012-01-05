@@ -10,6 +10,7 @@
 #import "MyLocation.h"
 #import "AppDelegate.h"
 #import "OptiuniHartaViewController.h"
+#import "TRequest.h"
 
 #define myURL [NSURL URLWithString:@"http://flapptest.comule.com/get_ads/"]
 
@@ -145,6 +146,7 @@
     MKCoordinateRegion adjustedRegion = [_mapView regionThatFits:viewRegion];
     [_mapView setRegion:adjustedRegion animated:YES];
     
+ /*
     //declararea request-ului
     NSURL *aUrl = [NSURL URLWithString:@"http://flapptest.comule.com"];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:aUrl
@@ -164,7 +166,14 @@
     // NSLog(@"response: %@", stringRespone);    
         
    // NSData *data = [NSData dataWithContentsOfURL:myURL];
-    
+*/
+    TRequest * myRequest = [TRequest alloc] ;
+    [myRequest initWithHost:@"http://flapptest.comule.com"];
+    NSString *postString = @"left=25%2E96&sessionTime=1325693857685&right=26%2E24&bottom=44%2E33&top=44%2E53&currency=euro&request=get%5Fads&zoom=5000&sid=session1";
+    NSData * data;
+    if([myRequest makeRequestWithString:postString]!=0){
+        data=[myRequest requestData];
+    }
     
     if ([data length]==0)
     {

@@ -32,6 +32,7 @@
 		3A70A926149BBB3000203169 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A70A925149BBB3000203169 /* CoreLocation.framework */; };
 		8C0A091214B4692200BD768E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C0A091114B4692200BD768E /* QuartzCore.framework */; };
 		8C0A097114B4733100BD768E /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C0A097014B4733100BD768E /* libCorePlot-CocoaTouch.a */; };
+		8C56450C14B6420000540286 /* TLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C56450B14B6420000540286 /* TLocation.m */; };
 		8C6C8DC714AE002C00BAD7DB /* FiltreTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C6C8DC514AE002C00BAD7DB /* FiltreTableViewController.m */; };
 		8C6C8DC814AE002D00BAD7DB /* FiltreTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C6C8DC614AE002C00BAD7DB /* FiltreTableViewController.xib */; };
 		8C71BDD014ABF91700E77A77 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C71BDCE14ABF91700E77A77 /* ViewController.m */; };
@@ -196,6 +197,8 @@
 		8C0A096E14B4731200BD768E /* NSExceptionExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSExceptionExtensions.h; sourceTree = "<group>"; };
 		8C0A096F14B4731200BD768E /* NSNumberExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSNumberExtensions.h; sourceTree = "<group>"; };
 		8C0A097014B4733100BD768E /* libCorePlot-CocoaTouch.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libCorePlot-CocoaTouch.a"; sourceTree = "<group>"; };
+		8C56450A14B6420000540286 /* TLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLocation.h; sourceTree = "<group>"; };
+		8C56450B14B6420000540286 /* TLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLocation.m; sourceTree = "<group>"; };
 		8C6C8DC414AE002C00BAD7DB /* FiltreTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FiltreTableViewController.h; sourceTree = "<group>"; };
 		8C6C8DC514AE002C00BAD7DB /* FiltreTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FiltreTableViewController.m; sourceTree = "<group>"; };
 		8C6C8DC614AE002C00BAD7DB /* FiltreTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FiltreTableViewController.xib; sourceTree = "<group>"; };
@@ -312,6 +315,7 @@
 		3A37A413149B6FF50053E39F /* casata */ = {
 			isa = PBXGroup;
 			children = (
+				8C56450814B641EB00540286 /* Clase */,
 				8CAF1E1D14B3998D0098F56B /* Personal */,
 				8CA9F8DA14AE2D4F008F7F42 /* Favorite */,
 				8CB505DA14AE052E00290270 /* Filtre */,
@@ -498,6 +502,15 @@
 			);
 			name = CorePlotHeaders;
 			path = ../CorePlotHeaders;
+			sourceTree = "<group>";
+		};
+		8C56450814B641EB00540286 /* Clase */ = {
+			isa = PBXGroup;
+			children = (
+				8C56450A14B6420000540286 /* TLocation.h */,
+				8C56450B14B6420000540286 /* TLocation.m */,
+			);
+			name = Clase;
 			sourceTree = "<group>";
 		};
 		8C71BDB214ABEE9100E77A77 /* home */ = {
@@ -707,6 +720,7 @@
 				8CAF1E2F14B39AE60098F56B /* PersonalViewController.m in Sources */,
 				8CAF1E3114B39AE60098F56B /* PrefTableViewController.m in Sources */,
 				3A30EB3714B62F11003C2264 /* TRequest.m in Sources */,
+				8C56450C14B6420000540286 /* TLocation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

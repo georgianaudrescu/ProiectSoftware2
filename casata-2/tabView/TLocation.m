@@ -6,11 +6,11 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "MyLocation.h"
+#import "TLocation.h"
 
 
-@implementation MyLocation
-@synthesize coordinate, title, subtitle;
+@implementation TLocation
+@synthesize coordinate, title, subtitle, locationId;
 
 -(id) initWithTitle:(NSString *)aTitle andSubtitle:(NSString *)aSubtitle{
     self = [super init];

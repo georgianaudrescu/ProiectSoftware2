@@ -7,7 +7,7 @@
 //
 
 #import "MapViewController.h"
-#import "MyLocation.h"
+#import "TLocation.h"
 #import "AppDelegate.h"
 #import "OptiuniHartaViewController.h"
 #import "TRequest.h"
@@ -212,7 +212,7 @@
         CLLocationCoordinate2D coordinate;
         coordinate.latitude = latitude.doubleValue;
         coordinate.longitude = longitude.doubleValue; 
-        MyLocation *annotation = [[MyLocation alloc]  initWithTitle:name andSubtitle:name];
+        TLocation *annotation = [[TLocation alloc]  initWithTitle:name andSubtitle:name];
         annotation.coordinate = coordinate;
         
         [_mapView addAnnotation:annotation]; 
@@ -222,7 +222,7 @@
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation{
     static NSString *identifier = @"MyLocation";   
-    if ([annotation isKindOfClass:[MyLocation class]]) {
+    if ([annotation isKindOfClass:[TLocation class]]) {
         // MyLocation *location = (MyLocation *) annotation;
         
         MKAnnotationView *annotationView = (MKAnnotationView *) [_mapView dequeueReusableAnnotationViewWithIdentifier:identifier];

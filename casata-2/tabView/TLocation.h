@@ -10,16 +10,18 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 
-@interface MyLocation : NSObject <MKAnnotation>
+@interface TLocation : NSObject <MKAnnotation>
 {
 	CLLocationCoordinate2D coordinate;
 	NSString *title;
 	NSString *subtitle;
+    int locationId;
 }
 
 @property (nonatomic, assign) CLLocationCoordinate2D coordinate;
 @property (nonatomic, readonly, copy) NSString *title;
 @property (nonatomic, readonly, copy) NSString *subtitle;
+@property (nonatomic, readonly) int locationId;
 
 - (id)initWithTitle:(NSString *)aTitle andSubtitle:(NSString *)aSubtitle;
 

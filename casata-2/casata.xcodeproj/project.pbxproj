@@ -24,12 +24,12 @@
 		3A56AD1614AB85B400C6B6B0 /* linechart.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A56AD1214AB85B300C6B6B0 /* linechart.png */; };
 		3A56AD1714AB85B400C6B6B0 /* mapicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A56AD1314AB85B300C6B6B0 /* mapicon.png */; };
 		3A56AD1814AB85B400C6B6B0 /* user.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A56AD1414AB85B300C6B6B0 /* user.png */; };
-		3A56AD2914AB8C8100C6B6B0 /* MyLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A56AD2814AB8C8100C6B6B0 /* MyLocation.m */; };
 		3A56AD3A14ABA00D00C6B6B0 /* bluehouse.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A56AD3914ABA00D00C6B6B0 /* bluehouse.png */; };
 		3A70A91B149BB89200203169 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A70A917149BB89200203169 /* star.png */; };
 		3A70A91C149BB89200203169 /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A70A918149BB89200203169 /* home.png */; };
 		3A70A924149BBB1000203169 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A70A923149BBB1000203169 /* MapKit.framework */; };
 		3A70A926149BBB3000203169 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A70A925149BBB3000203169 /* CoreLocation.framework */; };
+		3A7D807414B71178004EE453 /* TLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7D807314B71178004EE453 /* TLocation.m */; };
 		8C0A091214B4692200BD768E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C0A091114B4692200BD768E /* QuartzCore.framework */; };
 		8C0A097114B4733100BD768E /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C0A097014B4733100BD768E /* libCorePlot-CocoaTouch.a */; };
 		8C56451C14B64A5600540286 /* TImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C56451B14B64A5600540286 /* TImage.m */; };
@@ -110,13 +110,13 @@
 		3A56AD1214AB85B300C6B6B0 /* linechart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = linechart.png; sourceTree = "<group>"; };
 		3A56AD1314AB85B300C6B6B0 /* mapicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mapicon.png; sourceTree = "<group>"; };
 		3A56AD1414AB85B300C6B6B0 /* user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user.png; sourceTree = "<group>"; };
-		3A56AD2714AB8C8100C6B6B0 /* MyLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyLocation.h; sourceTree = "<group>"; };
-		3A56AD2814AB8C8100C6B6B0 /* MyLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyLocation.m; sourceTree = "<group>"; };
 		3A56AD3914ABA00D00C6B6B0 /* bluehouse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bluehouse.png; sourceTree = "<group>"; };
 		3A70A917149BB89200203169 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
 		3A70A918149BB89200203169 /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
 		3A70A923149BBB1000203169 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		3A70A925149BBB3000203169 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		3A7D807214B71178004EE453 /* TLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLocation.h; sourceTree = "<group>"; };
+		3A7D807314B71178004EE453 /* TLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLocation.m; sourceTree = "<group>"; };
 		8C0A091114B4692200BD768E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		8C0A092114B4731100BD768E /* _CPTConstraintsFixed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _CPTConstraintsFixed.h; sourceTree = "<group>"; };
 		8C0A092214B4731100BD768E /* _CPTConstraintsRelative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _CPTConstraintsRelative.h; sourceTree = "<group>"; };
@@ -334,8 +334,6 @@
 				3A56AD1914AB866A00C6B6B0 /* Profiles */,
 				3A56AD1E14AB893000C6B6B0 /* Statistics */,
 				3A37A414149B6FF50053E39F /* Supporting Files */,
-				3A30EB3514B62F11003C2264 /* TRequest.h */,
-				3A30EB3614B62F11003C2264 /* TRequest.m */,
 			);
 			name = casata;
 			path = tabView;
@@ -411,8 +409,6 @@
 		3A70A922149BBABB00203169 /* MAP */ = {
 			isa = PBXGroup;
 			children = (
-				3A56AD2714AB8C8100C6B6B0 /* MyLocation.h */,
-				3A56AD2814AB8C8100C6B6B0 /* MyLocation.m */,
 				3A37A41F149B6FF50053E39F /* MapViewController.h */,
 				3A37A420149B6FF50053E39F /* MapViewController.m */,
 				3A37A42D149B6FF60053E39F /* MapViewController.xib */,
@@ -510,6 +506,10 @@
 		8C56450814B641EB00540286 /* Clase */ = {
 			isa = PBXGroup;
 			children = (
+				3A7D807214B71178004EE453 /* TLocation.h */,
+				3A7D807314B71178004EE453 /* TLocation.m */,
+				3A30EB3514B62F11003C2264 /* TRequest.h */,
+				3A30EB3614B62F11003C2264 /* TRequest.m */,
 				AC02995514B70CBC0025BBF9 /* TAd.h */,
 				AC02995614B70CBC0025BBF9 /* TAd.m */,
 				8C56451A14B64A5600540286 /* TImage.h */,
@@ -709,7 +709,6 @@
 				3A37A421149B6FF50053E39F /* MapViewController.m in Sources */,
 				3A37A445149B774A0053E39F /* LoginViewController.m in Sources */,
 				3A37A476149BB6C70053E39F /* StatsViewController.m in Sources */,
-				3A56AD2914AB8C8100C6B6B0 /* MyLocation.m in Sources */,
 				8C71BDD014ABF91700E77A77 /* ViewController.m in Sources */,
 				8C800B4214ADD6EE00F498A5 /* AdaugAnuntViewController.m in Sources */,
 				8C6C8DC714AE002C00BAD7DB /* FiltreTableViewController.m in Sources */,
@@ -727,6 +726,7 @@
 				3A30EB3714B62F11003C2264 /* TRequest.m in Sources */,
 				8C56451C14B64A5600540286 /* TImage.m in Sources */,
 				AC02995714B70CBC0025BBF9 /* TAd.m in Sources */,
+				3A7D807414B71178004EE453 /* TLocation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

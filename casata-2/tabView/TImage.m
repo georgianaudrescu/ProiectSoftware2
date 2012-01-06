@@ -11,7 +11,7 @@
 @implementation TImage
 @synthesize imageView,imageId,name,url,description; 
 
--(void)createWithContentsOfUrlString:(NSString *) anURLString
+-(void)initWithImageFromUrlString:(NSString *) anURLString
 { 
     self.url = [NSURL URLWithString:anURLString];
        NSData* imageData = [[NSData alloc]initWithContentsOfURL:self.url];
@@ -26,11 +26,11 @@
 
 
 }
--(void) setImage:(UIImage *) anImage
+-(void) initWithImage:(UIImage *) anImage
 {
     imageView = [[UIImageView alloc] initWithImage:anImage];
 }
--(UIImageView *)imageView
+-(UIImageView *)theImageView
 {
     return self.imageView;
 }

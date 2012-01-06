@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface AdaugaImaginiViewController : UIViewController
+{
+    
+}
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "AdaugaImaginiViewController.h"
+#import "TImage.h"
 
 @implementation AdaugaImaginiViewController
 
@@ -33,6 +34,17 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+  /*  
+   //TImage test  
+    TImage *anImage = [TImage alloc];
+    anImage.imageId=1;
+    anImage.description=@"etc";
+    [anImage createWithContentsOfUrlString:@"http://www.incasa.ro/_files/Image/galerie/5/casa_1.jpg"];
+    //[anImage setImage:[UIImage imageNamed:@"house.jpg"]]; 
+    //anImage.imageView.frame = CGRectMake(0, 0, 30, 30);
+    [self.view addSubview:anImage.imageView];
+    [anImage release];
+   */    
 }
 
 - (void)viewDidUnload

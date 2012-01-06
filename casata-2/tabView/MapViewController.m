@@ -12,6 +12,7 @@
 #import "OptiuniHartaViewController.h"
 #import "TRequest.h"
 
+
 #define myURL [NSURL URLWithString:@"http://flapptest.comule.com/get_ads/"]
 
 
@@ -233,11 +234,14 @@
         } else {
             annotationView.annotation = annotation;
         }
-    
+     
         UIImageView *imgView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"house.jpg"]]autorelease];
+        
+                                                                    
         imgView.frame =CGRectMake(0, 0, 30, 30);
         annotationView.leftCalloutAccessoryView = imgView;
-       // [imgView release];
+                      
+        // [imgView release];
         annotationView.enabled = YES;
         annotationView.canShowCallout = YES;
         

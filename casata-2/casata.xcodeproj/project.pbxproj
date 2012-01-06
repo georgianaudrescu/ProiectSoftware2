@@ -65,6 +65,7 @@
 		8CB239A714B374F1007BDFEE /* rotita.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CB239A614B374F1007BDFEE /* rotita.png */; };
 		8CCC850114B3A9A300B9FD47 /* fundal.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CCC850014B3A9A300B9FD47 /* fundal.png */; };
 		8CCC850814B3B81300B9FD47 /* CloseIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CCC850714B3B81200B9FD47 /* CloseIcon.png */; };
+		AC02995714B70CBC0025BBF9 /* TAd.m in Sources */ = {isa = PBXBuildFile; fileRef = AC02995614B70CBC0025BBF9 /* TAd.m */; };
 		ACA19E3814ACC0B40066D760 /* griNegru.png in Resources */ = {isa = PBXBuildFile; fileRef = ACA19E3714ACC0B40066D760 /* griNegru.png */; };
 		ACA19E4F14ACC26D0066D760 /* cautari_salvate.png in Resources */ = {isa = PBXBuildFile; fileRef = ACA19E4314ACC26C0066D760 /* cautari_salvate.png */; };
 		ACA19E5014ACC26D0066D760 /* chart.png in Resources */ = {isa = PBXBuildFile; fileRef = ACA19E4414ACC26C0066D760 /* chart.png */; };
@@ -245,6 +246,8 @@
 		8CB239A614B374F1007BDFEE /* rotita.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rotita.png; sourceTree = "<group>"; };
 		8CCC850014B3A9A300B9FD47 /* fundal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fundal.png; sourceTree = "<group>"; };
 		8CCC850714B3B81200B9FD47 /* CloseIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CloseIcon.png; sourceTree = "<group>"; };
+		AC02995514B70CBC0025BBF9 /* TAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAd.h; sourceTree = "<group>"; };
+		AC02995614B70CBC0025BBF9 /* TAd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAd.m; sourceTree = "<group>"; };
 		ACA19E3714ACC0B40066D760 /* griNegru.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = griNegru.png; sourceTree = "<group>"; };
 		ACA19E4314ACC26C0066D760 /* cautari_salvate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cautari_salvate.png; sourceTree = "<group>"; };
 		ACA19E4414ACC26C0066D760 /* chart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chart.png; sourceTree = "<group>"; };
@@ -507,6 +510,8 @@
 		8C56450814B641EB00540286 /* Clase */ = {
 			isa = PBXGroup;
 			children = (
+				AC02995514B70CBC0025BBF9 /* TAd.h */,
+				AC02995614B70CBC0025BBF9 /* TAd.m */,
 				8C56451A14B64A5600540286 /* TImage.h */,
 				8C56451B14B64A5600540286 /* TImage.m */,
 			);
@@ -721,6 +726,7 @@
 				8CAF1E3114B39AE60098F56B /* PrefTableViewController.m in Sources */,
 				3A30EB3714B62F11003C2264 /* TRequest.m in Sources */,
 				8C56451C14B64A5600540286 /* TImage.m in Sources */,
+				AC02995714B70CBC0025BBF9 /* TAd.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -806,6 +812,11 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/Libs/CorePlot\"",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/../../.Trash/casata-2 12.57.21\"",
+					"\"$(SRCROOT)/../../.Trash/ProiectSoftware2 12.40.23/casata-2\"",
+					"\"$(SRCROOT)/../../.Trash/ProiectSoftware2 13.08.02/casata-2\"",
+					"\"$(SRCROOT)/../../.Trash/ProiectSoftware2 13.09.47/casata-2\"",
+					"\"$(SRCROOT)/../../test/casata-2\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -834,6 +845,11 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/Libs/CorePlot\"",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/../../.Trash/casata-2 12.57.21\"",
+					"\"$(SRCROOT)/../../.Trash/ProiectSoftware2 12.40.23/casata-2\"",
+					"\"$(SRCROOT)/../../.Trash/ProiectSoftware2 13.08.02/casata-2\"",
+					"\"$(SRCROOT)/../../.Trash/ProiectSoftware2 13.09.47/casata-2\"",
+					"\"$(SRCROOT)/../../test/casata-2\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",

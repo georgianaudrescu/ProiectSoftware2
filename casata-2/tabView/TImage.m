@@ -9,7 +9,7 @@
 #import "TImage.h"
 
 @implementation TImage
-@synthesize imageView,imageId,name,url,description; 
+@synthesize imageView,imageId,name,url,description,defaultValue; 
 
 -(void)initWithImageFromUrlString:(NSString *) anURLString
 { 
@@ -36,6 +36,11 @@
 {
     return self.imageView;
 }
+-(void)uploadImage:(int)adId
+{
+    ///to complete
+}
+
 -(void) dealloc
 {
     self.url=nil;

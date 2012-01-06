@@ -7,8 +7,10 @@
 //
 
 #import "AdaugaImaginiViewController.h"
-#import "TImage.h"
-#import "TFav.h"
+#import "TImage.h" //just for test
+#import "TFav.h"//just for test
+#import "AppDelegate.h"//just for test
+
 @implementation AdaugaImaginiViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -34,7 +36,9 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-  /*  
+
+//TESTS   
+ /*  
    //TImage test  
     TImage *anImage = [TImage alloc];
     anImage.imageId=1;
@@ -58,6 +62,26 @@
     NSLog(@"%@",[favorite.favAdsList objectAtIndex:0]);
     [favorite release];
     
+    */
+   /*
+     //globalvariablestest
+     AppDelegate *apdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    NSString *aString = [[NSString alloc] initWithString:@"AAAaaaaaaaaSTRING"];
+    [apdelegate.appSession.globalAdList addObject:aString];
+    [aString release];
+    NSLog(@"%@",[apdelegate.appSession.globalAdList objectAtIndex:0]);
+    NSString *lati = [[NSString alloc]initWithString:@"44.44"];
+    NSString *longi = [[NSString alloc]initWithString:@"22.22"];
+    CLLocationCoordinate2D coordinate;
+    coordinate.latitude = lati.doubleValue;
+    coordinate.longitude = longi.doubleValue; 
+    apdelegate.appSession.currentLocation.coordinate=coordinate;
+    [lati release];
+    [longi release];
+    
+    NSString *aaa = [[NSString alloc] initWithFormat:@"%f",  apdelegate.appSession.currentLocation.coordinate];
+    NSLog(@"coord:%@",aaa);
+    [aaa release];
     */
 }
 

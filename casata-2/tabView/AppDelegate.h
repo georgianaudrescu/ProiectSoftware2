@@ -7,27 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "TFav.h"
+#import "TAppSession.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate>
-{   //global variables
-    NSMutableOrderedSet *globalAdList;
-    TFav *favorites;
-    NSMutableDictionary *filtre; 
+{   
+    TAppSession *appSession;
 }
 @property (strong, nonatomic) UIWindow *window;
 
 @property (strong, nonatomic) UITabBarController *tabBarController;
 @property (strong, nonatomic) UIViewController *viewController;
-
-@property(nonatomic, retain) NSMutableOrderedSet *globalAdList;
-@property(nonatomic,retain) NSMutableDictionary *filtre;;
-@property(nonatomic,retain) TFav *favorites;
+@property (nonatomic,retain) TAppSession *appSession;
 
 -(void)pageSelectedInTab:(NSString*)bTitle;
 -(void)goToHomeScreen;
 
-//global variables initalization
--(void)globalVariablesInit;
+
 
 @end

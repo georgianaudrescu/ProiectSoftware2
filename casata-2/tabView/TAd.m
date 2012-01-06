@@ -76,6 +76,7 @@
 
 -(void) dealloc{
     [self.ad release];
+    [self.imageList release];//
     [super dealloc];
 }
 

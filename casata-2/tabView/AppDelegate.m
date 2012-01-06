@@ -19,14 +19,14 @@
 
 #import "ViewController.h"
 #import "Informatii.h"
-
+#import "TAppSession.h"
 
 @implementation AppDelegate
 
 @synthesize window = _window;
 @synthesize tabBarController = _tabBarController;
 @synthesize viewController = _viewController;
-@synthesize globalAdList,favorites,filtre;  //variabilele globale
+@synthesize appSession;
 
 
 - (void)dealloc
@@ -34,15 +34,8 @@
     [_window release];
     [_tabBarController release];
     [_viewController release];
-    [globalAdList release]; //variabile globale release
-    [filtre release];
-    [favorites release];
+    [appSession release];
     [super dealloc];
-}
--(void)globalVariablesInit
-{  globalAdList = [[NSMutableOrderedSet alloc]init];
-    filtre = [[NSMutableDictionary alloc]init];
-    favorites = [[TFav alloc]init];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -50,9 +43,9 @@
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     
     
-    [self globalVariablesInit];
-    
-    
+  
+    self.appSession = [[TAppSession alloc] init];
+    [self.appSession globalVariablesInit];
     
     
     

@@ -26,6 +26,7 @@
 @synthesize window = _window;
 @synthesize tabBarController = _tabBarController;
 @synthesize viewController = _viewController;
+@synthesize globalAdList,favorites,filtre;  //variabilele globale
 
 
 - (void)dealloc
@@ -33,12 +34,27 @@
     [_window release];
     [_tabBarController release];
     [_viewController release];
+    [globalAdList release]; //variabile globale release
+    [filtre release];
+    [favorites release];
     [super dealloc];
+}
+-(void)globalVariablesInit
+{  globalAdList = [[NSMutableOrderedSet alloc]init];
+    filtre = [[NSMutableDictionary alloc]init];
+    favorites = [[TFav alloc]init];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
+    
+    
+    [self globalVariablesInit];
+    
+    
+    
+    
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque animated:YES];
     // Override point for customization after application launch.

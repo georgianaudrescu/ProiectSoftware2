@@ -10,7 +10,7 @@
 
 @implementation TAd
 
-@synthesize ad;
+@synthesize ad, imageList;//
 
 
 -(void)TAd{
@@ -68,6 +68,9 @@
             moneda,@"moneda",
                 nil];
     ad = adx;
+    
+    imageList = [[NSMutableOrderedSet alloc]init];//
+    
     return self.ad;  
 }
 

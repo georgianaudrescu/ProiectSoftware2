@@ -15,9 +15,10 @@
 @interface TAd : NSObject
 {
     NSMutableDictionary *ad;
+    NSMutableOrderedSet *imageList;//
 }
 @property (nonatomic,retain) NSMutableDictionary *ad;
-
+@property(nonatomic,copy) NSMutableOrderedSet *imageList;//
 -(void)TAd;
 -TAd:(NSDictionary *) row;
 -(void) dealloc;

@@ -26,6 +26,8 @@
 
 
 }
+
+//initializarea imageView-ului cu un UIImage(folositor pt image upload, unde pickerul returneaza un UIImage)
 -(void) initWithImage:(UIImage *) anImage
 {
     imageView = [[UIImageView alloc] initWithImage:anImage];

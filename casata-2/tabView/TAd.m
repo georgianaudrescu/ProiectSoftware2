@@ -75,6 +75,41 @@
     
     return self.ad;  
 }
+-(void) UploadImagesttt:(NSInteger *) ad_id
+{
+    if(ad_id != 0) 
+    {
+        
+    } else return;
+}
+-(void) NewAd:(TAd *)newad
+{
+    request = [TRequest alloc];
+    NSString *postString = [NSString stringWithFormat:@"request=newAd&adid=%@&top=%@&bottom=%@&left=%@&right=%@&name=%@&description=%@&property_type=%@&contactName=%@&contactPhone=%@&contactEmail=%@&address=%@&judet=%@&oras=%@&price=%@&moneda=%@&sid=session1", [newad.ad objectForKey:@"adid"],[newad.ad objectForKey:@"latitude"],[newad.ad objectForKey:@"latitude"],[newad.ad objectForKey:@"longitude"],[newad.ad objectForKey:@"longitude"],[newad.ad objectForKey:@"name"], [newad.ad objectForKey:@"description"], [newad.ad objectForKey:@"type"], [newad.ad objectForKey:@"contactName"], [newad.ad objectForKey:@"contactPhone"], [newad.ad objectForKey:@"contactEmail"], [newad.ad objectForKey:@"address"], [newad.ad objectForKey:@"judet"], [newad.ad objectForKey:@"oras"], [newad.ad objectForKey:@"price"],  [newad.ad objectForKey:@"moneda"]];
+    NSData * data;
+    if([request makeRequestWithString:postString]!=0){
+        data=[request requestData];
+    }
+    
+    if ([data length]==0)
+    {
+        [data release];
+        NSLog(@"No data recieved from the server!");
+        return;
+    }
+    NSLog(@"data fetched from server %@",data);
+    
+    NSError* error;
+    NSDictionary* json = [NSJSONSerialization 
+                          JSONObjectWithData:data
+                          options:kNilOptions 
+                          error:&error];
+    NSLog(@"data JSON: %@", json); 
+    NSInteger *idad = [json objectForKey:@"idad"];
+   // [newad.ad objectForKey:@"adid"] = idad;
+    UploadImagesttt:idad;    
+}
+
 -(id) GetAdImage:(NSInteger *)ad_id
 {
     request = [TRequest alloc] ;

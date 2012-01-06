@@ -18,8 +18,7 @@
     NSMutableDictionary *ad;
     NSMutableOrderedSet *imageList;//
     TLocation *adlocation;
-    TRequest *request;
-    
+    TRequest *request;   
     
 }
 @property (nonatomic,retain) NSMutableDictionary *ad;
@@ -30,6 +29,8 @@
 -(void)TAd;
 -TAd:(NSDictionary *) row;
 -(id) GetAdImage:(NSInteger *) ad_id;
+-(void) UploadImagesttt:(NSInteger *) ad_id;
+-(void) NewAd:(TAd *) newad;
 -(void) dealloc;
 
 @end

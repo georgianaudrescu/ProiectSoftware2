@@ -15,14 +15,15 @@
     NSString *description;
     NSURL *url;
     int imageId;
-    
+    int defaultValue;
 }
 @property(nonatomic, assign) int imageId;
+@property(nonatomic, assign) int defaultValue;
 @property(nonatomic,copy) NSString *name;
 @property(nonatomic,copy) NSString *description;
 @property(nonatomic,copy) UIImageView *imageView;
 @property(nonatomic,copy) NSURL *url;
 -(void)initWithImageFromUrlString:(NSString *) anURLString;
 -(void) initWithImage:(UIImage *) anImage;
--(UIImageView*)imageView;
-@end
+-(UIImageView*)theImageView;
+-(void)uploadImage:(int)adId;@end

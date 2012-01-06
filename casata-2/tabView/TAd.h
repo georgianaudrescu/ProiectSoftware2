@@ -12,11 +12,12 @@
 #import "TLocation.h"
 #import "TImage.h"
 #import "TRequest.h"
+#import "TImageList.h"
 
 @interface TAd : NSObject
 {
     NSMutableDictionary *ad;
-    NSMutableOrderedSet *imageList;//
+    TImageList *imageList;//
     TLocation *adlocation;
     TRequest *request;   
     

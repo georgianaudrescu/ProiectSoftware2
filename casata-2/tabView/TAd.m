@@ -70,8 +70,7 @@
           //  previewImage,@"previewImage",
                 nil];
     ad = adx;
-    
-    imageList = [[NSMutableOrderedSet alloc]init];//
+    //add location implementation
     
     return self.ad;  
 }
@@ -85,7 +84,7 @@
 -(void) NewAd:(TAd *)newad
 {
     request = [TRequest alloc];
-    NSString *postString = [NSString stringWithFormat:@"request=newAd&adid=%@&top=%@&bottom=%@&left=%@&right=%@&name=%@&description=%@&property_type=%@&contactName=%@&contactPhone=%@&contactEmail=%@&address=%@&judet=%@&oras=%@&price=%@&moneda=%@&sid=session1", [newad.ad objectForKey:@"adid"],[newad.ad objectForKey:@"latitude"],[newad.ad objectForKey:@"latitude"],[newad.ad objectForKey:@"longitude"],[newad.ad objectForKey:@"longitude"],[newad.ad objectForKey:@"name"], [newad.ad objectForKey:@"description"], [newad.ad objectForKey:@"type"], [newad.ad objectForKey:@"contactName"], [newad.ad objectForKey:@"contactPhone"], [newad.ad objectForKey:@"contactEmail"], [newad.ad objectForKey:@"address"], [newad.ad objectForKey:@"judet"], [newad.ad objectForKey:@"oras"], [newad.ad objectForKey:@"price"],  [newad.ad objectForKey:@"moneda"]];
+    NSString *postString = [NSString stringWithFormat:@"request=newAd&top=%@&bottom=%@&left=%@&right=%@&name=%@&description=%@&property_type=%@&contactName=%@&contactPhone=%@&contactEmail=%@&address=%@&judet=%@&oras=%@&price=%@&moneda=%@&sid=session1", [newad.ad objectForKey:@"adid"],[newad.ad objectForKey:@"latitude"],[newad.ad objectForKey:@"latitude"],[newad.ad objectForKey:@"longitude"],[newad.ad objectForKey:@"longitude"],[newad.ad objectForKey:@"name"], [newad.ad objectForKey:@"description"], [newad.ad objectForKey:@"type"], [newad.ad objectForKey:@"contactName"], [newad.ad objectForKey:@"contactPhone"], [newad.ad objectForKey:@"contactEmail"], [newad.ad objectForKey:@"address"], [newad.ad objectForKey:@"judet"], [newad.ad objectForKey:@"oras"], [newad.ad objectForKey:@"price"],  [newad.ad objectForKey:@"moneda"]];
     NSData * data;
     if([request makeRequestWithString:postString]!=0){
         data=[request requestData];
@@ -106,7 +105,7 @@
                           error:&error];
     NSLog(@"data JSON: %@", json); 
     NSInteger *idad = [json objectForKey:@"idad"];
-   // [newad.ad objectForKey:@"adid"] = idad;
+    
     UploadImagesttt:idad;    
 }
 
@@ -127,33 +126,13 @@
         return 0;
     }
     NSLog(@"data fetched from server %@",data);
-    
-    NSError* error;
-    NSDictionary* json = [NSJSONSerialization 
-                          JSONObjectWithData:data
-                          options:kNilOptions 
-                          error:&error];
-    NSLog(@"data JSON: %@", json); 
-    NSArray *allImages = [json objectForKey:@"images"];
-    for(NSDictionary *row in allImages)
-    {
-        NSNumber * imgid = [row objectForKey:@"imgid"];
-        NSString * descriere = [row objectForKey:@"descriere"];
-        NSURL * url = [row objectForKey:@"url"];
-        NSString * defaultimg = [row objectForKey:@"defaultimg"];
-        TImage * image = [TImage alloc];
-        image.imageId =(int) imgid;
-        image.description = descriere;
-        image.url = url;
-        imageList = [NSMutableOrderedSet orderedSetWithObject:image];
-        
-    }
+    imageList = [TImageList alloc];
+    [imageList getImagesFromData:data];
     return self.imageList;
 }
 -(void) dealloc{
     [self.ad release];
-    [self.imageList release];//
-    
+    [self.imageList release];//    
     [super dealloc];
 }
 

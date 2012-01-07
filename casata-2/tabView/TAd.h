@@ -13,6 +13,7 @@
 #import "TImage.h"
 #import "TRequest.h"
 #import "TImageList.h"
+#import "TUser.h"
 
 @interface TAd : NSObject
 {
@@ -21,6 +22,7 @@
     TLocation *adlocation;
     TRequest *request;   
     TImage *thumb;
+    TUser *session;
     
 }
 @property (nonatomic,retain) NSMutableDictionary *ad;
@@ -28,6 +30,7 @@
 @property (nonatomic, retain) TLocation *adlocation;
 @property (nonatomic, retain) TRequest *request;
 @property (nonatomic, retain) TImage *thumb;
+@property (nonatomic, retain) TUser *session;
 
 -(void)TAd;
 -(void)TAd:(NSDictionary *) row;

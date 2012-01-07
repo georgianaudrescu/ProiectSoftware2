@@ -10,7 +10,7 @@
 
 @implementation TAd
 
-@synthesize ad, imageList, adlocation, request, thumb;//
+@synthesize ad, imageList, adlocation, request, thumb, session;//
 
 
 -(void)TAd{
@@ -111,7 +111,7 @@
     self.imageList=imgLst;
     
     request = [TRequest alloc];
-    NSString *postString = [NSString stringWithFormat:@"request=add_ad&ad_name=%@&ad_text=%@&adress=%@&coord_x=%@&coord_y=%@&price=%@&currency=%@&ad_type=%@&property_type=%@&judet=%@&oras=%@&sid=session1", [self.ad objectForKey:@"name"],[self.ad objectForKey:@"ad_text"],[self.ad objectForKey:@"adress_line"],[self.ad objectForKey:@"long"],[self.ad objectForKey:@"lat"], [self.ad objectForKey:@"pret"], [self.ad objectForKey:@"moneda"], [self.ad objectForKey:@"ad_type"], [self.ad objectForKey:@"property_type"], [self.ad objectForKey:@"judet"], [self.ad objectForKey:@"oras"]];
+    NSString *postString = [NSString stringWithFormat:@"request=add_ad&ad_name=%@&ad_text=%@&adress=%@&coord_x=%@&coord_y=%@&price=%@&currency=%@&ad_type=%@&property_type=%@&judet=%@&oras=%@&size=%@", [self.ad objectForKey:@"name"],[self.ad objectForKey:@"ad_text"],[self.ad objectForKey:@"adress_line"],[self.ad objectForKey:@"long"],[self.ad objectForKey:@"lat"], [self.ad objectForKey:@"pret"], [self.ad objectForKey:@"moneda"], [self.ad objectForKey:@"ad_type"], [self.ad objectForKey:@"property_type"], [self.ad objectForKey:@"judet"], [self.ad objectForKey:@"oras"], [self.ad objectForKey:@"size"]];
     NSData * data;
     if([request makeRequestWithString:postString]!=0){
         data=[request requestData];
@@ -132,9 +132,17 @@
                           error:&error];
     NSLog(@"data JSON: %@", json); 
     
-    NSNumber *idad = [json objectForKey:@"idad"];
+    NSArray *allAds = [json objectForKey:@"ads"];
+    for(NSDictionary *row in allAds)
+    {
+        [ad TAd:row]
+        NSNumber *iaad = [row objectForKey:@"id"];
+        [session.personalAds addAd:ad];
+    }
+   // NSNumber *idad = [json objectForKey:@"idad"];
     //recomand NSNumber *idad si dupa trimiti ca parametru idad.intValue
-    [self UploadImagesttt:idad.intValue];    
+    [self UploadImagesttt:idad.intValue];   
+    [ad release]
 }
 
 -(id) GetAdImage:(NSInteger *)ad_id

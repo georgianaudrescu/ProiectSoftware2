@@ -27,7 +27,7 @@
     TRequest * myRequest = [TRequest alloc] ;    
     [myRequest initWithHost:@"http://flapptest.comule.com"];
     NSMutableString *postString = [NSMutableString string];
-    postString =[NSString stringWithFormat:@"left=%@&right=%@&bottom=%@&top=%@&request=get%5Fads&zoom=5000&sid=session1$sessionTime=1325954282097",[filtre objectForKey:@"latitude"],[filtre objectForKey:@"latitude"], [filtre objectForKey:@"longitude"],[filtre objectForKey:@"longitude"]] ;
+    postString =[NSString stringWithFormat:@"left=%@&right=%@&bottom=%@&top=%@&request=get%5Fads&zoom=5000&sessionTime=1325954282097",[filtre objectForKey:@"latitude"],[filtre objectForKey:@"latitude"], [filtre objectForKey:@"longitude"],[filtre objectForKey:@"longitude"]] ;
     if([filtre objectForKey:@"ad_type"] != nil)
     {
         [postString appendString:[NSString stringWithFormat:@"&type=%@", [filtre objectForKey:@"ad_type"]]]; 
@@ -36,12 +36,16 @@
     {
         [postString appendString:[NSString stringWithFormat:@"&property%5Ftype=%@", [filtre objectForKey:@"prop_type"]]]; 
     }
-    [self ProcessRequest:filtre atString:postString withfiltru:@"min" andparam:@"&min=%@"];
-    [self ProcessRequest:filtre atString:postString withfiltru:@"min_size" andparam:@"&min%5Fsize=%@"];
-    [self ProcessRequest:filtre atString:postString withfiltru:@"max" andparam:@"&max=%@"];
-    [self ProcessRequest:filtre atString:postString withfiltru:@"max_size" andparam:@"&max%5Fsize=%@"];
-    [self ProcessRequest:filtre atString:postString withfiltru:@"currency" andparam:@"&currency=%@"];
     [self ProcessRequest:filtre atString:postString withfiltru:@"order_by" andparam:@"&order%5Fby=%@"];
+    [self ProcessRequest:filtre atString:postString withfiltru:@"p_min" andparam:@"&p%5Fmin=%@"];
+    [self ProcessRequest:filtre atString:postString withfiltru:@"p_max" andparam:@"&p%5Fmax=%@"];
+    [self ProcessRequest:filtre atString:postString withfiltru:@"currency" andparam:@"&currency=%@"];
+    [self ProcessRequest:filtre atString:postString withfiltru:@"rating_min" andparam:@"&rating%5Fmin=%@"];
+    [self ProcessRequest:filtre atString:postString withfiltru:@"rating_max" andparam:@"&rating%5Fmax=%@"];
+    [self ProcessRequest:filtre atString:postString withfiltru:@"size_min" andparam:@"&size%5Fmin=%@"];
+    [self ProcessRequest:filtre atString:postString withfiltru:@"size_max" andparam:@"&size%5Fmax=%@"];
+    
+    
     
     NSData * data;
     if([myRequest makeRequestWithString:postString]!=0){

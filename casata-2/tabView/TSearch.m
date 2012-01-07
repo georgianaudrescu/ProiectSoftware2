@@ -21,12 +21,13 @@
         [postString appendString:[NSString stringWithFormat:param, [filtre2 objectForKey:filtru]]]; 
     }
 }
+
 -(void) Search:(NSMutableDictionary *) filtre
 {
     TRequest * myRequest = [TRequest alloc] ;    
     [myRequest initWithHost:@"http://flapptest.comule.com"];
     NSMutableString *postString = [NSMutableString string];
-    postString =[NSString stringWithFormat:@"left=%@&right=%@&bottom=%@&top=%@&request=get%5Fads&zoom=5000&sid=session1",[filtre objectForKey:@"latitude"],[filtre objectForKey:@"latitude"], [filtre objectForKey:@"longitude"],[filtre objectForKey:@"longitude"]] ;
+    postString =[NSString stringWithFormat:@"left=%@&right=%@&bottom=%@&top=%@&request=get%5Fads&zoom=5000&sid=session1$sessionTime=1325954282097",[filtre objectForKey:@"latitude"],[filtre objectForKey:@"latitude"], [filtre objectForKey:@"longitude"],[filtre objectForKey:@"longitude"]] ;
     if([filtre objectForKey:@"ad_type"] != nil)
     {
         [postString appendString:[NSString stringWithFormat:@"&type=%@", [filtre objectForKey:@"ad_type"]]]; 
@@ -39,6 +40,8 @@
     [self ProcessRequest:filtre atString:postString withfiltru:@"min_size" andparam:@"&min%5Fsize=%@"];
     [self ProcessRequest:filtre atString:postString withfiltru:@"max" andparam:@"&max=%@"];
     [self ProcessRequest:filtre atString:postString withfiltru:@"max_size" andparam:@"&max%5Fsize=%@"];
+    [self ProcessRequest:filtre atString:postString withfiltru:@"currency" andparam:@"&currency=%@"];
+    [self ProcessRequest:filtre atString:postString withfiltru:@"order_by" andparam:@"&order%5Fby=%@"];
     
     NSData * data;
     if([myRequest makeRequestWithString:postString]!=0){
@@ -63,19 +66,7 @@
     for(NSDictionary *row in allAds)
     {
         [ad TAd:row];
-        
     }
  
 }
-
-/*
-
-
-NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-NSArray *arr =[string componentsSeparatedByString:@"<!--"];
-NSLog(@"Array %@:",[arr objectAtIndex:0]);
-data=[[arr objectAtIndex:0] dataUsingEncoding: [NSString defaultCStringEncoding] ];
-
-self.view.hidden = NO;
-*/
 @end

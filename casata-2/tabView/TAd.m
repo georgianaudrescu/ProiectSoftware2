@@ -132,7 +132,7 @@
     }
     NSLog(@"data fetched from server %@",data);
     imageList = [TImageList alloc];
-    [imageList getImagesFromData:data];
+    [imageList getImagesFromData:data forAd: (int)ad_id];
     return self.imageList;
 }
 -(void) dealloc{

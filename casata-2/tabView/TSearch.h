@@ -9,16 +9,16 @@
 #import <Foundation/Foundation.h>
 #import "TRequest.h"
 #import "TAd.h"
-//#import "TAdList.h"
+#import "TAdList.h"
 
 @interface TSearch : NSObject
 {
     TAd *ad;
-    //TAdList *lisatAds;
+    TAdList *lisatAds;
 }
 
 @property (nonatomic, retain) TAd *ad;
-//@property (nonatomic, retain) TAdList *listAds; 
+@property (nonatomic, retain) TAdList *listAds; 
 
 -(void) ProcessRequest:(NSMutableDictionary *)filtre2 
         atString:(NSMutableString *) postString 

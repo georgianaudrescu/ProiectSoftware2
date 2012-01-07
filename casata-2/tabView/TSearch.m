@@ -10,7 +10,7 @@
 
 @implementation TSearch
 
-@synthesize ad;
+@synthesize ad, listAds;
 
 -(void) ProcessRequest:(NSMutableDictionary *)filtre2 
               atString:(NSMutableString *) postString 
@@ -66,6 +66,8 @@
     for(NSDictionary *row in allAds)
     {
         [ad TAd:row];
+        listAds = [TAdList alloc];
+        [listAds addAd:ad];
     }
  
 }

@@ -20,12 +20,14 @@
     TImageList *imageList;//
     TLocation *adlocation;
     TRequest *request;   
+    TImage *thumb;
     
 }
 @property (nonatomic,retain) NSMutableDictionary *ad;
 @property(nonatomic,copy) TImageList *imageList;//
 @property (nonatomic, retain) TLocation *adlocation;
 @property (nonatomic, retain) TRequest *request;
+@property (nonatomic, retain) TImage *thumb;
 
 -(void)TAd;
 -(void)TAd:(NSDictionary *) row;

@@ -10,7 +10,7 @@
 
 @implementation TAd
 
-@synthesize ad, imageList, adlocation, request;//
+@synthesize ad, imageList, adlocation, request, thumb;//
 
 
 -(void)TAd{
@@ -37,6 +37,7 @@
     NSString * oras = [row objectForKey:@"oras"];
     NSNumber * price = [row objectForKey:@"price"];
     NSString * moneda = [row objectForKey:@"moneda"];
+    NSString *imgurl = [row objectForKey:@"url"];
    // TImage * previewImage = [row objectForKey:@"previewImage"];
     /*  Id          int
      coordinate     TLocation
@@ -70,12 +71,22 @@
           //  previewImage,@"previewImage",
                 nil];
     ad = adx;
+    
     //add location implementation
     adlocation =[TLocation alloc];
     //adlocation.coordinate = coordinate;
     [adlocation initWithTitle:name andSubtitle:type andCoord:coordinate]; 
-    // adlocation.subtitle = type;
-    
+    //add thumbnail
+    thumb =[TImage alloc];
+    if(imgurl != nil)
+    {
+        [thumb initWithImageFromUrlString:imgurl];
+    }
+    else
+    {
+        [thumb initWithImage:[UIImage imageNamed:@"house.jpg"]];
+    }
+        
     
     //return self.ad;  
 }
@@ -83,7 +94,11 @@
 {
     if(ad_id != 0) 
     {
-        
+        for (int i=0; i<imageList.count; i++)
+        {
+           TImage *img = [imageList getImageAtIndex:i];
+           [img uploadImage:(int) ad_id]; 
+        }
     } else return;
 }
 -(void) NewAd:(TAd *)newad
@@ -109,9 +124,9 @@
                           options:kNilOptions 
                           error:&error];
     NSLog(@"data JSON: %@", json); 
-   // NSInteger *idad = [json objectForKey:@"idad"];
+    NSInteger *idad = [json objectForKey:@"idad"];
     
-   // UploadImagesttt:idad;    
+    [self UploadImagesttt:idad];    
 }
 
 -(id) GetAdImage:(NSInteger *)ad_id

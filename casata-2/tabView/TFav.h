@@ -7,15 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "TLocationList.h"
+
 
 @interface TFav : NSObject
 {
     NSMutableOrderedSet *favAdsList;
-    NSMutableOrderedSet *favLocationList;
+    TLocationList *favLocationList;
     NSMutableOrderedSet *favSearchList;
 }
 @property(nonatomic,copy) NSMutableOrderedSet *favAdsList;
-@property(nonatomic,copy)NSMutableOrderedSet *favLocationList;
+@property(nonatomic,copy)TLocationList *favLocationList;
 @property(nonatomic,copy)NSMutableOrderedSet *favSearchList;
 
 @end

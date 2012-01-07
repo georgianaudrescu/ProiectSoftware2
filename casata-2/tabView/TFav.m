@@ -14,7 +14,7 @@
     self = [super init];
     if (self) {
         favSearchList= [[NSMutableOrderedSet alloc]init];
-        favLocationList=[[NSMutableOrderedSet alloc]init];
+        favLocationList=[[TLocationList alloc]init];
         favAdsList=[[NSMutableOrderedSet alloc]init];
     }
     return self;

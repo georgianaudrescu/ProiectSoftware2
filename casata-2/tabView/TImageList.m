@@ -14,6 +14,7 @@
     self = [super init];
     if (self) {
         imageList = [[NSMutableOrderedSet alloc]init];
+        count=0;
     }
     return self;
 }

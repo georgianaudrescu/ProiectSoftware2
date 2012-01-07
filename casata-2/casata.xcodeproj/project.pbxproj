@@ -33,6 +33,7 @@
 		3A7D807414B71178004EE453 /* TLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7D807314B71178004EE453 /* TLocation.m */; };
 		8C0A091214B4692200BD768E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C0A091114B4692200BD768E /* QuartzCore.framework */; };
 		8C0A097114B4733100BD768E /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C0A097014B4733100BD768E /* libCorePlot-CocoaTouch.a */; };
+		8C0D6E8214B8B307001DAFE4 /* TAdList.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C0D6E8114B8B307001DAFE4 /* TAdList.m */; };
 		8C56451C14B64A5600540286 /* TImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C56451B14B64A5600540286 /* TImage.m */; };
 		8C6C8DC714AE002C00BAD7DB /* FiltreTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C6C8DC514AE002C00BAD7DB /* FiltreTableViewController.m */; };
 		8C6C8DC814AE002D00BAD7DB /* FiltreTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C6C8DC614AE002C00BAD7DB /* FiltreTableViewController.xib */; };
@@ -205,6 +206,8 @@
 		8C0A096E14B4731200BD768E /* NSExceptionExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSExceptionExtensions.h; sourceTree = "<group>"; };
 		8C0A096F14B4731200BD768E /* NSNumberExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSNumberExtensions.h; sourceTree = "<group>"; };
 		8C0A097014B4733100BD768E /* libCorePlot-CocoaTouch.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libCorePlot-CocoaTouch.a"; sourceTree = "<group>"; };
+		8C0D6E8014B8B307001DAFE4 /* TAdList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAdList.h; sourceTree = "<group>"; };
+		8C0D6E8114B8B307001DAFE4 /* TAdList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAdList.m; sourceTree = "<group>"; };
 		8C56451A14B64A5600540286 /* TImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TImage.h; sourceTree = "<group>"; };
 		8C56451B14B64A5600540286 /* TImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TImage.m; sourceTree = "<group>"; };
 		8C6C8DC414AE002C00BAD7DB /* FiltreTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FiltreTableViewController.h; sourceTree = "<group>"; };
@@ -537,6 +540,8 @@
 				8CC3D08314B79C1C001B0F86 /* TImageList.m */,
 				8CB0F6C414B722A400562FBE /* TFav.h */,
 				8CB0F6C514B722A400562FBE /* TFav.m */,
+				8C0D6E8014B8B307001DAFE4 /* TAdList.h */,
+				8C0D6E8114B8B307001DAFE4 /* TAdList.m */,
 				8CB0F6C814B75CBC00562FBE /* TAppSession.h */,
 				8CB0F6C914B75CBE00562FBE /* TAppSession.m */,
 			);
@@ -757,6 +762,7 @@
 				8CC3D08414B79C1C001B0F86 /* TImageList.m in Sources */,
 				AC7BF55814B87C6B00DDEEE4 /* TSearch.m in Sources */,
 				3A548A1D14B891D90056DE1F /* TLocationList.m in Sources */,
+				8C0D6E8214B8B307001DAFE4 /* TAdList.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

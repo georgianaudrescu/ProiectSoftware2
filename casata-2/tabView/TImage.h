@@ -23,7 +23,11 @@
 @property(nonatomic,copy) NSString *description;
 @property(nonatomic,copy) UIImageView *imageView;
 @property(nonatomic,copy) NSURL *url;
+
 -(void)initWithImageFromUrlString:(NSString *) anURLString;
 -(void) initWithImage:(UIImage *) anImage;
 -(UIImageView*)theImageView;
--(void)uploadImage:(int)adId;@end
+-(void)uploadImage:(int)adId;
+
+
+@end

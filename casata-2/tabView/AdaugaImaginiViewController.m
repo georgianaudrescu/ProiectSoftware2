@@ -10,6 +10,8 @@
 #import "TImage.h" //just for test
 #import "TFav.h"//just for test
 #import "AppDelegate.h"//just for test
+#import "TImage.h"
+#import "TImageList.h"
 
 @implementation AdaugaImaginiViewController
 
@@ -38,7 +40,7 @@
     // Do any additional setup after loading the view from its nib.
 
 //TESTS   
- /*  
+  /* 
    //TImage test  
     TImage *anImage = [TImage alloc];
     anImage.imageId=1;
@@ -51,18 +53,38 @@
    //[anImage initWithImage:[UIImage imageNamed:@"house.jpg"]]; 
     //anImage.imageView.frame = CGRectMake(0, 0, 30, 30);
     [self.view addSubview:anImage.imageView];
-    [anImage release];
-   */   
+     TImageList *imgList = [[TImageList alloc]init];
+    
+    [imgList addImage:anImage];
+    
+    
+    TImage *test = [imgList getImageAtIndex:0];
+    
+    NSLog(@"desc of imag %@", test.description);
+    
+    NSLog(@"index:%d", [imgList getIndexForImage:anImage]);
+    NSLog(@"count:%d", imgList.count);
+    [imgList removeImage:anImage];
+    NSLog(@"count:%d", imgList.count);
    
+     
+    [anImage release];
+    [imgList release];
+    
+    */
+   
+    
+ 
     /*
      //testare TFav
     TFav *favorite = [[TFav alloc]init];
-    NSString *string = @"A string";
+    NSString *string = [[NSString alloc] initWithString:@"A string"];
     [favorite.favAdsList addObject:string];
+    [string release];
     NSLog(@"%@",[favorite.favAdsList objectAtIndex:0]);
     [favorite release];
+   */
     
-    */
    /*
      //globalvariablestest
      AppDelegate *apdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];

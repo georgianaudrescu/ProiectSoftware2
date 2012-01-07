@@ -9,12 +9,19 @@
 #import "TImageList.h"
 #import "TImage.h"
 @implementation TImageList
-@synthesize imageList;
+@synthesize imageList, adId, count;
+- (id)init {
+    self = [super init];
+    if (self) {
+        imageList = [[NSMutableOrderedSet alloc]init];
+    }
+    return self;
+}
 
--(void)getImagesFromData:(NSData *)data
+-(void)getImagesFromData:(NSData *)data forAd:(int)anId
 {
     
-    imageList = [[NSMutableOrderedSet alloc]init];
+    self.adId = anId;
     NSError* error;
     NSDictionary* json = [NSJSONSerialization 
                           JSONObjectWithData:data
@@ -38,12 +45,37 @@
         [image release];
         
     }   
-    
+    count = imageList.count;
+}
+-(void)addImage:(TImage *)image
+{   
+    [imageList addObject:image];
+    count = imageList.count;
+}
+-(void)removeImage:(TImage *)image
+{
+    [imageList removeObject:image];
+    count = imageList.count;
 }
 
+-(TImage *)getImageAtIndex:(int)index
+{ 
+    return [imageList objectAtIndex:index];
+   
+}
+
+-(void)removeImageAtIndex:(int)index
+{
+    [imageList removeObjectAtIndex:index];
+    count = imageList.count;
+}
+-(int)getIndexForImage:(TImage *)image;
+{
+    return [imageList indexOfObject:image];
+}
 
 -(void)dealloc
-{
+{  // [imageList release];
     self.imageList = nil;
     [super dealloc];
 }@end

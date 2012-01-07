@@ -23,7 +23,7 @@
     
 }
 @property (nonatomic,retain) NSMutableDictionary *ad;
-@property(nonatomic,copy) NSMutableOrderedSet *imageList;//
+@property(nonatomic,copy) TImageList *imageList;//
 @property (nonatomic, retain) TLocation *adlocation;
 @property (nonatomic, retain) TRequest *request;
 

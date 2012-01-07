@@ -15,10 +15,36 @@
     if (self) {
         favSearchList= [[NSMutableOrderedSet alloc]init];
         favLocationList=[[TLocationList alloc]init];
-        favAdsList=[[NSMutableOrderedSet alloc]init];
+        favAdsList=[[TAdList alloc]init];
     }
     return self;
 }
+-(void) deleteLocation:(TLocation *)location
+{
+    [favLocationList removeLocation:location];
+    
+}
+-(void)deleteLocationAtIndex:(int)index
+{
+    [favLocationList removeLocationAtIndex:index];
+}
+
+-(void) addLocation:(TLocation *)location
+{
+    [favLocationList addLocation:location];
+}
+-(TLocation*) getLocationAtIndex:(int)index
+{
+   return [favLocationList getLocationFromIndex:index];
+}
+
+-(void)saveFavorites
+{
+}
+-(void)getFavorites
+{
+}
+
 -(void)dealloc
 {
     self.favAdsList=nil;

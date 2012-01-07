@@ -8,16 +8,25 @@
 
 #import <Foundation/Foundation.h>
 #import "TLocationList.h"
+#import "TAdList.h"
 
 
 @interface TFav : NSObject
 {
-    NSMutableOrderedSet *favAdsList;
+    TAdList *favAdsList;
     TLocationList *favLocationList;
     NSMutableOrderedSet *favSearchList;
 }
-@property(nonatomic,copy) NSMutableOrderedSet *favAdsList;
+@property(nonatomic,copy) TAdList *favAdsList;
 @property(nonatomic,copy)TLocationList *favLocationList;
 @property(nonatomic,copy)NSMutableOrderedSet *favSearchList;
+
+-(void) deleteLocation:(TLocation *)location;
+-(void)deleteLocationAtIndex:(int)index;
+-(void) addLocation:(TLocation *)location;
+-(TLocation *) getLocationAtIndex:(int)index;
+
+-(void)saveFavorites;
+-(void)getFavorites;
 
 @end

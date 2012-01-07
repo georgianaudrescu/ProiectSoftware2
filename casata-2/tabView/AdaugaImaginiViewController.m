@@ -64,7 +64,7 @@
     
     
     /*  
-   //TImage test  
+   // ********TImage test  
     TImage *anImage = [TImage alloc];
     anImage.imageId=1;
     anImage.description=@"etc";
@@ -95,21 +95,10 @@
     [imgList release];
     
     */
-   
     
- 
-    /*
-     //testare TFav
-    TFav *favorite = [[TFav alloc]init];
-    NSString *string = [[NSString alloc] initWithString:@"A string"];
-    [favorite.favAdsList addObject:string];
-    [string release];
-    NSLog(@"%@",[favorite.favAdsList objectAtIndex:0]);
-    [favorite release];
-   */
     
    /*
-     //globalvariablestest
+  // *****globalvariablestest
      AppDelegate *apdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     NSString *aString = [[NSString alloc] initWithString:@"AAAaaaaaaaaSTRING"];
     [apdelegate.appSession.globalAdList addObject:aString];
@@ -128,6 +117,35 @@
     NSLog(@"coord:%@",aaa);
     [aaa release];
     */
+    
+    /* 
+     // *TFav Location test
+    AppDelegate *apdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    TLocation *loc = [TLocation alloc];
+    NSString *lati = [[NSString alloc]initWithString:@"44.44"];
+    NSString *longi = [[NSString alloc]initWithString:@"22.22"];
+    CLLocationCoordinate2D coordinate;
+    coordinate.latitude = lati.doubleValue;
+    coordinate.longitude = longi.doubleValue; 
+    
+    [loc initWithTitle:@"a" andSubtitle:@"b" andCoord:coordinate];
+    
+    [lati release];
+    [longi release];
+    
+    [apdelegate.appSession.favorites addLocation:loc];
+    [loc release];
+    TLocation *aloca = [TLocation alloc];
+    aloca=[apdelegate.appSession.favorites getLocationAtIndex:0];
+   
+    NSString *aaa = [[NSString alloc] initWithFormat:@"%f", aloca.coordinate.longitude];
+    NSLog(@"coord:%@",aaa);
+    [aaa release];
+
+*/
+
+
+
 }
 
 - (void)viewDidUnload

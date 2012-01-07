@@ -31,6 +31,10 @@
 		3A70A924149BBB1000203169 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A70A923149BBB1000203169 /* MapKit.framework */; };
 		3A70A926149BBB3000203169 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A70A925149BBB3000203169 /* CoreLocation.framework */; };
 		3A7D807414B71178004EE453 /* TLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7D807314B71178004EE453 /* TLocation.m */; };
+		3AF767ED14B8D57100E7906E /* TAvgPrice.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF767E614B8D57100E7906E /* TAvgPrice.m */; };
+		3AF767EE14B8D57100E7906E /* TSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF767E814B8D57100E7906E /* TSettings.m */; };
+		3AF767EF14B8D57100E7906E /* TStatistic.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF767EA14B8D57100E7906E /* TStatistic.m */; };
+		3AF767F014B8D57100E7906E /* TStatisticsList.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF767EC14B8D57100E7906E /* TStatisticsList.m */; };
 		8C0A091214B4692200BD768E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C0A091114B4692200BD768E /* QuartzCore.framework */; };
 		8C0A097114B4733100BD768E /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C0A097014B4733100BD768E /* libCorePlot-CocoaTouch.a */; };
 		8C0D6E8214B8B307001DAFE4 /* TAdList.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C0D6E8114B8B307001DAFE4 /* TAdList.m */; };
@@ -125,6 +129,14 @@
 		3A70A925149BBB3000203169 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		3A7D807214B71178004EE453 /* TLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLocation.h; sourceTree = "<group>"; };
 		3A7D807314B71178004EE453 /* TLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLocation.m; sourceTree = "<group>"; };
+		3AF767E514B8D57100E7906E /* TAvgPrice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAvgPrice.h; sourceTree = "<group>"; };
+		3AF767E614B8D57100E7906E /* TAvgPrice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAvgPrice.m; sourceTree = "<group>"; };
+		3AF767E714B8D57100E7906E /* TSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSettings.h; sourceTree = "<group>"; };
+		3AF767E814B8D57100E7906E /* TSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSettings.m; sourceTree = "<group>"; };
+		3AF767E914B8D57100E7906E /* TStatistic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TStatistic.h; sourceTree = "<group>"; };
+		3AF767EA14B8D57100E7906E /* TStatistic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TStatistic.m; sourceTree = "<group>"; };
+		3AF767EB14B8D57100E7906E /* TStatisticsList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TStatisticsList.h; sourceTree = "<group>"; };
+		3AF767EC14B8D57100E7906E /* TStatisticsList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TStatisticsList.m; sourceTree = "<group>"; };
 		8C0A091114B4692200BD768E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		8C0A092114B4731100BD768E /* _CPTConstraintsFixed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _CPTConstraintsFixed.h; sourceTree = "<group>"; };
 		8C0A092214B4731100BD768E /* _CPTConstraintsRelative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _CPTConstraintsRelative.h; sourceTree = "<group>"; };
@@ -524,6 +536,14 @@
 		8C56450814B641EB00540286 /* Clase */ = {
 			isa = PBXGroup;
 			children = (
+				3AF767E514B8D57100E7906E /* TAvgPrice.h */,
+				3AF767E614B8D57100E7906E /* TAvgPrice.m */,
+				3AF767E714B8D57100E7906E /* TSettings.h */,
+				3AF767E814B8D57100E7906E /* TSettings.m */,
+				3AF767E914B8D57100E7906E /* TStatistic.h */,
+				3AF767EA14B8D57100E7906E /* TStatistic.m */,
+				3AF767EB14B8D57100E7906E /* TStatisticsList.h */,
+				3AF767EC14B8D57100E7906E /* TStatisticsList.m */,
 				AC7BF55614B87C6B00DDEEE4 /* TSearch.h */,
 				AC7BF55714B87C6B00DDEEE4 /* TSearch.m */,
 				3A7D807214B71178004EE453 /* TLocation.h */,
@@ -763,6 +783,10 @@
 				AC7BF55814B87C6B00DDEEE4 /* TSearch.m in Sources */,
 				3A548A1D14B891D90056DE1F /* TLocationList.m in Sources */,
 				8C0D6E8214B8B307001DAFE4 /* TAdList.m in Sources */,
+				3AF767ED14B8D57100E7906E /* TAvgPrice.m in Sources */,
+				3AF767EE14B8D57100E7906E /* TSettings.m in Sources */,
+				3AF767EF14B8D57100E7906E /* TStatistic.m in Sources */,
+				3AF767F014B8D57100E7906E /* TStatisticsList.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

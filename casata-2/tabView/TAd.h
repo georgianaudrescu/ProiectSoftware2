@@ -23,12 +23,12 @@
     
 }
 @property (nonatomic,retain) NSMutableDictionary *ad;
-@property(nonatomic,copy) NSMutableOrderedSet *imageList;//
+@property(nonatomic,copy) TImageList *imageList;//
 @property (nonatomic, retain) TLocation *adlocation;
 @property (nonatomic, retain) TRequest *request;
 
 -(void)TAd;
--TAd:(NSDictionary *) row;
+-(void)TAd:(NSDictionary *) row;
 -(id) GetAdImage:(NSInteger *) ad_id;
 -(void) UploadImagesttt:(NSInteger *) ad_id;
 -(void) NewAd:(TAd *) newad;

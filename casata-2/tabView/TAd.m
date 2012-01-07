@@ -16,7 +16,7 @@
 -(void)TAd{
     [super init];
 }
--(id)TAd:(NSDictionary *)row
+-(void)TAd:(NSDictionary *)row
 {
     //TAd *ad = [TAd alloc];
   //[TAd alloc] initWithId: [row objectForKey:@"id"]; 
@@ -71,8 +71,13 @@
                 nil];
     ad = adx;
     //add location implementation
+    adlocation =[TLocation alloc];
+    adlocation.coordinate = coordinate;
+    [adlocation initWithTitle:name andSubtitle:type]; 
+    // adlocation.subtitle = type;
     
-    return self.ad;  
+    
+    //return self.ad;  
 }
 -(void) UploadImagesttt:(NSInteger *) ad_id
 {
@@ -106,7 +111,7 @@
     NSLog(@"data JSON: %@", json); 
     NSInteger *idad = [json objectForKey:@"idad"];
     
-    UploadImagesttt:idad;    
+   // UploadImagesttt:idad;    
 }
 
 -(id) GetAdImage:(NSInteger *)ad_id

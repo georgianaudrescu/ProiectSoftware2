@@ -28,7 +28,7 @@
 @property (nonatomic, retain) TRequest *request;
 
 -(void)TAd;
--TAd:(NSDictionary *) row;
+-(void)TAd:(NSDictionary *) row;
 -(id) GetAdImage:(NSInteger *) ad_id;
 -(void) UploadImagesttt:(NSInteger *) ad_id;
 -(void) NewAd:(TAd *) newad;

@@ -183,10 +183,12 @@
     for(NSDictionary *row in allAds)
     {
         
-
         NSNumber * latitude = [ row objectForKey:@"lat"];
         NSNumber * longitude = [row objectForKey:@"long"];        
+
         NSString * name = [row objectForKey:@"name"];
+        
+        
         
         CLLocationCoordinate2D coordinate;
         coordinate.latitude = latitude.doubleValue;
@@ -197,6 +199,8 @@
         [_mapView addAnnotation:annotation]; 
         [annotation release];
     }
+    NSNumber *found = [json objectForKey:@"ads_found"];
+    NSLog(@" ADS FOUND %d",found.intValue);
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation{

@@ -33,9 +33,27 @@
 {
     [favLocationList addLocation:location];
 }
+
 -(TLocation*) getLocationAtIndex:(int)index
 {
    return [favLocationList getLocationFromIndex:index];
+}
+
+-(void) deleteAd:(TAd *)ad
+{
+    [favAdsList removeAd:ad];
+}
+-(void)deleteAdAtIndex:(int)index
+{
+    [favAdsList removeAdAtIndex:index];
+}
+-(void) addAd:(TAd *)ad
+{
+    [favAdsList addAd:ad];
+}
+-(TAd *) getAdAtIndex:(int)index
+{
+    return [favAdsList getAdAtIndex:index];
 }
 
 -(void)saveFavorites

@@ -26,6 +26,11 @@
 -(void) addLocation:(TLocation *)location;
 -(TLocation *) getLocationAtIndex:(int)index;
 
+-(void) deleteAd:(TAd *)ad;
+-(void)deleteAdAtIndex:(int)index;
+-(void) addAd:(TAd *)ad;
+-(TAd *) getAdAtIndex:(int)index;
+
 -(void)saveFavorites;
 -(void)getFavorites;
 

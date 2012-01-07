@@ -8,10 +8,18 @@
 
 #import <Foundation/Foundation.h>
 #import "TRequest.h"
+#import "TAd.h"
 
 @interface TSearch : NSObject
 {
-    
+    TAd *ad;
 }
--(void) Search:(NSArray *) filtre;
+
+@property (nonatomic, retain) TAd *ad;
+
+-(void) ProcessRequest:(NSMutableDictionary *)filtre2 
+        atString:(NSMutableString *) postString 
+            withfiltru: (NSString *) filtru andparam:(NSString *) param;
+-(void) Search:(NSMutableDictionary *) filtre;
+
 @end

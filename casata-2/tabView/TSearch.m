@@ -9,11 +9,37 @@
 #import "TSearch.h"
 
 @implementation TSearch
--(void) Search:(NSArray *) filtre
+
+@synthesize ad;
+
+-(void) ProcessRequest:(NSMutableDictionary *)filtre2 
+              atString:(NSMutableString *) postString 
+            withfiltru: (NSString *) filtru andparam:(NSString *) param
 {
-    TRequest * myRequest = [TRequest alloc] ;
+    if([filtre2 objectForKey:filtru] != nil)
+    {
+        [postString appendString:[NSString stringWithFormat:param, [filtre2 objectForKey:filtru]]]; 
+    }
+}
+-(void) Search:(NSMutableDictionary *) filtre
+{
+    TRequest * myRequest = [TRequest alloc] ;    
     [myRequest initWithHost:@"http://flapptest.comule.com"];
-    NSString *postString = @"left=25%2E96&sessionTime=1325693857685&right=26%2E24&bottom=44%2E33&top=44%2E53&currency=euro&request=get%5Fads&zoom=5000&sid=session1";
+    NSMutableString *postString = [NSMutableString string];
+    postString =[NSString stringWithFormat:@"left=%@&right=%@&bottom=%@&top=%@&request=get%5Fads&zoom=5000&sid=session1",[filtre objectForKey:@"latitude"],[filtre objectForKey:@"latitude"], [filtre objectForKey:@"longitude"],[filtre objectForKey:@"longitude"]] ;
+    if([filtre objectForKey:@"ad_type"] != nil)
+    {
+        [postString appendString:[NSString stringWithFormat:@"&type=%@", [filtre objectForKey:@"ad_type"]]]; 
+    }
+    if([filtre objectForKey:@"prop_type"] != nil)
+    {
+        [postString appendString:[NSString stringWithFormat:@"&property%5Ftype=%@", [filtre objectForKey:@"prop_type"]]]; 
+    }
+    [self ProcessRequest:filtre atString:postString withfiltru:@"min" andparam:@"&min=%@"];
+    [self ProcessRequest:filtre atString:postString withfiltru:@"min_size" andparam:@"&min%5Fsize=%@"];
+    [self ProcessRequest:filtre atString:postString withfiltru:@"max" andparam:@"&max=%@"];
+    [self ProcessRequest:filtre atString:postString withfiltru:@"max_size" andparam:@"&max%5Fsize=%@"];
+    
     NSData * data;
     if([myRequest makeRequestWithString:postString]!=0){
         data=[myRequest requestData];
@@ -26,6 +52,19 @@
         return;
     }
     NSLog(@"data fetched from server %@",data);
+    //parse out the json data
+    NSError* error;
+    NSDictionary* json = [NSJSONSerialization 
+                          JSONObjectWithData:data
+                          options:kNilOptions 
+                          error:&error];
+    NSLog(@"data JSON: %@", json); 
+    NSArray *allAds = [json objectForKey:@"ads"];
+    for(NSDictionary *row in allAds)
+    {
+        [ad TAd:row];
+        
+    }
  
 }
 
@@ -38,12 +77,5 @@ NSLog(@"Array %@:",[arr objectAtIndex:0]);
 data=[[arr objectAtIndex:0] dataUsingEncoding: [NSString defaultCStringEncoding] ];
 
 self.view.hidden = NO;
-//parse out the json data
-NSError* error;
-NSDictionary* json = [NSJSONSerialization 
-                      JSONObjectWithData:data
-                      options:kNilOptions 
-                      error:&error];
-NSLog(@"data JSON: %@", json); 
-NSArray *allAds = [json objectForKey:@"ads"];*/
+*/
 @end

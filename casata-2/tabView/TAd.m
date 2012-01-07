@@ -109,7 +109,7 @@
                           options:kNilOptions 
                           error:&error];
     NSLog(@"data JSON: %@", json); 
-    NSInteger *idad = [json objectForKey:@"idad"];
+   // NSInteger *idad = [json objectForKey:@"idad"];
     
    // UploadImagesttt:idad;    
 }

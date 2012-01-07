@@ -10,7 +10,7 @@
 
 @implementation TAd
 
-@synthesize ad, imageList, adlocation, request, thumb, session;//
+@synthesize ad, imageList, adlocation, request, thumb;//, session;//
 
 
 -(void)TAd{
@@ -133,16 +133,17 @@
     NSLog(@"data JSON: %@", json); 
     
     NSArray *allAds = [json objectForKey:@"ads"];
+    NSNumber *idad = [NSNumber alloc];
     for(NSDictionary *row in allAds)
     {
-        [ad TAd:row]
-        NSNumber *iaad = [row objectForKey:@"id"];
-        [session.personalAds addAd:ad];
+      //  [ad TAd:row];
+       NSNumber *idad = [row objectForKey:@"id"];
+     //   [session.personalAds addAd:ad];
     }
    // NSNumber *idad = [json objectForKey:@"idad"];
     //recomand NSNumber *idad si dupa trimiti ca parametru idad.intValue
     [self UploadImagesttt:idad.intValue];   
-    [ad release]
+    //[ad release]
 }
 
 -(id) GetAdImage:(NSInteger *)ad_id

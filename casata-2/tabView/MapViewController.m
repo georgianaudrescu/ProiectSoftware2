@@ -147,27 +147,9 @@
     MKCoordinateRegion adjustedRegion = [_mapView regionThatFits:viewRegion];
     [_mapView setRegion:adjustedRegion animated:YES];
     
- /*
-    //declararea request-ului
-    NSURL *aUrl = [NSURL URLWithString:@"http://flapptest.comule.com"];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:aUrl
-                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
-                                                       timeoutInterval:60.0];
-   
-    //setarea requestului si a stringului pt POST
-    [request setHTTPMethod:@"POST"];
-    //[request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-    NSString *postString = @"left=25%2E96&sessionTime=1325693857685&right=26%2E24&bottom=44%2E33&top=44%2E53&currency=euro&request=get%5Fads&zoom=5000&sid=session1";
-    [request setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
-    NSURLResponse *response;
-    
-    //primirea raspunsului 
-    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:nil];
-    // NSString *stringRespone = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    // NSLog(@"response: %@", stringRespone);    
-        
-   // NSData *data = [NSData dataWithContentsOfURL:myURL];
-*/
+    ///
+    ///request data
+    ///
     TRequest * myRequest = [TRequest alloc] ;
     [myRequest initWithHost:@"http://flapptest.comule.com"];
     NSString *postString = @"left=25%2E96&sessionTime=1325693857685&right=26%2E24&bottom=44%2E33&top=44%2E53&currency=euro&request=get%5Fads&zoom=5000&sid=session1";
@@ -201,12 +183,9 @@
     for(NSDictionary *row in allAds)
     {
         
-///DE MODIFICAT INAPOI DUPA CE SE CORECTEAZA PE SERVER -este inversata lat cu long
-        //////////////////////////////////////////////////
-        NSNumber * latitude = [ row objectForKey:@"long"];
-        NSNumber * longitude = [row objectForKey:@"lat"];
-        /////////////////////////////////////////////////
-        
+
+        NSNumber * latitude = [ row objectForKey:@"lat"];
+        NSNumber * longitude = [row objectForKey:@"long"];        
         NSString * name = [row objectForKey:@"name"];
         
         CLLocationCoordinate2D coordinate;

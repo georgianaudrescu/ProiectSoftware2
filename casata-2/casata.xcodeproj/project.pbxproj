@@ -20,6 +20,7 @@
 		3A37A446149B774A0053E39F /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A37A444149B774A0053E39F /* LoginViewController.xib */; };
 		3A37A476149BB6C70053E39F /* StatsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A37A474149BB6C70053E39F /* StatsViewController.m */; };
 		3A37A477149BB6C70053E39F /* StatsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A37A475149BB6C70053E39F /* StatsViewController.xib */; };
+		3A548A1D14B891D90056DE1F /* TLocationList.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A548A1C14B891D90056DE1F /* TLocationList.m */; };
 		3A56AD1514AB85B400C6B6B0 /* magnify.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A56AD1114AB85B300C6B6B0 /* magnify.png */; };
 		3A56AD1614AB85B400C6B6B0 /* linechart.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A56AD1214AB85B300C6B6B0 /* linechart.png */; };
 		3A56AD1714AB85B400C6B6B0 /* mapicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A56AD1314AB85B300C6B6B0 /* mapicon.png */; };
@@ -110,6 +111,8 @@
 		3A37A473149BB6C70053E39F /* StatsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatsViewController.h; sourceTree = "<group>"; };
 		3A37A474149BB6C70053E39F /* StatsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatsViewController.m; sourceTree = "<group>"; };
 		3A37A475149BB6C70053E39F /* StatsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatsViewController.xib; sourceTree = "<group>"; };
+		3A548A1B14B891D90056DE1F /* TLocationList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLocationList.h; sourceTree = "<group>"; };
+		3A548A1C14B891D90056DE1F /* TLocationList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLocationList.m; sourceTree = "<group>"; };
 		3A56AD1114AB85B300C6B6B0 /* magnify.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = magnify.png; sourceTree = "<group>"; };
 		3A56AD1214AB85B300C6B6B0 /* linechart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = linechart.png; sourceTree = "<group>"; };
 		3A56AD1314AB85B300C6B6B0 /* mapicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mapicon.png; sourceTree = "<group>"; };
@@ -522,6 +525,8 @@
 				AC7BF55714B87C6B00DDEEE4 /* TSearch.m */,
 				3A7D807214B71178004EE453 /* TLocation.h */,
 				3A7D807314B71178004EE453 /* TLocation.m */,
+				3A548A1B14B891D90056DE1F /* TLocationList.h */,
+				3A548A1C14B891D90056DE1F /* TLocationList.m */,
 				3A30EB3514B62F11003C2264 /* TRequest.h */,
 				3A30EB3614B62F11003C2264 /* TRequest.m */,
 				AC02995514B70CBC0025BBF9 /* TAd.h */,
@@ -751,6 +756,7 @@
 				8CB0F6CA14B75CBE00562FBE /* TAppSession.m in Sources */,
 				8CC3D08414B79C1C001B0F86 /* TImageList.m in Sources */,
 				AC7BF55814B87C6B00DDEEE4 /* TSearch.m in Sources */,
+				3A548A1D14B891D90056DE1F /* TLocationList.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

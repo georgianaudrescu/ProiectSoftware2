@@ -72,8 +72,8 @@
     ad = adx;
     //add location implementation
     adlocation =[TLocation alloc];
-    adlocation.coordinate = coordinate;
-    [adlocation initWithTitle:name andSubtitle:type]; 
+    //adlocation.coordinate = coordinate;
+    [adlocation initWithTitle:name andSubtitle:type andCoord:coordinate]; 
     // adlocation.subtitle = type;
     
     

@@ -212,8 +212,8 @@
         CLLocationCoordinate2D coordinate;
         coordinate.latitude = latitude.doubleValue;
         coordinate.longitude = longitude.doubleValue; 
-        TLocation *annotation = [[TLocation alloc]  initWithTitle:name andSubtitle:name];
-        annotation.coordinate = coordinate;
+        TLocation *annotation = [[TLocation alloc]  initWithTitle:name andSubtitle:name andCoord:coordinate];
+        //annotation.coordinate = coordinate;
         
         [_mapView addAnnotation:annotation]; 
         [annotation release];

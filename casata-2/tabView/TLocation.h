@@ -23,6 +23,6 @@
 @property (nonatomic, readonly, copy) NSString *subtitle;
 @property (nonatomic, readonly) int locationId;
 
-- (id)initWithTitle:(NSString *)aTitle andSubtitle:(NSString *)aSubtitle;
+- (id)initWithTitle:(NSString *)aTitle andSubtitle:(NSString *)aSubtitle andCoord:(CLLocationCoordinate2D)aCoord;
 
 @end

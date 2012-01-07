@@ -40,7 +40,30 @@
     // Do any additional setup after loading the view from its nib.
 
 //TESTS   
-  /* 
+  /* *******TLocationList Test********
+   //
+   TLocationList * myList = [[TLocationList alloc] init];
+   CLLocationCoordinate2D testCoor;
+   testCoor.latitude = 26.66;
+   testCoor.longitude = 44.333;
+   TLocation * testLoc = [[TLocation alloc] initWithTitle:@"nume" andSubtitle:@"subtitle" andCoord:testCoor];
+   NSLog(@"name1 %@",testLoc.title);
+   [myList addLocation:testLoc];
+   TLocation * newLoc = [myList getLocationFromIndex:0];
+   NSString * aString = newLoc.title;
+   NSLog(@"name %@", aString);
+   NSLog(@"index %d",[myList getIndexForLocation:testLoc] );
+   NSLog(@"count:%d", myList.count);
+   [myList removeLocation:testLoc];
+   NSLog(@"count:%d", myList.count);
+   
+   [myList release];
+   [newLoc release];
+   //end Location Test***** */
+  
+    
+    
+    /*  
    //TImage test  
     TImage *anImage = [TImage alloc];
     anImage.imageId=1;

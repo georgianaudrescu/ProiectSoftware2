@@ -12,15 +12,23 @@
 @implementation TLocation
 @synthesize coordinate, title, subtitle, locationId;
 
--(id) initWithTitle:(NSString *)aTitle andSubtitle:(NSString *)aSubtitle{
+-(id) initWithTitle:(NSString *)aTitle andSubtitle:(NSString *)aSubtitle andCoord:(CLLocationCoordinate2D)aCoord{
     self = [super init];
     if (self)
     {
         title = [aTitle copy];
         subtitle = [aSubtitle copy];
+        coordinate = aCoord;
+        //locationId = ??
     }
     return self;
 }
 
+-(void) dealloc
+{
+    [self.title dealloc];
+    [self.subtitle dealloc];
+    [super dealloc];
+}
 
 @end

@@ -72,6 +72,7 @@
 		8CB239A414B36F7E007BDFEE /* MoreOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB239A214B36F7E007BDFEE /* MoreOptionsViewController.m */; };
 		8CB239A514B36F7E007BDFEE /* MoreOptionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CB239A314B36F7E007BDFEE /* MoreOptionsViewController.xib */; };
 		8CB239A714B374F1007BDFEE /* rotita.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CB239A614B374F1007BDFEE /* rotita.png */; };
+		8CB4A52214B92AFD007924C8 /* TSearchList.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB4A52114B92AFC007924C8 /* TSearchList.m */; };
 		8CC3D08414B79C1C001B0F86 /* TImageList.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC3D08314B79C1C001B0F86 /* TImageList.m */; };
 		8CCC850114B3A9A300B9FD47 /* fundal.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CCC850014B3A9A300B9FD47 /* fundal.png */; };
 		8CCC850814B3B81300B9FD47 /* CloseIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CCC850714B3B81200B9FD47 /* CloseIcon.png */; };
@@ -273,6 +274,8 @@
 		8CB239A214B36F7E007BDFEE /* MoreOptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreOptionsViewController.m; sourceTree = "<group>"; };
 		8CB239A314B36F7E007BDFEE /* MoreOptionsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoreOptionsViewController.xib; sourceTree = "<group>"; };
 		8CB239A614B374F1007BDFEE /* rotita.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rotita.png; sourceTree = "<group>"; };
+		8CB4A52014B92AFC007924C8 /* TSearchList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSearchList.h; sourceTree = "<group>"; };
+		8CB4A52114B92AFC007924C8 /* TSearchList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSearchList.m; sourceTree = "<group>"; };
 		8CC3D08214B79C1C001B0F86 /* TImageList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TImageList.h; sourceTree = "<group>"; };
 		8CC3D08314B79C1C001B0F86 /* TImageList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TImageList.m; sourceTree = "<group>"; };
 		8CCC850014B3A9A300B9FD47 /* fundal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fundal.png; sourceTree = "<group>"; };
@@ -561,6 +564,8 @@
 				3A30EB3614B62F11003C2264 /* TRequest.m */,
 				AC7BF55614B87C6B00DDEEE4 /* TSearch.h */,
 				AC7BF55714B87C6B00DDEEE4 /* TSearch.m */,
+				8CB4A52014B92AFC007924C8 /* TSearchList.h */,
+				8CB4A52114B92AFC007924C8 /* TSearchList.m */,
 				3AF767E714B8D57100E7906E /* TSettings.h */,
 				3AF767E814B8D57100E7906E /* TSettings.m */,
 				3AF767E914B8D57100E7906E /* TStatistic.h */,
@@ -793,6 +798,7 @@
 				3AF767EF14B8D57100E7906E /* TStatistic.m in Sources */,
 				3AF767F014B8D57100E7906E /* TStatisticsList.m in Sources */,
 				3AF767FD14B8F2A700E7906E /* TUser.m in Sources */,
+				8CB4A52214B92AFD007924C8 /* TSearchList.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

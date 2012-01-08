@@ -13,7 +13,7 @@
 - (id)init {
     self = [super init];
     if (self) {
-        favSearchList= [[NSMutableOrderedSet alloc]init];
+        favSearchList= [[TSearchList alloc]init];
         favLocationList=[[TLocationList alloc]init];
         favAdsList=[[TAdList alloc]init];
     }
@@ -56,10 +56,33 @@
     return [favAdsList getAdAtIndex:index];
 }
 
+
+
+-(void) deleteSearch:(TSearch *)search
+{
+[favSearchList removeSearch:search];
+}
+
+-(void)deleteSearchAtIndex:(int)index
+{
+    [favSearchList removeSearchAtIndex:index];
+}
+
+-(void) addSearch:(TSearch *)search
+{
+    [favSearchList addSearch:search];
+}
+
+-(TSearch *) getSearchAtIndex:(int)index
+{
+    return [favSearchList getSearchAtIndex:index];
+}
+
+
 -(void)saveFavorites
 {
 }
--(void)getFavorites
+-(void)loadFavorites
 {
 }
 

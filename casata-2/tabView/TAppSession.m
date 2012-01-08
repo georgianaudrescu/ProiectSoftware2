@@ -9,7 +9,9 @@
 #import "TAppSession.h"
 
 @implementation TAppSession
-@synthesize globalAdList,favorites,filtre,currentLocation;  //variabilele globale
+@synthesize globalAdList,favorites,filtre,currentLocation,user, currentSearch;  
+@synthesize globalSettings,statistics;
+//variabilele globale
 
 -(void)dealloc
 {
@@ -17,12 +19,21 @@
     self.filtre=nil;
     self.favorites=nil;
     self.currentLocation = nil;
+    self.user=nil;
+    self.currentSearch=nil;
+    self.globalSettings=nil;
+    self.statistics=nil;
     [super dealloc];
 }
 -(void)globalVariablesInit
-{  globalAdList = [[NSMutableOrderedSet alloc]init];
+{  globalAdList = [[TAdList alloc]init];
+    user = [[TUser alloc] init];
+    currentSearch = [TSearch alloc];
+    globalSettings = [[TSettings alloc]init];
     filtre = [[NSMutableDictionary alloc]init];
     favorites = [[TFav alloc]init];
     currentLocation = [TLocation alloc];
+    statistics = [[TStatisticsList alloc]init];
 }
+
 @end

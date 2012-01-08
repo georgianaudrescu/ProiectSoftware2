@@ -50,19 +50,20 @@
 
 -(void)populateListWithRequest:(TRequest *)aRequest
 {
-    self.request = [TRequest alloc];
+    //request = [TRequest alloc];
     
     self.request = aRequest;
-    NSData *data = [[NSData alloc] initWithData:[aRequest requestData]];
-    
+    //NSData *data = [[NSData alloc] initWithData:[aRequest requestData]];
+    NSData *data = [NSData dataWithData:[aRequest requestData]];
 
 
 if ([data length]==0)
 {
     [data release];
     NSLog(@"No data recieved from the server!");
-    return;
+    //return;
 }
+else{
 NSLog(@"data fetched from server %@",data);
 NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 NSArray *arr =[string componentsSeparatedByString:@"<!--"];
@@ -87,7 +88,9 @@ for(NSDictionary *row in allAds)
     [anAd release];
 }
     count = adList.count;
-
+}//end of else
+    
+    
 }
 
 -(void)dealloc

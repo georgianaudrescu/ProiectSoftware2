@@ -199,8 +199,11 @@
         [_mapView addAnnotation:annotation]; 
         [annotation release];
         //
-        
-        
+  /*      TAd *anAd = [TAd alloc];
+        [anAd TAd:row];
+        NSLog(@"oras:%@", [anAd.ad objectForKey:@"oras"]);
+        [anAd release];
+        */
         //
     }
     NSNumber *found = [json objectForKey:@"ads_found"];

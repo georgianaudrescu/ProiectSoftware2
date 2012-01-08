@@ -37,7 +37,7 @@
         [image initWithImageFromUrlString:[row objectForKey:@"url"]];
         image.name = [NSString stringWithString:[row objectForKey:@"name"]];
         image.description = [NSString stringWithString:[row objectForKey:@"description"]];
-        NSString *defaultValue = [row objectForKey:@"default"];
+        NSString *defaultValue = [row objectForKey:@"default"];//might be nsnumber
         NSString *imageId = [row objectForKey:@"id"];
         image.defaultValue = defaultValue.intValue;
         image.imageId = imageId.intValue;
@@ -79,4 +79,5 @@
 {  // [imageList release];
     self.imageList = nil;
     [super dealloc];
-}@end
+}
+@end

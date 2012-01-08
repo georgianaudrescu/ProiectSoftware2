@@ -39,6 +39,13 @@
 }
 
 -(NSData *)requestData{
+    
+    //remove track
+    NSString *string = [[NSString alloc] initWithData:resultData encoding:NSUTF8StringEncoding];
+    NSArray *arr =[string componentsSeparatedByString:@"<!--"];
+    resultData=[[arr objectAtIndex:0] dataUsingEncoding: [NSString defaultCStringEncoding] ];
+    
+    
     return self.resultData;
 }
 

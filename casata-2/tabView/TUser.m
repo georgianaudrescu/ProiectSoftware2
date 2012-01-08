@@ -105,6 +105,59 @@
     //req logout
 }
 
+-(void) NewAd:(TAd *)newad //WithImageList:(TImageList *)imgLst
+{  
+    //TAd * newad = [TAd alloc];
+    
+    //newad.imageList = [TImageList alloc];
+    //newad.imageList=imgLst;
+    
+    request = [TRequest alloc];
+    NSString *postString = [NSString stringWithFormat:@"request=add_ad&ad_name=%@&ad_text=%@&adress=%@&coord_x=%@&coord_y=%@&price=%@&currency=%@&ad_type=%@&property_type=%@&judet=%@&oras=%@&size=%@&sid=session1", [newad.ad objectForKey:@"name"],[newad.ad objectForKey:@"ad_text"],[newad.ad objectForKey:@"adress_line"],[newad.ad objectForKey:@"long"],[newad.ad objectForKey:@"lat"], [newad.ad objectForKey:@"pret"], [newad.ad objectForKey:@"moneda"], [newad.ad objectForKey:@"ad_type"], [newad.ad objectForKey:@"property_type"], [newad.ad objectForKey:@"judet"], [newad.ad objectForKey:@"oras"], [newad.ad objectForKey:@"size"]];
+    NSData * data;
+    if([request makeRequestWithString:postString]!=0){
+        data=[request requestData];
+    }
+    
+     
+    
+    if ([data length]==0)
+    {
+        [data release];
+        NSLog(@"No data recieved from the server!");
+        return;
+    }
+    NSLog(@"data fetched from server %@",data);
+    
+    NSError* error;
+    NSDictionary* json = [NSJSONSerialization 
+                          JSONObjectWithData:data
+                          options:kNilOptions 
+                          error:&error];
+    NSLog(@"data JSON: %@", json); 
+    
+    NSArray *allAds = [json objectForKey:@"ads"];
+    NSNumber *idad = [NSNumber alloc];
+    for(NSDictionary *row in allAds)
+    {
+        TAd *newad2 =[TAd alloc];
+        [newad2 TAd:row];
+        idad = [row objectForKey:@"id"];
+        newad2.imageList = [TImageList alloc];
+        newad2.imageList = newad.imageList;
+        [self.personalAds addAd:newad2];
+    }
+    // NSNumber *idad = [json objectForKey:@"idad"];
+    //recomand NSNumber *idad si dupa trimiti ca parametru idad.intValue
+    
+    [newad UploadImagesttt:idad.intValue withImagelist:newad.imageList];
+     
+    //[ad release]
+    
+    
+}
+
+
 - (void) addNewAdd:(TAd *)ad{
     //req new_ad
     //primesc adId

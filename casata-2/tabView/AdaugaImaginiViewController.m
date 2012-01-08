@@ -186,6 +186,7 @@
         TAd *annAd = [TAd alloc];
         annAd = [aAdList getAdAtIndex:0];
         NSLog (@"second ad id ->%@",[annAd.ad objectForKey:@"name"]);
+        NSLog(@"adlist count:%d", aAdList.adList.count);
         
         anAd=nil;       
         [aAdList release];

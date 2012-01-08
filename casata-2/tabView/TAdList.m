@@ -32,7 +32,7 @@
     
     for(x=0;x<count;x++)
     {rezultat = [adList objectAtIndex:x];
-        
+       
         nr_anunt = [rezultat.ad objectForKey:@"id"];
         NSLog (@"---- la indexul: %d este id %d",x, nr_anunt.intValue);
         if (nr_anunt.intValue==index)

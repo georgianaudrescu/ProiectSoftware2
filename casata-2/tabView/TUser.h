@@ -6,10 +6,14 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
+#if !defined(TUSER)
+#define TUSER 1
+
 #import <Foundation/Foundation.h>
-#import "TAdList.h"
+
 #import "TFav.h"
 #import "TSettings.h"
+#import "TAdList.h"
 
 @interface TUser : NSObject{
     int *userId;
@@ -28,10 +32,12 @@
 @property (nonatomic, copy)NSString *password;
 @property (nonatomic, copy)NSString *phone;
 @property (nonatomic, copy)NSString *email;
-@property (nonatomic, copy)TAdList *personalAds;
+@property (nonatomic, retain)TAdList *personalAds;
 @property (nonatomic, copy)TFav *favorites;
 @property (nonatomic, copy)TSettings *settings;
 @property (nonatomic,copy) TRequest *request;
+
+-(void) NewAd:(TAd *)newad ;//WithImageList:(TImageList *)imgLst;
 
 - (id) init;
 - (id) registerUserWithName:(NSString *)name WithPassword:(NSString*)pass WithPhone:(NSString *)phone AndEmail:(NSString *)email;
@@ -50,3 +56,5 @@
 -(void) setMySettings;
 
 @end
+
+#endif //TUSER

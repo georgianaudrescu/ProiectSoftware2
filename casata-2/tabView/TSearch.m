@@ -22,7 +22,7 @@
     }
 }
 
--(void) Search:(NSMutableDictionary *) filtre
+-(TAdList *) Search:(NSMutableDictionary *) filtre
 {
     TRequest * myRequest = [TRequest alloc] ;    
     [myRequest initWithHost:@"http://flapptest.comule.com"];
@@ -56,7 +56,7 @@
     {
         [data release];
         NSLog(@"No data recieved from the server!");
-        return;
+        return nil;
     }
     NSLog(@"data fetched from server %@",data);
     //parse out the json data
@@ -67,12 +67,12 @@
                           error:&error];
     NSLog(@"data JSON: %@", json); 
     NSArray *allAds = [json objectForKey:@"ads"];
+    listAds = [TAdList alloc];
     for(NSDictionary *row in allAds)
     {
         [ad TAd:row];
-        listAds = [TAdList alloc];
         [listAds addAd:ad];
     }
- 
+    return listAds;
 }
 @end

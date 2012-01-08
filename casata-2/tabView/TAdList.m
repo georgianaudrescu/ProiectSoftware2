@@ -12,15 +12,30 @@
 @implementation TAdList
 @synthesize adList, count,request;
 
+
 - (id)init {
     self = [super init];
     if (self) {
         adList = [[NSMutableOrderedSet alloc]init];
         count=0;
+        
     }
     return self;
 }
-
+-(TAd *)getAdWithId:(int)index
+{
+    TAd *rezultat = [TAd alloc];
+    int x;
+    NSNumber *nr = [[NSNumber alloc] initWithInt:index];
+    for(x=0;x<count;x++)
+    {rezultat = [adList objectAtIndex:x];
+        if ([rezultat.ad objectForKey:@"id"]==nr)
+        {[rezultat release];
+            return [adList objectAtIndex:x];}
+    }
+    [rezultat release];
+    return [adList objectAtIndex:0];
+}
 -(void)addAd:(TAd *)ad
 { 
     [adList addObject:ad];
@@ -97,6 +112,7 @@ for(NSDictionary *row in allAds)
 {
     self.adList = nil;
     self.request=nil;
+    
     [super dealloc];
 }
 

@@ -23,6 +23,6 @@
 
 -(void)goHome;
 -(void)selectOptiuni;
-
+-(void)detaliiAnunt:(id)sender;
 
 @end

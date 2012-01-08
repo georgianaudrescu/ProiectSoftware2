@@ -15,10 +15,12 @@
     NSMutableOrderedSet *adList; 
     int count;
     TRequest *request;
+    
 }
 @property(nonatomic,copy) NSMutableOrderedSet *adList;//
 @property(nonatomic, assign) int count;
 @property(nonatomic,retain) TRequest *request;
+
 
 -(void)addAd:(TAd *)ad;//
 -(void)removeAd:(TAd *)ad;//
@@ -26,4 +28,6 @@
 -(void)removeAdAtIndex:(int)index;//
 -(int)getIndexForAd:(TAd *)ad;//
 -(void)populateListWithRequest:(TRequest *)aRequest;
+-(TAd *)getAdWithId:(int)index;
+
 @end

@@ -10,8 +10,10 @@
 #import "TLocation.h"
 #import "AppDelegate.h"
 #import "OptiuniHartaViewController.h"
+#import "DetaliiAnuntViewController.h"
 #import "TRequest.h"
 #import "TAd.h"
+
 
 #define myURL [NSURL URLWithString:@"http://flapptest.comule.com/get_ads/"]
 
@@ -140,6 +142,8 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    AppDelegate *apdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    
     CLLocationCoordinate2D zoomLocation;
     zoomLocation.latitude=44.4;
     zoomLocation.longitude=26.1;
@@ -182,23 +186,29 @@
     
     for(NSDictionary *row in allAds)
     {
+        TAd *anAd = [TAd alloc];
+        [anAd TAd:row];
+        [apdelegate.appSession.globalAdList addAd:anAd];
+        [anAd release];
         
         NSNumber * latitude = [ row objectForKey:@"lat"];
         NSNumber * longitude = [row objectForKey:@"long"];        
-
-        NSString * name = [row objectForKey:@"name"];
+         
         
-        
+        NSNumber *ad_id = [row objectForKey:@"id"];/////////
+        NSString * name = [row objectForKey:@"name"];     
+        NSString * subName = [row objectForKey:@"property_type"];
         
         CLLocationCoordinate2D coordinate;
         coordinate.latitude = latitude.doubleValue;
         coordinate.longitude = longitude.doubleValue; 
-        TLocation *annotation = [[TLocation alloc]  initWithTitle:name andSubtitle:name andCoord:coordinate];
+        TLocation *annotation = [[TLocation alloc]  initWithTitle:name andSubtitle:subName andCoord:coordinate];
         //annotation.coordinate = coordinate;
-        
+        annotation.locationId = ad_id.intValue; NSLog(@"idul %d",annotation.locationId);
         [_mapView addAnnotation:annotation]; 
         [annotation release];
-        //
+        
+                //
   /*      TAd *anAd = [TAd alloc];
         [anAd TAd:row];
         NSLog(@"oras:%@", [anAd.ad objectForKey:@"oras"]);
@@ -208,6 +218,26 @@
     }
     NSNumber *found = [json objectForKey:@"ads_found"];
     NSLog(@" ADS FOUND %d",found.intValue);
+}
+
+-(void)detaliiAnunt:(id)sender
+{
+UIButton *senderButton = (UIButton*)sender;
+    NSLog(@"id anunt selectat este: %d",senderButton.tag);
+    
+    // aax =[apdelegate.appSession.globalAdList getAdAtIndex:0];
+    // NSLog(@"add%@", [aax.ad objectForKey:@"oras"]);   
+   
+    DetaliiAnuntViewController *detaliiAnuntViewController = [[[DetaliiAnuntViewController alloc] initWithNibName:@"DetaliiAnuntViewController" bundle:nil]autorelease];
+    
+    detaliiAnuntViewController.ad_id = senderButton.tag;
+    
+    
+    [self.navigationController pushViewController:detaliiAnuntViewController animated:YES];    
+    
+    
+   /// 
+   
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation{
@@ -226,8 +256,15 @@
         }
      
         UIImageView *imgView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"house.jpg"]]autorelease];
-        
-                                                                    
+  //////
+        UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+        [rightButton addTarget:self
+                        action:@selector(detaliiAnunt:)
+              forControlEvents:UIControlEventTouchUpInside];
+       TLocation *loc = (TLocation*)annotation;
+        rightButton.tag = loc.locationId;
+        annotationView.rightCalloutAccessoryView=rightButton;
+     //////                                                               
         imgView.frame =CGRectMake(0, 0, 30, 30);
         annotationView.leftCalloutAccessoryView = imgView;
                       

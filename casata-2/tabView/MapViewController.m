@@ -11,7 +11,7 @@
 #import "AppDelegate.h"
 #import "OptiuniHartaViewController.h"
 #import "TRequest.h"
-
+#import "TAd.h"
 
 #define myURL [NSURL URLWithString:@"http://flapptest.comule.com/get_ads/"]
 
@@ -198,6 +198,10 @@
         
         [_mapView addAnnotation:annotation]; 
         [annotation release];
+        //
+        
+        
+        //
     }
     NSNumber *found = [json objectForKey:@"ads_found"];
     NSLog(@" ADS FOUND %d",found.intValue);

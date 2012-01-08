@@ -46,8 +46,49 @@
 {
     return [adList indexOfObject:ad];
 }
+//requestul trebuie initializat inainte, si daca are raspuns, se apeleaza metoda pt un ob TAdList
+
+-(void)populateListWithRequest:(TRequest *)aRequest
+{
+    self.request = [TRequest alloc];
+    
+    self.request = aRequest;
+    NSData *data = [[NSData alloc] initWithData:[aRequest requestData]];
+    
 
 
+if ([data length]==0)
+{
+    [data release];
+    NSLog(@"No data recieved from the server!");
+    return;
+}
+NSLog(@"data fetched from server %@",data);
+NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+NSArray *arr =[string componentsSeparatedByString:@"<!--"];
+NSLog(@"Array %@:",[arr objectAtIndex:0]);
+data=[[arr objectAtIndex:0] dataUsingEncoding: [NSString defaultCStringEncoding] ];
+
+
+//parse out the json data
+NSError* error;
+NSDictionary* json = [NSJSONSerialization 
+                      JSONObjectWithData:data
+                      options:kNilOptions 
+                      error:&error];
+NSLog(@"data JSON: %@", json); 
+NSArray *allAds = [json objectForKey:@"ads"];
+
+for(NSDictionary *row in allAds)
+{
+    TAd *anAd = [TAd alloc];
+    [anAd TAd:(row)];
+    [adList addObject:anAd];
+    [anAd release];
+}
+    count = adList.count;
+
+}
 
 -(void)dealloc
 {

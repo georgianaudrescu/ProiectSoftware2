@@ -32,8 +32,8 @@
 -(void)TAd;
 -(void)TAd:(NSDictionary *) row;
 -(id) GetAdImage:(NSInteger *) ad_id;
--(void) UploadImagesttt:(NSInteger *) ad_id;
--(void) NewAd:(TAd *) newad;
+-(void) UploadImagesttt:(int) ad_id;
+-(void) NewAdWithImageList:(TImageList *)imgLst;
 -(void) dealloc;
 
 @end

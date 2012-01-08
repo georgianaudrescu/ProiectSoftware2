@@ -25,4 +25,5 @@
 -(TAd *)getAdAtIndex:(int)index;//
 -(void)removeAdAtIndex:(int)index;//
 -(int)getIndexForAd:(TAd *)ad;//
+-(void)populateListWithRequest:(TRequest *)aRequest;
 @end

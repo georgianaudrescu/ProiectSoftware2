@@ -14,7 +14,7 @@
 @interface TSearch : NSObject
 {
     TAd *ad;
-    TAdList *lisatAds;
+    TAdList *listAds;
 }
 
 @property (nonatomic, retain) TAd *ad;

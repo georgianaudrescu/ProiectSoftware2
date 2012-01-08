@@ -80,10 +80,10 @@ if ([data length]==0)
 }
 else{
 NSLog(@"data fetched from server %@",data);
-NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-NSArray *arr =[string componentsSeparatedByString:@"<!--"];
-NSLog(@"Array %@:",[arr objectAtIndex:0]);
-data=[[arr objectAtIndex:0] dataUsingEncoding: [NSString defaultCStringEncoding] ];
+//NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+//NSArray *arr =[string componentsSeparatedByString:@"<!--"];
+//NSLog(@"Array %@:",[arr objectAtIndex:0]);
+//data=[[arr objectAtIndex:0] dataUsingEncoding: [NSString defaultCStringEncoding] ];
 
 
 //parse out the json data

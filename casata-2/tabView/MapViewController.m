@@ -169,11 +169,8 @@
         return;
     }
     NSLog(@"data fetched from server %@",data);
-    NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSArray *arr =[string componentsSeparatedByString:@"<!--"];
-    NSLog(@"Array %@:",[arr objectAtIndex:0]);
-    data=[[arr objectAtIndex:0] dataUsingEncoding: [NSString defaultCStringEncoding] ];
 
+    
     self.view.hidden = NO;
     //parse out the json data
     NSError* error;

@@ -24,20 +24,26 @@
 }
 -(TAd *)getAdWithId:(int)index
 {
-    TAd *rezultat;
+    TAd *rezultat = [TAd alloc];
     int x;
-    NSNumber *nr = [[NSNumber alloc] initWithInt:index];
+   
+    NSNumber *nr_anunt = [[NSNumber alloc]autorelease];
+    NSLog(@"nr cautat: %d",index);
+    
     for(x=0;x<count;x++)
     {rezultat = [adList objectAtIndex:x];
-        NSLog (@"------1-----");
-        if ([rezultat.ad objectForKey:@"id"]==nr)
-        {[rezultat release];
-               NSLog (@"------2-----");            
+        
+        nr_anunt = [rezultat.ad objectForKey:@"id"];
+        NSLog (@"---- la indexul: %d este id %d",x, nr_anunt.intValue);
+        if (nr_anunt.intValue==index)
+        {
+               NSLog (@"------match-----");            
             return [adList objectAtIndex:x];}
     }
-       NSLog (@"------3-----");    
-    [rezultat release];
-       NSLog (@"------4-----");
+       NSLog (@"------nonmatch-----");    
+    //rezultat=nil;
+    
+      
     return [adList objectAtIndex:0];
 }
 -(void)addAd:(TAd *)ad
@@ -114,9 +120,11 @@ for(NSDictionary *row in allAds)
 
 -(void)dealloc
 {
+    //[adList release];
+    //[request release];
     
     self.adList = nil;
-    self.request=nil;
+   self.request=nil;
     
     [super dealloc];
 }

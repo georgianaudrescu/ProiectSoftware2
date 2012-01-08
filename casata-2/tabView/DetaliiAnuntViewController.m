@@ -11,6 +11,7 @@
 
 @implementation DetaliiAnuntViewController
 @synthesize ad_id;
+@synthesize pretLabel, propertyTypeLabel, monedaLabel, contactNameLabel, contactPhoneLabel, adTextLabel, adressLineLabel,nameLabel;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -57,31 +58,29 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
- /*   
-    TAd *aax = [TAd alloc];
+    
+    TAd *theAd = [TAd alloc];
         
-    aax =[apdelegate.appSession.globalAdList getAdWithId:ad_id];
+    theAd =[apdelegate.appSession.globalAdList getAdWithId:ad_id];
  
     
-   NSLog(@"Judetul ad-ului selectat:%@", [aax.ad objectForKey:@"judet"]);
-    [aax release];    
-*/ 
+   NSLog(@"Judetul ad-ului selectat:%@", [theAd.ad objectForKey:@"judet"]);
+        
+    self.nameLabel.text = [theAd.ad objectForKey:@"name"];
+    self.propertyTypeLabel.text =[theAd.ad objectForKey:@"property_type"];
+    self.adTextLabel.text = [theAd.ad objectForKey:@"ad_text"];
+    self.adressLineLabel.text = [theAd.ad objectForKey:@"adress_line"];
+    NSNumber *pret = [theAd.ad objectForKey:@"pret"];
+    
+    self.pretLabel.text = [NSString stringWithFormat:@"%d",pret.intValue];
+    self.monedaLabel.text = [theAd.ad objectForKey:@"moneda"];
+    self.contactNameLabel.text = [theAd.ad objectForKey:@"contact_name"];
+    self.contactPhoneLabel.text = [theAd.ad objectForKey:@"contact_phone"];
     
     
-/*    aax =[apdelegate.appSession.globalAdList getAdAtIndex:1];    
-    TAd *axax = [TAd alloc];
     
-    axax =[apdelegate.appSession.globalAdList getAdAtIndex:2];
     
-    //aax =[apdelegate.appSession.globalAdList getAdWithId:ad_id];
-    NSLog(@"Judetul ad-ului selectat:%@", [aax.ad objectForKey:@"judet"]);
-    [axax release];    
-    
-   
-    NSLog(@"Ad_id----->%d",ad_id);
-    NSLog(@"total ads: %d",apdelegate.appSession.globalAdList.count);
-    */
-    
+    theAd =nil;///////
 }
 
 - (void)viewDidUnload
@@ -91,6 +90,19 @@
     // e.g. self.myOutlet = nil;
 }
 
+-(void) dealloc
+{ 
+    [nameLabel release];
+    [propertyTypeLabel release];
+    [contactPhoneLabel release];
+    [contactNameLabel release];
+    [monedaLabel release];
+    [adressLineLabel release];
+    [adTextLabel release];
+    [pretLabel release];
+
+    [super dealloc];
+}
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations

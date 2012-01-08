@@ -302,6 +302,7 @@ UIButton *senderButton = (UIButton*)sender;
     [_mapView release];
     [mapView release];
     [mapNavItem release];
+    
     [super dealloc];
 }
 @end

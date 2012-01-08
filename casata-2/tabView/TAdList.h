@@ -17,7 +17,7 @@
     TRequest *request;
     
 }
-@property(nonatomic,copy) NSMutableOrderedSet *adList;//
+@property(nonatomic,retain) NSMutableOrderedSet *adList;//
 @property(nonatomic, assign) int count;
 @property(nonatomic,retain) TRequest *request;
 

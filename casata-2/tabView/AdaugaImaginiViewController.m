@@ -163,6 +163,8 @@
     [aaa release];
 
 */
+    
+ /*   
  //TAdlist tests
    TRequest * myRequest = [TRequest alloc] ;
     [myRequest initWithHost:@"http://flapptest.comule.com"];
@@ -175,20 +177,21 @@
         NSLog(@"adlist count:%d", aAdList.adList.count);
         
         
-      /*  TAd *anAd = [TAd alloc];
+       TAd *anAd = [TAd alloc];
         anAd = [aAdList getAdAtIndex:0];
         NSLog (@"first ad id ->%@",[anAd.ad objectForKey:@"name"]);
             
-        [anAd release];
+        anAd=nil;
+        
         TAd *annAd = [TAd alloc];
         annAd = [aAdList getAdAtIndex:0];
         NSLog (@"second ad id ->%@",[annAd.ad objectForKey:@"name"]);
         
-        [annAd release];       
+        anAd=nil;       
         [aAdList release];
-       */
+      
     }
-
+   */
     
 }
 

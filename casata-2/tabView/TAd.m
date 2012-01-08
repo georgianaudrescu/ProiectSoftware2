@@ -10,7 +10,7 @@
 
 @implementation TAd
 
-@synthesize ad, imageList, adlocation, request, thumb;//, session;//
+@synthesize ad, imageList, adlocation, request,thumb;//, user;//
 
 
 -(void)TAd{
@@ -38,7 +38,7 @@
     NSString * oras = [row objectForKey:@"oras"];
     NSNumber * price = [row objectForKey:@"pret"];
     NSString * moneda = [row objectForKey:@"moneda"];
-  //  NSString *imgurl = [row objectForKey:@"url"];
+    NSString *imgurl = [row objectForKey:@"url"];
    // TImage * previewImage = [row objectForKey:@"previewImage"];
     /*  Id          int
      coordinate     TLocation
@@ -80,7 +80,7 @@
     //adlocation.coordinate = coordinate;
     [adlocation initWithTitle:name andSubtitle:propertyType andCoord:coordinate]; 
 
-  /*  //add thumbnail
+   //add thumbnail
     thumb =[TImage alloc];
     if(imgurl != nil)
     {
@@ -90,12 +90,15 @@
     {
         [thumb initWithImage:[UIImage imageNamed:@"house.jpg"]];
     }
-  */      
+    
+    self.imageList = [self GetAdImage:adid.intValue];
     
     //return self.ad;  
 }
--(void) UploadImagesttt:(int) ad_id
+-(void) UploadImagesttt:(int) ad_id withImagelist: (TImageList *) imglist
 {
+    self.imageList  = imglist;
+    
     if(ad_id != 0) 
     {
         for (int i=0; i<imageList.count; i++)
@@ -105,48 +108,8 @@
         }
     } else return;
 }
--(void) NewAdWithImageList:(TImageList *)imgLst
-{  
-    self.imageList = [TImageList alloc];
-    self.imageList=imgLst;
-    
-    request = [TRequest alloc];
-    NSString *postString = [NSString stringWithFormat:@"request=add_ad&ad_name=%@&ad_text=%@&adress=%@&coord_x=%@&coord_y=%@&price=%@&currency=%@&ad_type=%@&property_type=%@&judet=%@&oras=%@&size=%@", [self.ad objectForKey:@"name"],[self.ad objectForKey:@"ad_text"],[self.ad objectForKey:@"adress_line"],[self.ad objectForKey:@"long"],[self.ad objectForKey:@"lat"], [self.ad objectForKey:@"pret"], [self.ad objectForKey:@"moneda"], [self.ad objectForKey:@"ad_type"], [self.ad objectForKey:@"property_type"], [self.ad objectForKey:@"judet"], [self.ad objectForKey:@"oras"], [self.ad objectForKey:@"size"]];
-    NSData * data;
-    if([request makeRequestWithString:postString]!=0){
-        data=[request requestData];
-    }
-    
-    if ([data length]==0)
-    {
-        [data release];
-        NSLog(@"No data recieved from the server!");
-        return;
-    }
-    NSLog(@"data fetched from server %@",data);
-    
-    NSError* error;
-    NSDictionary* json = [NSJSONSerialization 
-                          JSONObjectWithData:data
-                          options:kNilOptions 
-                          error:&error];
-    NSLog(@"data JSON: %@", json); 
-    
-    NSArray *allAds = [json objectForKey:@"ads"];
-    NSNumber *idad = [NSNumber alloc];
-    for(NSDictionary *row in allAds)
-    {
-      //  [ad TAd:row];
-       NSNumber *idad = [row objectForKey:@"id"];
-     //   [session.personalAds addAd:ad];
-    }
-   // NSNumber *idad = [json objectForKey:@"idad"];
-    //recomand NSNumber *idad si dupa trimiti ca parametru idad.intValue
-    [self UploadImagesttt:idad.intValue];   
-    //[ad release]
-}
 
--(id) GetAdImage:(NSInteger *)ad_id
+-(id) GetAdImage:(int)ad_id
 {
     request = [TRequest alloc] ;
     [request initWithHost:@"http://flapptest.comule.com"];

@@ -24,6 +24,6 @@
         atString:(NSMutableString *) postString 
         withfiltru: (NSString *) filtru 
         andparam:(NSString *) param;
--(void) Search:(NSMutableDictionary *) filtre;
+-(TAdList *) Search:(NSMutableDictionary *) filtre;
 
 @end

@@ -6,6 +6,9 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
+#if !defined(TADLIST)
+#define TADLIST 1
+
 #import <Foundation/Foundation.h>
 #import "TRequest.h"
 #import "TAd.h"
@@ -31,3 +34,5 @@
 -(TAd *)getAdWithId:(int)index;
 
 @end
+
+#endif //TADLIST

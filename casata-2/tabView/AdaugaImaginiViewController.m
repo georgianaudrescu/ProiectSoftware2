@@ -175,18 +175,23 @@
         NSLog(@"adlist count:%d", aAdList.adList.count);
         
         
-      /*  TAd *anAd = [TAd alloc];
+        TAd *anAd = [TAd alloc];
         anAd = [aAdList getAdAtIndex:0];
         NSLog (@"first ad id ->%@",[anAd.ad objectForKey:@"name"]);
-            
-        [anAd release];
+        
+        
+        NSLog(@"adlist count:%d", aAdList.adList.count);
+        
+        anAd = nil;
+        NSLog(@"adlist count:%d", aAdList.adList.count);
         TAd *annAd = [TAd alloc];
         annAd = [aAdList getAdAtIndex:0];
         NSLog (@"second ad id ->%@",[annAd.ad objectForKey:@"name"]);
+        NSLog(@"adlist count:%d", aAdList.adList.count);
         
-        [annAd release];       
+        annAd = nil;      
         [aAdList release];
-       */
+       
     }
 
     

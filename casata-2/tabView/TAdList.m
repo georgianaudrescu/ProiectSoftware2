@@ -31,12 +31,12 @@
     {rezultat = [adList objectAtIndex:x];
         NSLog (@"------1-----");
         if ([rezultat.ad objectForKey:@"id"]==nr)
-        {[rezultat release];
+        {//[rezultat release];
                NSLog (@"------2-----");            
             return [adList objectAtIndex:x];}
     }
        NSLog (@"------3-----");    
-    [rezultat release];
+    //[rezultat release];
        NSLog (@"------4-----");
     return [adList objectAtIndex:0];
 }

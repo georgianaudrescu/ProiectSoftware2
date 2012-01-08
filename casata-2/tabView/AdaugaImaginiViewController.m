@@ -164,7 +164,7 @@
 
 */
  //TAdlist tests
-  /*  TRequest * myRequest = [TRequest alloc] ;
+   TRequest * myRequest = [TRequest alloc] ;
     [myRequest initWithHost:@"http://flapptest.comule.com"];
     NSString *postString = @"left=25%2E96&sessionTime=1325693857685&right=26%2E24&bottom=44%2E33&top=44%2E53&currency=euro&request=get%5Fads&zoom=5000&sid=session1";
     
@@ -172,11 +172,23 @@
     { TAdList *aAdList = [[TAdList alloc]init];
         [aAdList populateListWithRequest:myRequest];
         [myRequest release];
-        NSLog(@"adlist count:%d", aAdList.count);
-       
+        NSLog(@"adlist count:%d", aAdList.adList.count);
+        
+        
+      /*  TAd *anAd = [TAd alloc];
+        anAd = [aAdList getAdAtIndex:0];
+        NSLog (@"first ad id ->%@",[anAd.ad objectForKey:@"name"]);
+            
+        [anAd release];
+        TAd *annAd = [TAd alloc];
+        annAd = [aAdList getAdAtIndex:0];
+        NSLog (@"second ad id ->%@",[annAd.ad objectForKey:@"name"]);
+        
+        [annAd release];       
         [aAdList release];
+       */
     }
-*/
+
     
 }
 

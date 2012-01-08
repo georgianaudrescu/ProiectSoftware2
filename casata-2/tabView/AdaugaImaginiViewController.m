@@ -42,7 +42,8 @@
     // Do any additional setup after loading the view from its nib.
 
 //TESTS   
- /*   // ******* TStatistics Test***
+   /******* TStatistics Test*
+
     NSString *aString = @"avg_price: [{ pos:29,price: 2313,date: 2012-01-06},{pos: 30,price: 2050.4,date: 2012-01-07}],avg_total: 2050,request: get_stats,status: OK}";
     TStatistic *aStat = [[TStatistic alloc]init];
     NSData * data=[aString dataUsingEncoding: [NSString defaultCStringEncoding] ];
@@ -57,6 +58,7 @@
     [aStat release];
     [data release];
   */ 
+
     
   /* *******TLocationList Test********
    //

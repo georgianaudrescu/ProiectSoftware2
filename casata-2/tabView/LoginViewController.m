@@ -7,7 +7,7 @@
 //
 
 #import "LoginViewController.h"
-
+#import "TUser.h"
 @implementation LoginViewController
 @synthesize usernameTextField;
 @synthesize passwordTextField;
@@ -37,11 +37,27 @@
 
 - (IBAction)closeModalViewController:(id)sender
 {
-[self dismissModalViewControllerAnimated:YES];
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 -(IBAction)login:(id)sender
-{
+
+{    
+    ///Test ptr userLogin
+    ///login se finalizeaza cu succes
+    ///dar apoi aplicatia este killed
+    /*
+    TUser *userobj=[[TUser alloc] init];
+    NSString *s1=[ NSString alloc];
+    NSString *s2=[ NSString alloc];
+    
+    s1=usernameTextField.text;
+    
+    s2 =passwordTextField.text;
+    
+    [userobj LogInUser:s1 LogInPass:s2];
+    [userobj release];
+    */
 }
 
 - (void)didReceiveMemoryWarning
@@ -58,6 +74,10 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    
+    
+    
 }
 -(void)dealloc
 {[usernameTextField release];

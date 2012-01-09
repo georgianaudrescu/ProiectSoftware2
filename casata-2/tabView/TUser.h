@@ -16,7 +16,7 @@
 #import "TAdList.h"
 
 @interface TUser : NSObject{
-    int *userId;
+    NSNumber *userId;
     NSString *username;
     NSString *password;
     NSString *phone;
@@ -27,7 +27,7 @@
     TRequest *request;
 }
 
-@property (nonatomic) int  *userId;
+@property (nonatomic,copy) NSNumber  *userId;
 @property (nonatomic, copy) NSString *username;
 @property (nonatomic, copy)NSString *password;
 @property (nonatomic, copy)NSString *phone;
@@ -42,6 +42,7 @@
 - (id) init;
 - (id) registerUserWithName:(NSString *)name WithPassword:(NSString*)pass WithPhone:(NSString *)phone AndEmail:(NSString *)email;
 -(void) LogInUser: (NSString *) usernameLogIn LogInPass: (NSString *) passwordLogIn;
+- (NSNumber *) getUserId;
 - (void) Logout;
 
 - (void) addNewAdd:(TAd *)ad;

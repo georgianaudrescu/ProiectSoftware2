@@ -15,7 +15,7 @@
 #import "TAd.h"
 
 
-#define myURL [NSURL URLWithString:@"http://flapptest.comule.com/get_ads/"]
+//#define myURL [NSURL URLWithString:@"http://flapptest.comule.com/get_ads/"]
 
 
 @implementation MapViewController
@@ -36,25 +36,28 @@
         
         
         //[self setTitle:@"Bucuresti"];
-           
         
         
         
-         self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStylePlain target:self action:@selector(goHome)]autorelease];
+        
+        self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStylePlain target:self action:@selector(goHome)]autorelease];
         self.navigationItem.leftBarButtonItem.tintColor = [UIColor blackColor];
         self.navigationItem.leftBarButtonItem.image = [UIImage imageNamed:@"homepage.png"];
         
         self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Filtre" style:UIBarButtonItemStylePlain target:self action:@selector(selectOptiuni)]autorelease];   
         self.navigationItem.rightBarButtonItem.tintColor = [UIColor blackColor];
         self.navigationItem.rightBarButtonItem.image = [UIImage imageNamed:@"rotita.png"];
-       
+        
         
         //butonul care va aparea ca back button pt view-ul child care va fi pus in stiva peste view-ul curent
         UIBarButtonItem *anuleazaButton = [[UIBarButtonItem alloc] initWithTitle:@"Inapoi" style:UIBarButtonItemStylePlain target:nil action:nil]; 
-                                           
+        
         anuleazaButton.tintColor = [UIColor blackColor];
-                                           
-        self.navigationItem.backBarButtonItem= anuleazaButton;        
+        
+        self.navigationItem.backBarButtonItem= anuleazaButton;  
+        hasLoadView = 0;
+        apdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+        
         
     }
     
@@ -67,7 +70,7 @@
     OptiuniHartaViewController *optionsViewController = [[[OptiuniHartaViewController alloc] initWithNibName:@"OptiuniHartaViewController" bundle:nil]autorelease];
     
     //filtreViewController.hidesBottomBarWhenPushed = YES;
-     
+    
     
     [self.navigationController pushViewController:optionsViewController animated:YES];
 }
@@ -87,16 +90,16 @@
     }
     titleView.text = title;
     [titleView sizeToFit];
-
-
+    
+    
 }
 
 
 -(void)goHome
-{AppDelegate *apdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+{//AppDelegate *apdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [apdelegate goToHomeScreen];
-  }
-    
+}
+
 
 
 - (void)didReceiveMemoryWarning
@@ -122,7 +125,7 @@
     
     
 	// Do any additional setup after loading the view, typically from a nib.
- 
+    
 }
 - (IBAction)addAction:(id)sender
 {
@@ -138,11 +141,14 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    AppDelegate *apdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    // AppDelegate *apdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    
+    
     
     CLLocationCoordinate2D zoomLocation;
     zoomLocation.latitude=44.4;
@@ -151,17 +157,52 @@
     MKCoordinateRegion adjustedRegion = [_mapView regionThatFits:viewRegion];
     [_mapView setRegion:adjustedRegion animated:YES];
     
+    [self getParamForReq];
+    
+    
+    hasLoadView = 1;
+    
+    
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+}
+
+- (void) getParamForReq{
+    MKMapRect visibleRegion = _mapView.visibleMapRect;
+    
+    MKMapPoint cornerPointNE = MKMapPointMake(visibleRegion.origin.x + visibleRegion.size.width, visibleRegion.origin.y);
+    CLLocationCoordinate2D cornerCoordinateNE = MKCoordinateForMapPoint(cornerPointNE);
+    NSLog(@"%f",cornerCoordinateNE.latitude);
+    MKMapPoint cornerPointSW = MKMapPointMake(visibleRegion.origin.x, visibleRegion.origin.y + visibleRegion.size.height);
+    CLLocationCoordinate2D cornerCoordinateSW = MKCoordinateForMapPoint(cornerPointSW);
+    top = cornerCoordinateNE.latitude;
+    bottom = cornerCoordinateSW.latitude;
+    left = cornerCoordinateSW.longitude;
+    right = cornerCoordinateNE.longitude;
+    NSLog(@"%f, %f, %f, %f",left,right,top,bottom);
+    //TODO zoom level;
+    
     ///
     ///request data
     ///
-    TRequest * myRequest = [TRequest alloc] ;
-    [myRequest initWithHost:@"http://flapptest.comule.com"];
-    NSString *postString = @"left=25%2E96&sessionTime=1325693857685&right=26%2E24&bottom=44%2E33&top=44%2E53&currency=euro&request=get%5Fads&zoom=5000&sid=session1";
+    mapRequest = [TRequest alloc] ;
+    [mapRequest initWithHost:@"http://flapptest.comule.com"];
+    NSString *postString = [NSString stringWithFormat:@"left=%f&sessionTime=1325693857685&right=%f&bottom=%f&top=%f&currency=euro&request=get_ads&zoom=5000&sid=session1",left,right,bottom,top];
+    NSLog(@"%@",postString);
     NSData * data;
-    if([myRequest makeRequestWithString:postString]!=0){
-        data=[myRequest requestData];
+    if([mapRequest makeRequestWithString:postString]!=0){
+        data=[mapRequest requestData];
+        [self showAdsFromData:data];
     }
+    //TODO: get_more_ads;
     
+    
+}
+
+-(void) showAdsFromData:(NSData *)data{
     if ([data length]==0)
     {
         [data release];
@@ -169,7 +210,7 @@
         return;
     }
     NSLog(@"data fetched from server %@",data);
-
+    
     
     self.view.hidden = NO;
     //parse out the json data
@@ -183,6 +224,8 @@
     
     for(NSDictionary *row in allAds)
     {
+       // AppDelegate *apdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+        
         TAd *anAd = [TAd alloc];
         [anAd TAd:row];
         [apdelegate.appSession.globalAdList addAd:anAd];
@@ -190,7 +233,7 @@
         
         NSNumber * latitude = [ row objectForKey:@"lat"];
         NSNumber * longitude = [row objectForKey:@"long"];        
-         
+        
         
         NSNumber *ad_id = [row objectForKey:@"id"];/////////
         NSString * name = [row objectForKey:@"name"];     
@@ -203,14 +246,14 @@
         //annotation.coordinate = coordinate;
         annotation.locationId = ad_id.intValue; NSLog(@"idul %d",annotation.locationId);
         [_mapView addAnnotation:annotation]; 
-        [annotation release];
+        [annotation release];        
+        //Test Ad
         
-                //
-  /*      TAd *anAd = [TAd alloc];
-        [anAd TAd:row];
-        NSLog(@"oras:%@", [anAd.ad objectForKey:@"oras"]);
-        [anAd release];
-        */
+        /*      TAd *anAd = [TAd alloc];
+         [anAd TAd:row];
+         NSLog(@"oras:%@", [anAd.ad objectForKey:@"oras"]);
+         [anAd release];
+         */
         //
     }
     NSNumber *found = [json objectForKey:@"ads_found"];
@@ -219,12 +262,12 @@
 
 -(void)detaliiAnunt:(id)sender
 {
-UIButton *senderButton = (UIButton*)sender;
+    UIButton *senderButton = (UIButton*)sender;
     NSLog(@"id anunt selectat este: %d",senderButton.tag);
     
     // aax =[apdelegate.appSession.globalAdList getAdAtIndex:0];
     // NSLog(@"add%@", [aax.ad objectForKey:@"oras"]);   
-   
+    
     DetaliiAnuntViewController *detaliiAnuntViewController = [[[DetaliiAnuntViewController alloc] initWithNibName:@"DetaliiAnuntViewController" bundle:nil]autorelease];
     
     detaliiAnuntViewController.ad_id = senderButton.tag;
@@ -233,11 +276,12 @@ UIButton *senderButton = (UIButton*)sender;
     [self.navigationController pushViewController:detaliiAnuntViewController animated:YES];    
     
     
-   /// 
-   
+    /// 
+    
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation{
+    NSLog(@"in annotation method");
     static NSString *identifier = @"MyLocation";   
     if ([annotation isKindOfClass:[TLocation class]]) {
         // MyLocation *location = (MyLocation *) annotation;
@@ -251,20 +295,20 @@ UIButton *senderButton = (UIButton*)sender;
         } else {
             annotationView.annotation = annotation;
         }
-     
+        
         UIImageView *imgView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"house.jpg"]]autorelease];
-  //////
+        //////
         UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
         [rightButton addTarget:self
                         action:@selector(detaliiAnunt:)
               forControlEvents:UIControlEventTouchUpInside];
-       TLocation *loc = (TLocation*)annotation;
+        TLocation *loc = (TLocation*)annotation;
         rightButton.tag = loc.locationId;
         annotationView.rightCalloutAccessoryView=rightButton;
-     //////                                                               
+        //////                                                               
         imgView.frame =CGRectMake(0, 0, 30, 30);
         annotationView.leftCalloutAccessoryView = imgView;
-                      
+        
         // [imgView release];
         annotationView.enabled = YES;
         annotationView.canShowCallout = YES;
@@ -275,12 +319,17 @@ UIButton *senderButton = (UIButton*)sender;
     return nil;
 }
 
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-     
+-(void) mapView:(MKMapView *)mapView regionWillChangeAnimated:(BOOL)animated{
+    mapRequest = nil;
 }
+
+- (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated{
+    NSLog(@"drag");
+    if(hasLoadView==1){
+        [self getParamForReq];
+    }
+}
+
 
 - (void)viewWillDisappear:(BOOL)animated
 {
@@ -290,6 +339,7 @@ UIButton *senderButton = (UIButton*)sender;
 - (void)viewDidDisappear:(BOOL)animated
 {
 	[super viewDidDisappear:animated];
+    mapRequest = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -299,10 +349,11 @@ UIButton *senderButton = (UIButton*)sender;
 }
 
 - (void)dealloc {
+    //mapRequest = nil;
+    
     [_mapView release];
     [mapView release];
     [mapNavItem release];
-    
     [super dealloc];
 }
 @end

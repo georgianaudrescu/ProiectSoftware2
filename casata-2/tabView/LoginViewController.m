@@ -8,6 +8,7 @@
 
 #import "LoginViewController.h"
 #import "TUser.h"
+#import "AppDelegate.h"
 @implementation LoginViewController
 @synthesize usernameTextField;
 @synthesize passwordTextField;
@@ -43,10 +44,8 @@
 -(IBAction)login:(id)sender
 
 {    
-    ///Test ptr userLogin
-    ///login se finalizeaza cu succes
-    ///dar apoi aplicatia este killed
-    /*
+
+    
     TUser *userobj=[[TUser alloc] init];
     NSString *s1=[ NSString alloc];
     NSString *s2=[ NSString alloc];
@@ -56,8 +55,24 @@
     s2 =passwordTextField.text;
     
     [userobj LogInUser:s1 LogInPass:s2];
+    NSNumber * userid = [userobj getUserId];
+    NSString * msg = [NSString stringWithFormat:@"You are logged in! User id %@",userid];
+    
+    [self dismissModalViewControllerAnimated:YES];
+    UIAlertView *alert = [[UIAlertView alloc] 
+                          initWithTitle:@"Login" 
+                          message:msg
+                          delegate:self 
+                          cancelButtonTitle:@"Dismiss" 
+                          otherButtonTitles:nil]; 
+    
+    
+    [alert show]; 
+    [alert release]; 
+    
     [userobj release];
-    */
+    //userobj = nil;
+    
 }
 
 - (void)didReceiveMemoryWarning

@@ -89,17 +89,26 @@
     NSLog(@"data JSON: %@", json); 
     
     NSString *loggedIn=[json objectForKey:@"status"];  
+    NSNumber * loginId=[json objectForKey:@"userId"];
+    userId = loginId;
+    NSLog(@"USser ID %@",loginId);
+
+    
     if([loggedIn isEqualToString:@"OK"])
     { NSLog(@"Logged in succes");}
     else
     { NSLog(@"Try again, user or pass wrong");}
     
-    [request release];
-    [postString release];
-    [data release];
-    [json release];
-    [loggedIn release];
+    //[request release];
+    //[postString release];
+    //[data release];
+    //[json release];
+    //[loggedIn release];
 } 
+
+- (NSNumber *) getUserId{
+    return userId;
+}
 
 - (void) Logout{
     //req logout

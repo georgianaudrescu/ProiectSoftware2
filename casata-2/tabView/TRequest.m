@@ -49,6 +49,10 @@
     return self.resultData;
 }
 
+-(void) dealloc{
+    [super dealloc];
+}
+
 
 
 @end

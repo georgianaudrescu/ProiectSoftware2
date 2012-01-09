@@ -38,7 +38,7 @@
     NSString * oras = [row objectForKey:@"oras"];
     NSNumber * price = [row objectForKey:@"pret"];
     NSString * moneda = [row objectForKey:@"moneda"];
-    NSString *imgurl = [row objectForKey:@"url"];
+  //  NSString *imgurl = [row objectForKey:@"url"];
    // TImage * previewImage = [row objectForKey:@"previewImage"];
     /*  Id          int
      coordinate     TLocation

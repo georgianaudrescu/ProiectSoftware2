@@ -8,6 +8,7 @@
 
 #import "OptiuniHartaViewController.h"
 #import "FiltreTableViewController.h"
+#import "Filtre.h"
 #import "MoreOptionsViewController.h"
 
 @implementation OptiuniHartaViewController
@@ -78,7 +79,10 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    UIViewController * controller1 = [[FiltreTableViewController alloc] initWithNibName:@"FiltreTableViewController" bundle:nil];
+    
+   // UIViewController * controller1 = [[FiltreTableViewController alloc] initWithNibName:@"FiltreTableViewController" bundle:nil];
+    UIViewController * controller1 = [[Filtre alloc] initWithNibName:@"Filtre" bundle:nil];    
+    
     UIViewController * controller2 = [[MoreOptionsViewController alloc] initWithNibName:@"MoreOptionsViewController" bundle:nil];
    // UIViewController * controller3 = [[AdaugaImaginiViewController alloc] initWithNibName:@"AdaugaImaginiViewController" bundle:nil];
     

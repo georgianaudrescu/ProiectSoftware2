@@ -83,11 +83,11 @@
     
     
  //array pt continutul tabelului
-    NSArray *arraySection1 = [[NSArray alloc] initWithObjects:@"Tip imobil",@"Numar de camere", @"Suprafata", nil];
+    NSArray *arraySection1 = [[NSArray alloc] initWithObjects:@"Garsoniera",@"Apartament 2 camere", @"Apartament 3 camere",@"Apartament 4 camere", @"Casa", nil];
     NSArray *arraySection2 = [[NSArray alloc] initWithObjects:@"Vanzare", @"Inchiriere", nil];
     NSArray *arraySection3 = [[NSArray alloc] initWithObjects:@"Pret", nil];
     
-    NSDictionary *temp = [[NSDictionary alloc] initWithObjectsAndKeys:arraySection1, @"Imobil", arraySection2, @"Tranzactie", arraySection3, @"Pret", nil];
+    NSDictionary *temp = [[NSDictionary alloc] initWithObjectsAndKeys:arraySection1, @"Tip imobil", arraySection2, @"Tip anunt", arraySection3, @"Pret", nil];
     
     self.tableContents = temp;
     [temp release];

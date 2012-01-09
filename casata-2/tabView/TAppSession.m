@@ -8,11 +8,23 @@
 
 #import "TAppSession.h"
 
+
 @implementation TAppSession
 @synthesize globalAdList,favorites,filtre,currentLocation,user, currentSearch;  
 @synthesize globalSettings,statistics;
 //variabilele globale
 
+
+-(void)addCurrentSearchResultsToGlobalAdList ///ar trebui puse pe harta mai intai>>varianta in care aceasta metoda returneaza lista/
+{
+    TAdList *searchResults = [TAdList alloc];
+    searchResults = [currentSearch Search:filtre];
+    int i;
+    for(i=0;i<searchResults.count;i++)
+        [globalAdList addAd:[searchResults getAdAtIndex:i]];
+    searchResults=nil;
+
+}
 -(void)dealloc
 {
     self.globalAdList=nil; //variabile globale release

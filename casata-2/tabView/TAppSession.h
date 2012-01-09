@@ -38,5 +38,5 @@
 
 //global variables initalization
 -(void)globalVariablesInit;
-
+-(void)addCurrentSearchResultsToGlobalAdList;
 @end

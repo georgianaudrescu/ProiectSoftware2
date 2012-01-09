@@ -183,7 +183,6 @@
     left = cornerCoordinateSW.longitude;
     right = cornerCoordinateNE.longitude;
     NSLog(@"%f, %f, %f, %f",left,right,top,bottom);
-    
     //TODO zoom level;
     
     ///
@@ -198,8 +197,8 @@
         data=[mapRequest requestData];
         [self showAdsFromData:data];
     }
-    else NSLog(@"my req?");
     //TODO: get_more_ads;
+    
     
 }
 

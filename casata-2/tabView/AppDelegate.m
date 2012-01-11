@@ -14,9 +14,9 @@
 
 #import "StatsViewController.h"
 
-#import "FavViewController.h"
-#import "PersonalViewController.h"
-
+//#import "FavViewController.h"
+//#import "PersonalViewController.h"
+#import "Filtre.h"
 #import "ViewController.h"
 #import "Informatii.h"
 #import "TAppSession.h"
@@ -55,30 +55,22 @@
     UIViewController *mapViewController = [[[MapViewController alloc] initWithNibName:@"MapViewController" bundle:nil] autorelease];
     UIViewController *adaugaAnuntViewController = [[[AdaugAnuntViewController alloc] initWithNibName:@"AdaugAnuntViewController" bundle:nil] autorelease];
     UIViewController *statsViewController = [[[StatsViewController alloc] initWithNibName:@"StatsViewController" bundle:nil] autorelease];
-    FavViewController *favViewController = [[[FavViewController alloc] initWithNibName:@"FavViewController" bundle:nil] autorelease];
-    
-    
-    UIViewController *persViewController = [[[PersonalViewController alloc] initWithNibName:@"PersonalViewController" bundle:nil] autorelease];
-    
+    UIViewController *filtreViewController = [[[Filtre alloc] initWithNibName:@"Filtre" bundle:nil] autorelease];
+
     //Navigation controllerul pt pagina de Map
     UINavigationController *navControllerMap = [[[UINavigationController alloc] initWithRootViewController:mapViewController] autorelease];
    
     navControllerMap.navigationBar.tintColor = [UIColor colorWithRed:0.976 green:0.827 blue:0.015 alpha:1.0]; 
+     
     
-    //navigation controllerul pt pagina de Favorite
-    UINavigationController *navControllerFav = [[[UINavigationController alloc] initWithRootViewController:favViewController] autorelease];
-    
-    navControllerFav.navigationBar.tintColor = [UIColor colorWithRed:0.976 green:0.827 blue:0.015 alpha:1.0]; 
+    //navigation controller ptr pagina de Filtre
+    UINavigationController *navControllerFiltre = [[[UINavigationController alloc] initWithRootViewController:filtreViewController]autorelease];
+    navControllerFiltre.navigationBar.tintColor = [UIColor colorWithRed:0.976 green:0.827 blue:0.015 alpha:1.0];
     
     //navigation controllerul pt pagina Adauga anunt
     UINavigationController *navControllerAdaug = [[[UINavigationController alloc] initWithRootViewController:adaugaAnuntViewController] autorelease];
     
     navControllerAdaug.navigationBar.tintColor = [UIColor colorWithRed:0.976 green:0.827 blue:0.015 alpha:1.0];
-    
-    //navigation controllerul pt pagina Personal
-    UINavigationController *navControllerPersonal = [[[UINavigationController alloc] initWithRootViewController:persViewController] autorelease];
-    
-        navControllerPersonal.navigationBar.tintColor = [UIColor colorWithRed:0.976 green:0.827 blue:0.015 alpha:1.0];  
     
     
     //navigation controllerul pt pagina statistici
@@ -92,7 +84,7 @@
     
     
     self.tabBarController = [[[UITabBarController alloc] init] autorelease];
-    self.tabBarController.viewControllers = [NSArray arrayWithObjects:navControllerMap, navControllerFav,navControllerAdaug,navControllerStatistici,navControllerPersonal, nil];
+    self.tabBarController.viewControllers = [NSArray arrayWithObjects:navControllerMap, navControllerFiltre,navControllerAdaug,navControllerStatistici, nil];
     self.window.rootViewController = self.viewController;
     
     //self.window.rootViewController = self.tabBarController;
@@ -104,30 +96,14 @@
 {
    
     //in momentul in care se selecteaza un buton din home view, de aici se selecteaza si tab-ul corespunzator
-    if([bTitle isEqualToString:@"Cauta anunturi"])
-        self.tabBarController.selectedIndex =0;
-    else if([bTitle isEqualToString:@" Anunturi in apropiere"])
+    
+    if([bTitle isEqualToString:@" Anunturi in apropiere"])
         self.tabBarController.selectedIndex=0;
-    else if([bTitle isEqualToString:@" Anunturi favorite"])
-    {
-        [Informatii selectedFavoriteChange:@"Anunturi"]; 
-        self.tabBarController.selectedIndex=1;
-        
-    }
     else if([bTitle isEqualToString:@" Trends & statistics"])
         self.tabBarController.selectedIndex=3;
-    else if([bTitle isEqualToString:@" Login"])
-        self.tabBarController.selectedIndex = 4;
-    else if([bTitle isEqualToString:@" Setari & Feedback"])
-        self.tabBarController.selectedIndex = 4;
     else if([bTitle isEqualToString:@" Adauga anunt"])
         self.tabBarController.selectedIndex = 2;
-    else if([bTitle isEqualToString:@" Cautari favorite"])
-    {
-        [Informatii selectedFavoriteChange:@"Cautari"];
-        self.tabBarController.selectedIndex = 1;
-        
-    }
+    
     
   self.window.rootViewController = self.tabBarController;    
 }

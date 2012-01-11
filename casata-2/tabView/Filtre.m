@@ -7,7 +7,8 @@
 //
 
 #import "Filtre.h"
-#import "OptiuniHartaViewController.h"
+#import "AppDelegate.h"
+//#import "OptiuniHartaViewController.h"
 
 @implementation Filtre
 @synthesize sliderPretMax,sliderPretMin, pickerView, segmentedControl,pMaxLabel,pMinLabel,selectedPropertyType,aplicaFiltreButton;
@@ -17,10 +18,31 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        self.title = NSLocalizedString(@"Filtre", @"Filtre");
+        self.tabBarItem.image = [UIImage imageNamed:@"filter"];
         // Custom initialization
+        [self setTitle:@"Filtre"];
+        
+        self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStylePlain target:self action:@selector(goHome)]autorelease];
+        self.navigationItem.leftBarButtonItem.tintColor = [UIColor blackColor];
+        self.navigationItem.leftBarButtonItem.image = [UIImage imageNamed:@"homepage.png"];
+        
+        
+        
+        self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Clear" style:UIBarButtonItemStylePlain target:self action:@selector(clearChartStatistici)]autorelease];   
+        self.navigationItem.rightBarButtonItem.tintColor = [UIColor blackColor];
+        
+
     }
     return self;
 }
+
+-(void)goHome
+{
+    AppDelegate *apdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [apdelegate goToHomeScreen];
+}
+
 -(IBAction)sliderMinValueChanged:(UISlider *)sender
 
 {
@@ -56,10 +78,10 @@
     
      
     //UIViewController *mainViewController = [self.view.superview nextResponder];
-    OptiuniHartaViewController *controller = self.view.superview.nextResponder;
+    //OptiuniHartaViewController *controller = self.view.superview.nextResponder;
     
-    if(controller && [controller isKindOfClass: [OptiuniHartaViewController class]])
-        [controller.navigationController popToRootViewControllerAnimated:YES];
+    //if(controller && [controller isKindOfClass: [OptiuniHartaViewController class]])
+       // [controller.navigationController popToRootViewControllerAnimated:YES];
     
   // [mainViewController.navigationController popToRootViewControllerAnimated:YES];
 }

@@ -56,7 +56,7 @@
     
     [userobj LogInUser:s1 LogInPass:s2];
     NSNumber * userid = [userobj getUserId];
-    NSString * msg = [NSString stringWithFormat:@"You are logged in! User id %@",userid];
+    NSString * msg = [NSString stringWithFormat:@"User id %@",userid];
     
     [self dismissModalViewControllerAnimated:YES];
     UIAlertView *alert = [[UIAlertView alloc] 

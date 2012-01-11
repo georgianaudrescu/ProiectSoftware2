@@ -37,14 +37,13 @@
 		3AF767EF14B8D57100E7906E /* TStatistic.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF767EA14B8D57100E7906E /* TStatistic.m */; };
 		3AF767F014B8D57100E7906E /* TStatisticsList.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF767EC14B8D57100E7906E /* TStatisticsList.m */; };
 		3AF767FD14B8F2A700E7906E /* TUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF767FC14B8F2A700E7906E /* TUser.m */; };
+		3AFE626814BE1B6D00B3936D /* filter.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AFE626714BE1B6C00B3936D /* filter.png */; };
 		8C0A091214B4692200BD768E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C0A091114B4692200BD768E /* QuartzCore.framework */; };
 		8C0A097114B4733100BD768E /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C0A097014B4733100BD768E /* libCorePlot-CocoaTouch.a */; };
 		8C0BFF9714B9EC5900D49747 /* DetaliiAnuntViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C0BFF9514B9EC5800D49747 /* DetaliiAnuntViewController.m */; };
 		8C0BFF9814B9EC5900D49747 /* DetaliiAnuntViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C0BFF9614B9EC5900D49747 /* DetaliiAnuntViewController.xib */; };
 		8C0D6E8214B8B307001DAFE4 /* TAdList.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C0D6E8114B8B307001DAFE4 /* TAdList.m */; };
 		8C56451C14B64A5600540286 /* TImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C56451B14B64A5600540286 /* TImage.m */; };
-		8C6C8DC714AE002C00BAD7DB /* FiltreTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C6C8DC514AE002C00BAD7DB /* FiltreTableViewController.m */; };
-		8C6C8DC814AE002D00BAD7DB /* FiltreTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C6C8DC614AE002C00BAD7DB /* FiltreTableViewController.xib */; };
 		8C71BDD014ABF91700E77A77 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C71BDCE14ABF91700E77A77 /* ViewController.m */; };
 		8C71BDD114ABF91700E77A77 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C71BDCF14ABF91700E77A77 /* ViewController.xib */; };
 		8C725FC014AE4FF5002B26F4 /* Informatii.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C725FBF14AE4FF5002B26F4 /* Informatii.m */; };
@@ -147,6 +146,7 @@
 		3AF767EC14B8D57100E7906E /* TStatisticsList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TStatisticsList.m; sourceTree = "<group>"; };
 		3AF767FB14B8F2A700E7906E /* TUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TUser.h; sourceTree = "<group>"; };
 		3AF767FC14B8F2A700E7906E /* TUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TUser.m; sourceTree = "<group>"; };
+		3AFE626714BE1B6C00B3936D /* filter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = filter.png; sourceTree = "<group>"; };
 		8C0A091114B4692200BD768E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		8C0A092114B4731100BD768E /* _CPTConstraintsFixed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _CPTConstraintsFixed.h; sourceTree = "<group>"; };
 		8C0A092214B4731100BD768E /* _CPTConstraintsRelative.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _CPTConstraintsRelative.h; sourceTree = "<group>"; };
@@ -235,9 +235,6 @@
 		8C0D6E8114B8B307001DAFE4 /* TAdList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAdList.m; sourceTree = "<group>"; };
 		8C56451A14B64A5600540286 /* TImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TImage.h; sourceTree = "<group>"; };
 		8C56451B14B64A5600540286 /* TImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TImage.m; sourceTree = "<group>"; };
-		8C6C8DC414AE002C00BAD7DB /* FiltreTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FiltreTableViewController.h; sourceTree = "<group>"; };
-		8C6C8DC514AE002C00BAD7DB /* FiltreTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FiltreTableViewController.m; sourceTree = "<group>"; };
-		8C6C8DC614AE002C00BAD7DB /* FiltreTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FiltreTableViewController.xib; sourceTree = "<group>"; };
 		8C71BDCD14ABF91700E77A77 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		8C71BDCE14ABF91700E77A77 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		8C71BDCF14ABF91700E77A77 /* ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
@@ -422,6 +419,7 @@
 		3A70A915149BB84700203169 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				3AFE626714BE1B6C00B3936D /* filter.png */,
 				3A2CAC1714BB00EA00D68F6C /* house.jpg */,
 				8CCC850714B3B81200B9FD47 /* CloseIcon.png */,
 				8CCC850014B3A9A300B9FD47 /* fundal.png */,
@@ -671,9 +669,6 @@
 				AC53EE5F14B8CE9A00A2D85B /* Filtre.h */,
 				AC53EE6014B8CE9A00A2D85B /* Filtre.m */,
 				AC53EE6114B8CE9A00A2D85B /* Filtre.xib */,
-				8C6C8DC414AE002C00BAD7DB /* FiltreTableViewController.h */,
-				8C6C8DC514AE002C00BAD7DB /* FiltreTableViewController.m */,
-				8C6C8DC614AE002C00BAD7DB /* FiltreTableViewController.xib */,
 			);
 			name = Filtre;
 			sourceTree = "<group>";
@@ -759,7 +754,6 @@
 				8C800B3014ADCB5500F498A5 /* homepage.png in Resources */,
 				8C800B3914ADD59800F498A5 /* adauga_anunt.png in Resources */,
 				8C800B4314ADD6EE00F498A5 /* AdaugAnuntViewController.xib in Resources */,
-				8C6C8DC814AE002D00BAD7DB /* FiltreTableViewController.xib in Resources */,
 				8CA9F8D814AE2D42008F7F42 /* FavViewController.xib in Resources */,
 				8C80DD2014B34ADF0039CA37 /* DetaliiAdaugaAnuntViewController.xib in Resources */,
 				8CB2399514B3509B007BDFEE /* LocalizareViewController.xib in Resources */,
@@ -776,6 +770,7 @@
 				8C0BFF9814B9EC5900D49747 /* DetaliiAnuntViewController.xib in Resources */,
 				AC53EE6314B8CE9A00A2D85B /* Filtre.xib in Resources */,
 				3A2CAC1814BB00EA00D68F6C /* house.jpg in Resources */,
+				3AFE626814BE1B6D00B3936D /* filter.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -793,7 +788,6 @@
 				3A37A476149BB6C70053E39F /* StatsViewController.m in Sources */,
 				8C71BDD014ABF91700E77A77 /* ViewController.m in Sources */,
 				8C800B4214ADD6EE00F498A5 /* AdaugAnuntViewController.m in Sources */,
-				8C6C8DC714AE002C00BAD7DB /* FiltreTableViewController.m in Sources */,
 				8CA9F8D714AE2D42008F7F42 /* FavViewController.m in Sources */,
 				8C725FC014AE4FF5002B26F4 /* Informatii.m in Sources */,
 				8C80DD1F14B34ADF0039CA37 /* DetaliiAdaugaAnuntViewController.m in Sources */,

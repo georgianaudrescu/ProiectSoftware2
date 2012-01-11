@@ -9,7 +9,7 @@
 #import "MapViewController.h"
 #import "TLocation.h"
 #import "AppDelegate.h"
-#import "OptiuniHartaViewController.h"
+//#import "OptiuniHartaViewController.h"
 #import "DetaliiAnuntViewController.h"
 #import "TRequest.h"
 #import "TAd.h"
@@ -44,9 +44,9 @@
         self.navigationItem.leftBarButtonItem.tintColor = [UIColor blackColor];
         self.navigationItem.leftBarButtonItem.image = [UIImage imageNamed:@"homepage.png"];
         
-        self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Filtre" style:UIBarButtonItemStylePlain target:self action:@selector(selectOptiuni)]autorelease];   
-        self.navigationItem.rightBarButtonItem.tintColor = [UIColor blackColor];
-        self.navigationItem.rightBarButtonItem.image = [UIImage imageNamed:@"rotita.png"];
+        //self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Filtre" style:UIBarButtonItemStylePlain target:self action:@selector(selectOptiuni)]autorelease];   
+        //self.navigationItem.rightBarButtonItem.tintColor = [UIColor blackColor];
+        //self.navigationItem.rightBarButtonItem.image = [UIImage imageNamed:@"rotita.png"];
         
         
         //butonul care va aparea ca back button pt view-ul child care va fi pus in stiva peste view-ul curent
@@ -65,15 +65,8 @@
     return self;
     
 }
--(void) selectOptiuni
-{
-    OptiuniHartaViewController *optionsViewController = [[[OptiuniHartaViewController alloc] initWithNibName:@"OptiuniHartaViewController" bundle:nil]autorelease];
-    
-    //filtreViewController.hidesBottomBarWhenPushed = YES;
-    
-    
-    [self.navigationController pushViewController:optionsViewController animated:YES];
-}
+
+
 
 -(void)setTitle:(NSString *)title
 {
@@ -119,7 +112,7 @@
     /////searchBar
     searchBar.tintColor = [UIColor colorWithRed:0.976 green:0.827 blue:0.015 alpha:1.0];
     
-    self.navigationItem.titleView =searchBar;
+   self.navigationItem.titleView =searchBar;
     
     
     

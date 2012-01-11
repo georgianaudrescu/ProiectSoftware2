@@ -28,7 +28,7 @@
 @property (nonatomic,retain) IBOutlet UISearchBar *searchBar;
 
 -(void)goHome;
--(void)selectOptiuni;
+//-(void)selectOptiuni;
 -(void)detaliiAnunt:(id)sender;
 -(void) showAdsFromData:(NSData *)data;
 -(void) getParamForReq;

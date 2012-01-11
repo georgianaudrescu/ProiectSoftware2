@@ -42,7 +42,7 @@
                           error:&error];
     NSLog(@"data JSON: %@", json); 
     
-    int *idPrimit = (int *)[json objectForKey:@"userId"];
+    NSNumber *idPrimit = [json objectForKey:@"userId"];
     
     if (idPrimit !=0) {
         userId=idPrimit;

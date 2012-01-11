@@ -12,7 +12,7 @@
 #import "LoginViewController.h"
 
 @implementation ViewController
-@synthesize buttonSearch,buttonFav,buttonAbout,buttonLogin,buttonStats,buttonSetari,buttonSavedSearch,buttonAnunturiApropiere, buttonAdaugaAnunt;
+@synthesize buttonAbout,buttonStats,buttonAnunturiApropiere, buttonAdaugaAnunt;
 
 - (void)didReceiveMemoryWarning
 {
@@ -79,13 +79,9 @@
 
 -(void) dealloc
 {
-    [buttonSearch release];
     [buttonAnunturiApropiere release];
     [buttonAbout release];
-    [buttonFav release];
-    [buttonLogin release];
-    [buttonSavedSearch release];
-    [buttonSetari release];
+    [buttonAdaugaAnunt release];
     [buttonStats release];
     [super dealloc];
 

@@ -106,7 +106,7 @@
     textStyle.color                 = [CPTColor blackColor];
     textStyle.fontSize              = 18.0f;
     textStyle.fontName              = @"Helvetica";
-    graph.title                             = @"Click to Toggle Range Plot Style";
+    graph.title                             = @"";
     graph.titleTextStyle    = textStyle;
     graph.titleDisplacement = CGPointMake(0.0f, -20.0f);
     

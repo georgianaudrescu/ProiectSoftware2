@@ -13,7 +13,7 @@
     UIButton *buttonSearch, *buttonAnunturiApropiere, *buttonFav, *buttonSetari, *buttonStats, *buttonLogin, *buttonAbout, *buttonSavedSearch, *buttonAdaugaAnunt;
     
 }
-@property (nonatomic, retain) IBOutlet UIButton *buttonSearch,*buttonAnunturiApropiere, *buttonFav, *buttonSetari, *buttonStats, *buttonLogin, *buttonAbout, *buttonSavedSearch, *buttonAdaugaAnunt;
+@property (nonatomic, retain) IBOutlet UIButton *buttonAnunturiApropiere, *buttonStats,*buttonAbout, *buttonAdaugaAnunt;
 -(IBAction)selectPage:(UIButton*)aButton;
 
 @end

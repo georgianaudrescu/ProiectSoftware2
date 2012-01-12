@@ -21,7 +21,7 @@
 @implementation MapViewController
 @synthesize mapView=_mapView;
 @synthesize mapNavItem;
-@synthesize searchBar;
+
 
 
 
@@ -37,6 +37,11 @@
         
         //[self setTitle:@"Bucuresti"];
         
+        UIImageView *logoImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logosmall.png"]];
+        
+        
+        self.navigationItem.titleView = logoImageView;
+        [logoImageView release];
         
         
         
@@ -109,12 +114,7 @@
     self.mapView.delegate=self;
     
     
-    /////searchBar
-    searchBar.tintColor = [UIColor colorWithRed:0.976 green:0.827 blue:0.015 alpha:1.0];
-    
-   self.navigationItem.titleView =searchBar;
-    
-    
+       
     
     
 	// Do any additional setup after loading the view, typically from a nib.
@@ -130,7 +130,6 @@
     [self setMapView:nil];
     [_mapView release];
     _mapView = nil;
-    [searchBar release];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;

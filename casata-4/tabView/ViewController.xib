@@ -2,10 +2,10 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1280</int>
-		<string key="IBDocument.SystemVersion">11C74</string>
+		<string key="IBDocument.SystemVersion">11A511</string>
 		<string key="IBDocument.InterfaceBuilderVersion">1938</string>
-		<string key="IBDocument.AppKitVersion">1138.23</string>
-		<string key="IBDocument.HIToolboxVersion">567.00</string>
+		<string key="IBDocument.AppKitVersion">1138</string>
+		<string key="IBDocument.HIToolboxVersion">566.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			<string key="NS.object.0">933</string>
@@ -41,6 +41,7 @@
 						<int key="NSvFlags">274</int>
 						<string key="NSFrameSize">{320, 460}</string>
 						<reference key="NSSuperview" ref="774585933"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="99023515"/>
 						<string key="NSReuseIdentifierKey">_NS:567</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
@@ -51,7 +52,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">fundal.png</string>
+							<string key="NSResourceName">fundal2.png</string>
 						</object>
 					</object>
 					<object class="IBUIImageView" id="99023515">
@@ -59,7 +60,8 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{30, 20}, {270, 94}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
-						<reference key="NSNextKeyView"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="516236308"/>
 						<string key="NSReuseIdentifierKey">_NS:567</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -71,15 +73,16 @@
 					<object class="IBUIButton" id="516236308">
 						<reference key="NSNextResponder" ref="774585933"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{64, 136}, {202, 50}}</string>
+						<string key="NSFrame">{{53, 155}, {209, 137}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
-						<reference key="NSNextKeyView"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="570208549"/>
 						<string key="NSReuseIdentifierKey">_NS:225</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<int key="IBUILineBreakMode">0</int>
+						<int key="IBUILineBreakMode">1</int>
 						<string key="IBUINormalTitle"> Anunturi in apropiere</string>
 						<object class="NSColor" key="IBUIHighlightedTitleColor" id="349756334">
 							<int key="NSColorSpace">3</int>
@@ -95,7 +98,7 @@
 						</object>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">radar.png</string>
+							<string key="NSResourceName">casatasus2.png</string>
 						</object>
 						<object class="IBUIFontDescription" key="IBUIFontDescription" id="185675581">
 							<int key="type">2</int>
@@ -110,22 +113,23 @@
 					<object class="IBUIButton" id="289772832">
 						<reference key="NSNextResponder" ref="774585933"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{70, 316}, {173, 44}}</string>
+						<string key="NSFrame">{{188, 292}, {74, 90}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
-						<reference key="NSNextKeyView" ref="570208549"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="162915777"/>
 						<string key="NSReuseIdentifierKey">_NS:225</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<int key="IBUILineBreakMode">0</int>
+						<int key="IBUILineBreakMode">1</int>
 						<string key="IBUINormalTitle"> Trends &amp; statistics</string>
 						<reference key="IBUIHighlightedTitleColor" ref="349756334"/>
 						<reference key="IBUINormalTitleColor" ref="348837872"/>
 						<reference key="IBUINormalTitleShadowColor" ref="52674902"/>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">chart.png</string>
+							<string key="NSResourceName">casadr.png</string>
 						</object>
 						<reference key="IBUIFontDescription" ref="185675581"/>
 						<reference key="IBUIFont" ref="936014262"/>
@@ -133,8 +137,9 @@
 					<object class="IBUIButton" id="162915777">
 						<reference key="NSNextResponder" ref="774585933"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{106, 421}, {98, 30}}</string>
+						<string key="NSFrame">{{-7, 423}, {98, 30}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:225</string>
 						<bool key="IBUIOpaque">NO</bool>
@@ -155,9 +160,10 @@
 					<object class="IBUIButton" id="570208549">
 						<reference key="NSNextResponder" ref="774585933"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{84, 225}, {161, 43}}</string>
+						<string key="NSFrame">{{53, 292}, {80, 90}}</string>
 						<reference key="NSSuperview" ref="774585933"/>
-						<reference key="NSNextKeyView"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="289772832"/>
 						<string key="NSReuseIdentifierKey">_NS:225</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -170,7 +176,7 @@
 						<reference key="IBUINormalTitleShadowColor" ref="52674902"/>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">adauga_anunt.png</string>
+							<string key="NSResourceName">casast.png</string>
 						</object>
 						<reference key="IBUIFontDescription" ref="185675581"/>
 						<reference key="IBUIFont" ref="936014262"/>
@@ -178,6 +184,7 @@
 				</array>
 				<string key="NSFrame">{{0, 20}, {320, 460}}</string>
 				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="339391942"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">1</int>
@@ -288,8 +295,8 @@
 							<reference ref="99023515"/>
 							<reference ref="339391942"/>
 							<reference ref="516236308"/>
-							<reference ref="289772832"/>
 							<reference ref="570208549"/>
+							<reference ref="289772832"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -346,18 +353,64 @@
 			<nil key="sourceID"/>
 			<int key="maxID">46</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes"/>
+		<object class="IBClassDescriber" key="IBDocument.Classes">
+			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
+				<object class="IBPartialClassDescription">
+					<string key="className">ViewController</string>
+					<string key="superclassName">UIViewController</string>
+					<object class="NSMutableDictionary" key="actions">
+						<string key="NS.key.0">selectPage:</string>
+						<string key="NS.object.0">UIButton</string>
+					</object>
+					<object class="NSMutableDictionary" key="actionInfosByName">
+						<string key="NS.key.0">selectPage:</string>
+						<object class="IBActionInfo" key="NS.object.0">
+							<string key="name">selectPage:</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+					</object>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="buttonAbout">UIButton</string>
+						<string key="buttonAdaugaAnunt">UIButton</string>
+						<string key="buttonAnunturiApropiere">UIButton</string>
+						<string key="buttonStats">UIButton</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="buttonAbout">
+							<string key="name">buttonAbout</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="buttonAdaugaAnunt">
+							<string key="name">buttonAdaugaAnunt</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="buttonAnunturiApropiere">
+							<string key="name">buttonAnunturiApropiere</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="buttonStats">
+							<string key="name">buttonStats</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+					</dictionary>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/ViewController.h</string>
+					</object>
+				</object>
+			</array>
+		</object>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="adauga_anunt.png">{24, 24}</string>
-			<string key="chart.png">{30, 24}</string>
-			<string key="fundal.png">{320, 480}</string>
+			<string key="casadr.png">{74, 90}</string>
+			<string key="casast.png">{80, 90}</string>
+			<string key="casatasus2.png">{209, 141}</string>
+			<string key="fundal2.png">{320, 480}</string>
 			<string key="lightbulb.png">{14, 21}</string>
 			<string key="logo-new.png">{474, 165}</string>
-			<string key="radar.png">{27, 27}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">933</string>
 	</data>

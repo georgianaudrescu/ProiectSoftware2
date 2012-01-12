@@ -10,7 +10,7 @@
 
 @interface ViewController : UIViewController
 {
-    UIButton *buttonSearch, *buttonAnunturiApropiere, *buttonFav, *buttonSetari, *buttonStats, *buttonLogin, *buttonAbout, *buttonSavedSearch, *buttonAdaugaAnunt;
+    UIButton *buttonAnunturiApropiere, *buttonStats, *buttonAbout, *buttonAdaugaAnunt;
     
 }
 @property (nonatomic, retain) IBOutlet UIButton *buttonAnunturiApropiere, *buttonStats,*buttonAbout, *buttonAdaugaAnunt;

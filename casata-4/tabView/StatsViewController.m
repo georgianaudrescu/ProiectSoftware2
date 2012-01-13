@@ -155,7 +155,7 @@
     graph.defaultPlotSpace.delegate = self;
     
     // Store area fill for use later
-    CPTColor *transparentGreen = [[CPTColor greenColor] colorWithAlphaComponent:0.2];
+    CPTColor *transparentGreen = [[CPTColor yellowColor] colorWithAlphaComponent:1.0];
     areaFill = [[CPTFill alloc] initWithColor:(id)transparentGreen];
     
     // Add some data

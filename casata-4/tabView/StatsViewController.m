@@ -145,9 +145,9 @@
     dataSourceLinePlot.barLineStyle = barLineStyle;
     
     // Bar properties
-    dataSourceLinePlot.barWidth       = 10.0f;
-    dataSourceLinePlot.gapWidth       = 20.0f;
-    dataSourceLinePlot.gapHeight  = 20.0f;
+    dataSourceLinePlot.barWidth       = 1.0f;
+    dataSourceLinePlot.gapWidth       = 2.0f;
+    dataSourceLinePlot.gapHeight  = 2.0f;
     dataSourceLinePlot.dataSource = self;
     
     // Add plot
@@ -164,10 +164,10 @@
     for ( i = 0; i < 5; i++ ) {
         NSTimeInterval x = oneDay * (i + 1.0);
         float y                  = 3.0f * rand() / (float)RAND_MAX + 1.2f;
-        float rHigh              = rand() / (float)RAND_MAX * 0.5f + 0.25f;
-        float rLow               = rand() / (float)RAND_MAX * 0.5f + 0.25f;
-        float rLeft              = (rand() / (float)RAND_MAX * 0.125f + 0.125f) * oneDay;
-        float rRight     = (rand() / (float)RAND_MAX * 0.125f + 0.125f) * oneDay;
+        float rHigh              = rand() / (float)RAND_MAX * 0.05f + 0.025f;
+        float rLow               = rand() / (float)RAND_MAX * 0.05f + 0.025f;
+        float rLeft              = (rand() / (float)RAND_MAX * 0.0125f + 0.0125f) * oneDay;
+        float rRight     = (rand() / (float)RAND_MAX * 0.0125f + 0.0125f) * oneDay;
         
         [newData addObject:
          [NSDictionary dictionaryWithObjectsAndKeys:
@@ -179,8 +179,13 @@
           [NSDecimalNumber numberWithFloat:rRight], [NSNumber numberWithInt:CPTRangePlotFieldRight],
           nil]];
     }
-    plotData = newData;    
+    plotData = newData; 
+    //////////////////
+    CPTRangePlot *rangePlot = (CPTRangePlot *)[graph plotWithIdentifier:@"Date Plot"];
     
+    rangePlot.areaFill         = (rangePlot.areaFill ? nil : areaFill);
+    rangePlot.barLineStyle = (rangePlot.barLineStyle ? nil : barLineStyle);
+   /////////////// 
 }
 ////////////////////
 #pragma mark - View lifecycle

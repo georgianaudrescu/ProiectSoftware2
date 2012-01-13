@@ -12,6 +12,7 @@
 {
     UITableView  *tableImobil;
     NSMutableArray *propertyTypes;
+    IBOutlet UIScrollView *scrollView;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView *tableImobil;

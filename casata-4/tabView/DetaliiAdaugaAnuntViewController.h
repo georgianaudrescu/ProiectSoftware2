@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DetaliiAdaugaAnuntViewController : UIViewController
+@interface DetaliiAdaugaAnuntViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate>
+{
+    UITableView  *tableImobil;
+    NSMutableArray *propertyTypes;
+}
+
+@property (nonatomic, retain) IBOutlet UITableView *tableImobil;
 
 @end

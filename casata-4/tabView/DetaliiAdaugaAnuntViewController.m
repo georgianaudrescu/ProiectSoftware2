@@ -9,6 +9,8 @@
 #import "DetaliiAdaugaAnuntViewController.h"
 
 @implementation DetaliiAdaugaAnuntViewController
+@synthesize tableImobil;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -16,8 +18,54 @@
     if (self) {
         // Custom initialization
     }
+    tableImobil = [[UITableView alloc] init];
+    [tableImobil setAutoresizesSubviews:YES];
+    [tableImobil setAutoresizingMask:(UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight)];
     return self;
 }
+
+#pragma mark Table view methods
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+// Customize the number of rows in the table view.
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+	return [propertyTypes count];
+    //return 5;
+}
+
+// Customize the appearance of table view cells.
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    static NSString *CellIdentifier = @"Cell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+    }
+
+    
+    cell.textLabel.text = [ propertyTypes objectAtIndex:[indexPath row]];
+    return cell;
+    UIView *backgroundView = [[UIView alloc] init];
+    backgroundView.backgroundColor = [UIColor blackColor];
+    
+    cell.selectedBackgroundView = backgroundView;
+    [backgroundView release];
+    
+    
+    //cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:15];
+    //cell.textLabel.text = [NSString	 stringWithFormat:@"Cell Row #%d", [indexPath row]];
+    //cell.textLabel.text = [ propertyTypes objectAtIndex:[indexPath row]];
+    
+    return cell;
+}
+
+
+
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -33,6 +81,10 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    propertyTypes = [[NSMutableArray alloc] init];
+    [propertyTypes addObject:@"Garsoniera"];
+    [propertyTypes addObject:@"Aprtament"];
+    [propertyTypes addObject:@"Casa"];
 }
 
 - (void)viewDidUnload

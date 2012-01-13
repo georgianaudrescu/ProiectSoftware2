@@ -14,7 +14,6 @@
 
 
 
-
 @implementation Filtre
 @synthesize sliderPretMax,sliderPretMin, segmentedControl,pMaxLabel,pMinLabel,selectedPropertyType;
 @synthesize tableImobil;

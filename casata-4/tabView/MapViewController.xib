@@ -254,10 +254,48 @@
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="987838666"/>
 				<string key="NSReuseIdentifierKey">_NS:196</string>
-				<object class="NSColor" key="IBUIBackgroundColor">
+				<object class="NSColor" key="IBUIBackgroundColor" id="885428755">
 					<int key="NSColorSpace">1</int>
 					<bytes key="NSRGB">MCAwIDAAA</bytes>
 				</object>
+				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+			</object>
+			<object class="IBUIView" id="129465286">
+				<reference key="NSNextResponder"/>
+				<int key="NSvFlags">292</int>
+				<array class="NSMutableArray" key="NSSubviews">
+					<object class="IBUILabel" id="191567401">
+						<reference key="NSNextResponder" ref="129465286"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrameSize">{320, 21}</string>
+						<reference key="NSSuperview" ref="129465286"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
+						<string key="NSReuseIdentifierKey">_NS:328</string>
+						<bool key="IBUIOpaque">NO</bool>
+						<bool key="IBUIClipsSubviews">YES</bool>
+						<int key="IBUIContentMode">7</int>
+						<bool key="IBUIUserInteractionEnabled">NO</bool>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<string key="IBUIText">Tip anunt: toate Pret: toate Suprafata: toate Numar camere: toate</string>
+						<reference key="IBUITextColor" ref="885428755"/>
+						<nil key="IBUIHighlightedColor"/>
+						<int key="IBUIBaselineAdjustment">1</int>
+						<float key="IBUIMinimumFontSize">10</float>
+						<reference key="IBUIFontDescription" ref="561748207"/>
+						<reference key="IBUIFont" ref="258545720"/>
+					</object>
+				</array>
+				<string key="NSFrameSize">{320, 21}</string>
+				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
+				<reference key="NSNextKeyView" ref="191567401"/>
+				<string key="NSReuseIdentifierKey">_NS:196</string>
+				<object class="NSColor" key="IBUIBackgroundColor">
+					<int key="NSColorSpace">1</int>
+					<bytes key="NSRGB">MC43MjIwNzgyODQ0IDAuNzIyMDc4Mjg0NCAwLjcyMjA3ODI4NDQAA</bytes>
+				</object>
+				<float key="IBUIAlpha">0.69999998807907104</float>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
 		</array>
@@ -334,6 +372,22 @@
 						<reference key="destination" ref="600626490"/>
 					</object>
 					<int key="connectionID">75</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">statusBarView</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="129465286"/>
+					</object>
+					<int key="connectionID">80</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">filtreLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="191567401"/>
+					</object>
+					<int key="connectionID">82</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -443,6 +497,19 @@
 						<reference key="object" ref="600626490"/>
 						<reference key="parent" ref="1030488430"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">79</int>
+						<reference key="object" ref="129465286"/>
+						<array class="NSMutableArray" key="children">
+							<reference ref="191567401"/>
+						</array>
+						<reference key="parent" ref="0"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">81</int>
+						<reference key="object" ref="191567401"/>
+						<reference key="parent" ref="129465286"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -460,12 +527,14 @@
 				<string key="65.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="66.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="74.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="79.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="81.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">76</int>
+			<int key="maxID">82</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -496,8 +565,10 @@
 						<string key="customCalloutView">UIView</string>
 						<string key="detaliiButton">UIButton</string>
 						<string key="favoritAnuntButton">UIButton</string>
+						<string key="filtreLabel">UILabel</string>
 						<string key="mapView">MKMapView</string>
 						<string key="pretAnuntLabel">UILabel</string>
+						<string key="statusBarView">UIView</string>
 						<string key="suprafataAnuntLabel">UILabel</string>
 						<string key="thumbnailAnuntImageView">UIImageView</string>
 						<string key="tipAnuntLabel">UILabel</string>
@@ -519,6 +590,10 @@
 							<string key="name">favoritAnuntButton</string>
 							<string key="candidateClassName">UIButton</string>
 						</object>
+						<object class="IBToOneOutletInfo" key="filtreLabel">
+							<string key="name">filtreLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="mapView">
 							<string key="name">mapView</string>
 							<string key="candidateClassName">MKMapView</string>
@@ -526,6 +601,10 @@
 						<object class="IBToOneOutletInfo" key="pretAnuntLabel">
 							<string key="name">pretAnuntLabel</string>
 							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="statusBarView">
+							<string key="name">statusBarView</string>
+							<string key="candidateClassName">UIView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="suprafataAnuntLabel">
 							<string key="name">suprafataAnuntLabel</string>

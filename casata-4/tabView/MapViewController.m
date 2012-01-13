@@ -23,6 +23,7 @@
 @synthesize mapNavItem;
 @synthesize customCalloutView, touchView, selectedAnnotation;
 @synthesize adresaAnuntLabel,pretAnuntLabel,tipAnuntLabel,suprafataAnuntLabel,favoritAnuntButton,thumbnailAnuntImageView, detaliiButton;
+@synthesize statusBarView, filtreLabel;
 
 NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
 
@@ -139,6 +140,16 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
 	[self.view addSubview:self.customCalloutView];    
     
     
+    
+    
+    [self.view addSubview:self.statusBarView];
+   /* self.filtreLabel.frame = CGRectMake(0, 0, 738, 21);
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:30.0];
+    [UIView setAnimationCurve:UIViewAnimationCurveLinear];
+    self.filtreLabel.frame = CGRectMake(-738, 0, 738, 21);
+    [UIView commitAnimations];
+    */
     //////
     
     
@@ -525,6 +536,8 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     [favoritAnuntButton release];
     [thumbnailAnuntImageView release];
     [detaliiButton release];
+    [statusBarView release];
+    [filtreLabel release];
     
     [super dealloc];
 }

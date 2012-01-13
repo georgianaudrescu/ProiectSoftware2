@@ -33,7 +33,9 @@
     UIImageView *thumbnailAnuntImageView;
     UIButton *favoritAnuntButton;
     UIButton *detaliiButton;
-    
+    //
+    UIView *statusBarView;
+    UILabel *filtreLabel;
     
 }
 @property (retain, nonatomic) IBOutlet MKMapView *mapView;
@@ -49,8 +51,8 @@
 @property(nonatomic,retain) IBOutlet UILabel *tipAnuntLabel;
 @property(nonatomic, retain) IBOutlet UIImageView *thumbnailAnuntImageView;
 @property(nonatomic,retain) IBOutlet UIButton *favoritAnuntButton, *detaliiButton;
-
-
+@property(nonatomic,retain) IBOutlet UIView *statusBarView;
+@property(nonatomic,retain) IBOutlet UILabel *filtreLabel;
 /////
 extern NSString *const GMAP_ANNOTATION_SELECTED;
 - (void) showAnnotation:(TLocation*) annotation;

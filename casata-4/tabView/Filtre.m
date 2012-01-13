@@ -8,10 +8,17 @@
 
 #import "Filtre.h"
 #import "AppDelegate.h"
+//#import "TableWithCheckBox.h"
 //#import "OptiuniHartaViewController.h"
+#import "MICheckBox.h"
+
+
+
 
 @implementation Filtre
-@synthesize sliderPretMax,sliderPretMin, pickerView, segmentedControl,pMaxLabel,pMinLabel,selectedPropertyType,aplicaFiltreButton;
+@synthesize sliderPretMax,sliderPretMin, segmentedControl,pMaxLabel,pMinLabel,selectedPropertyType;
+@synthesize tableImobil;
+@synthesize supMaxLabel,supMinLabel, sliderSuprafataMax,sliderSuprafataMin;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -27,21 +34,135 @@
         self.navigationItem.leftBarButtonItem.tintColor = [UIColor blackColor];
         self.navigationItem.leftBarButtonItem.image = [UIImage imageNamed:@"homepage.png"];
         
-        
-        
-        self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Clear" style:UIBarButtonItemStylePlain target:self action:@selector(clearChartStatistici)]autorelease];   
-        self.navigationItem.rightBarButtonItem.tintColor = [UIColor blackColor];
-        
 
+        UIBarButtonItem * clearButton =  [[[UIBarButtonItem alloc] initWithTitle:@"Clear" style:UIBarButtonItemStylePlain target:self action:@selector(clearFilters)]autorelease]; 
+        clearButton.tintColor = [UIColor blackColor];
+        
+        UIBarButtonItem *applyButton =  [[[UIBarButtonItem alloc] initWithTitle:@"Apply" style:UIBarButtonItemStylePlain target:self action:@selector(applyFilters)]autorelease];
+        applyButton.tintColor = [UIColor blackColor];
+        
+        self.navigationItem.rightBarButtonItems = [[NSArray alloc] initWithObjects:clearButton,applyButton, nil];
+
+        tableImobil = [[UITableView alloc] init];
+        [tableImobil setAutoresizesSubviews:YES];
+        [tableImobil setAutoresizingMask:(UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight)];
+        selectedRowsArray = [[NSMutableArray alloc] initWithCapacity:0];
     }
+
     return self;
 }
+-(void)setTitle:(NSString *)title
+{
+    [super setTitle:@"Filtre"];
+    UILabel *titleView = (UILabel *) self.navigationItem.titleView;
+    if(!titleView)
+    {titleView = [[UILabel alloc] initWithFrame:CGRectZero];
+        titleView.backgroundColor = [UIColor clearColor];
+        titleView.font = [UIFont boldSystemFontOfSize:20];
+        //titleView.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+        titleView.textColor = [UIColor blackColor];
+        self.navigationItem.titleView = titleView;
+        [titleView release];
+    }
+    titleView.text = title;
+    [titleView sizeToFit];
+    
+    
+}
+
+
 
 -(void)goHome
 {
     AppDelegate *apdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [apdelegate goToHomeScreen];
 }
+
+-(void)clearFilters{
+    ///TODO
+}
+
+-(void)applyFilters{
+    ///TODO
+}
+
+
+#pragma mark Table view methods
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+// Customize the number of rows in the table view.
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+	return [propertyTypes count];
+    //return 5;
+}
+
+// Customize the appearance of table view cells.
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    static NSString *CellIdentifier = @"Cell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+    }
+    
+    if ([selectedRowsArray containsObject:[propertyTypes objectAtIndex:indexPath.row]]) {
+        cell.imageView.image = [UIImage imageNamed:@"checkbox_ticked.png"];
+    }
+        else {
+             cell.imageView.image = [UIImage imageNamed:@"checkbox_not_ticked.png"];
+        }
+         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleChecking:)];
+         [cell.imageView addGestureRecognizer:tap];
+         [tap release];
+                                        
+            cell.textLabel.text = [ propertyTypes objectAtIndex:[indexPath row]];
+                                        return cell;
+    UIView *backgroundView = [[UIView alloc] init];
+    backgroundView.backgroundColor = [UIColor blackColor];
+    
+    cell.selectedBackgroundView = backgroundView;
+    [backgroundView release];
+    
+     
+    //cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:15];
+    //cell.textLabel.text = [NSString	 stringWithFormat:@"Cell Row #%d", [indexPath row]];
+    //cell.textLabel.text = [ propertyTypes objectAtIndex:[indexPath row]];
+    
+    return cell;
+}
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	// open a alert with an OK and cancel button
+	/*
+    NSString *alertString = [NSString stringWithFormat:@"Clicked on row #%d", [indexPath row]];
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:alertString message:@"" delegate:self cancelButtonTitle:@"Done" otherButtonTitles:nil];
+	[alert show];
+	[alert release];
+     */
+    UITableViewCell *cell = [tableImobil cellForRowAtIndexPath:indexPath];
+    if([selectedRowsArray containsObject:cell.textLabel.text])
+    {
+        cell.imageView.image = [UIImage imageNamed:@"checkbox_not_ticked.png"];
+        [selectedRowsArray removeObject:cell.textLabel.text];
+    }
+    else
+    {
+        cell.imageView.image = [UIImage imageNamed:@"checkbox_ticked.png"];
+        [selectedRowsArray addObject:cell.textLabel.text];
+    }
+    NSLog(@"%@",selectedRowsArray);
+    UIView *backgroundView = [[UIView alloc] init];
+    backgroundView.backgroundColor = [UIColor blackColor];
+    
+    cell.selectedBackgroundView = backgroundView;
+    [backgroundView release];
+}
+
 
 -(IBAction)sliderMinValueChanged:(UISlider *)sender
 
@@ -56,6 +177,22 @@
     discreteValue=discreteValue*1000;
     pMaxLabel.text = [NSString stringWithFormat:@"%d", discreteValue];
 }
+
+-(IBAction)sliderSupMinValueChanged:(UISlider *)sender
+
+{
+    int discreteValue = round([sender value]);
+    discreteValue = discreteValue*1000;
+    supMinLabel.text = [NSString stringWithFormat:@"%d", discreteValue];
+}
+-(IBAction)sliderSupMaxValueChanged:(UISlider *)sender
+
+{   int discreteValue = round([sender value]);
+    discreteValue=discreteValue*1000;
+    supMaxLabel.text = [NSString stringWithFormat:@"%d", discreteValue];
+}
+
+
 - (void)didReceiveMemoryWarning
 {
     // Releases the view if it doesn't have a superview.
@@ -65,6 +202,8 @@
 }
 
 ///warningul nu este important, se returneaza optiuni harta viewcontroller
+
+/*
 -(IBAction)aplicaFiltre:(id)sender
 {
     //if(segmentedControl.selectedSegmentIndex==0)
@@ -85,12 +224,13 @@
     
   // [mainViewController.navigationController popToRootViewControllerAnimated:YES];
 }
-
+*/
 
 
 
 -(void)dealloc
-{ [pickerView release];
+{ //[pickerView release];
+    [tableImobil release];
     [sliderPretMax release];
     [sliderPretMin release];
     [segmentedControl release];
@@ -100,8 +240,8 @@
 
     [super dealloc];
 }
-
--(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+/*
+ -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
     return 1;
 
@@ -117,19 +257,26 @@
     
 }
 
+
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
     selectedPropertyType = row+1;
     NSLog(@"selected picker line: %@, index: %i", [propertyTypes objectAtIndex:row], row);
 }
+ */
 
 #pragma mark - View lifecycle
 
 
 - (void)viewDidLoad
 {
+
+    
     [super viewDidLoad];
+    [scrollView setScrollEnabled:YES];
+    [scrollView setContentSize:CGSizeMake(320, 480)];
     // Do any additional setup after loading the view from its nib.
+    
     selectedPropertyType=0;
     
     propertyTypes = [[NSMutableArray alloc] init];
@@ -139,6 +286,7 @@
     [propertyTypes addObject:@"Apartament 4 camere"];
     [propertyTypes addObject:@"Casa"];
     
+
     
     //[self.view setClipsToBounds:YES];/////
 }

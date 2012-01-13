@@ -273,14 +273,14 @@
     
     [super viewDidLoad];
     [scrollView setScrollEnabled:YES];
-    [scrollView setContentSize:CGSizeMake(320, 480)];
+    [scrollView setContentSize:CGSizeMake(320, 580)];
     // Do any additional setup after loading the view from its nib.
     
     selectedPropertyType=0;
     
     propertyTypes = [[NSMutableArray alloc] init];
     [propertyTypes addObject:@"Garsoniera"];
-    [propertyTypes addObject:@"Aprtament 2 camere"];
+    [propertyTypes addObject:@"Apartament 2 camere"];
     [propertyTypes addObject:@"Apartament 3 camere"];
     [propertyTypes addObject:@"Apartament 4 camere"];
     [propertyTypes addObject:@"Casa"];

@@ -34,7 +34,6 @@
 		3A7D807414B71178004EE453 /* TLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7D807314B71178004EE453 /* TLocation.m */; };
 		3A9FFF0F14BF767700D27392 /* checkbox_not_ticked.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A9FFF0B14BF767700D27392 /* checkbox_not_ticked.png */; };
 		3A9FFF1014BF767700D27392 /* checkbox_ticked.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A9FFF0C14BF767700D27392 /* checkbox_ticked.png */; };
-		3A9FFF1114BF767700D27392 /* MICheckBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A9FFF0E14BF767700D27392 /* MICheckBox.m */; };
 		3AF767ED14B8D57100E7906E /* TAvgPrice.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF767E614B8D57100E7906E /* TAvgPrice.m */; };
 		3AF767EE14B8D57100E7906E /* TSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF767E814B8D57100E7906E /* TSettings.m */; };
 		3AF767EF14B8D57100E7906E /* TStatistic.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF767EA14B8D57100E7906E /* TStatistic.m */; };
@@ -149,8 +148,6 @@
 		3A7D807314B71178004EE453 /* TLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLocation.m; sourceTree = "<group>"; };
 		3A9FFF0B14BF767700D27392 /* checkbox_not_ticked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkbox_not_ticked.png; sourceTree = "<group>"; };
 		3A9FFF0C14BF767700D27392 /* checkbox_ticked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkbox_ticked.png; sourceTree = "<group>"; };
-		3A9FFF0D14BF767700D27392 /* MICheckBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MICheckBox.h; sourceTree = "<group>"; };
-		3A9FFF0E14BF767700D27392 /* MICheckBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MICheckBox.m; sourceTree = "<group>"; };
 		3AF767E514B8D57100E7906E /* TAvgPrice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAvgPrice.h; sourceTree = "<group>"; };
 		3AF767E614B8D57100E7906E /* TAvgPrice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAvgPrice.m; sourceTree = "<group>"; };
 		3AF767E714B8D57100E7906E /* TSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSettings.h; sourceTree = "<group>"; };
@@ -699,8 +696,6 @@
 			children = (
 				3A9FFF0B14BF767700D27392 /* checkbox_not_ticked.png */,
 				3A9FFF0C14BF767700D27392 /* checkbox_ticked.png */,
-				3A9FFF0D14BF767700D27392 /* MICheckBox.h */,
-				3A9FFF0E14BF767700D27392 /* MICheckBox.m */,
 				AC53EE5F14B8CE9A00A2D85B /* Filtre.h */,
 				AC53EE6014B8CE9A00A2D85B /* Filtre.m */,
 				AC53EE6114B8CE9A00A2D85B /* Filtre.xib */,
@@ -862,7 +857,6 @@
 				8CB4A52214B92AFD007924C8 /* TSearchList.m in Sources */,
 				8C0BFF9714B9EC5900D49747 /* DetaliiAnuntViewController.m in Sources */,
 				AC53EE6214B8CE9A00A2D85B /* Filtre.m in Sources */,
-				3A9FFF1114BF767700D27392 /* MICheckBox.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

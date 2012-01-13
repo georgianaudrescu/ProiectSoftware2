@@ -10,7 +10,7 @@
 #import "AppDelegate.h"
 //#import "TableWithCheckBox.h"
 //#import "OptiuniHartaViewController.h"
-#import "MICheckBox.h"
+
 
 
 

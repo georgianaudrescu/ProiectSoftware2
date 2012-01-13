@@ -72,10 +72,10 @@
 
 -(BOOL)plotSpace:(CPTPlotSpace *)space shouldHandlePointingDeviceUpEvent:(id)event atPoint:(CGPoint)point
 {
-    CPTRangePlot *rangePlot = (CPTRangePlot *)[graph plotWithIdentifier:@"Date Plot"];
+    //CPTRangePlot *rangePlot = (CPTRangePlot *)[graph plotWithIdentifier:@"Date Plot"];
     
-    rangePlot.areaFill         = (rangePlot.areaFill ? nil : areaFill);
-    rangePlot.barLineStyle = (rangePlot.barLineStyle ? nil : barLineStyle);
+    //rangePlot.areaFill         = (rangePlot.areaFill ? nil : areaFill);
+    //rangePlot.barLineStyle = (rangePlot.barLineStyle ? nil : barLineStyle);
     
     return NO;
 }

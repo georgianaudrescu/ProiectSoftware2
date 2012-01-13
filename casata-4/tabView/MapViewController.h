@@ -57,6 +57,9 @@ extern NSString *const GMAP_ANNOTATION_SELECTED;
 - (void) hideAnnotation;
 -(IBAction)closePopup:(id)sender;
 -(IBAction)addToFav:(id)sender;
+-(void) showFavAdsOnMap;
+-(void)showMyAdsOnMap;
+
 
 
 -(void)goHome;

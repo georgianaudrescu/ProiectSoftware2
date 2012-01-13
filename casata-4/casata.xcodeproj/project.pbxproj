@@ -51,6 +51,7 @@
 		8C14EC3614C0296400FF86AC /* staricon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C14EC3214C0296400FF86AC /* staricon.png */; };
 		8C14EC3714C0296400FF86AC /* thumbnail.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8C14EC3314C0296400FF86AC /* thumbnail.jpg */; };
 		8C14EC3914C02A8800FF86AC /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C14EC3814C02A8800FF86AC /* MapViewController.xib */; };
+		8C14EC3B14C0357000FF86AC /* starfav.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C14EC3A14C0357000FF86AC /* starfav.png */; };
 		8C56451C14B64A5600540286 /* TImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C56451B14B64A5600540286 /* TImage.m */; };
 		8C71BDD014ABF91700E77A77 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C71BDCE14ABF91700E77A77 /* ViewController.m */; };
 		8C71BDD114ABF91700E77A77 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C71BDCF14ABF91700E77A77 /* ViewController.xib */; };
@@ -259,6 +260,7 @@
 		8C14EC3214C0296400FF86AC /* staricon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = staricon.png; sourceTree = "<group>"; };
 		8C14EC3314C0296400FF86AC /* thumbnail.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = thumbnail.jpg; sourceTree = "<group>"; };
 		8C14EC3814C02A8800FF86AC /* MapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
+		8C14EC3A14C0357000FF86AC /* starfav.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = starfav.png; sourceTree = "<group>"; };
 		8C56451A14B64A5600540286 /* TImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TImage.h; sourceTree = "<group>"; };
 		8C56451B14B64A5600540286 /* TImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TImage.m; sourceTree = "<group>"; };
 		8C71BDCD14ABF91700E77A77 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
@@ -467,6 +469,7 @@
 				3AFE626714BE1B6C00B3936D /* filter.png */,
 				3A2CAC1714BB00EA00D68F6C /* house.jpg */,
 				8CB34F2814BEF3C200DC7AA6 /* logosmall.png */,
+				8C14EC3A14C0357000FF86AC /* starfav.png */,
 				8CCC850714B3B81200B9FD47 /* CloseIcon.png */,
 				8CCC850014B3A9A300B9FD47 /* fundal.png */,
 				8CB239A614B374F1007BDFEE /* rotita.png */,
@@ -837,6 +840,7 @@
 				8C14EC3614C0296400FF86AC /* staricon.png in Resources */,
 				8C14EC3714C0296400FF86AC /* thumbnail.jpg in Resources */,
 				8C14EC3914C02A8800FF86AC /* MapViewController.xib in Resources */,
+				8C14EC3B14C0357000FF86AC /* starfav.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

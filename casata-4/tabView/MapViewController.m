@@ -50,6 +50,16 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
         self.navigationItem.leftBarButtonItem.tintColor = [UIColor blackColor];
         self.navigationItem.leftBarButtonItem.image = [UIImage imageNamed:@"homepage.png"];
         
+        UIBarButtonItem * showFavAdsButton =  [[[UIBarButtonItem alloc] initWithTitle:@"Fav" style:UIBarButtonItemStylePlain target:self action:@selector(showFavAdsOnMap)]autorelease]; 
+        showFavAdsButton.tintColor = [UIColor blackColor];
+        showFavAdsButton.image = [UIImage imageNamed:@"starfav.png"];
+        
+        UIBarButtonItem *showMyAdsButton =  [[[UIBarButtonItem alloc] initWithTitle:@"My" style:UIBarButtonItemStylePlain target:self action:@selector(showMyAdsOnMap)]autorelease];
+        showMyAdsButton.tintColor = [UIColor blackColor];
+        
+        self.navigationItem.rightBarButtonItems = [[NSArray alloc] initWithObjects:showMyAdsButton, showFavAdsButton, nil];
+        
+        
         //self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Filtre" style:UIBarButtonItemStylePlain target:self action:@selector(selectOptiuni)]autorelease];   
         //self.navigationItem.rightBarButtonItem.tintColor = [UIColor blackColor];
         //self.navigationItem.rightBarButtonItem.image = [UIImage imageNamed:@"rotita.png"];
@@ -251,6 +261,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
         NSString *adresa = [row objectForKey:@"adress_line"];
         NSString *pret = [row objectForKey:@"pret"];
         NSString *tip = [row objectForKey:@"ad_type"];
+        NSString *moneda = [row objectForKey:@"moneda"];
         
         CLLocationCoordinate2D coordinate;
         coordinate.latitude = latitude.doubleValue;
@@ -262,7 +273,8 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
         ///
         
         annotation.tipProprietate = subName;//
-        annotation.pret = pret;
+        annotation.pret = [pret stringByAppendingString:moneda];
+        
         annotation.adresa=adresa;
         annotation.tipAnunt = tip;
         
@@ -450,6 +462,20 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     
     //de adaugat la faves
 }    
+
+
+-(void) showFavAdsOnMap
+{
+    NSLog(@"Show fav ads on map");
+}
+
+-(void)showMyAdsOnMap
+{
+    NSLog(@"Show my ads on map");
+}
+
+
+
 
 /////////////////////
 -(void) mapView:(MKMapView *)mapView regionWillChangeAnimated:(BOOL)animated{

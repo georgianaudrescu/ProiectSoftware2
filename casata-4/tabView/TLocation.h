@@ -16,12 +16,18 @@
 	NSString *title;
 	NSString *subtitle;
     int locationId;
+    ///
+    NSString *adresa;
+    NSString *pret;
+    NSString *tipAnunt;
+    NSString *tipProprietate;
 }
 
 @property (nonatomic, assign) CLLocationCoordinate2D coordinate;
 @property (nonatomic, readonly, copy) NSString *title;
 @property (nonatomic, readonly, copy) NSString *subtitle;
 @property (nonatomic, assign) int locationId;
+@property(nonatomic, copy) NSString *adresa, *pret, *tipAnunt, *tipProprietate;
 
 - (id)initWithTitle:(NSString *)aTitle andSubtitle:(NSString *)aSubtitle andCoord:(CLLocationCoordinate2D)aCoord;
 

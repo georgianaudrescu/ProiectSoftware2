@@ -13,7 +13,7 @@
 #import "DetaliiAnuntViewController.h"
 #import "TRequest.h"
 #import "TAd.h"
-
+#import "TAnnotationView.h"
 
 //#define myURL [NSURL URLWithString:@"http://flapptest.comule.com/get_ads/"]
 
@@ -21,9 +21,10 @@
 @implementation MapViewController
 @synthesize mapView=_mapView;
 @synthesize mapNavItem;
+@synthesize customCalloutView, touchView, selectedAnnotation;
+@synthesize adresaAnuntLabel,pretAnuntLabel,tipAnuntLabel,suprafataAnuntLabel,favoritAnuntButton,thumbnailAnuntImageView, detaliiButton;
 
-
-
+NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -35,7 +36,7 @@
         
         
         
-        //[self setTitle:@"Bucuresti"];
+        ////////////////////[self setTitle:@"Bucuresti"];
         
         UIImageView *logoImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logosmall.png"]];
         
@@ -111,10 +112,27 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.mapView.delegate=self;
+    //self.mapView.delegate=self;
+    
+    touchView = [[TTouchView alloc] initWithFrame:CGRectMake(0, 0, 320, 460)];
+	touchView.delegate = self;
+	touchView.callAtHitTest = @selector(stopFollowLocation); 
+    
+    self.mapView = [[MKMapView alloc] initWithFrame:CGRectMake(0, 0, 320, 460)];
+	self.mapView.delegate = self;
+    [touchView addSubview:self.mapView];    
     
     
-       
+    [self.view addSubview:touchView];
+    
+    self.customCalloutView.frame = CGRectMake(20.0, 250.0  + 300.0, self.customCalloutView.frame.size.width, self.customCalloutView.frame.size.height);
+	[self.view addSubview:self.customCalloutView];    
+    
+    
+    //////
+    
+    
+    
     
     
 	// Do any additional setup after loading the view, typically from a nib.
@@ -216,7 +234,7 @@
     
     for(NSDictionary *row in allAds)
     {
-       // AppDelegate *apdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+        // AppDelegate *apdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
         
         TAd *anAd = [TAd alloc];
         [anAd TAd:row];
@@ -230,13 +248,25 @@
         NSNumber *ad_id = [row objectForKey:@"id"];/////////
         NSString * name = [row objectForKey:@"name"];     
         NSString * subName = [row objectForKey:@"property_type"];
+        NSString *adresa = [row objectForKey:@"adress_line"];
+        NSString *pret = [row objectForKey:@"pret"];
+        NSString *tip = [row objectForKey:@"ad_type"];
         
         CLLocationCoordinate2D coordinate;
         coordinate.latitude = latitude.doubleValue;
         coordinate.longitude = longitude.doubleValue; 
         TLocation *annotation = [[TLocation alloc]  initWithTitle:name andSubtitle:subName andCoord:coordinate];
         //annotation.coordinate = coordinate;
-        annotation.locationId = ad_id.intValue; NSLog(@"idul %d",annotation.locationId);
+        annotation.locationId = ad_id.intValue; 
+        NSLog(@"idul %d",annotation.locationId);
+        ///
+        
+        annotation.tipProprietate = subName;//
+        annotation.pret = pret;
+        annotation.adresa=adresa;
+        annotation.tipAnunt = tip;
+        
+        
         [_mapView addAnnotation:annotation]; 
         [annotation release];        
         //Test Ad
@@ -252,10 +282,17 @@
     NSLog(@" ADS FOUND %d",found.intValue);
 }
 
--(void)detaliiAnunt:(id)sender
+-(IBAction)detaliiAnunt:(id)sender
 {
     UIButton *senderButton = (UIButton*)sender;
     NSLog(@"id anunt selectat este: %d",senderButton.tag);
+    
+    /////adaugat o data cu customCalloutView///////
+    [self.mapView deselectAnnotation:selectedAnnotation animated:NO];
+    [self hideAnnotation];
+    /////////////////////////////////////////////// 
+    
+    
     
     // aax =[apdelegate.appSession.globalAdList getAdAtIndex:0];
     // NSLog(@"add%@", [aax.ad objectForKey:@"oras"]);   
@@ -274,43 +311,147 @@
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation{
     NSLog(@"in annotation method");
-    static NSString *identifier = @"MyLocation";   
+    
+    
+    static NSString *identifier = @"TLocation";   
     if ([annotation isKindOfClass:[TLocation class]]) {
         // MyLocation *location = (MyLocation *) annotation;
         
-        MKAnnotationView *annotationView = (MKAnnotationView *) [_mapView dequeueReusableAnnotationViewWithIdentifier:identifier];
+        
+        TAnnotationView *annotationView = (TAnnotationView *) [_mapView dequeueReusableAnnotationViewWithIdentifier:identifier];
         annotationView.image = [UIImage imageNamed:@"bluehouse"];
         if (annotationView == nil) {
-            annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
+            annotationView = [[TAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
             annotationView.image = [UIImage imageNamed:@"bluehouse"];
             
         } else {
             annotationView.annotation = annotation;
         }
         
-        UIImageView *imgView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"house.jpg"]]autorelease];
-        //////
-        UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-        [rightButton addTarget:self
-                        action:@selector(detaliiAnunt:)
-              forControlEvents:UIControlEventTouchUpInside];
-        TLocation *loc = (TLocation*)annotation;
-        rightButton.tag = loc.locationId;
-        annotationView.rightCalloutAccessoryView=rightButton;
-        //////                                                               
-        imgView.frame =CGRectMake(0, 0, 30, 30);
-        annotationView.leftCalloutAccessoryView = imgView;
-        
+        /* 
+         UIImageView *imgView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"house.jpg"]]autorelease];
+         //////
+         UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+         [rightButton addTarget:self
+         action:@selector(detaliiAnunt:)
+         forControlEvents:UIControlEventTouchUpInside];
+         TLocation *loc = (TLocation*)annotation;
+         rightButton.tag = loc.locationId;
+         annotationView.rightCalloutAccessoryView=rightButton;
+         //////                                                               
+         imgView.frame =CGRectMake(0, 0, 30, 30);
+         annotationView.leftCalloutAccessoryView = imgView;
+         */ 
         // [imgView release];
         annotationView.enabled = YES;
-        annotationView.canShowCallout = YES;
+        // annotationView.canShowCallout = YES;
+        [annotationView addObserver:self
+                         forKeyPath:@"selected"
+                            options:NSKeyValueObservingOptionNew
+                            context:GMAP_ANNOTATION_SELECTED];        
         
         return annotationView;
     }
     NSLog(@"annotaion error");
     return nil;
+    
+}
+////////////////////
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary *)change
+                       context:(void *)context{
+	
+    NSString *action = (NSString*)context;
+	
+    if([action isEqualToString:GMAP_ANNOTATION_SELECTED]){
+		BOOL annotationAppeared = [[change valueForKey:@"new"] boolValue];
+		if (annotationAppeared) {
+			NSLog(@"annotation selected %@", ((TAnnotationView*) object).annotation.title);
+			[self showAnnotation:((TAnnotationView*) object).annotation];
+			selectedAnnotation = ((TAnnotationView*) object).annotation;
+			((TAnnotationView*) object).image = [UIImage imageNamed:@"redhouse.png"];
+		}
+		else {
+			NSLog(@"annotation deselected %@", ((TAnnotationView*) object).annotation.title);
+            [self hideAnnotation];
+            ((TAnnotationView*) object).image = [UIImage imageNamed:@"bluehouse.png"];
+			
+            // selectedAnnotation=nil;
+            
+			
+		}
+	}
+}
+- (void)showAnnotation:(TLocation*)annotation {
+	//self.moreInfoView.text.text = annotation.title;
+    //if(selectedAnnotation==nil)[self hideAnnotation];
+    NSLog(@"heeeeere");
+    
+    /////
+    self.thumbnailAnuntImageView.image = [UIImage imageNamed:@"house.jpg"];
+    
+    self.suprafataAnuntLabel.text = annotation.tipProprietate;
+    self.adresaAnuntLabel.text = annotation.adresa;
+    self.pretAnuntLabel.text = annotation.pret;
+    self.tipAnuntLabel.text=annotation.tipAnunt;
+    self.favoritAnuntButton.tag = annotation.locationId;
+    self.detaliiButton.tag=annotation.locationId;
+    ///////
+    
+	[UIView beginAnimations: @"moveCNGCallout" context: nil];
+	[UIView setAnimationDelegate: self];
+	[UIView setAnimationDuration: 0.5];
+	[UIView setAnimationCurve: UIViewAnimationCurveEaseInOut];
+	self.customCalloutView.frame = CGRectMake(10.0, 250.0, self.customCalloutView.frame.size.width, self.customCalloutView.frame.size.height);
+    
+    //button tag etc
+    
+	[UIView commitAnimations];	
+	
 }
 
+- (void) stopFollowLocation {
+	//NSLog(@"stopFollowLocation called. Good place to put stop follow location annotation code.");
+	
+	//MyAnnotation* annotation;
+	//for (annotation in mapView.annotations) {
+    [self.mapView deselectAnnotation:selectedAnnotation animated:NO];
+    
+	//}
+	
+	[self hideAnnotation];
+	
+}
+
+- (void)hideAnnotation {
+	//self.moreInfoView.text.text = nil;
+    //[self.customCalloutView removeFromSuperview];
+    //self.thumbnailAnuntImageView = nil;
+    
+	[UIView beginAnimations: @"moveCNGCalloutOff" context: nil];
+	[UIView setAnimationDelegate: self];
+	[UIView setAnimationDuration: 0.5];
+	[UIView setAnimationCurve: UIViewAnimationCurveEaseInOut];
+	self.customCalloutView.frame = CGRectMake(10.0, 250.0 + 300, self.customCalloutView.frame.size.width, self.customCalloutView.frame.size.height);
+	[UIView commitAnimations];
+}
+
+-(IBAction)closePopup:(id)sender
+{
+    
+    [self.mapView deselectAnnotation:selectedAnnotation animated:NO];
+    [self hideAnnotation];
+}
+-(IBAction)addToFav:(id)sender
+{
+    UIButton *senderButton = (UIButton*)sender;
+    NSLog(@"id anunt adaugat in favorite este: %d",senderButton.tag);
+    
+    //de adaugat la faves
+}    
+
+/////////////////////
 -(void) mapView:(MKMapView *)mapView regionWillChangeAnimated:(BOOL)animated{
     mapRequest = nil;
 }
@@ -346,6 +487,19 @@
     [_mapView release];
     [mapView release];
     [mapNavItem release];
+    //////
+    [customCalloutView release];
+    [selectedAnnotation release];
+    [touchView release];
+    ////////
+    [adresaAnuntLabel release];
+    [pretAnuntLabel release];
+    [tipAnuntLabel release];
+    [suprafataAnuntLabel release];
+    [favoritAnuntButton release];
+    [thumbnailAnuntImageView release];
+    [detaliiButton release];
+    
     [super dealloc];
 }
 @end

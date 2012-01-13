@@ -10,6 +10,7 @@
 #import <MapKit/MapKit.h>
 #import "TRequest.h"
 #import "AppDelegate.h"
+#import "TTouchView.h"
 
 @interface MapViewController : UIViewController <MKMapViewDelegate, UINavigationBarDelegate>{
     BOOL _doneInitialZoom;
@@ -20,15 +21,47 @@
     TRequest *mapRequest;
     BOOL hasLoadView;
     AppDelegate *apdelegate;
-   }
+    /////
+    IBOutlet UIView *customCalloutView;
+    TTouchView *touchView;
+    TLocation *selectedAnnotation;
+    /////////
+    UILabel *adresaAnuntLabel;
+    UILabel *pretAnuntLabel;
+    UILabel *suprafataAnuntLabel;
+    UILabel *tipAnuntLabel;
+    UIImageView *thumbnailAnuntImageView;
+    UIButton *favoritAnuntButton;
+    UIButton *detaliiButton;
+    
+    
+}
 @property (retain, nonatomic) IBOutlet MKMapView *mapView;
 @property (nonatomic,retain) UINavigationItem *mapNavItem;
-//
+/////
+@property(nonatomic,retain) IBOutlet UIView *customCalloutView;
+@property(nonatomic,retain) TTouchView *touchView;
+@property(nonatomic,retain) TLocation *selectedAnnotation;
+/////
+@property(nonatomic,retain) IBOutlet UILabel *adresaAnuntLabel;
+@property(nonatomic,retain) IBOutlet UILabel *pretAnuntLabel;
+@property(nonatomic,retain) IBOutlet UILabel *suprafataAnuntLabel;
+@property(nonatomic,retain) IBOutlet UILabel *tipAnuntLabel;
+@property(nonatomic, retain) IBOutlet UIImageView *thumbnailAnuntImageView;
+@property(nonatomic,retain) IBOutlet UIButton *favoritAnuntButton, *detaliiButton;
+
+
+/////
+extern NSString *const GMAP_ANNOTATION_SELECTED;
+- (void) showAnnotation:(TLocation*) annotation;
+- (void) hideAnnotation;
+-(IBAction)closePopup:(id)sender;
+-(IBAction)addToFav:(id)sender;
 
 
 -(void)goHome;
 //-(void)selectOptiuni;
--(void)detaliiAnunt:(id)sender;
+-(IBAction)detaliiAnunt:(id)sender;
 -(void) showAdsFromData:(NSData *)data;
 -(void) getParamForReq;
 

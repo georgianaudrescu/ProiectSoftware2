@@ -11,6 +11,7 @@
 
 @implementation TLocation
 @synthesize coordinate, title, subtitle, locationId;
+@synthesize adresa, pret, tipAnunt, tipProprietate;
 
 -(id) initWithTitle:(NSString *)aTitle andSubtitle:(NSString *)aSubtitle andCoord:(CLLocationCoordinate2D)aCoord{
     self = [super init];
@@ -28,6 +29,11 @@
 {
     [self.title dealloc];
     [self.subtitle dealloc];
+    
+    [adresa release];
+    [pret release];
+    [tipAnunt release];
+    [tipProprietate release];
     [super dealloc];
 }
 

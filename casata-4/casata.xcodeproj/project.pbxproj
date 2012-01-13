@@ -16,7 +16,6 @@
 		3A37A41A149B6FF50053E39F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A37A419149B6FF50053E39F /* main.m */; };
 		3A37A41E149B6FF50053E39F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A37A41D149B6FF50053E39F /* AppDelegate.m */; };
 		3A37A421149B6FF50053E39F /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A37A420149B6FF50053E39F /* MapViewController.m */; };
-		3A37A42F149B6FF60053E39F /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A37A42D149B6FF60053E39F /* MapViewController.xib */; };
 		3A37A445149B774A0053E39F /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A37A443149B774A0053E39F /* LoginViewController.m */; };
 		3A37A446149B774A0053E39F /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A37A444149B774A0053E39F /* LoginViewController.xib */; };
 		3A37A476149BB6C70053E39F /* StatsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A37A474149BB6C70053E39F /* StatsViewController.m */; };
@@ -45,6 +44,13 @@
 		8C0BFF9714B9EC5900D49747 /* DetaliiAnuntViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C0BFF9514B9EC5800D49747 /* DetaliiAnuntViewController.m */; };
 		8C0BFF9814B9EC5900D49747 /* DetaliiAnuntViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C0BFF9614B9EC5900D49747 /* DetaliiAnuntViewController.xib */; };
 		8C0D6E8214B8B307001DAFE4 /* TAdList.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C0D6E8114B8B307001DAFE4 /* TAdList.m */; };
+		8C14EC2D14C0290F00FF86AC /* TAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C14EC2A14C0290E00FF86AC /* TAnnotationView.m */; };
+		8C14EC2E14C0290F00FF86AC /* TTouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C14EC2C14C0290F00FF86AC /* TTouchView.m */; };
+		8C14EC3414C0296400FF86AC /* greenhouse.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C14EC3014C0296400FF86AC /* greenhouse.png */; };
+		8C14EC3514C0296400FF86AC /* redhouse.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C14EC3114C0296400FF86AC /* redhouse.png */; };
+		8C14EC3614C0296400FF86AC /* staricon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C14EC3214C0296400FF86AC /* staricon.png */; };
+		8C14EC3714C0296400FF86AC /* thumbnail.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8C14EC3314C0296400FF86AC /* thumbnail.jpg */; };
+		8C14EC3914C02A8800FF86AC /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C14EC3814C02A8800FF86AC /* MapViewController.xib */; };
 		8C56451C14B64A5600540286 /* TImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C56451B14B64A5600540286 /* TImage.m */; };
 		8C71BDD014ABF91700E77A77 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C71BDCE14ABF91700E77A77 /* ViewController.m */; };
 		8C71BDD114ABF91700E77A77 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C71BDCF14ABF91700E77A77 /* ViewController.xib */; };
@@ -126,7 +132,6 @@
 		3A37A41D149B6FF50053E39F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		3A37A41F149B6FF50053E39F /* MapViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		3A37A420149B6FF50053E39F /* MapViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
-		3A37A42E149B6FF60053E39F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MapViewController.xib; sourceTree = "<group>"; };
 		3A37A442149B774A0053E39F /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		3A37A443149B774A0053E39F /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		3A37A444149B774A0053E39F /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
@@ -245,6 +250,15 @@
 		8C0BFF9614B9EC5900D49747 /* DetaliiAnuntViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetaliiAnuntViewController.xib; sourceTree = "<group>"; };
 		8C0D6E8014B8B307001DAFE4 /* TAdList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAdList.h; sourceTree = "<group>"; };
 		8C0D6E8114B8B307001DAFE4 /* TAdList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAdList.m; sourceTree = "<group>"; };
+		8C14EC2914C0290E00FF86AC /* TAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAnnotationView.h; sourceTree = "<group>"; };
+		8C14EC2A14C0290E00FF86AC /* TAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAnnotationView.m; sourceTree = "<group>"; };
+		8C14EC2B14C0290F00FF86AC /* TTouchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTouchView.h; sourceTree = "<group>"; };
+		8C14EC2C14C0290F00FF86AC /* TTouchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTouchView.m; sourceTree = "<group>"; };
+		8C14EC3014C0296400FF86AC /* greenhouse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greenhouse.png; sourceTree = "<group>"; };
+		8C14EC3114C0296400FF86AC /* redhouse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redhouse.png; sourceTree = "<group>"; };
+		8C14EC3214C0296400FF86AC /* staricon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = staricon.png; sourceTree = "<group>"; };
+		8C14EC3314C0296400FF86AC /* thumbnail.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = thumbnail.jpg; sourceTree = "<group>"; };
+		8C14EC3814C02A8800FF86AC /* MapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
 		8C56451A14B64A5600540286 /* TImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TImage.h; sourceTree = "<group>"; };
 		8C56451B14B64A5600540286 /* TImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TImage.m; sourceTree = "<group>"; };
 		8C71BDCD14ABF91700E77A77 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
@@ -439,6 +453,10 @@
 		3A70A915149BB84700203169 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				8C14EC3014C0296400FF86AC /* greenhouse.png */,
+				8C14EC3114C0296400FF86AC /* redhouse.png */,
+				8C14EC3214C0296400FF86AC /* staricon.png */,
+				8C14EC3314C0296400FF86AC /* thumbnail.jpg */,
 				8CB34F1F14BEE41800DC7AA6 /* casadr.png */,
 				8CB34F2014BEE41800DC7AA6 /* casast.png */,
 				8CB34F2114BEE41800DC7AA6 /* casatasus2.png */,
@@ -486,7 +504,7 @@
 			children = (
 				3A37A41F149B6FF50053E39F /* MapViewController.h */,
 				3A37A420149B6FF50053E39F /* MapViewController.m */,
-				3A37A42D149B6FF60053E39F /* MapViewController.xib */,
+				8C14EC3814C02A8800FF86AC /* MapViewController.xib */,
 				8C0BFF9414B9EC5700D49747 /* DetaliiAnuntViewController.h */,
 				8C0BFF9514B9EC5800D49747 /* DetaliiAnuntViewController.m */,
 				8C0BFF9614B9EC5900D49747 /* DetaliiAnuntViewController.xib */,
@@ -606,6 +624,10 @@
 				3A30EB3614B62F11003C2264 /* TRequest.m */,
 				AC7BF55614B87C6B00DDEEE4 /* TSearch.h */,
 				AC7BF55714B87C6B00DDEEE4 /* TSearch.m */,
+				8C14EC2914C0290E00FF86AC /* TAnnotationView.h */,
+				8C14EC2A14C0290E00FF86AC /* TAnnotationView.m */,
+				8C14EC2B14C0290F00FF86AC /* TTouchView.h */,
+				8C14EC2C14C0290F00FF86AC /* TTouchView.m */,
 				8CB4A52014B92AFC007924C8 /* TSearchList.h */,
 				8CB4A52114B92AFC007924C8 /* TSearchList.m */,
 				3AF767E714B8D57100E7906E /* TSettings.h */,
@@ -754,7 +776,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A37A418149B6FF50053E39F /* InfoPlist.strings in Resources */,
-				3A37A42F149B6FF60053E39F /* MapViewController.xib in Resources */,
 				3A37A446149B774A0053E39F /* LoginViewController.xib in Resources */,
 				3A37A477149BB6C70053E39F /* StatsViewController.xib in Resources */,
 				3A70A91B149BB89200203169 /* star.png in Resources */,
@@ -811,6 +832,11 @@
 				8CB34F2914BEF3C200DC7AA6 /* logosmall.png in Resources */,
 				3A9FFF0F14BF767700D27392 /* checkbox_not_ticked.png in Resources */,
 				3A9FFF1014BF767700D27392 /* checkbox_ticked.png in Resources */,
+				8C14EC3414C0296400FF86AC /* greenhouse.png in Resources */,
+				8C14EC3514C0296400FF86AC /* redhouse.png in Resources */,
+				8C14EC3614C0296400FF86AC /* staricon.png in Resources */,
+				8C14EC3714C0296400FF86AC /* thumbnail.jpg in Resources */,
+				8C14EC3914C02A8800FF86AC /* MapViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -857,6 +883,8 @@
 				8CB4A52214B92AFD007924C8 /* TSearchList.m in Sources */,
 				8C0BFF9714B9EC5900D49747 /* DetaliiAnuntViewController.m in Sources */,
 				AC53EE6214B8CE9A00A2D85B /* Filtre.m in Sources */,
+				8C14EC2D14C0290F00FF86AC /* TAnnotationView.m in Sources */,
+				8C14EC2E14C0290F00FF86AC /* TTouchView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -869,14 +897,6 @@
 				3A37A417149B6FF50053E39F /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		3A37A42D149B6FF60053E39F /* MapViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3A37A42E149B6FF60053E39F /* en */,
-			);
-			name = MapViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

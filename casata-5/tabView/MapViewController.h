@@ -35,8 +35,6 @@
     UIButton *favoritAnuntButton;
     UIButton *detaliiButton;
     //
-    UIView *statusBarView;
-    UILabel *filtreLabel;
     UIView *statisticsView;
     UIScrollView *scrollView;
     UIScrollView *subScroll;
@@ -55,8 +53,6 @@
 @property(nonatomic,retain) IBOutlet UILabel *tipAnuntLabel;
 @property(nonatomic, retain) IBOutlet UIImageView *thumbnailAnuntImageView;
 @property(nonatomic,retain) IBOutlet UIButton *favoritAnuntButton, *detaliiButton;
-@property(nonatomic,retain) IBOutlet UIView *statusBarView;
-@property(nonatomic,retain) IBOutlet UILabel *filtreLabel;
 @property(nonatomic,retain) IBOutlet UIView *statisticsView;
 @property(nonatomic,retain) IBOutlet UIScrollView *scrollView;
 @property(nonatomic,retain) IBOutlet UIScrollView *subScroll;

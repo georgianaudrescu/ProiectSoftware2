@@ -13,7 +13,7 @@
     int ad_id;
     AppDelegate *apdelegate;
     UILabel *nameLabel;
-    UILabel *propertyTypeLabel;
+    UILabel *propertyTypeLabel, *anuntTypeLabel;
     UILabel *adTextlabel;
     UILabel *adressLineLabel;
     UILabel *pretLabel;
@@ -22,7 +22,7 @@
     UILabel *contactPhoneLabel;
 }
 @property(nonatomic,assign) int ad_id;
-@property(nonatomic,retain) IBOutlet UILabel *nameLabel,*propertyTypeLabel, *adTextLabel, *adressLineLabel, *pretLabel, *monedaLabel, *contactNameLabel, *contactPhoneLabel; 
+@property(nonatomic,retain) IBOutlet UILabel *nameLabel,*propertyTypeLabel, *adTextLabel, *adressLineLabel, *pretLabel, *monedaLabel, *contactNameLabel, *contactPhoneLabel, *anuntTypeLabel; 
 
 
 @end

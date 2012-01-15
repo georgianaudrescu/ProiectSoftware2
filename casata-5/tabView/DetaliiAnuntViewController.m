@@ -11,19 +11,20 @@
 
 @implementation DetaliiAnuntViewController
 @synthesize ad_id;
-@synthesize pretLabel, propertyTypeLabel, monedaLabel, contactNameLabel, contactPhoneLabel, adTextLabel, adressLineLabel,nameLabel;
+@synthesize pretLabel, propertyTypeLabel, monedaLabel, contactNameLabel, contactPhoneLabel, adTextLabel, adressLineLabel,nameLabel, anuntTypeLabel;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         apdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-        [self setTitle:@"Detalii anunt"];
+        //[self setTitle:@"Detalii anunt"];
         
     }
     return self;
 }
 
+/*
 -(void)setTitle:(NSString *)title
 {
     [super setTitle:title];
@@ -42,6 +43,7 @@
     
     
 }
+ */
 
 - (void)didReceiveMemoryWarning
 {
@@ -100,6 +102,7 @@
     [adressLineLabel release];
     [adTextLabel release];
     [pretLabel release];
+    [anuntTypeLabel release];
 
     [super dealloc];
 }

@@ -26,7 +26,7 @@
 @synthesize mapNavItem;
 @synthesize customCalloutView, touchView, selectedAnnotation;
 @synthesize adresaAnuntLabel,pretAnuntLabel,tipAnuntLabel,suprafataAnuntLabel,favoritAnuntButton,thumbnailAnuntImageView, detaliiButton;
-@synthesize statusBarView, filtreLabel,statisticsView,scrollView,subScroll;
+@synthesize statisticsView,scrollView,subScroll;
 
 NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
 
@@ -55,8 +55,12 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
         //setam butonul din dreapta navBar-ului -favorite pe harta
         self.navigationItem.rightBarButtonItem =  [[[UIBarButtonItem alloc] initWithTitle:@"Fav" style:UIBarButtonItemStylePlain target:self action:@selector(showFavAdsOnMap)]autorelease]; 
         self.navigationItem.rightBarButtonItem.tintColor = [UIColor blackColor];
-        self.navigationItem.rightBarButtonItem.image = [UIImage imageNamed:@"starfav.png"];
-        self.navigationItem.rightBarButtonItem.tag=0; //initial nu este selectat sa se arate anunturile favorite pe ecran
+        
+        //initial nu este selectat sa se arate anunturile favorite pe ecran
+        self.navigationItem.rightBarButtonItem.tag=0;
+        self.navigationItem.rightBarButtonItem.image = [UIImage imageNamed:@"starfavDeactivat.png"];
+       
+         
           
         
         //butonul care va aparea ca back button pt view-ul child care va fi pus in stiva peste view-ul curent
@@ -152,8 +156,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     
     
     
-    [self.view addSubview:self.statusBarView];
-   /* self.filtreLabel.frame = CGRectMake(0, 0, 738, 21);
+      /* self.filtreLabel.frame = CGRectMake(0, 0, 738, 21);
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:30.0];
     [UIView setAnimationCurve:UIViewAnimationCurveLinear];
@@ -529,11 +532,14 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     if(self.navigationItem.rightBarButtonItem.tag == 0)
     { NSLog(@"Show fav ads on map");
       self.navigationItem.rightBarButtonItem.tag=1;
+        self.navigationItem.rightBarButtonItem.image = [UIImage imageNamed:@"starfav.png"];
+
         //de deselectat pinul curent selectat(poate nu este in favorite)
     }
     else 
     {NSLog(@"Show all ads on map/deselect fav button");
      self.navigationItem.rightBarButtonItem.tag=0;
+        self.navigationItem.rightBarButtonItem.image = [UIImage imageNamed:@"starfavDeactivat.png"];
         //de deselectat pinul curent selectat(altfel ii ramane ca icon casuta rosie)
     }
     
@@ -595,8 +601,6 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     [favoritAnuntButton release];
     [thumbnailAnuntImageView release];
     [detaliiButton release];
-    [statusBarView release];
-    [filtreLabel release];
     [statisticsView release];
     [scrollView release];
     [subScroll release];

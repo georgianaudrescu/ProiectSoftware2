@@ -17,6 +17,7 @@
 
 #import "Filtre.h" // for the switch
 #import "SomeView.h" //for switch test!
+#import "StatsViewController.h"
 
 //#define myURL [NSURL URLWithString:@"http://flapptest.comule.com/get_ads/"]
 
@@ -146,8 +147,11 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
 	[self.scrollView addSubview:self.customCalloutView];    
     
     
-    self.statisticsView.frame = CGRectMake(0,300, self.statisticsView.frame.size.width, self.statisticsView.frame.size.height);
-    [self.scrollView addSubview:self.statisticsView];
+    //self.statisticsView.view.frame = CGRectMake(0,366, self.statisticsView.view.frame.size.width, self.statisticsView.view.frame.size.height);
+    self.statisticsView = [[StatsViewController alloc] initWithNibName:@"StatsViewController" bundle:nil];
+    self.statisticsView.view.frame = CGRectMake(0, 366,self.statisticsView.view.frame.size.width, self.statisticsView.view.frame.size.height);
+    [self.scrollView addSubview:self.statisticsView.view];
+   
     
     /*
     self.subScroll.frame = CGRectMake(0,300, self.subScroll.frame.size.width, self.subScroll.frame.size.height);
@@ -158,7 +162,8 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     [self.scrollView addSubview:self.subScroll];
     */
     
-    [self.scrollView setContentSize:CGSizeMake(320, 550)];
+    [self.scrollView setContentSize:CGSizeMake(320, 750)];
+
     
     
     
@@ -180,34 +185,6 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
 }
 
 
-
-
-- (IBAction)switchToFilter:(id)sender{
-    /*
-    [self.statisticsView addSubview:someView.view];
-    //for animation
-    //start from
-    someView.view.frame = CGRectMake(320,0, self.statisticsView.frame.size.width, self.statisticsView.frame.size.height);
-    //stop at
-    [UIView animateWithDuration:0.5 animations:^{
-        someView.view.frame = CGRectMake(0,0, self.statisticsView.frame.size.width, self.statisticsView.frame.size.height);}];
-     */
-    
-    
-    Filtre * filters=[[Filtre alloc] initWithNibName:@"Filtre" bundle:nil];
-    [self.statisticsView addSubview:filters.view];
-    [self.scrollView setContentSize:CGSizeMake(320, 900)];
-     
-    
-}
-- (IBAction)swithToMyAds:(id)sender{
-    //someView = [[SomeView alloc] initWithNibName:@"SomeView" bundle:nil];
-    [self.statisticsView addSubview:someView.view];
-    //for animation
-    someView.view.frame = CGRectMake(-300,0, self.statisticsView.frame.size.width, self.statisticsView.frame.size.height);
-    [UIView animateWithDuration:0.5 animations:^{
-        someView.view.frame = CGRectMake(0,0, self.statisticsView.frame.size.width, self.statisticsView.frame.size.height);}];
-}
 
 - (IBAction)addAction:(id)sender
 {
@@ -482,12 +459,12 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     //button tag etc
     
 	[UIView commitAnimations];	
-////    //switch:
+///////////  switch:
     //someView = [[SomeView alloc] initWithNibName:@"SomeView" bundle:nil];
-    [self.statisticsView addSubview:someView.view];
-    someView.view.frame = CGRectMake(0,400, self.statisticsView.frame.size.width, self.statisticsView.frame.size.height);
+    [self.statisticsView.view addSubview:someView.view];
+    someView.view.frame = CGRectMake(0,400, self.statisticsView.view.frame.size.width, self.statisticsView.view.frame.size.height);
     [UIView animateWithDuration:0.5 animations:^{
-        someView.view.frame = CGRectMake(0,0, self.statisticsView.frame.size.width, self.statisticsView.frame.size.height);}];
+        someView.view.frame = CGRectMake(0,0, self.statisticsView.view.frame.size.width, self.statisticsView.view.frame.size.height);}];
 
     
 	
@@ -552,11 +529,12 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     
 }
 
+/*
 -(void)showMyAdsOnMap
 {
     NSLog(@"Show my ads on map");
 }
-
+*/
 
 
 

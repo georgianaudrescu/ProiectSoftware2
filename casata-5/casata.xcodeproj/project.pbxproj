@@ -35,6 +35,8 @@
 		3A7D807414B71178004EE453 /* TLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7D807314B71178004EE453 /* TLocation.m */; };
 		3A9FFF0F14BF767700D27392 /* checkbox_not_ticked.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A9FFF0B14BF767700D27392 /* checkbox_not_ticked.png */; };
 		3A9FFF1014BF767700D27392 /* checkbox_ticked.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A9FFF0C14BF767700D27392 /* checkbox_ticked.png */; };
+		3AE9B15614C3501100824AA1 /* MyAdsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AE9B15414C3501100824AA1 /* MyAdsViewController.m */; };
+		3AE9B15714C3501100824AA1 /* MyAdsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AE9B15514C3501100824AA1 /* MyAdsViewController.xib */; };
 		3AF767ED14B8D57100E7906E /* TAvgPrice.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF767E614B8D57100E7906E /* TAvgPrice.m */; };
 		3AF767EE14B8D57100E7906E /* TSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF767E814B8D57100E7906E /* TSettings.m */; };
 		3AF767EF14B8D57100E7906E /* TStatistic.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF767EA14B8D57100E7906E /* TStatistic.m */; };
@@ -164,6 +166,9 @@
 		3A7D807314B71178004EE453 /* TLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLocation.m; sourceTree = "<group>"; };
 		3A9FFF0B14BF767700D27392 /* checkbox_not_ticked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkbox_not_ticked.png; sourceTree = "<group>"; };
 		3A9FFF0C14BF767700D27392 /* checkbox_ticked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkbox_ticked.png; sourceTree = "<group>"; };
+		3AE9B15314C3501100824AA1 /* MyAdsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAdsViewController.h; sourceTree = "<group>"; };
+		3AE9B15414C3501100824AA1 /* MyAdsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAdsViewController.m; sourceTree = "<group>"; };
+		3AE9B15514C3501100824AA1 /* MyAdsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyAdsViewController.xib; sourceTree = "<group>"; };
 		3AF767E514B8D57100E7906E /* TAvgPrice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAvgPrice.h; sourceTree = "<group>"; };
 		3AF767E614B8D57100E7906E /* TAvgPrice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAvgPrice.m; sourceTree = "<group>"; };
 		3AF767E714B8D57100E7906E /* TSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSettings.h; sourceTree = "<group>"; };
@@ -525,6 +530,9 @@
 		3A70A922149BBABB00203169 /* MAP */ = {
 			isa = PBXGroup;
 			children = (
+				3AE9B15314C3501100824AA1 /* MyAdsViewController.h */,
+				3AE9B15414C3501100824AA1 /* MyAdsViewController.m */,
+				3AE9B15514C3501100824AA1 /* MyAdsViewController.xib */,
 				3A37A41F149B6FF50053E39F /* MapViewController.h */,
 				3A37A420149B6FF50053E39F /* MapViewController.m */,
 				8C14EC3814C02A8800FF86AC /* MapViewController.xib */,
@@ -870,6 +878,7 @@
 				8C7A71A414C2466600CAC575 /* trendDescrescator.png in Resources */,
 				8C25805114C2F84B0096A363 /* starfav.png in Resources */,
 				8C25805214C2F84B0096A363 /* starfavDeactivat.png in Resources */,
+				3AE9B15714C3501100824AA1 /* MyAdsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -919,6 +928,7 @@
 				8C14EC2D14C0290F00FF86AC /* TAnnotationView.m in Sources */,
 				8C14EC2E14C0290F00FF86AC /* TTouchView.m in Sources */,
 				3A0222EA14C1D9E900C4ED63 /* SomeView.m in Sources */,
+				3AE9B15614C3501100824AA1 /* MyAdsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

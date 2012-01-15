@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "CorePlot-CocoaTouch.h"
+#import "Filtre.h"
+#import "MyAdsViewController.h"
 
 @interface StatsViewController : UIViewController<CPTPlotDataSource, CPTPlotSpaceDelegate>
 {
@@ -20,6 +22,8 @@
     ///pt header-la labels- schimbam doar textul, la butoane- in functie de valoarea negativa/pozitiva schimbam si imaginea:
     UILabel *avgAreaPriceLabel;
     UIButton *trendForAvgAreaPriceButton;
+    Filtre * filters;
+    MyAdsViewController *myAds;
 }
 @property (nonatomic,retain) IBOutlet UILabel *avgAreaPriceLabel;
 @property(nonatomic,retain) IBOutlet UIButton *trendForAvgAreaPriceButton;

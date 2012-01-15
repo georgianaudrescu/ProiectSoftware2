@@ -9,6 +9,8 @@
 #import "StatsViewController.h"
 #include "AppDelegate.h"
 #import "CorePlot-CocoaTouch.h"
+#import "Filtre.h"
+#import "MyAdsViewController.h"
 
 @implementation StatsViewController
 @synthesize avgAreaPriceLabel, trendForAvgAreaPriceButton;
@@ -25,6 +27,41 @@
     }
     return self;
 }
+
+
+- (IBAction)switchToFilter:(id)sender{
+    /*
+     [self.statisticsView addSubview:someView.view];
+     //for animation
+     //start from
+     someView.view.frame = CGRectMake(320,0, self.statisticsView.frame.size.width, self.statisticsView.frame.size.height);
+     //stop at
+     [UIView animateWithDuration:0.5 animations:^{
+     someView.view.frame = CGRectMake(0,0, self.statisticsView.frame.size.width, self.statisticsView.frame.size.height);}];
+     */
+    
+    
+    //Filtre * filters=[[Filtre alloc] initWithNibName:@"Filtre" bundle:nil];
+    [self.view addSubview:filters.view];
+    //[self.view setContentSize:CGSizeMake(320, 900)];
+    filters.view.frame = CGRectMake(320,0, self.view.frame.size.width, self.view.frame.size.height);
+    [UIView animateWithDuration:0.5 animations:^{
+        filters.view.frame = CGRectMake(0,0, self.view.frame.size.width, self.view.frame.size.height);}];
+    
+    
+}
+- (IBAction)swithToMyAds:(id)sender{
+    //MyAdsViewController *myAds = [[MyAdsViewController alloc] initWithNibName:@"MyAdsViewController" bundle:nil];
+    [self.view addSubview:myAds.view];
+    //for animation
+    myAds.view.frame = CGRectMake(-320,0, self.view.frame.size.width, self.view.frame.size.height);
+    [UIView animateWithDuration:0.5 animations:^{
+        myAds.view.frame = CGRectMake(0,0, self.view.frame.size.width, self.view.frame.size.height);}];
+}
+
+
+
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -177,6 +214,9 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    filters=[[Filtre alloc] initWithNibName:@"Filtre" bundle:nil];
+    myAds = [[MyAdsViewController alloc] initWithNibName:@"MyAdsViewController" bundle:nil];
    
     [self createTheGraph];
     
@@ -209,6 +249,8 @@
     [barLineStyle release];
     [avgAreaPriceLabel release];
     [trendForAvgAreaPriceButton release];
+    [filters dealloc];
+    [myAds dealloc];
     [super dealloc];
 
 }

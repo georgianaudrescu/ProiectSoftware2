@@ -56,6 +56,18 @@
     
     
 }
+- (IBAction)backToStatistics:(id)sender{
+    
+    //for animation
+    self.view.frame = CGRectMake(0,0, 320, 460);
+    
+    [UIView animateWithDuration:1 
+                     animations:^{self.view.frame = CGRectMake(320,0, 320, 460);}
+                     completion:^(BOOL completed){[self.view removeFromSuperview];}];
+    
+    
+    
+}
 
 
 -(void)clearFilters{

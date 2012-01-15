@@ -12,6 +12,8 @@
 #import "AppDelegate.h"
 #import "TTouchView.h"
 #import "SomeView.h"
+#import "MyAdsViewController.h"
+#import "StatsViewController.h"
 
 @interface MapViewController : UIViewController <MKMapViewDelegate, UINavigationBarDelegate>{
     BOOL _doneInitialZoom;
@@ -35,7 +37,8 @@
     UIButton *favoritAnuntButton;
     UIButton *detaliiButton;
     //
-    UIView *statisticsView;
+    //UIView *statisticsView;
+    StatsViewController *statisticsView;
     UIScrollView *scrollView;
     UIScrollView *subScroll;
     SomeView *someView;
@@ -53,7 +56,8 @@
 @property(nonatomic,retain) IBOutlet UILabel *tipAnuntLabel;
 @property(nonatomic, retain) IBOutlet UIImageView *thumbnailAnuntImageView;
 @property(nonatomic,retain) IBOutlet UIButton *favoritAnuntButton, *detaliiButton;
-@property(nonatomic,retain) IBOutlet UIView *statisticsView;
+//@property(nonatomic,retain) IBOutlet UIView *statisticsView;
+@property(nonatomic,retain) IBOutlet StatsViewController *statisticsView;
 @property(nonatomic,retain) IBOutlet UIScrollView *scrollView;
 @property(nonatomic,retain) IBOutlet UIScrollView *subScroll;
           
@@ -64,7 +68,7 @@ extern NSString *const GMAP_ANNOTATION_SELECTED;
 -(IBAction)closePopup:(id)sender;
 -(IBAction)addToFav:(id)sender;
 -(void) showFavAdsOnMap;
--(void)showMyAdsOnMap;
+//-(void)showMyAdsOnMap;
 
 
 
@@ -76,7 +80,7 @@ extern NSString *const GMAP_ANNOTATION_SELECTED;
 
 
 ///
-- (IBAction)switchToFilter:(id)sender;
-- (IBAction)swithToMyAds:(id)sender;
+//- (IBAction)switchToFilter:(id)sender;
+//- (IBAction)swithToMyAds:(id)sender;
 
 @end

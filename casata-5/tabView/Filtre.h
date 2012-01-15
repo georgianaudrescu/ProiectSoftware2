@@ -47,6 +47,8 @@
 -(IBAction)sliderSupMinValueChanged:(UISlider *)sender;
 -(IBAction)sliderSupMaxValueChanged:(UISlider *)sender;
 
+-(IBAction)backToStatistics:(id)sender ;
+
 //-(void)clearFilters;
 //-(void)applyFilters;
 

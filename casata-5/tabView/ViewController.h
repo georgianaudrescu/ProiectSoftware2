@@ -10,10 +10,11 @@
 
 @interface ViewController : UIViewController
 {
-    UIButton *buttonAnunturiApropiere, *buttonStats, *buttonAbout, *buttonAdaugaAnunt;
+    UIButton *buttonAbout, *buttonAplicatie;
     
 }
-@property (nonatomic, retain) IBOutlet UIButton *buttonAnunturiApropiere, *buttonStats,*buttonAbout, *buttonAdaugaAnunt;
+@property (nonatomic, retain) IBOutlet UIButton *buttonAbout,*buttonAplicatie;
+
 -(IBAction)selectPage:(UIButton*)aButton;
 
 @end

@@ -9,18 +9,17 @@
 #import <UIKit/UIKit.h>
 #import "TAppSession.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, UINavigationControllerDelegate>
 {   
     TAppSession *appSession;
 }
 @property (strong, nonatomic) UIWindow *window;
 
-@property (strong, nonatomic) UITabBarController *tabBarController;
+@property (strong, nonatomic) UINavigationController *navigationController;
 @property (strong, nonatomic) UIViewController *viewController;
 @property (nonatomic,retain) TAppSession *appSession;
 
--(void)pageSelectedInTab:(NSString*)bTitle;
--(void)goToHomeScreen;
+-(void)enterApplication;
 
 
 

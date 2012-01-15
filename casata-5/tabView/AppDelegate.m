@@ -10,13 +10,6 @@
 
 #import "MapViewController.h"
 
-#import "AdaugAnuntViewController.h"
-
-#import "StatsViewController.h"
-
-//#import "FavViewController.h"
-//#import "PersonalViewController.h"
-#import "Filtre.h"
 #import "ViewController.h"
 #import "Informatii.h"
 #import "TAppSession.h"
@@ -25,15 +18,15 @@
 @implementation AppDelegate
 
 @synthesize window = _window;
-@synthesize tabBarController = _tabBarController;
 @synthesize viewController = _viewController;
+@synthesize navigationController= _navigationController;
 @synthesize appSession;
 
 
 - (void)dealloc
 {
     [_window release];
-    [_tabBarController release];
+    [_navigationController release];
     [_viewController release];
     [appSession release];
     [super dealloc];
@@ -49,68 +42,38 @@
     [self.appSession globalVariablesInit];
     
     
-    
+    //schimba culoarea status bar-ului de sus-din gri(default) in negru
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque animated:YES];
+    
+    
+    
     // Override point for customization after application launch.
     UIViewController *mapViewController = [[[MapViewController alloc] initWithNibName:@"MapViewController" bundle:nil] autorelease];
-    UIViewController *adaugaAnuntViewController = [[[AdaugAnuntViewController alloc] initWithNibName:@"AdaugAnuntViewController" bundle:nil] autorelease];
-    UIViewController *statsViewController = [[[StatsViewController alloc] initWithNibName:@"StatsViewController" bundle:nil] autorelease];
-    UIViewController *filtreViewController = [[[Filtre alloc] initWithNibName:@"Filtre" bundle:nil] autorelease];
+    
 
-    //Navigation controllerul pt pagina de Map
-    UINavigationController *navControllerMap = [[[UINavigationController alloc] initWithRootViewController:mapViewController] autorelease];
+    //Navigation controllerul principal-are ca radacina pagina de map
+    self.navigationController = [[[UINavigationController alloc] initWithRootViewController:mapViewController] autorelease];
    
-    navControllerMap.navigationBar.tintColor = [UIColor colorWithRed:0.976 green:0.827 blue:0.015 alpha:1.0]; 
+    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:0.976 green:0.827 blue:0.015 alpha:1.0]; 
      
     
-    //navigation controller ptr pagina de Filtre
-    UINavigationController *navControllerFiltre = [[[UINavigationController alloc] initWithRootViewController:filtreViewController]autorelease];
-    navControllerFiltre.navigationBar.tintColor = [UIColor colorWithRed:0.976 green:0.827 blue:0.015 alpha:1.0];
-    
-    //navigation controllerul pt pagina Adauga anunt
-    UINavigationController *navControllerAdaug = [[[UINavigationController alloc] initWithRootViewController:adaugaAnuntViewController] autorelease];
-    
-    navControllerAdaug.navigationBar.tintColor = [UIColor colorWithRed:0.976 green:0.827 blue:0.015 alpha:1.0];
-    
-    
-    //navigation controllerul pt pagina statistici
-    UINavigationController *navControllerStatistici = [[[UINavigationController alloc] initWithRootViewController:statsViewController] autorelease];    
-    
-    navControllerStatistici.navigationBar.tintColor = [UIColor colorWithRed:0.976 green:0.827 blue:0.015 alpha:1.0];  
-    
-    
+     
     //view controllerul pt Home
     self.viewController = [[[ViewController alloc] initWithNibName:@"ViewController" bundle:nil] autorelease];
     
     
-    self.tabBarController = [[[UITabBarController alloc] init] autorelease];
-    self.tabBarController.viewControllers = [NSArray arrayWithObjects:navControllerMap, navControllerFiltre,navControllerAdaug,navControllerStatistici, nil];
-    self.window.rootViewController = self.viewController;
+   self.window.rootViewController = self.viewController;
     
     //self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
     return YES;
 }
 
--(void)pageSelectedInTab:(NSString*)bTitle
+-(void) enterApplication
 {
-   
-    //in momentul in care se selecteaza un buton din home view, de aici se selecteaza si tab-ul corespunzator
-    
-    if([bTitle isEqualToString:@" Anunturi in apropiere"])
-        self.tabBarController.selectedIndex=0;
-    else if([bTitle isEqualToString:@" Trends & statistics"])
-        self.tabBarController.selectedIndex=3;
-    else if([bTitle isEqualToString:@" Adauga anunt"])
-        self.tabBarController.selectedIndex = 2;
-    
-    
-  self.window.rootViewController = self.tabBarController;    
+    self.window.rootViewController=self.navigationController;
 }
 
--(void)goToHomeScreen
-{self.window.rootViewController = self.viewController;
-}
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {

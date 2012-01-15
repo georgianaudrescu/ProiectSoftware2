@@ -11,6 +11,7 @@
 #import "CorePlot-CocoaTouch.h"
 
 @implementation StatsViewController
+@synthesize trendPretVanzareButton,trendPretInchiriereButton,pretMediuVanzareLabel,pretMediuInchiriereLabel;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -20,20 +21,6 @@
         self.tabBarItem.image = [UIImage imageNamed:@"linechart"];
         
         [self setTitle:@"Statistici"];
-        
-        
-        
-        
-        self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStylePlain target:self action:@selector(goHome)]autorelease];
-        self.navigationItem.leftBarButtonItem.tintColor = [UIColor blackColor];
-        self.navigationItem.leftBarButtonItem.image = [UIImage imageNamed:@"homepage.png"];
-        
-        self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Clear" style:UIBarButtonItemStylePlain target:self action:@selector(clearChartStatistici)]autorelease];   
-        self.navigationItem.rightBarButtonItem.tintColor = [UIColor blackColor];
-       
-        ///
-        
-        
         
     }
     return self;
@@ -47,10 +34,6 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
--(void)goHome
-{AppDelegate *apdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    [apdelegate goToHomeScreen];
-}
 -(void)clearChartStatistici
 {
 
@@ -224,7 +207,13 @@
     [graph release];
     [areaFill release];
     [barLineStyle release];
-    [super dealloc];}
+    [pretMediuInchiriereLabel release];
+    [pretMediuVanzareLabel release];
+    [trendPretVanzareButton release];
+    [trendPretInchiriereButton release];
+    [super dealloc];
+
+}
 
 
 - (void)viewDidUnload

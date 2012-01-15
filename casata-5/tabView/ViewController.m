@@ -12,7 +12,7 @@
 #import "LoginViewController.h"
 
 @implementation ViewController
-@synthesize buttonAbout,buttonStats,buttonAnunturiApropiere, buttonAdaugaAnunt;
+@synthesize buttonAbout, buttonAplicatie;
 
 - (void)didReceiveMemoryWarning
 {
@@ -53,18 +53,20 @@
 }
 -(IBAction)selectPage:(UIButton*)aButton
 {
+    /*
     if([aButton.titleLabel.text isEqualToString:@" Login"])
         {
             LoginViewController *logViewController = [[[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil] autorelease];
             [self presentModalViewController:logViewController animated:YES];
         }
         else
-        {
+        {}
+    */
+    
     AppDelegate *apdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    [apdelegate pageSelectedInTab:aButton.titleLabel.text];
+    [apdelegate enterApplication];
     
    // [apdelegate pageSelected:aButton.titleLabel.text];
-        }
 }
 
 
@@ -79,10 +81,8 @@
 
 -(void) dealloc
 {
-    [buttonAnunturiApropiere release];
     [buttonAbout release];
-    [buttonAdaugaAnunt release];
-    [buttonStats release];
+    [buttonAplicatie release];
     [super dealloc];
 
 }

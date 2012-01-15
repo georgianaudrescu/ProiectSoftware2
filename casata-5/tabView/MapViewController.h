@@ -72,8 +72,7 @@ extern NSString *const GMAP_ANNOTATION_SELECTED;
 
 
 
--(void)goHome;
-//-(void)selectOptiuni;
+
 -(IBAction)detaliiAnunt:(id)sender;
 -(void) showAdsFromData:(NSData *)data;
 -(void) getParamForReq;

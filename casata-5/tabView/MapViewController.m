@@ -35,39 +35,29 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.title = NSLocalizedString(@"Harta", @"Harta");
-        self.tabBarItem.image = [UIImage imageNamed:@"mapicon"];
-        //self.navigationItem = mapNavItem;
+        //self.tabBarItem.image = [UIImage imageNamed:@"mapicon"];
+       
         
         
         
         ////////////////////[self setTitle:@"Bucuresti"];
         
+        //punem logo-ul in view-ul pt tilu al navBar-lui
         UIImageView *logoImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logosmall.png"]];
-        
-        
-        self.navigationItem.titleView = logoImageView;
+                self.navigationItem.titleView = logoImageView;
         [logoImageView release];
         
         
-        
-        self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStylePlain target:self action:@selector(goHome)]autorelease];
+        //setam butonul din stanga navBar-ului -adauga anunt
+        self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"+" style:UIBarButtonItemStylePlain target:self action:@selector(goToAdaugaAnunt)]autorelease];
         self.navigationItem.leftBarButtonItem.tintColor = [UIColor blackColor];
-        self.navigationItem.leftBarButtonItem.image = [UIImage imageNamed:@"homepage.png"];
         
-        UIBarButtonItem * showFavAdsButton =  [[[UIBarButtonItem alloc] initWithTitle:@"Fav" style:UIBarButtonItemStylePlain target:self action:@selector(showFavAdsOnMap)]autorelease]; 
-        showFavAdsButton.tintColor = [UIColor blackColor];
-        showFavAdsButton.image = [UIImage imageNamed:@"starfav.png"];
-        
-        UIBarButtonItem *showMyAdsButton =  [[[UIBarButtonItem alloc] initWithTitle:@"My" style:UIBarButtonItemStylePlain target:self action:@selector(showMyAdsOnMap)]autorelease];
-        showMyAdsButton.tintColor = [UIColor blackColor];
-        
-        self.navigationItem.rightBarButtonItems = [[NSArray alloc] initWithObjects:showMyAdsButton, showFavAdsButton, nil];
-        
-        
-        //self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Filtre" style:UIBarButtonItemStylePlain target:self action:@selector(selectOptiuni)]autorelease];   
-        //self.navigationItem.rightBarButtonItem.tintColor = [UIColor blackColor];
-        //self.navigationItem.rightBarButtonItem.image = [UIImage imageNamed:@"rotita.png"];
-        
+        //setam butonul din dreapta navBar-ului -favorite pe harta
+        self.navigationItem.rightBarButtonItem =  [[[UIBarButtonItem alloc] initWithTitle:@"Fav" style:UIBarButtonItemStylePlain target:self action:@selector(showFavAdsOnMap)]autorelease]; 
+        self.navigationItem.rightBarButtonItem.tintColor = [UIColor blackColor];
+        self.navigationItem.rightBarButtonItem.image = [UIImage imageNamed:@"starfav.png"];
+        self.navigationItem.rightBarButtonItem.tag=0; //initial nu este selectat sa se arate anunturile favorite pe ecran
+          
         
         //butonul care va aparea ca back button pt view-ul child care va fi pus in stiva peste view-ul curent
         UIBarButtonItem *anuleazaButton = [[UIBarButtonItem alloc] initWithTitle:@"Inapoi" style:UIBarButtonItemStylePlain target:nil action:nil]; 
@@ -75,7 +65,10 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
         anuleazaButton.tintColor = [UIColor blackColor];
         
         self.navigationItem.backBarButtonItem= anuleazaButton;  
+        
+        
         hasLoadView = 0;
+        
         apdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
         
         
@@ -87,7 +80,8 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
 }
 
 
-
+//Schimba culoarea textului din titleView (prin default textul este alb)
+//metoda poate fi stearsa daca ramanem cu logo in locul titlului
 -(void)setTitle:(NSString *)title
 {
     [super setTitle:@"Harta"];
@@ -108,10 +102,6 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
 }
 
 
--(void)goHome
-{//AppDelegate *apdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    [apdelegate goToHomeScreen];
-}
 
 
 
@@ -533,10 +523,20 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     //de adaugat la faves
 }    
 
-
+//afisam fie anunturile favorite, fie toate anunturile
 -(void) showFavAdsOnMap
 {
-    NSLog(@"Show fav ads on map");
+    if(self.navigationItem.rightBarButtonItem.tag == 0)
+    { NSLog(@"Show fav ads on map");
+      self.navigationItem.rightBarButtonItem.tag=1;
+        //de deselectat pinul curent selectat(poate nu este in favorite)
+    }
+    else 
+    {NSLog(@"Show all ads on map/deselect fav button");
+     self.navigationItem.rightBarButtonItem.tag=0;
+        //de deselectat pinul curent selectat(altfel ii ramane ca icon casuta rosie)
+    }
+    
 }
 
 -(void)showMyAdsOnMap

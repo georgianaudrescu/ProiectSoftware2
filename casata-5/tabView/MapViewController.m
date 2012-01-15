@@ -529,6 +529,23 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     
 }
 
+-(void)goToAdaugaAnunt{
+    NSLog(@"Goto adauga anunt");
+    
+    //[self.view addSubview:someView.view]; 
+    /*
+    [self.navigationController pushViewController:someView animated:YES];
+    someView.view.frame = CGRectMake(0,-400, self.view.frame.size.width, self.view.frame.size.height);
+    [UIView animateWithDuration:0.5 animations:^{
+        someView.view.frame = CGRectMake(0,0, self.view.frame.size.width, self.view.frame.size.height);}];
+     */
+    
+    adaugAnuntView = [[[AdaugAnuntViewController alloc] initWithNibName:@"AdaugAnuntViewController" bundle:nil]autorelease];
+    //[self.view addSubview:adaugAnuntView.view];
+    [self.navigationController pushViewController:adaugAnuntView animated:YES];
+     
+}
+
 /*
 -(void)showMyAdsOnMap
 {
@@ -589,6 +606,8 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     [statisticsView release];
     [scrollView release];
     [subScroll release];
+    [someView release];
+    [adaugAnuntView release];
     
     [super dealloc];
 }

@@ -14,6 +14,7 @@
 #import "SomeView.h"
 #import "MyAdsViewController.h"
 #import "StatsViewController.h"
+#import "AdaugAnuntViewController.h"
 
 @interface MapViewController : UIViewController <MKMapViewDelegate, UINavigationBarDelegate>{
     BOOL _doneInitialZoom;
@@ -42,6 +43,8 @@
     UIScrollView *scrollView;
     UIScrollView *subScroll;
     SomeView *someView;
+    AdaugAnuntViewController * adaugAnuntView;
+    
 }
 @property (retain, nonatomic) IBOutlet MKMapView *mapView;
 @property (nonatomic,retain) UINavigationItem *mapNavItem;
@@ -68,6 +71,8 @@ extern NSString *const GMAP_ANNOTATION_SELECTED;
 -(IBAction)closePopup:(id)sender;
 -(IBAction)addToFav:(id)sender;
 -(void) showFavAdsOnMap;
+
+-(void)goToAdaugaAnunt;
 //-(void)showMyAdsOnMap;
 
 

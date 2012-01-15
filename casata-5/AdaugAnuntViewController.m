@@ -20,9 +20,9 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.title = NSLocalizedString(@"Adauga anunt", @"Adauga anunt");
-        self.tabBarItem.image = [UIImage imageNamed:@"adauga_anunt"];
-        [self setTitle:@"Adauga anunt"];
+       // self.title = NSLocalizedString(@"Adauga anunt", @"Adauga anunt");
+       // self.tabBarItem.image = [UIImage imageNamed:@"adauga_anunt"];
+       // [self setTitle:@"Adauga anunt"];
         
         
         
@@ -149,8 +149,8 @@
     [controller3 release];
     
      
-    self.navigationItem.titleView = self.segmentedControl =
-    [[[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Detalii", @"Localizare",@"Imagini",nil]]autorelease];
+   // self.navigationItem.titleView = self.segmentedControl =
+    //[[[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Detalii", @"Localizare",@"Imagini",nil]]autorelease];
     
     self.segmentedControl.tintColor = [UIColor darkGrayColor];
     self.segmentedControl.selectedSegmentIndex = 0;

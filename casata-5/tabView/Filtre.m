@@ -112,7 +112,7 @@
          [tap release];
                                         
             cell.textLabel.text = [ propertyTypes objectAtIndex:[indexPath row]];
-                                        return cell;
+                                      //  return cell;
     UIView *backgroundView = [[UIView alloc] init];
     backgroundView.backgroundColor = [UIColor blackColor];
     

@@ -8,7 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MyAdsViewController : UIViewController
+@interface MyAdsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+{
+    
+    UITableView *tableAds;
+    
+}
+
+@property (nonatomic, retain) IBOutlet UITableView *tableAds;
+
 
 -(IBAction)backToStatistics:(id)sender ;
 

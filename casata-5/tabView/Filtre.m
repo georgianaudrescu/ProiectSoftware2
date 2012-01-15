@@ -25,22 +25,10 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.title = NSLocalizedString(@"Filtre", @"Filtre");
-        self.tabBarItem.image = [UIImage imageNamed:@"filter"];
+        //self.tabBarItem.image = [UIImage imageNamed:@"filter"];
         // Custom initialization
         [self setTitle:@"Filtre"];
         
-        self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStylePlain target:self action:@selector(goHome)]autorelease];
-        self.navigationItem.leftBarButtonItem.tintColor = [UIColor blackColor];
-        self.navigationItem.leftBarButtonItem.image = [UIImage imageNamed:@"homepage.png"];
-        
-
-        UIBarButtonItem * clearButton =  [[[UIBarButtonItem alloc] initWithTitle:@"Clear" style:UIBarButtonItemStylePlain target:self action:@selector(clearFilters)]autorelease]; 
-        clearButton.tintColor = [UIColor blackColor];
-        
-        UIBarButtonItem *applyButton =  [[[UIBarButtonItem alloc] initWithTitle:@"Apply" style:UIBarButtonItemStylePlain target:self action:@selector(applyFilters)]autorelease];
-        applyButton.tintColor = [UIColor blackColor];
-        
-        self.navigationItem.rightBarButtonItems = [[NSArray alloc] initWithObjects:clearButton,applyButton, nil];
 
         tableImobil = [[UITableView alloc] init];
         [tableImobil setAutoresizesSubviews:YES];
@@ -69,13 +57,6 @@
     
 }
 
-
-
--(void)goHome
-{
-    AppDelegate *apdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    [apdelegate goToHomeScreen];
-}
 
 -(void)clearFilters{
     ///TODO

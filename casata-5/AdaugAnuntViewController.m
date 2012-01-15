@@ -24,10 +24,6 @@
         self.tabBarItem.image = [UIImage imageNamed:@"adauga_anunt"];
         [self setTitle:@"Adauga anunt"];
         
-        //setarea butoanelor din navbar
-        self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStylePlain target:self action:@selector(goHome)]autorelease];
-        self.navigationItem.leftBarButtonItem.tintColor = [UIColor blackColor];
-        self.navigationItem.leftBarButtonItem.image = [UIImage imageNamed:@"homepage.png"];
         
         
         
@@ -90,10 +86,6 @@
     
 }
 
--(void)goHome
-{AppDelegate *apdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    [apdelegate goToHomeScreen];
-}
 
 - (void)didReceiveMemoryWarning
 {

@@ -21,6 +21,5 @@
 
 - (void)didChangeSegmentControl:(UISegmentedControl *)control;
 
--(void)goHome;
 
 @end

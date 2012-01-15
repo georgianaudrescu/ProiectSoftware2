@@ -16,7 +16,7 @@
 @property (nonatomic, retain) IBOutlet UILabel *favoritAles;
 @property(nonatomic, retain) UISegmentedControl *segmentedControl;
 
--(void)goHome;
+
 -(void)checkForSelectedFavFromHomePage;
 
 @end

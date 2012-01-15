@@ -57,17 +57,12 @@
         self.navigationItem.titleView = segmentedControl;
         
         [segmentedControl2 release];            
-          
-        
         
         
     }
     return self;
 }
--(void)goHome
-{AppDelegate *apdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    [apdelegate goToHomeScreen];
-}
+
 
 -(IBAction)segmentAction:(id)sender
 {   //se afiseaza in NSLog indexul butonului selectat din meniul de sus

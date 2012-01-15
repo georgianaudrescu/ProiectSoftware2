@@ -25,10 +25,7 @@
         self.tabBarItem.image = [UIImage imageNamed:@"user"];
         [self setTitle:@"Personal"];
         
-        //setarea butoanelor din navbar
-        self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStylePlain target:self action:@selector(goHome)]autorelease];
-        self.navigationItem.leftBarButtonItem.tintColor = [UIColor blackColor];
-        self.navigationItem.leftBarButtonItem.image = [UIImage imageNamed:@"homepage.png"];
+       
     }
     return self;
 }
@@ -39,11 +36,6 @@
     [super didReceiveMemoryWarning];
     
     // Release any cached data, images, etc that aren't in use.
-}
-
--(void)goHome
-{AppDelegate *apdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    [apdelegate goToHomeScreen];
 }
 
 -(void)setTitle:(NSString *)title

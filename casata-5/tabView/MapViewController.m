@@ -58,6 +58,8 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
         
         //initial nu este selectat sa se arate anunturile favorite pe ecran
         self.navigationItem.rightBarButtonItem.tag=0;
+        
+         self.navigationItem.rightBarButtonItem.image = [UIImage imageNamed:@"starfav.png"];
         self.navigationItem.rightBarButtonItem.image = [UIImage imageNamed:@"starfavDeactivat.png"];
        
          
@@ -121,6 +123,11 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
 {
     [super viewDidLoad];
     //self.mapView.delegate=self;
+    
+    self.navigationItem.rightBarButtonItem.image = [UIImage imageNamed:@"starfav.png"];
+    self.navigationItem.rightBarButtonItem.image = [UIImage imageNamed:@"starfavDeactivat.png"];
+    
+    
     
     someView = [[SomeView alloc] initWithNibName:@"SomeView" bundle:nil];
     

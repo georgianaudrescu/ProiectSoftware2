@@ -11,7 +11,7 @@
 #import "CorePlot-CocoaTouch.h"
 
 @implementation StatsViewController
-@synthesize trendPretVanzareButton,trendPretInchiriereButton,pretMediuVanzareLabel,pretMediuInchiriereLabel;
+@synthesize avgAreaPriceLabel, trendForAvgAreaPriceButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -207,10 +207,8 @@
     [graph release];
     [areaFill release];
     [barLineStyle release];
-    [pretMediuInchiriereLabel release];
-    [pretMediuVanzareLabel release];
-    [trendPretVanzareButton release];
-    [trendPretInchiriereButton release];
+    [avgAreaPriceLabel release];
+    [trendForAvgAreaPriceButton release];
     [super dealloc];
 
 }

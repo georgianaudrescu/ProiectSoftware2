@@ -10,8 +10,9 @@
 #import "AppDelegate.h"
 
 @implementation DetaliiAnuntViewController
-@synthesize ad_id;
+@synthesize theAd;
 @synthesize pretLabel, propertyTypeLabel, monedaLabel, contactNameLabel, contactPhoneLabel, adTextLabel, adressLineLabel,nameLabel, anuntTypeLabel;
+@synthesize thumbnailImageView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -53,6 +54,33 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
+-(void)loadAdWithId:(int)theAdId
+{
+    self.theAd = [apdelegate.appSession.globalAdList getAdWithId:theAdId];
+    
+   
+    
+    
+    NSLog(@"Judetul ad-ului selectat:%@", [self.theAd.ad objectForKey:@"judet"]);
+    
+    self.nameLabel.text = [self.theAd.ad objectForKey:@"name"];
+    self.propertyTypeLabel.text =[self.theAd.ad objectForKey:@"property_type"];
+    self.adTextLabel.text = [self.theAd.ad objectForKey:@"ad_text"];
+    self.adressLineLabel.text = [self.theAd.ad objectForKey:@"adress_line"];
+    NSNumber *pret = [self.theAd.ad objectForKey:@"pret"];
+    
+    self.pretLabel.text = [NSString stringWithFormat:@"%d %@",pret.intValue, [self.theAd.ad objectForKey:@"moneda"]];
+    self.monedaLabel.text = [self.theAd.ad objectForKey:@"moneda"];//
+    self.contactNameLabel.text = [self.theAd.ad objectForKey:@"contact_name"];
+    self.contactPhoneLabel.text = [self.theAd.ad objectForKey:@"contact_phone"];
+    self.anuntTypeLabel.text = [self.theAd.ad objectForKey:@"ad_type"];
+    
+    self.thumbnailImageView.image = [UIImage imageNamed:@"house.jpg"];
+    
+    
+    
+    //theAd =nil;///////
+}
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
@@ -61,28 +89,6 @@
     // Do any additional setup after loading the view from its nib.
     
     
-    TAd *theAd = [TAd alloc];
-        
-    theAd =[apdelegate.appSession.globalAdList getAdWithId:ad_id];
- 
-    
-   NSLog(@"Judetul ad-ului selectat:%@", [theAd.ad objectForKey:@"judet"]);
-        
-    self.nameLabel.text = [theAd.ad objectForKey:@"name"];
-    self.propertyTypeLabel.text =[theAd.ad objectForKey:@"property_type"];
-    self.adTextLabel.text = [theAd.ad objectForKey:@"ad_text"];
-    self.adressLineLabel.text = [theAd.ad objectForKey:@"adress_line"];
-    NSNumber *pret = [theAd.ad objectForKey:@"pret"];
-    
-    self.pretLabel.text = [NSString stringWithFormat:@"%d",pret.intValue];
-    self.monedaLabel.text = [theAd.ad objectForKey:@"moneda"];
-    self.contactNameLabel.text = [theAd.ad objectForKey:@"contact_name"];
-    self.contactPhoneLabel.text = [theAd.ad objectForKey:@"contact_phone"];
-    
-    
-    
-    
-    theAd =nil;///////
 }
 
 - (void)viewDidUnload
@@ -94,6 +100,8 @@
 
 -(void) dealloc
 { 
+    [theAd release];
+    
     [nameLabel release];
     [propertyTypeLabel release];
     [contactPhoneLabel release];
@@ -103,6 +111,7 @@
     [adTextLabel release];
     [pretLabel release];
     [anuntTypeLabel release];
+    [thumbnailImageView release];
 
     [super dealloc];
 }

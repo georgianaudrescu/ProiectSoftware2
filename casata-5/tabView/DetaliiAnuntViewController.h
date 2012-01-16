@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
+#import "TAd.h"
 @interface DetaliiAnuntViewController : UIViewController
 {
-    int ad_id;
+    //int ad_id;
+    TAd *theAd;
     AppDelegate *apdelegate;
     UILabel *nameLabel;
     UILabel *propertyTypeLabel, *anuntTypeLabel;
@@ -20,9 +22,12 @@
     UILabel *monedaLabel;
     UILabel *contactNameLabel;
     UILabel *contactPhoneLabel;
+    UIImageView *thumbnailImageView;
 }
-@property(nonatomic,assign) int ad_id;
+@property(nonatomic,retain) TAd *theAd;
 @property(nonatomic,retain) IBOutlet UILabel *nameLabel,*propertyTypeLabel, *adTextLabel, *adressLineLabel, *pretLabel, *monedaLabel, *contactNameLabel, *contactPhoneLabel, *anuntTypeLabel; 
+@property(nonatomic,retain) IBOutlet UIImageView *thumbnailImageView;
 
+-(void)loadAdWithId:(int)theAdId;
 
 @end

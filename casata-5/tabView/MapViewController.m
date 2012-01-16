@@ -9,7 +9,7 @@
 #import "MapViewController.h"
 #import "TLocation.h"
 #import "AppDelegate.h"
-//#import "OptiuniHartaViewController.h"
+
 #import "DetaliiAnuntViewController.h"
 #import "TRequest.h"
 #import "TAd.h"
@@ -25,23 +25,20 @@
 @implementation MapViewController
 @synthesize mapView=_mapView;
 @synthesize mapNavItem;
-@synthesize customCalloutView, touchView, selectedAnnotation;
-@synthesize adresaAnuntLabel,pretAnuntLabel,tipAnuntLabel,suprafataAnuntLabel,favoritAnuntButton,thumbnailAnuntImageView, detaliiButton;
-@synthesize statisticsView,scrollView,subScroll;
+
+@synthesize touchView, selectedAnnotation;
+@synthesize statisticsView,detaliiAnuntViewController;
+@synthesize scrollView,subScroll;
 
 NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.title = NSLocalizedString(@"Harta", @"Harta");
-        //self.tabBarItem.image = [UIImage imageNamed:@"mapicon"];
-       
-        
-        
-        
-        ////////////////////[self setTitle:@"Bucuresti"];
+      
         
         //punem logo-ul in view-ul pt tilu al navBar-lui
         UIImageView *logoImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logosmall.png"]];
@@ -62,9 +59,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
         
          self.navigationItem.rightBarButtonItem.image = [UIImage imageNamed:@"starfav.png"];
         self.navigationItem.rightBarButtonItem.image = [UIImage imageNamed:@"starfavDeactivat.png"];
-       
-         
-          
+        
         
         //butonul care va aparea ca back button pt view-ul child care va fi pus in stiva peste view-ul curent
         UIBarButtonItem *anuleazaButton = [[UIBarButtonItem alloc] initWithTitle:@"Inapoi" style:UIBarButtonItemStylePlain target:nil action:nil]; 
@@ -109,9 +104,6 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
 }
 
 
-
-
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -128,10 +120,9 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     self.navigationItem.rightBarButtonItem.image = [UIImage imageNamed:@"starfav.png"];
     self.navigationItem.rightBarButtonItem.image = [UIImage imageNamed:@"starfavDeactivat.png"];
     
-    
-    
-    someView = [[SomeView alloc] initWithNibName:@"SomeView" bundle:nil];
-    
+      
+    self.detaliiAnuntViewController =[[DetaliiAnuntViewController alloc] initWithNibName:@"DetaliiAnuntViewController" bundle:nil];
+                                 
     touchView = [[TTouchView alloc] initWithFrame:CGRectMake(0, 0, 320, 460)];
 	touchView.delegate = self;
 	touchView.callAtHitTest = @selector(stopFollowLocation); 
@@ -139,15 +130,9 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     self.mapView = [[MKMapView alloc] initWithFrame:CGRectMake(0, 0, 320, 460)];
 	self.mapView.delegate = self;
     [touchView addSubview:self.mapView];    
-    
-    
     [self.scrollView addSubview:touchView];
     
-    self.customCalloutView.frame = CGRectMake(20.0, 250.0  + 300.0, self.customCalloutView.frame.size.width, self.customCalloutView.frame.size.height);
-	[self.scrollView addSubview:self.customCalloutView];    
-    
-    
-    //self.statisticsView.view.frame = CGRectMake(0,366, self.statisticsView.view.frame.size.width, self.statisticsView.view.frame.size.height);
+   	
     self.statisticsView = [[StatsViewController alloc] initWithNibName:@"StatsViewController" bundle:nil];
     self.statisticsView.view.frame = CGRectMake(0, 366,self.statisticsView.view.frame.size.width, self.statisticsView.view.frame.size.height);
     [self.scrollView addSubview:self.statisticsView.view];
@@ -164,24 +149,9 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     
     [self.scrollView setContentSize:CGSizeMake(320, 750)];
 
+	
     
-    
-    
-    
-      /* self.filtreLabel.frame = CGRectMake(0, 0, 738, 21);
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:30.0];
-    [UIView setAnimationCurve:UIViewAnimationCurveLinear];
-    self.filtreLabel.frame = CGRectMake(-738, 0, 738, 21);
-    [UIView commitAnimations];
-    */
-    //////
-    
-    
-    
-    
-    
-	// Do any additional setup after loading the view, typically from a nib.
+    // Do any additional setup after loading the view, typically from a nib.
 }
 
 
@@ -296,11 +266,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
         NSNumber *ad_id = [row objectForKey:@"id"];/////////
         NSString * name = [row objectForKey:@"name"];     
         NSString * subName = [row objectForKey:@"property_type"];
-        NSString *adresa = [row objectForKey:@"adress_line"];
-        NSString *pret = [row objectForKey:@"pret"];
-        NSString *tip = [row objectForKey:@"ad_type"];
-        NSString *moneda = [row objectForKey:@"moneda"];
-        
+               
         CLLocationCoordinate2D coordinate;
         coordinate.latitude = latitude.doubleValue;
         coordinate.longitude = longitude.doubleValue; 
@@ -308,56 +274,16 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
         //annotation.coordinate = coordinate;
         annotation.locationId = ad_id.intValue; 
         NSLog(@"idul %d",annotation.locationId);
-        ///
-        
-        annotation.tipProprietate = subName;//
-        annotation.pret = [pret stringByAppendingString:moneda];
-        
-        annotation.adresa=adresa;
-        annotation.tipAnunt = tip;
-        
+       
         
         [_mapView addAnnotation:annotation]; 
         [annotation release];        
-        //Test Ad
         
-        /*      TAd *anAd = [TAd alloc];
-         [anAd TAd:row];
-         NSLog(@"oras:%@", [anAd.ad objectForKey:@"oras"]);
-         [anAd release];
-         */
-        //
     }
     NSNumber *found = [json objectForKey:@"ads_found"];
     NSLog(@" ADS FOUND %d",found.intValue);
 }
 
--(IBAction)detaliiAnunt:(id)sender
-{
-    UIButton *senderButton = (UIButton*)sender;
-    NSLog(@"id anunt selectat este: %d",senderButton.tag);
-    
-    /////adaugat o data cu customCalloutView///////
-    [self.mapView deselectAnnotation:selectedAnnotation animated:NO];
-    [self hideAnnotation];
-    /////////////////////////////////////////////// 
-    
-    
-    
-    // aax =[apdelegate.appSession.globalAdList getAdAtIndex:0];
-    // NSLog(@"add%@", [aax.ad objectForKey:@"oras"]);   
-    
-    DetaliiAnuntViewController *detaliiAnuntViewController = [[[DetaliiAnuntViewController alloc] initWithNibName:@"DetaliiAnuntViewController" bundle:nil]autorelease];
-    
-    detaliiAnuntViewController.ad_id = senderButton.tag;
-    
-    
-    [self.navigationController pushViewController:detaliiAnuntViewController animated:YES];    
-    
-    
-    /// 
-    
-}
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation{
     NSLog(@"in annotation method");
@@ -435,80 +361,39 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
 	}
 }
 - (void)showAnnotation:(TLocation*)annotation {
-	//self.moreInfoView.text.text = annotation.title;
-    //if(selectedAnnotation==nil)[self hideAnnotation];
-    NSLog(@"heeeeere");
-    
-    /////
-    self.thumbnailAnuntImageView.image = [UIImage imageNamed:@"house.jpg"];
-    
-    self.suprafataAnuntLabel.text = annotation.tipProprietate;
-    self.adresaAnuntLabel.text = annotation.adresa;
-    self.pretAnuntLabel.text = annotation.pret;
-    self.tipAnuntLabel.text=annotation.tipAnunt;
-    self.favoritAnuntButton.tag = annotation.locationId;
-    self.detaliiButton.tag=annotation.locationId;
-    ///////
-    
-	[UIView beginAnimations: @"moveCNGCallout" context: nil];
-	[UIView setAnimationDelegate: self];
-	[UIView setAnimationDuration: 0.5];
-	[UIView setAnimationCurve: UIViewAnimationCurveEaseInOut];
-	self.customCalloutView.frame = CGRectMake(10.0, 250.0, self.customCalloutView.frame.size.width, self.customCalloutView.frame.size.height);
-    
-    //button tag etc
-    
-	[UIView commitAnimations];	
-///////////  switch:
-    //someView = [[SomeView alloc] initWithNibName:@"SomeView" bundle:nil];
-    [self.statisticsView.view addSubview:someView.view];
-    someView.view.frame = CGRectMake(0,400, self.statisticsView.view.frame.size.width, self.statisticsView.view.frame.size.height);
-    [UIView animateWithDuration:0.5 animations:^{
-        someView.view.frame = CGRectMake(0,0, self.statisticsView.view.frame.size.width, self.statisticsView.view.frame.size.height);}];
-
-    
 	
+    //NSLog(@"showing annotation");
+    
+    
+	[self.statisticsView.view addSubview:self.detaliiAnuntViewController.view];
+    [self.detaliiAnuntViewController loadAdWithId:annotation.locationId];
+    self.detaliiAnuntViewController.view.frame = CGRectMake(0,400, self.statisticsView.view.frame.size.width, self.statisticsView.view.frame.size.height);
+    [UIView animateWithDuration:0.5 animations:^{
+        self.detaliiAnuntViewController.view.frame = CGRectMake(0,0, self.statisticsView.view.frame.size.width, self.statisticsView.view.frame.size.height);}];
+
 }
 
 - (void) stopFollowLocation {
-	//NSLog(@"stopFollowLocation called. Good place to put stop follow location annotation code.");
 	
-	//MyAnnotation* annotation;
-	//for (annotation in mapView.annotations) {
-    [self.mapView deselectAnnotation:selectedAnnotation animated:NO];
-	//}
+	[self.mapView deselectAnnotation:selectedAnnotation animated:NO];
+	
 	
 	[self hideAnnotation];
-    [ someView.view removeFromSuperview];
+    [self.detaliiAnuntViewController.view removeFromSuperview];
 	
 }
 
 - (void)hideAnnotation {
-	//self.moreInfoView.text.text = nil;
-    //[self.customCalloutView removeFromSuperview];
-    //self.thumbnailAnuntImageView = nil;
-    
+	/*    
 	[UIView beginAnimations: @"moveCNGCalloutOff" context: nil];
 	[UIView setAnimationDelegate: self];
 	[UIView setAnimationDuration: 0.5];
 	[UIView setAnimationCurve: UIViewAnimationCurveEaseInOut];
 	self.customCalloutView.frame = CGRectMake(10.0, 250.0 + 300, self.customCalloutView.frame.size.width, self.customCalloutView.frame.size.height);
 	[UIView commitAnimations];
+     */
 }
 
--(IBAction)closePopup:(id)sender
-{
-    
-    [self.mapView deselectAnnotation:selectedAnnotation animated:NO];
-    [self hideAnnotation];
-}
--(IBAction)addToFav:(id)sender
-{
-    UIButton *senderButton = (UIButton*)sender;
-    NSLog(@"id anunt adaugat in favorite este: %d",senderButton.tag);
-    
-    //de adaugat la faves
-}    
 
 //afisam fie anunturile favorite, fie toate anunturile
 -(void) showFavAdsOnMap
@@ -518,24 +403,19 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
       self.navigationItem.rightBarButtonItem.tag=1;
         self.navigationItem.rightBarButtonItem.image = [UIImage imageNamed:@"starfav.png"];
 
-        //de deselectat pinul curent selectat(poate nu este in favorite)
+        //deselectam pinul curent selectat(poate nu este in favorite)
+        [self.mapView deselectAnnotation:selectedAnnotation animated:NO];
     }
     else 
     {NSLog(@"Show all ads on map/deselect fav button");
      self.navigationItem.rightBarButtonItem.tag=0;
         self.navigationItem.rightBarButtonItem.image = [UIImage imageNamed:@"starfavDeactivat.png"];
-        //de deselectat pinul curent selectat(altfel ii ramane ca icon casuta rosie)
+        
+        //deselectat pinul curent selectat
+    [self.mapView deselectAnnotation:selectedAnnotation animated:NO];
     }
     
 }
-
-/*
--(void)showMyAdsOnMap
-{
-    NSLog(@"Show my ads on map");
-}
-*/
-
 
 
 /////////////////////
@@ -575,17 +455,8 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     [mapView release];
     [mapNavItem release];
     //////
-    [customCalloutView release];
     [selectedAnnotation release];
     [touchView release];
-    ////////
-    [adresaAnuntLabel release];
-    [pretAnuntLabel release];
-    [tipAnuntLabel release];
-    [suprafataAnuntLabel release];
-    [favoritAnuntButton release];
-    [thumbnailAnuntImageView release];
-    [detaliiButton release];
     [statisticsView release];
     [scrollView release];
     [subScroll release];

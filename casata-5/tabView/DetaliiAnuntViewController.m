@@ -80,21 +80,29 @@
     self.anuntTypeLabel.text = [self.theAd.ad objectForKey:@"ad_type"];
     
     self.thumbnailImageView.image = [UIImage imageNamed:@"house.jpg"];
-
+    
+    
+    
+    
+    NSLog(@"nr charactere adresa: %d", [[self.theAd.ad objectForKey:@"adress_line"] length]);
    
     if([[self.theAd.ad objectForKey:@"adress_line"] length] <=24)
     {[self.adressLineLabel sizeToFit];
         self.adressLineLabel.frame = CGRectMake(20, 346, 281, self.adressLineLabel.frame.size.height);
        
     }
+    else
+    {[self.adressLineLabel setFont:[UIFont fontWithName:@"Helvetica" size:12]];
+        [self.adressLineLabel sizeToFit];}
     
     if([[self.theAd.ad objectForKey:@"ad_text"] length] <=24)
     {[self.adTextLabel sizeToFit];
      self.adTextLabel.frame = CGRectMake(20, 298, 280, self.adTextLabel.frame.size.height);
     }
-    
-    
-    
+     else 
+     {[self.adTextLabel setFont:[UIFont fontWithName:@"Helvetica" size:12]];
+    [self.adTextLabel sizeToFit];}
+             
     //test thumnails in scrollview de unde sa selectezi ce sa-ti apara in imageview
     self.imgList = [[TImageList alloc] init];
     TImage *img1 = [TImage alloc];

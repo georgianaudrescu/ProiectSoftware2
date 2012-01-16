@@ -10,7 +10,7 @@
 
 @interface TImage : NSObject
 {
-    UIImageView *imageView;
+    UIImage *image; //change from UIImageView to UIImage
     NSString *name;
     NSString *description;
     NSURL *url;
@@ -21,12 +21,12 @@
 @property(nonatomic, assign) int defaultValue;
 @property(nonatomic,copy) NSString *name;
 @property(nonatomic,copy) NSString *description;
-@property(nonatomic,copy) UIImageView *imageView;
+@property(nonatomic,copy) UIImage *image;
 @property(nonatomic,copy) NSURL *url;
 
 -(void)initWithImageFromUrlString:(NSString *) anURLString;
 -(void) initWithImage:(UIImage *) anImage;
--(UIImageView*)theImageView;
+-(UIImage*)theImage;
 -(void)uploadImage:(int)adId;
 
 

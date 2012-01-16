@@ -49,6 +49,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
         //setam butonul din stanga navBar-ului -adauga anunt
         self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"+" style:UIBarButtonItemStylePlain target:self action:@selector(goToAdaugaAnunt)]autorelease];
         self.navigationItem.leftBarButtonItem.tintColor = [UIColor blackColor];
+        self.navigationItem.leftBarButtonItem.image = [UIImage imageNamed:@"plus.png"];
         
         //setam butonul din dreapta navBar-ului -favorite pe harta
         self.navigationItem.rightBarButtonItem =  [[[UIBarButtonItem alloc] initWithTitle:@"Fav" style:UIBarButtonItemStylePlain target:self action:@selector(showFavAdsOnMap)]autorelease]; 
@@ -119,6 +120,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     
     self.navigationItem.rightBarButtonItem.image = [UIImage imageNamed:@"starfav.png"];
     self.navigationItem.rightBarButtonItem.image = [UIImage imageNamed:@"starfavDeactivat.png"];
+    self.navigationItem.leftBarButtonItem.image = [UIImage imageNamed:@"plus.png"];
     
       
     self.detaliiAnuntViewController =[[DetaliiAnuntViewController alloc] initWithNibName:@"DetaliiAnuntViewController" bundle:nil];
@@ -147,7 +149,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     [self.scrollView addSubview:self.subScroll];
     */
     
-    [self.scrollView setContentSize:CGSizeMake(320, 750)];
+    [self.scrollView setContentSize:CGSizeMake(320, 782)];
 
 	
     
@@ -353,7 +355,8 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
 			NSLog(@"annotation deselected %@", ((TAnnotationView*) object).annotation.title);
             [self hideAnnotation];
             ((TAnnotationView*) object).image = [UIImage imageNamed:@"bluehouse.png"];
-			
+			[self.detaliiAnuntViewController.view removeFromSuperview];
+            
             // selectedAnnotation=nil;
             
 			
@@ -379,7 +382,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
 	
 	
 	[self hideAnnotation];
-    [self.detaliiAnuntViewController.view removeFromSuperview];
+    
 	
 }
 

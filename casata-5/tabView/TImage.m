@@ -9,7 +9,7 @@
 #import "TImage.h"
 
 @implementation TImage
-@synthesize imageView,imageId,name,url,description,defaultValue; 
+@synthesize image,imageId,name,url,description,defaultValue; 
 
 -(void)initWithImageFromUrlString:(NSString *) anURLString
 { 
@@ -17,12 +17,12 @@
        NSData* imageData = [[NSData alloc]initWithContentsOfURL:self.url];
     
     //creeaza view-ul pt imaginea de la url
-    UIImage* image = [[UIImage alloc] initWithData:imageData];
+    self.image = [[UIImage alloc] initWithData:imageData];
     //[imageView setImage:image];
-    imageView = [[UIImageView alloc] initWithImage:image];
+    
   
     [imageData release];
-    [image release];    
+    
 
 
 }
@@ -30,15 +30,15 @@
 //initializarea imageView-ului cu un UIImage(folositor pt image upload, unde pickerul returneaza un UIImage)
 -(void) initWithImage:(UIImage *) anImage
 {
-    imageView = [[UIImageView alloc] initWithImage:anImage];
+    self.image = anImage;
     
        
     
     
 }
--(UIImageView *)theImageView
+-(UIImage *)theImage
 {
-    return self.imageView;
+    return self.image;
 }
 -(void)uploadImage:(int)adId
 {
@@ -71,7 +71,7 @@
     [request addValue:contentType forHTTPHeaderField:@"Content-Type"];
     
     // file
-    NSData *imageData = UIImageJPEGRepresentation(imageView.image, 90);
+    NSData *imageData = UIImageJPEGRepresentation(self.image, 90);
     
     [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
     [body appendData:[[NSString stringWithString:@"Content-Disposition: attachment; name=\"userfile\"; filename=\".jpg\"\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
@@ -112,7 +112,7 @@
 {
     
     self.url = nil;
-    self.imageView=nil;
+    self.image=nil;
     self.description=nil;
     self.name=nil;
        

@@ -9,6 +9,7 @@
 #import "MyAdsViewController.h"
 
 @implementation MyAdsViewController
+@synthesize tableAds;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -32,6 +33,51 @@
     
     
 }
+
+#pragma mark Table view methods
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+// Customize the number of rows in the table view.
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+	//return [propertyTypes count];
+    return 5;
+}
+
+// Customize the appearance of table view cells.
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    static NSString *CellIdentifier = @"Cell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+    }
+    
+        cell.imageView.image = [UIImage imageNamed:@"house.jpg"];
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleChecking:)];
+    [cell.imageView addGestureRecognizer:tap];
+    [tap release];
+    
+    //cell.textLabel.text = [ propertyTypes objectAtIndex:[indexPath row]];
+    UIView *backgroundView = [[UIView alloc] init];
+    backgroundView.backgroundColor = [UIColor blackColor];
+    
+    cell.selectedBackgroundView = backgroundView;
+    [backgroundView release];
+    
+    
+    cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:15];
+    cell.textLabel.text = [NSString	 stringWithFormat:@"Cell Row #%d", [indexPath row]];
+    //cell.textLabel.text = [ propertyTypes objectAtIndex:[indexPath row]];
+    
+    return cell;
+}
+
+
 
 - (void)didReceiveMemoryWarning
 {

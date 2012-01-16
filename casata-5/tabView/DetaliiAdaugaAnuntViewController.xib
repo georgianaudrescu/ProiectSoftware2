@@ -54,7 +54,7 @@
 								<string key="NSReuseIdentifierKey">_NS:418</string>
 								<object class="NSColor" key="IBUIBackgroundColor">
 									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MSAwLjk0NzI5NzgzMTEgMC42MjIwOTMxMzkxAA</bytes>
+									<bytes key="NSRGB">MC45OTEyNzE4NDIgMSAwLjg0NzU0MDgxOTcAA</bytes>
 								</object>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -71,7 +71,7 @@
 							<object class="IBUILabel" id="1025228809">
 								<reference key="NSNextResponder" ref="69015193"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{54, 268}, {107, 21}}</string>
+								<string key="NSFrame">{{54, 289}, {107, 21}}</string>
 								<reference key="NSSuperview" ref="69015193"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="436891192"/>
@@ -102,7 +102,7 @@
 							<object class="IBUISlider" id="436891192">
 								<reference key="NSNextResponder" ref="69015193"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{151, 268}, {118, 23}}</string>
+								<string key="NSFrame">{{151, 289}, {118, 23}}</string>
 								<reference key="NSSuperview" ref="69015193"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="341917876"/>
@@ -118,7 +118,7 @@
 							<object class="IBUITextView" id="341917876">
 								<reference key="NSNextResponder" ref="69015193"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{26, 308}, {269, 83}}</string>
+								<string key="NSFrame">{{26, 329}, {269, 83}}</string>
 								<reference key="NSSuperview" ref="69015193"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView"/>
@@ -150,7 +150,7 @@
 							<object class="IBUILabel" id="752516556">
 								<reference key="NSNextResponder" ref="69015193"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{54, 223}, {107, 21}}</string>
+								<string key="NSFrame">{{54, 244}, {107, 21}}</string>
 								<reference key="NSSuperview" ref="69015193"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="554319243"/>
@@ -171,7 +171,7 @@
 							<object class="IBUISlider" id="554319243">
 								<reference key="NSNextResponder" ref="69015193"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{151, 222}, {118, 23}}</string>
+								<string key="NSFrame">{{151, 243}, {118, 23}}</string>
 								<reference key="NSSuperview" ref="69015193"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="1025228809"/>
@@ -243,7 +243,7 @@
 								<reference key="IBTintColor" ref="317290189"/>
 							</object>
 						</array>
-						<string key="NSFrameSize">{320, 430}</string>
+						<string key="NSFrameSize">{320, 460}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="782098872"/>
@@ -253,19 +253,18 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
 				</array>
-				<string key="NSFrame">{{0, 64}, {320, 367}}</string>
+				<string key="NSFrame">{{0, 64}, {320, 416}}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="69015193"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">1</int>
-					<bytes key="NSRGB">MSAwLjk0NzI5NzgzMTEgMC42MjIwOTMxMzkxAA</bytes>
+					<bytes key="NSRGB">MC45OTEyNzE4NDIgMSAwLjg0NzU0MDgxOTcAA</bytes>
 				</object>
 				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
 				<object class="IBUISimulatedNavigationBarMetrics" key="IBUISimulatedTopBarMetrics">
 					<bool key="IBUIPrompted">NO</bool>
 				</object>
-				<object class="IBUISimulatedTabBarMetrics" key="IBUISimulatedBottomBarMetrics"/>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
 		</array>
@@ -345,10 +344,10 @@
 						<array class="NSMutableArray" key="children">
 							<reference ref="782098872"/>
 							<reference ref="455531100"/>
-							<reference ref="341917876"/>
+							<reference ref="71473278"/>
 							<reference ref="1025228809"/>
 							<reference ref="436891192"/>
-							<reference ref="71473278"/>
+							<reference ref="341917876"/>
 							<reference ref="752516556"/>
 							<reference ref="554319243"/>
 						</array>

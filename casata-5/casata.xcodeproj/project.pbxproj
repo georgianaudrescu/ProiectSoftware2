@@ -21,7 +21,6 @@
 		3A37A445149B774A0053E39F /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A37A443149B774A0053E39F /* LoginViewController.m */; };
 		3A37A446149B774A0053E39F /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A37A444149B774A0053E39F /* LoginViewController.xib */; };
 		3A37A476149BB6C70053E39F /* StatsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A37A474149BB6C70053E39F /* StatsViewController.m */; };
-		3A37A477149BB6C70053E39F /* StatsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A37A475149BB6C70053E39F /* StatsViewController.xib */; };
 		3A548A1D14B891D90056DE1F /* TLocationList.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A548A1C14B891D90056DE1F /* TLocationList.m */; };
 		3A56AD1514AB85B400C6B6B0 /* magnify.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A56AD1114AB85B300C6B6B0 /* magnify.png */; };
 		3A56AD1614AB85B400C6B6B0 /* linechart.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A56AD1214AB85B300C6B6B0 /* linechart.png */; };
@@ -54,7 +53,6 @@
 		8C14EC3514C0296400FF86AC /* redhouse.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C14EC3114C0296400FF86AC /* redhouse.png */; };
 		8C14EC3614C0296400FF86AC /* staricon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C14EC3214C0296400FF86AC /* staricon.png */; };
 		8C14EC3714C0296400FF86AC /* thumbnail.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8C14EC3314C0296400FF86AC /* thumbnail.jpg */; };
-		8C14EC3914C02A8800FF86AC /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C14EC3814C02A8800FF86AC /* MapViewController.xib */; };
 		8C14EC3E14C05F0700FF86AC /* appIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C14EC3C14C05F0700FF86AC /* appIcon@2x.png */; };
 		8C14EC3F14C05F0700FF86AC /* appIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C14EC3D14C05F0700FF86AC /* appIcon.png */; };
 		8C25805114C2F84B0096A363 /* starfav.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C25804F14C2F84B0096A363 /* starfav.png */; };
@@ -86,6 +84,8 @@
 		8CAF1E3214B39AE60098F56B /* PrefTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CAF1E2E14B39AE60098F56B /* PrefTableViewController.xib */; };
 		8CB0F6C614B722A400562FBE /* TFav.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB0F6C514B722A400562FBE /* TFav.m */; };
 		8CB0F6CA14B75CBE00562FBE /* TAppSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB0F6C914B75CBE00562FBE /* TAppSession.m */; };
+		8CB22C4B14C3AE51006C6EFC /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CB22C4A14C3AE50006C6EFC /* MapViewController.xib */; };
+		8CB22C4D14C3AE9A006C6EFC /* StatsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CB22C4C14C3AE9A006C6EFC /* StatsViewController.xib */; };
 		8CB2399414B3509B007BDFEE /* LocalizareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB2399214B3509B007BDFEE /* LocalizareViewController.m */; };
 		8CB2399514B3509B007BDFEE /* LocalizareViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CB2399314B3509B007BDFEE /* LocalizareViewController.xib */; };
 		8CB2399914B358C9007BDFEE /* AdaugaImaginiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB2399714B358C8007BDFEE /* AdaugaImaginiViewController.m */; };
@@ -150,7 +150,6 @@
 		3A37A444149B774A0053E39F /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		3A37A473149BB6C70053E39F /* StatsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatsViewController.h; sourceTree = "<group>"; };
 		3A37A474149BB6C70053E39F /* StatsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatsViewController.m; sourceTree = "<group>"; };
-		3A37A475149BB6C70053E39F /* StatsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatsViewController.xib; sourceTree = "<group>"; };
 		3A548A1B14B891D90056DE1F /* TLocationList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLocationList.h; sourceTree = "<group>"; };
 		3A548A1C14B891D90056DE1F /* TLocationList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLocationList.m; sourceTree = "<group>"; };
 		3A56AD1114AB85B300C6B6B0 /* magnify.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = magnify.png; sourceTree = "<group>"; };
@@ -274,7 +273,6 @@
 		8C14EC3114C0296400FF86AC /* redhouse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redhouse.png; sourceTree = "<group>"; };
 		8C14EC3214C0296400FF86AC /* staricon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = staricon.png; sourceTree = "<group>"; };
 		8C14EC3314C0296400FF86AC /* thumbnail.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = thumbnail.jpg; sourceTree = "<group>"; };
-		8C14EC3814C02A8800FF86AC /* MapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
 		8C14EC3C14C05F0700FF86AC /* appIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "appIcon@2x.png"; sourceTree = "<group>"; };
 		8C14EC3D14C05F0700FF86AC /* appIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appIcon.png; sourceTree = "<group>"; };
 		8C25804F14C2F84B0096A363 /* starfav.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = starfav.png; sourceTree = "<group>"; };
@@ -318,6 +316,8 @@
 		8CB0F6C514B722A400562FBE /* TFav.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFav.m; sourceTree = "<group>"; };
 		8CB0F6C814B75CBC00562FBE /* TAppSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAppSession.h; sourceTree = "<group>"; };
 		8CB0F6C914B75CBE00562FBE /* TAppSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAppSession.m; sourceTree = "<group>"; };
+		8CB22C4A14C3AE50006C6EFC /* MapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
+		8CB22C4C14C3AE9A006C6EFC /* StatsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatsViewController.xib; sourceTree = "<group>"; };
 		8CB2399114B3509B007BDFEE /* LocalizareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocalizareViewController.h; path = ../LocalizareViewController.h; sourceTree = "<group>"; };
 		8CB2399214B3509B007BDFEE /* LocalizareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocalizareViewController.m; path = ../LocalizareViewController.m; sourceTree = "<group>"; };
 		8CB2399314B3509B007BDFEE /* LocalizareViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LocalizareViewController.xib; path = ../LocalizareViewController.xib; sourceTree = "<group>"; };
@@ -467,7 +467,7 @@
 			children = (
 				3A37A473149BB6C70053E39F /* StatsViewController.h */,
 				3A37A474149BB6C70053E39F /* StatsViewController.m */,
-				3A37A475149BB6C70053E39F /* StatsViewController.xib */,
+				8CB22C4C14C3AE9A006C6EFC /* StatsViewController.xib */,
 			);
 			name = Statistics;
 			sourceTree = "<group>";
@@ -475,54 +475,54 @@
 		3A70A915149BB84700203169 /* images */ = {
 			isa = PBXGroup;
 			children = (
-				8C25804F14C2F84B0096A363 /* starfav.png */,
-				8C25805014C2F84B0096A363 /* starfavDeactivat.png */,
-				8C7A71A114C2466600CAC575 /* trendCrescator.png */,
-				8C7A71A214C2466600CAC575 /* trendDescrescator.png */,
-				8C14EC3C14C05F0700FF86AC /* appIcon@2x.png */,
+				ACA19E5B14ACC2BD0066D760 /* 07-map-marker.png */,
+				ACA19E5C14ACC2BD0066D760 /* 137-presentation.png */,
+				8C800B3814ADD59700F498A5 /* adauga_anunt.png */,
 				8C14EC3D14C05F0700FF86AC /* appIcon.png */,
-				8C14EC3014C0296400FF86AC /* greenhouse.png */,
-				8C14EC3114C0296400FF86AC /* redhouse.png */,
-				8C14EC3214C0296400FF86AC /* staricon.png */,
-				8C14EC3314C0296400FF86AC /* thumbnail.jpg */,
+				8C14EC3C14C05F0700FF86AC /* appIcon@2x.png */,
+				ACA19E5D14ACC2BD0066D760 /* bg.png */,
+				3A56AD3914ABA00D00C6B6B0 /* bluehouse.png */,
 				8CB34F1F14BEE41800DC7AA6 /* casadr.png */,
 				8CB34F2014BEE41800DC7AA6 /* casast.png */,
 				8CB34F2114BEE41800DC7AA6 /* casatasus2.png */,
-				8CB34F2214BEE41800DC7AA6 /* fundal2.png */,
-				8C71E10014BE42B3005A1A01 /* dr.png */,
-				8C71E10114BE42B3005A1A01 /* st.png */,
-				8C71E10214BE42B3005A1A01 /* sus.png */,
-				3AFE626714BE1B6C00B3936D /* filter.png */,
-				3A2CAC1714BB00EA00D68F6C /* house.jpg */,
-				8CB34F2814BEF3C200DC7AA6 /* logosmall.png */,
-				8CCC850714B3B81200B9FD47 /* CloseIcon.png */,
-				8CCC850014B3A9A300B9FD47 /* fundal.png */,
-				8CB239A614B374F1007BDFEE /* rotita.png */,
-				8C800B3814ADD59700F498A5 /* adauga_anunt.png */,
-				8C800B2F14ADCB5500F498A5 /* homepage.png */,
-				ACA19E5B14ACC2BD0066D760 /* 07-map-marker.png */,
-				ACA19E5C14ACC2BD0066D760 /* 137-presentation.png */,
-				ACA19E5D14ACC2BD0066D760 /* bg.png */,
 				ACA19E4314ACC26C0066D760 /* cautari_salvate.png */,
 				ACA19E4414ACC26C0066D760 /* chart.png */,
-				ACA19E4514ACC26D0066D760 /* gri_2.png */,
+				8CCC850714B3B81200B9FD47 /* CloseIcon.png */,
+				8C71E10014BE42B3005A1A01 /* dr.png */,
+				3AFE626714BE1B6C00B3936D /* filter.png */,
+				8CCC850014B3A9A300B9FD47 /* fundal.png */,
+				8CB34F2214BEE41800DC7AA6 /* fundal2.png */,
+				8C14EC3014C0296400FF86AC /* greenhouse.png */,
 				ACA19E4614ACC26D0066D760 /* gri.png */,
+				ACA19E4514ACC26D0066D760 /* gri_2.png */,
+				ACA19E3714ACC0B40066D760 /* griNegru.png */,
+				3A70A918149BB89200203169 /* home.png */,
+				8C800B2F14ADCB5500F498A5 /* homepage.png */,
+				3A2CAC1714BB00EA00D68F6C /* house.jpg */,
 				ACA19E4714ACC26D0066D760 /* lightbulb.png */,
+				3A56AD1214AB85B300C6B6B0 /* linechart.png */,
 				ACA19E4814ACC26D0066D760 /* login.png */,
 				ACA19E4914ACC26D0066D760 /* logo-new.png */,
+				8CB34F2814BEF3C200DC7AA6 /* logosmall.png */,
+				3A56AD1114AB85B300C6B6B0 /* magnify.png */,
+				3A56AD1314AB85B300C6B6B0 /* mapicon.png */,
 				ACA19E4A14ACC26D0066D760 /* pin.png */,
 				ACA19E4B14ACC26D0066D760 /* radar.png */,
+				8C14EC3114C0296400FF86AC /* redhouse.png */,
+				8CB239A614B374F1007BDFEE /* rotita.png */,
 				ACA19E4C14ACC26D0066D760 /* search.png */,
 				ACA19E4D14ACC26D0066D760 /* setari.png */,
-				ACA19E4E14ACC26D0066D760 /* yellow.png */,
-				ACA19E3714ACC0B40066D760 /* griNegru.png */,
-				3A56AD3914ABA00D00C6B6B0 /* bluehouse.png */,
-				3A56AD1114AB85B300C6B6B0 /* magnify.png */,
-				3A56AD1214AB85B300C6B6B0 /* linechart.png */,
-				3A56AD1314AB85B300C6B6B0 /* mapicon.png */,
-				3A56AD1414AB85B300C6B6B0 /* user.png */,
+				8C71E10114BE42B3005A1A01 /* st.png */,
 				3A70A917149BB89200203169 /* star.png */,
-				3A70A918149BB89200203169 /* home.png */,
+				8C25804F14C2F84B0096A363 /* starfav.png */,
+				8C25805014C2F84B0096A363 /* starfavDeactivat.png */,
+				8C14EC3214C0296400FF86AC /* staricon.png */,
+				8C71E10214BE42B3005A1A01 /* sus.png */,
+				8C14EC3314C0296400FF86AC /* thumbnail.jpg */,
+				8C7A71A114C2466600CAC575 /* trendCrescator.png */,
+				8C7A71A214C2466600CAC575 /* trendDescrescator.png */,
+				3A56AD1414AB85B300C6B6B0 /* user.png */,
+				ACA19E4E14ACC26D0066D760 /* yellow.png */,
 			);
 			name = images;
 			sourceTree = "<group>";
@@ -535,7 +535,7 @@
 				3AE9B15514C3501100824AA1 /* MyAdsViewController.xib */,
 				3A37A41F149B6FF50053E39F /* MapViewController.h */,
 				3A37A420149B6FF50053E39F /* MapViewController.m */,
-				8C14EC3814C02A8800FF86AC /* MapViewController.xib */,
+				8CB22C4A14C3AE50006C6EFC /* MapViewController.xib */,
 				8C0BFF9414B9EC5700D49747 /* DetaliiAnuntViewController.h */,
 				8C0BFF9514B9EC5800D49747 /* DetaliiAnuntViewController.m */,
 				8C0BFF9614B9EC5900D49747 /* DetaliiAnuntViewController.xib */,
@@ -811,7 +811,6 @@
 			files = (
 				3A37A418149B6FF50053E39F /* InfoPlist.strings in Resources */,
 				3A37A446149B774A0053E39F /* LoginViewController.xib in Resources */,
-				3A37A477149BB6C70053E39F /* StatsViewController.xib in Resources */,
 				3A70A91B149BB89200203169 /* star.png in Resources */,
 				3A70A91C149BB89200203169 /* home.png in Resources */,
 				3A56AD1514AB85B400C6B6B0 /* magnify.png in Resources */,
@@ -870,7 +869,6 @@
 				8C14EC3514C0296400FF86AC /* redhouse.png in Resources */,
 				8C14EC3614C0296400FF86AC /* staricon.png in Resources */,
 				8C14EC3714C0296400FF86AC /* thumbnail.jpg in Resources */,
-				8C14EC3914C02A8800FF86AC /* MapViewController.xib in Resources */,
 				8C14EC3E14C05F0700FF86AC /* appIcon@2x.png in Resources */,
 				8C14EC3F14C05F0700FF86AC /* appIcon.png in Resources */,
 				3A0222EB14C1D9E900C4ED63 /* SomeView.xib in Resources */,
@@ -879,6 +877,8 @@
 				8C25805114C2F84B0096A363 /* starfav.png in Resources */,
 				8C25805214C2F84B0096A363 /* starfavDeactivat.png in Resources */,
 				3AE9B15714C3501100824AA1 /* MyAdsViewController.xib in Resources */,
+				8CB22C4B14C3AE51006C6EFC /* MapViewController.xib in Resources */,
+				8CB22C4D14C3AE9A006C6EFC /* StatsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

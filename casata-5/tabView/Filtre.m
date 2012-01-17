@@ -61,7 +61,7 @@
     //for animation
     self.view.frame = CGRectMake(0,0, 320, 460);
     
-    [UIView animateWithDuration:1 
+    [UIView animateWithDuration:0.5 
                      animations:^{self.view.frame = CGRectMake(320,0, 320, 460);}
                      completion:^(BOOL completed){[self.view removeFromSuperview];}];
     

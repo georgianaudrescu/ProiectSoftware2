@@ -355,7 +355,8 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
 			NSLog(@"annotation deselected %@", ((TAnnotationView*) object).annotation.title);
             [self hideAnnotation];
             ((TAnnotationView*) object).image = [UIImage imageNamed:@"bluehouse.png"];
-			[self.detaliiAnuntViewController.view removeFromSuperview];
+			//[self.detaliiAnuntViewController.view removeFromSuperview];
+            [self hideAnnotation];
             
             // selectedAnnotation=nil;
             
@@ -381,12 +382,19 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
 	[self.mapView deselectAnnotation:selectedAnnotation animated:NO];
 	
 	
-	[self hideAnnotation];
+	//[self hideAnnotation];
     
 	
 }
 
 - (void)hideAnnotation {
+    
+    //self.detaliiAnuntViewController.view.frame = CGRectMake(0,0, self.statisticsView.view.frame.size.width, self.statisticsView.view.frame.size.height);
+    [UIView animateWithDuration:0.5 animations:^{
+        self.detaliiAnuntViewController.view.frame = CGRectMake(0,500, self.statisticsView.view.frame.size.width, self.statisticsView.view.frame.size.height);}
+                     completion:^(BOOL completed){[self.detaliiAnuntViewController.view removeFromSuperview];}];    
+    
+    
 	/*    
 	[UIView beginAnimations: @"moveCNGCalloutOff" context: nil];
 	[UIView setAnimationDelegate: self];
@@ -408,6 +416,9 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
 
         //deselectam pinul curent selectat(poate nu este in favorite)
         [self.mapView deselectAnnotation:selectedAnnotation animated:NO];
+        
+        //in cazul in care scrollul este dat in jos(nu mai este vizibila harta) si se apasa pe butonul de fav, mutam scolul automat pentru a se vedea harta-putem sa schimbam daca nu este nevoie de asta
+        [self.scrollView setContentOffset: CGPointMake(0, 0) animated:YES];
     }
     else 
     {NSLog(@"Show all ads on map/deselect fav button");
@@ -416,6 +427,9 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
         
         //deselectat pinul curent selectat
     [self.mapView deselectAnnotation:selectedAnnotation animated:NO];
+        
+        //in cazul in care scrollul este dat in jos(nu mai este vizibila harta) si se apasa pe butonul de fav, mutam scolul automat pentru a se vedea harta-putem sa schimbam daca nu este nevoie de asta
+        [self.scrollView setContentOffset: CGPointMake(0, 0) animated:YES];
     }
     
 }

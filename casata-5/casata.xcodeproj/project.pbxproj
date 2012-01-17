@@ -74,6 +74,8 @@
 		8C80DD2014B34ADF0039CA37 /* DetaliiAdaugaAnuntViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C80DD1E14B34ADE0039CA37 /* DetaliiAdaugaAnuntViewController.xib */; };
 		8CA9F8D714AE2D42008F7F42 /* FavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CA9F8D514AE2D42008F7F42 /* FavViewController.m */; };
 		8CA9F8D814AE2D42008F7F42 /* FavViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CA9F8D614AE2D42008F7F42 /* FavViewController.xib */; };
+		8CAD399214C6174D002472F3 /* sageataDreapta.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CAD399014C6174D002472F3 /* sageataDreapta.png */; };
+		8CAD399314C6174D002472F3 /* sageataStanga.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CAD399114C6174D002472F3 /* sageataStanga.png */; };
 		8CAF1E2214B39A540098F56B /* SyncTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CAF1E2014B39A540098F56B /* SyncTableViewController.m */; };
 		8CAF1E2314B39A540098F56B /* SyncTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CAF1E2114B39A540098F56B /* SyncTableViewController.xib */; };
 		8CAF1E2714B39AA30098F56B /* MyAdsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CAF1E2514B39AA30098F56B /* MyAdsTableViewController.m */; };
@@ -108,6 +110,7 @@
 		8CB4556414C4A9920064D97A /* plus.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CB4556214C4A9920064D97A /* plus.png */; };
 		8CB4556614C4B1C60064D97A /* bgheader.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CB4556514C4B1C60064D97A /* bgheader.png */; };
 		8CB4A52214B92AFD007924C8 /* TSearchList.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB4A52114B92AFC007924C8 /* TSearchList.m */; };
+		8CB7DE1614C5D241003EB469 /* butonSuna.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CB7DE1514C5D241003EB469 /* butonSuna.png */; };
 		8CC3D08414B79C1C001B0F86 /* TImageList.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC3D08314B79C1C001B0F86 /* TImageList.m */; };
 		8CCC850114B3A9A300B9FD47 /* fundal.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CCC850014B3A9A300B9FD47 /* fundal.png */; };
 		8CCC850814B3B81300B9FD47 /* CloseIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CCC850714B3B81200B9FD47 /* CloseIcon.png */; };
@@ -307,6 +310,8 @@
 		8CA9F8D414AE2D42008F7F42 /* FavViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavViewController.h; sourceTree = "<group>"; };
 		8CA9F8D514AE2D42008F7F42 /* FavViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavViewController.m; sourceTree = "<group>"; };
 		8CA9F8D614AE2D42008F7F42 /* FavViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FavViewController.xib; sourceTree = "<group>"; };
+		8CAD399014C6174D002472F3 /* sageataDreapta.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sageataDreapta.png; sourceTree = "<group>"; };
+		8CAD399114C6174D002472F3 /* sageataStanga.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sageataStanga.png; sourceTree = "<group>"; };
 		8CAF1E1F14B39A540098F56B /* SyncTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncTableViewController.h; sourceTree = "<group>"; };
 		8CAF1E2014B39A540098F56B /* SyncTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncTableViewController.m; sourceTree = "<group>"; };
 		8CAF1E2114B39A540098F56B /* SyncTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SyncTableViewController.xib; sourceTree = "<group>"; };
@@ -352,6 +357,7 @@
 		8CB4556514C4B1C60064D97A /* bgheader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bgheader.png; sourceTree = "<group>"; };
 		8CB4A52014B92AFC007924C8 /* TSearchList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSearchList.h; sourceTree = "<group>"; };
 		8CB4A52114B92AFC007924C8 /* TSearchList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSearchList.m; sourceTree = "<group>"; };
+		8CB7DE1514C5D241003EB469 /* butonSuna.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = butonSuna.png; sourceTree = "<group>"; };
 		8CC3D08214B79C1C001B0F86 /* TImageList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TImageList.h; sourceTree = "<group>"; };
 		8CC3D08314B79C1C001B0F86 /* TImageList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TImageList.m; sourceTree = "<group>"; };
 		8CCC850014B3A9A300B9FD47 /* fundal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fundal.png; sourceTree = "<group>"; };
@@ -489,6 +495,9 @@
 		3A70A915149BB84700203169 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				8CAD399014C6174D002472F3 /* sageataDreapta.png */,
+				8CAD399114C6174D002472F3 /* sageataStanga.png */,
+				8CB7DE1514C5D241003EB469 /* butonSuna.png */,
 				8CB4556114C4A9920064D97A /* plus_sign.gif */,
 				8CB4556514C4B1C60064D97A /* bgheader.png */,
 				8CB4556214C4A9920064D97A /* plus.png */,
@@ -907,6 +916,9 @@
 				8CB4556314C4A9920064D97A /* plus_sign.gif in Resources */,
 				8CB4556414C4A9920064D97A /* plus.png in Resources */,
 				8CB4556614C4B1C60064D97A /* bgheader.png in Resources */,
+				8CB7DE1614C5D241003EB469 /* butonSuna.png in Resources */,
+				8CAD399214C6174D002472F3 /* sageataDreapta.png in Resources */,
+				8CAD399314C6174D002472F3 /* sageataStanga.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

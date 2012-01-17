@@ -67,6 +67,7 @@
     
     NSLog(@"Judetul ad-ului selectat:%@", [self.theAd.ad objectForKey:@"judet"]);
     
+    //punerea textului anuntului in label-urile corespunzatoare
     self.nameLabel.text = [self.theAd.ad objectForKey:@"name"];
     self.propertyTypeLabel.text =[self.theAd.ad objectForKey:@"property_type"];
     self.adTextLabel.text = [NSString stringWithFormat:@"Descriere:  %@", [self.theAd.ad objectForKey:@"ad_text"]];
@@ -83,7 +84,7 @@
     
     
     
-    
+    //ajustarea dimensiunii textului/label-ului
     NSLog(@"nr charactere adresa: %d", [[self.theAd.ad objectForKey:@"adress_line"] length]);
    
     if([[self.theAd.ad objectForKey:@"adress_line"] length] <=24)
@@ -163,6 +164,7 @@
     
     
 }
+
 
 -(void) changeCurrentViewedImageToImageWithIndex:(id) sender
 {

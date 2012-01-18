@@ -29,7 +29,8 @@
         // Custom initialization
         [self setTitle:@"Filtre"];
         
-
+        
+        
         tableImobil = [[UITableView alloc] init];
         [tableImobil setAutoresizesSubviews:YES];
         [tableImobil setAutoresizingMask:(UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight)];

@@ -10,16 +10,8 @@
 
 @interface AdaugAnuntViewController : UIViewController
 {
-    UISegmentedControl *segmentedControl;
-    UIViewController      * activeViewController;
-    NSArray               * segmentedViewControllers;
+    
 }
-
-@property (nonatomic, retain) IBOutlet UISegmentedControl * segmentedControl;
-@property (nonatomic, retain) UIViewController            * activeViewController;
-@property (nonatomic, retain) NSArray                     * segmentedViewControllers;
-
-- (void)didChangeSegmentControl:(UISegmentedControl *)control;
 
 
 @end

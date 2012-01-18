@@ -391,10 +391,11 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     
     //self.detaliiAnuntViewController.view.frame = CGRectMake(0,0, self.statisticsView.view.frame.size.width, self.statisticsView.view.frame.size.height);
     [UIView animateWithDuration:0.5 animations:^{
-        self.detaliiAnuntViewController.view.frame = CGRectMake(0,500, self.statisticsView.view.frame.size.width, self.statisticsView.view.frame.size.height);}
-                     completion:^(BOOL completed){[self.detaliiAnuntViewController.view removeFromSuperview];}];    
+        self.detaliiAnuntViewController.view.frame = CGRectMake(0,500, self.statisticsView.view.frame.size.width, self.statisticsView.view.frame.size.height);}];    
     
     
+    //[UIView setAnimationDidStopSelector:<#(SEL)#>
+        
 	/*    
 	[UIView beginAnimations: @"moveCNGCalloutOff" context: nil];
 	[UIView setAnimationDelegate: self];

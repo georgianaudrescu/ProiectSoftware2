@@ -7,11 +7,23 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AdaugaImaginiViewController.h"
 
 @interface AdaugAnuntViewController : UIViewController
 {
-    
+    IBOutlet UITextField * pretTextField;
+    IBOutlet UITextField * suprafataTextField;
+    AdaugaImaginiViewController * adaugaImaginiView;
 }
 
+
+@property (nonatomic, strong) IBOutlet UITextField * pretTextField;
+@property (nonatomic, strong) IBOutlet UITextField * suprafataTextField;
+
+
+-(IBAction)textFieldReturn:(id)sender;
+-(IBAction)backgroundTouched:(id)sender;
+
+-(IBAction)adaugaImagini:(id)sender;
 
 @end

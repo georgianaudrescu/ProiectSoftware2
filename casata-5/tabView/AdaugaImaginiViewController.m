@@ -16,6 +16,10 @@
 
 
 @implementation AdaugaImaginiViewController
+@synthesize theImageList, imgView, imgScrollView, buttonsArray;
+@synthesize preiaCuCamera, preiaDinGalerie;
+@synthesize titluImagine, descriereImagine, valoareDefault;
+@synthesize picker;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -41,6 +45,14 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 
+    
+    
+    
+    
+    
+    
+    
+    
 //TESTS   
    /******* TStatistics Test*
 
@@ -194,6 +206,29 @@
     }
    */
     
+    self.theImageList = [[TImageList alloc] init];
+    self.picker = [[UIImagePickerController alloc] init];
+    picker.delegate=self;
+}
+
+-(IBAction)preiaImagine:(id)sender
+{
+       
+    if((UIButton *) sender == self.preiaDinGalerie)
+    {
+        self.picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    }
+    else
+    {
+        self.picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    }
+    
+    [self presentModalViewController:picker animated:YES];
+}
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
+{
+    self.imgView.image = image;
+    [[self.picker parentViewController] dismissModalViewControllerAnimated:YES];
 }
 
 - (void)viewDidUnload
@@ -207,6 +242,18 @@
 {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+-(void) dealloc
+{
+    self.theImageList=nil;
+    [imgScrollView release];
+    [imgView release];
+    [buttonsArray release];
+    [preiaDinGalerie release];
+    [preiaCuCamera release];
+    [picker release];
+    [super  dealloc];
+
 }
 
 @end

@@ -116,6 +116,9 @@
 		8CC3D08414B79C1C001B0F86 /* TImageList.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC3D08314B79C1C001B0F86 /* TImageList.m */; };
 		8CCC850114B3A9A300B9FD47 /* fundal.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CCC850014B3A9A300B9FD47 /* fundal.png */; };
 		8CCC850814B3B81300B9FD47 /* CloseIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CCC850714B3B81200B9FD47 /* CloseIcon.png */; };
+		8CE2043114C7940100BAEFB5 /* butonHalfWide.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CE2042F14C7940100BAEFB5 /* butonHalfWide.png */; };
+		8CE2043214C7940100BAEFB5 /* butonWide.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CE2043014C7940100BAEFB5 /* butonWide.png */; };
+		8CE2043514C7968F00BAEFB5 /* butonGalben.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CE2043414C7968F00BAEFB5 /* butonGalben.png */; };
 		AC02995714B70CBC0025BBF9 /* TAd.m in Sources */ = {isa = PBXBuildFile; fileRef = AC02995614B70CBC0025BBF9 /* TAd.m */; };
 		AC53EE6214B8CE9A00A2D85B /* Filtre.m in Sources */ = {isa = PBXBuildFile; fileRef = AC53EE6014B8CE9A00A2D85B /* Filtre.m */; };
 		AC53EE6314B8CE9A00A2D85B /* Filtre.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC53EE6114B8CE9A00A2D85B /* Filtre.xib */; };
@@ -366,6 +369,9 @@
 		8CC3D08314B79C1C001B0F86 /* TImageList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TImageList.m; sourceTree = "<group>"; };
 		8CCC850014B3A9A300B9FD47 /* fundal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fundal.png; sourceTree = "<group>"; };
 		8CCC850714B3B81200B9FD47 /* CloseIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CloseIcon.png; sourceTree = "<group>"; };
+		8CE2042F14C7940100BAEFB5 /* butonHalfWide.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = butonHalfWide.png; sourceTree = "<group>"; };
+		8CE2043014C7940100BAEFB5 /* butonWide.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = butonWide.png; sourceTree = "<group>"; };
+		8CE2043414C7968F00BAEFB5 /* butonGalben.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = butonGalben.png; sourceTree = "<group>"; };
 		AC02995514B70CBC0025BBF9 /* TAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAd.h; sourceTree = "<group>"; };
 		AC02995614B70CBC0025BBF9 /* TAd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAd.m; sourceTree = "<group>"; };
 		AC53EE5F14B8CE9A00A2D85B /* Filtre.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Filtre.h; sourceTree = "<group>"; };
@@ -499,6 +505,9 @@
 		3A70A915149BB84700203169 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				8CE2043414C7968F00BAEFB5 /* butonGalben.png */,
+				8CE2042F14C7940100BAEFB5 /* butonHalfWide.png */,
+				8CE2043014C7940100BAEFB5 /* butonWide.png */,
 				8CB974DF14C728B5008B2F14 /* sageataJos.png */,
 				8CB974E014C728B5008B2F14 /* sageataSus.png */,
 				8CAD399014C6174D002472F3 /* sageataDreapta.png */,
@@ -927,6 +936,9 @@
 				8CAD399314C6174D002472F3 /* sageataStanga.png in Resources */,
 				8CB974E114C728B5008B2F14 /* sageataJos.png in Resources */,
 				8CB974E214C728B5008B2F14 /* sageataSus.png in Resources */,
+				8CE2043114C7940100BAEFB5 /* butonHalfWide.png in Resources */,
+				8CE2043214C7940100BAEFB5 /* butonWide.png in Resources */,
+				8CE2043514C7968F00BAEFB5 /* butonGalben.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

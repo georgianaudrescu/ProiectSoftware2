@@ -108,6 +108,10 @@
         }
     } else return;
 }
+-(void)initImageList
+{
+    self.imageList = [[TImageList alloc] init];
+}
 
 -(id) GetAdImage:(int)ad_id
 {

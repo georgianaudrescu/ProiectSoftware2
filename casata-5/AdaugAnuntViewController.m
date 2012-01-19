@@ -11,8 +11,10 @@
 #import "LocalizareViewController.h"
 #import "AdaugaImaginiViewController.h"
 
+#define kOFFSET_FOR_KEYBOARD 160.0
+
 @implementation AdaugAnuntViewController
-@synthesize pretTextField,suprafataTextField;
+@synthesize pretTextField,suprafataTextField,tableImobil,titluTextField,camereTextField,detaliiTextView, scrollView;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -69,7 +71,72 @@
 -(void) backgroundTouched:(id)sender{
     [pretTextField resignFirstResponder];
     [suprafataTextField resignFirstResponder];
+    [pretTextField resignFirstResponder];
+    [titluTextField resignFirstResponder];
+    [detaliiTextView resignFirstResponder];
 }
+
+- (IBAction)textFieldDidBeginEditing:(UITextField *)textField
+{
+    [self animateTextField: textField up: YES];
+}
+
+
+- (IBAction)textFieldDidEndEditing:(UITextField *)textField
+{
+    [self animateTextField: textField up: NO];
+}
+
+- (void) animateTextField: (UITextField*) textField up: (BOOL) up
+{
+    const int movementDistance = 120; // tweak as needed
+    const float movementDuration = 0.3f; // tweak as needed
+    
+    int movement = (up ? -movementDistance : movementDistance);
+    
+    [UIView beginAnimations: @"anim" context: nil];
+    [UIView setAnimationBeginsFromCurrentState: YES];
+    [UIView setAnimationDuration: movementDuration];
+    self.view.frame = CGRectOffset(self.view.frame, 0, movement);
+    [UIView commitAnimations];
+}
+- (void)textViewDidBeginEditing:(UITextView *)textView
+{
+    [self animateTextView: textView up: YES];
+}
+
+
+- (void)textViewDidEndEditing:(UITextView *)textView
+{
+    [self animateTextView: textView up: NO];
+}
+
+- (void) animateTextView: (UITextView*) textView up: (BOOL) up
+{
+    const int movementDistance = 180; // tweak as needed
+    const float movementDuration = 0.3f; // tweak as needed
+    
+    int movement = (up ? -movementDistance : movementDistance);
+    
+    [UIView beginAnimations: @"anim" context: nil];
+    [UIView setAnimationBeginsFromCurrentState: YES];
+    [UIView setAnimationDuration: movementDuration];
+    self.view.frame = CGRectOffset(self.view.frame, 0, movement);
+    [UIView commitAnimations];
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range  replacementText:(NSString *)text
+{
+	if (range.length==0) {
+		if ([text isEqualToString:@"\n"]) {
+			[textView resignFirstResponder];
+			return NO;
+		}
+	}
+	
+    return YES;
+}
+
 
 - (IBAction)adaugaImagini:(id)sender{
    /* [self.view addSubview:adaugaImaginiView.view];
@@ -82,6 +149,74 @@
     
     [self.navigationController pushViewController:adaugaImaginiViewController animated:YES];
     
+}
+
+#pragma mark Table view methods
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+// Customize the number of rows in the table view.
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+	return [propertyTypes count];
+    //return 5;
+}
+
+// Customize the appearance of table view cells.
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    static NSString *CellIdentifier = @"Cell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];;
+    }
+        if ([selectedPropType isEqual:[propertyTypes objectAtIndex:indexPath.row]]) {
+        cell.imageView.image = [UIImage imageNamed:@"checkbox_ticked.png"];
+    }
+    else {
+        cell.imageView.image = [UIImage imageNamed:@"checkbox_not_ticked.png"];
+    }
+    
+    cell.textLabel.text = [ propertyTypes objectAtIndex:[indexPath row]];
+    //  return cell;
+
+    UIView *backgroundView = [[UIView alloc] init];
+    backgroundView.backgroundColor = [UIColor blackColor];
+    
+    cell.selectedBackgroundView = backgroundView;
+    [backgroundView release];
+    
+    return cell;
+}
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {   
+
+    UITableViewCell *cell = [tableImobil cellForRowAtIndexPath:indexPath];
+    
+    if([selectedPropType isEqual:[propertyTypes objectAtIndex:indexPath.row]])
+    {
+        cell.imageView.image = [UIImage imageNamed:@"checkbox_not_ticked.png"];
+        selectedPropType  =nil;
+    }
+    else
+    {
+        selectedPropType=nil;
+        [tableImobil reloadData];
+        cell.imageView.image = [UIImage imageNamed:@"checkbox_ticked.png"];
+        selectedPropType  =cell.textLabel.text;
+        selectedIndex = indexPath;
+    }
+    NSLog(@"%@",selectedPropType);
+    UIView *backgroundView = [[UIView alloc] init];
+    backgroundView.backgroundColor = [UIColor blackColor];
+    
+    cell.selectedBackgroundView = backgroundView;
+    [backgroundView release];
+
+
 }
 
 
@@ -98,7 +233,8 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
+    // register for keyboard notifications
+
 }
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
@@ -107,6 +243,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+    // unregister for keyboard notifications while not visible.
 
 }
 
@@ -118,8 +255,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-
+    
+    selectedPropType = nil;
+    
+    propertyTypes = [[NSMutableArray alloc] init];
+    [propertyTypes addObject:@"Garsoniera"];
+    [propertyTypes addObject:@"Apartament"];
+    [propertyTypes addObject:@"Casa"];
+    [propertyTypes addObject:@"Spatiu Comercial"];
+    
+    detaliiTextView.delegate = self;
     
 }
 
@@ -128,9 +273,6 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-    
 }
 
 

@@ -8,11 +8,12 @@
 
 #import "AdaugAnuntViewController.h"
 #import "AppDelegate.h"
-#import "DetaliiAdaugaAnuntViewController.h"
 #import "LocalizareViewController.h"
 #import "AdaugaImaginiViewController.h"
 
 @implementation AdaugAnuntViewController
+@synthesize pretTextField,suprafataTextField;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -30,7 +31,9 @@
 
 -(void)dealloc
 {
-   
+    [adaugaImaginiView release];
+    [pretTextField release];
+    [suprafataTextField release];
     [super dealloc];
 }
 
@@ -51,6 +54,23 @@
     [titleView sizeToFit];
     
     
+}
+
+-(void) textFieldReturn:(id)sender{
+    [sender resignFirstResponder];
+}
+
+-(void) backgroundTouched:(id)sender{
+    [pretTextField resignFirstResponder];
+    [suprafataTextField resignFirstResponder];
+}
+
+- (IBAction)adaugaImagini:(id)sender{
+    [self.view addSubview:adaugaImaginiView.view];
+    //for animation
+    adaugaImaginiView.view.frame = CGRectMake(-320,0, self.view.frame.size.width, self.view.frame.size.height);
+    [UIView animateWithDuration:0.5 animations:^{
+        adaugaImaginiView.view.frame = CGRectMake(0,0, self.view.frame.size.width, self.view.frame.size.height);}];
 }
 
 
@@ -88,21 +108,27 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    
-    
+
+    adaugaImaginiView = [[AdaugaImaginiViewController alloc] initWithNibName:@"AdaugaImaginiViewController" bundle:nil];
 }
+
+
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+    
 }
+
+
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
+
 
 @end

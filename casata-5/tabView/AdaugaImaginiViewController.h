@@ -19,8 +19,9 @@
     //
     UIButton *preiaDinGalerie;
     UIButton *preiaCuCamera;
-    UITextField *titluImagine;
-    UITextField *descriereImagine;
+    UIButton *stergeButton;
+    UITextField *titluImagineTextField;
+    UITextField *descriereImagineTextField;
     UISwitch *valoareDefault;
     UIImagePickerController *picker;
     int currentImageNr;
@@ -31,12 +32,18 @@
 @property (nonatomic, retain) IBOutlet UIScrollView *generalScrollView;
 @property (nonatomic, retain) IBOutlet UIImageView *imgView;
 @property(nonatomic, retain) NSMutableArray *buttonsArray;
-@property(nonatomic, retain) IBOutlet UIButton *preiaDinGalerie, *preiaCuCamera;
-@property(nonatomic, retain) IBOutlet UITextField *titluImagine, *descriereImagine;
+@property(nonatomic, retain) IBOutlet UIButton *preiaDinGalerie, *preiaCuCamera, *stergeButton;
+@property(nonatomic, retain) IBOutlet UITextField *titluImagineTextField, *descriereImagineTextField;
 @property(nonatomic, retain) IBOutlet UISwitch *valoareDefault;
 @property(nonatomic, retain) UIImagePickerController *picker;
 @property(nonatomic, assign) int currentImageNr;
 @property(nonatomic, assign) int totalImages;
 
 -(IBAction)preiaImagine:(id)sender;
+-(IBAction)stergeImagineCurenta:(id)sender;
+-(IBAction)switchChangedForCurrentImage:(id)sender;
+-(void)changeCurrentViewedImageToImageWithIndex:(id) sender;
+-(IBAction) textFieldReturn:(id)sender;
+-(IBAction) backgroundTouched:(id)sender;
+-(IBAction)enterEditingModeForTextFields:(id)sender;
 @end

@@ -269,7 +269,7 @@
     
     [self.buttonsArray addObject:button];   
     
-   [self.imgScrollView addSubview:[self.buttonsArray objectAtIndex:self.currentImageNr]];
+   [self.imgScrollView addSubview:[self.buttonsArray objectAtIndex:self.totalImages]];
     self.totalImages++;  
     
     

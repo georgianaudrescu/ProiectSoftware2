@@ -18,7 +18,7 @@
 @implementation AdaugaImaginiViewController
 @synthesize theImageList, imgView, imgScrollView, buttonsArray, generalScrollView;
 @synthesize preiaCuCamera, preiaDinGalerie, currentImageNr, totalImages;
-@synthesize titluImagine, descriereImagine, valoareDefault;
+@synthesize titluImagineTextField, descriereImagineTextField, valoareDefault, stergeButton;
 @synthesize picker;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -241,17 +241,24 @@
 
 -(IBAction)preiaImagine:(id)sender
 {
-       
-    if((UIButton *) sender == self.preiaDinGalerie)
-    {
-        self.picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    }
+   if(self.totalImages ==10)
+   {
+       UIAlertView *alertView = [[[UIAlertView alloc] initWithTitle:@"Nu mai poti adauga imagini" message:@"Ai deja numarul maxim de 10 imagini care pot fi adaugate unui anunt!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
+       [alertView show];
+   }
     else
     {
-        self.picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-    }
+        if((UIButton *) sender == self.preiaDinGalerie)
+        {
+            self.picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        }
+        else
+        {
+            self.picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        }
     
-    [self presentModalViewController:picker animated:YES];
+        [self presentModalViewController:picker animated:YES];
+    }
 }
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
 {
@@ -267,13 +274,115 @@
         [button setBackgroundImage:butImage forState:UIControlStateNormal];
     [butImage release];
     
-    [self.buttonsArray addObject:button];   
+    [self.buttonsArray addObject:button]; 
+    
+    TImage *img1 = [TImage alloc];
+    [img1 initWithImage:image];
+    img1.defaultValue=0;
+    img1.description=@"";
+    img1.name=@"";
+    [self.theImageList addImage:img1];
+    [img1 release];
+
+    self.descriereImagineTextField.text=@"";
+    self.titluImagineTextField.text=@"";
+    self.valoareDefault.on=NO;
+    self.currentImageNr=self.totalImages;
+    
     
    [self.imgScrollView addSubview:[self.buttonsArray objectAtIndex:self.totalImages]];
     self.totalImages++;  
+    [self.imgScrollView setContentSize:CGSizeMake((self.totalImages*50), 50)];
     
+    //muta automat scrollul cand butoanele depasesc zona vizibila
+    if(self.totalImages>6)[self.imgScrollView setContentOffset: CGPointMake((self.totalImages%6)*50, 0) animated:YES];  
     
     [self dismissModalViewControllerAnimated:YES];
+}
+-(void) changeCurrentViewedImageToImageWithIndex:(id) sender
+{
+    UIButton *senderButton = (UIButton*)sender;
+    
+    NSLog(@"buton tag: %d", senderButton.tag);
+    int x =senderButton.tag;
+    self.currentImageNr = x;
+    
+    TImage *theImag =  [self.theImageList getImageAtIndex:x];
+    self.imgView.image=theImag.image;
+    self.titluImagineTextField.text=theImag.name;
+    self.descriereImagineTextField.text=theImag.description;
+    if(theImag.defaultValue==0)
+        self.valoareDefault.on = NO;
+    else
+        self.valoareDefault.on=YES;
+    theImag=nil;
+    
+    
+    //self.imgView.image = [UIImage imageNamed:@"imgtest1.jpg"];
+}
+
+-(IBAction)stergeImagineCurenta:(id)sender
+{ if(self.totalImages>0)
+{
+    /*
+    //de tratat toate cazurile if currrent image==0 &&nrtotal ==1
+    TImage *theImag =  [self.theImageList getImageAtIndex:currentImageNr+1];
+    self.imgView.image=theImag.image;
+    theImag=nil;
+    
+    [self.buttonsArray removeObjectAtIndex:self.currentImageNr];
+    [self.theImageList removeImageAtIndex:self.currentImageNr];
+    int x;
+    for(x=self.currentImageNr;x<self.totalImages;x++)
+        [[self.buttonsArray objectAtIndex:x] setFrame:CGRectMake(((x-1)*50), 0, 50, 50)];
+    self.totalImages--;
+    */
+}   
+}
+-(IBAction)switchChangedForCurrentImage:(id)sender
+{if(self.totalImages>0)
+{
+     TImage *theImag =  [self.theImageList getImageAtIndex:self.currentImageNr];
+    if([self.valoareDefault isOn])
+    {
+    theImag.defaultValue=1;
+         NSLog(@"Switch is on %d", theImag.defaultValue);
+    }
+    else
+    {
+       theImag.defaultValue=0;
+         NSLog(@"Switch is off %d", theImag.defaultValue);
+    }
+    theImag = nil;
+} 
+
+}
+
+-(IBAction)enterEditingModeForTextFields:(id)sender
+{
+    NSLog(@"editing did begin");
+    [self.generalScrollView setContentOffset:CGPointMake(0, 100) animated:YES];
+}
+-(IBAction) textFieldReturn:(id)sender{
+    if(self.totalImages>0)
+    {   TImage *theImag =  [self.theImageList getImageAtIndex:self.currentImageNr];
+        theImag.description = self.descriereImagineTextField.text;
+        theImag.name = self.titluImagineTextField.text;
+        theImag=nil;
+    }
+    [sender resignFirstResponder];
+}
+
+-(IBAction)backgroundTouched:(id)sender{
+    if(self.totalImages>0)
+    {   TImage *theImag =  [self.theImageList getImageAtIndex:self.currentImageNr];
+        theImag.description = self.descriereImagineTextField.text;
+        theImag.name = self.titluImagineTextField.text;
+        theImag=nil;
+    }
+    
+    [self.titluImagineTextField resignFirstResponder];
+    [self.descriereImagineTextField resignFirstResponder];
 }
 
 - (void)viewDidUnload
@@ -298,6 +407,9 @@
     [preiaDinGalerie release];
     [preiaCuCamera release];
     [picker release];
+    [stergeButton release];
+    [titluImagineTextField release];
+    [descriereImagineTextField release];
     [super  dealloc];
 
 }

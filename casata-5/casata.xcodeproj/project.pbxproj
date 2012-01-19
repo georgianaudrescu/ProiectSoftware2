@@ -66,6 +66,8 @@
 		8C725FC014AE4FF5002B26F4 /* Informatii.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C725FBF14AE4FF5002B26F4 /* Informatii.m */; };
 		8C7A71A314C2466600CAC575 /* trendCrescator.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C7A71A114C2466600CAC575 /* trendCrescator.png */; };
 		8C7A71A414C2466600CAC575 /* trendDescrescator.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C7A71A214C2466600CAC575 /* trendDescrescator.png */; };
+		8C7AB82014C87E0200DB4E08 /* emptyImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C7AB81E14C87E0000DB4E08 /* emptyImage.png */; };
+		8C7AB82114C87E0300DB4E08 /* emptyScroll.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C7AB81F14C87E0200DB4E08 /* emptyScroll.png */; };
 		8C800B3014ADCB5500F498A5 /* homepage.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C800B2F14ADCB5500F498A5 /* homepage.png */; };
 		8C800B3914ADD59800F498A5 /* adauga_anunt.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C800B3814ADD59700F498A5 /* adauga_anunt.png */; };
 		8C800B4214ADD6EE00F498A5 /* AdaugAnuntViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C800B4014ADD6EC00F498A5 /* AdaugAnuntViewController.m */; };
@@ -302,6 +304,8 @@
 		8C725FBF14AE4FF5002B26F4 /* Informatii.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Informatii.m; sourceTree = "<group>"; };
 		8C7A71A114C2466600CAC575 /* trendCrescator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trendCrescator.png; sourceTree = "<group>"; };
 		8C7A71A214C2466600CAC575 /* trendDescrescator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trendDescrescator.png; sourceTree = "<group>"; };
+		8C7AB81E14C87E0000DB4E08 /* emptyImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = emptyImage.png; sourceTree = "<group>"; };
+		8C7AB81F14C87E0200DB4E08 /* emptyScroll.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = emptyScroll.png; sourceTree = "<group>"; };
 		8C800B2F14ADCB5500F498A5 /* homepage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homepage.png; sourceTree = "<group>"; };
 		8C800B3814ADD59700F498A5 /* adauga_anunt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = adauga_anunt.png; sourceTree = "<group>"; };
 		8C800B3F14ADD6EB00F498A5 /* AdaugAnuntViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AdaugAnuntViewController.h; path = ../AdaugAnuntViewController.h; sourceTree = "<group>"; };
@@ -500,6 +504,8 @@
 		3A70A915149BB84700203169 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				8C7AB81E14C87E0000DB4E08 /* emptyImage.png */,
+				8C7AB81F14C87E0200DB4E08 /* emptyScroll.png */,
 				8CE2043414C7968F00BAEFB5 /* butonGalben.png */,
 				8CE2042F14C7940100BAEFB5 /* butonHalfWide.png */,
 				8CE2043014C7940100BAEFB5 /* butonWide.png */,
@@ -930,6 +936,8 @@
 				8CE2043114C7940100BAEFB5 /* butonHalfWide.png in Resources */,
 				8CE2043214C7940100BAEFB5 /* butonWide.png in Resources */,
 				8CE2043514C7968F00BAEFB5 /* butonGalben.png in Resources */,
+				8C7AB82014C87E0200DB4E08 /* emptyImage.png in Resources */,
+				8C7AB82114C87E0300DB4E08 /* emptyScroll.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

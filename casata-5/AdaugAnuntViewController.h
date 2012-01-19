@@ -13,7 +13,7 @@
 {
     IBOutlet UITextField * pretTextField;
     IBOutlet UITextField * suprafataTextField;
-    AdaugaImaginiViewController * adaugaImaginiView;
+    
 }
 
 

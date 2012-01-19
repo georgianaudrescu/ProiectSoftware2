@@ -22,6 +22,12 @@
        // self.title = NSLocalizedString(@"Adauga anunt", @"Adauga anunt");
        // self.tabBarItem.image = [UIImage imageNamed:@"adauga_anunt"];
        [self setTitle:@"Adauga anunt"];
+        //butonul care va aparea ca back button pt view-ul child care va fi pus in stiva peste view-ul curent
+        UIBarButtonItem *anuleazaButton = [[UIBarButtonItem alloc] initWithTitle:@"Anuleaza" style:UIBarButtonItemStylePlain target:nil action:nil]; 
+        
+        anuleazaButton.tintColor = [UIColor blackColor];
+        
+        self.navigationItem.backBarButtonItem= anuleazaButton;  
         
     }
     return self;
@@ -31,7 +37,7 @@
 
 -(void)dealloc
 {
-    [adaugaImaginiView release];
+    
     [pretTextField release];
     [suprafataTextField release];
     [super dealloc];
@@ -66,11 +72,16 @@
 }
 
 - (IBAction)adaugaImagini:(id)sender{
-    [self.view addSubview:adaugaImaginiView.view];
+   /* [self.view addSubview:adaugaImaginiView.view];
     //for animation
     adaugaImaginiView.view.frame = CGRectMake(-320,0, self.view.frame.size.width, self.view.frame.size.height);
     [UIView animateWithDuration:0.5 animations:^{
         adaugaImaginiView.view.frame = CGRectMake(0,0, self.view.frame.size.width, self.view.frame.size.height);}];
+    */
+    AdaugaImaginiViewController *adaugaImaginiViewController = [[[AdaugaImaginiViewController alloc] initWithNibName:@"AdaugaImaginiViewController" bundle:nil]autorelease];
+    
+    [self.navigationController pushViewController:adaugaImaginiViewController animated:YES];
+    
 }
 
 
@@ -109,7 +120,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 
-    adaugaImaginiView = [[AdaugaImaginiViewController alloc] initWithNibName:@"AdaugaImaginiViewController" bundle:nil];
+    
 }
 
 

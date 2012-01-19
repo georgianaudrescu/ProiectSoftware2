@@ -16,8 +16,8 @@
 
 
 @implementation AdaugaImaginiViewController
-@synthesize theImageList, imgView, imgScrollView, buttonsArray;
-@synthesize preiaCuCamera, preiaDinGalerie;
+@synthesize theImageList, imgView, imgScrollView, buttonsArray, generalScrollView;
+@synthesize preiaCuCamera, preiaDinGalerie, currentImageNr, totalImages;
 @synthesize titluImagine, descriereImagine, valoareDefault;
 @synthesize picker;
 
@@ -26,9 +26,30 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        [self setTitle:@"Adauga Imagini"];
     }
     return self;
 }
+
+-(void)setTitle:(NSString *)title
+{
+    [super setTitle:title];
+    UILabel *titleView = (UILabel *) self.navigationItem.titleView;
+    if(!titleView)
+    {titleView = [[UILabel alloc] initWithFrame:CGRectZero];
+        titleView.backgroundColor = [UIColor clearColor];
+        titleView.font = [UIFont boldSystemFontOfSize:20];
+        //titleView.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+        titleView.textColor = [UIColor blackColor];
+        self.navigationItem.titleView = titleView;
+        [titleView release];
+    }
+    titleView.text = title;
+    [titleView sizeToFit];
+    
+    
+}
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -208,7 +229,14 @@
     
     self.theImageList = [[TImageList alloc] init];
     self.picker = [[UIImagePickerController alloc] init];
-    picker.delegate=self;
+    self.picker.delegate=self;
+    //self.picker.navigationBar.tintColor = [UIColor colorWithRed:0.976 green:0.827 blue:0.015 alpha:1.0]; 
+    self.picker.navigationBar.barStyle = UIBarStyleBlack;
+    self.buttonsArray = [[NSMutableArray alloc]init];
+    self.currentImageNr =0 ;  
+    self.totalImages=0;
+
+    [self.generalScrollView setContentSize:CGSizeMake(320, 530)];
 }
 
 -(IBAction)preiaImagine:(id)sender
@@ -228,7 +256,24 @@
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
 {
     self.imgView.image = image;
-    [[self.picker parentViewController] dismissModalViewControllerAnimated:YES];
+    
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button setFrame:CGRectMake((self.totalImages*50), 0, 50, 50)];
+    button.tag=self.totalImages;
+    [button addTarget:self action:@selector(changeCurrentViewedImageToImageWithIndex:) forControlEvents:UIControlEventTouchUpInside];
+   
+    
+    UIImage *butImage = image;
+        [button setBackgroundImage:butImage forState:UIControlStateNormal];
+    [butImage release];
+    
+    [self.buttonsArray addObject:button];   
+    
+   [self.imgScrollView addSubview:[self.buttonsArray objectAtIndex:self.currentImageNr]];
+    self.totalImages++;  
+    
+    
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 - (void)viewDidUnload
@@ -247,6 +292,7 @@
 {
     self.theImageList=nil;
     [imgScrollView release];
+    [generalScrollView release];
     [imgView release];
     [buttonsArray release];
     [preiaDinGalerie release];

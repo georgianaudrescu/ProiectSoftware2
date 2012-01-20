@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import "LocalizareViewController.h"
 #import "AdaugaImaginiViewController.h"
+#import "LocalizareViewController.h"
 
 #define kOFFSET_FOR_KEYBOARD 160.0
 
@@ -39,9 +40,14 @@
 
 -(void)dealloc
 {
-    
+    [titluTextField release];
     [pretTextField release];
     [suprafataTextField release];
+    [pretTextField release];
+    [detaliiTextView release];
+    [camereTextField release];
+    [scrollView release];
+    [tableImobil release];
     [super dealloc];
 }
 
@@ -139,15 +145,18 @@
 
 
 - (IBAction)adaugaImagini:(id)sender{
-   /* [self.view addSubview:adaugaImaginiView.view];
-    //for animation
-    adaugaImaginiView.view.frame = CGRectMake(-320,0, self.view.frame.size.width, self.view.frame.size.height);
-    [UIView animateWithDuration:0.5 animations:^{
-        adaugaImaginiView.view.frame = CGRectMake(0,0, self.view.frame.size.width, self.view.frame.size.height);}];
-    */
+
     AdaugaImaginiViewController *adaugaImaginiViewController = [[[AdaugaImaginiViewController alloc] initWithNibName:@"AdaugaImaginiViewController" bundle:nil]autorelease];
     
     [self.navigationController pushViewController:adaugaImaginiViewController animated:YES];
+    
+}
+
+- (IBAction)adaugaLocatie:(id)sender{
+    
+    LocalizareViewController *adaugaLocatieViewController = [[[LocalizareViewController alloc] initWithNibName:@"LocalizareViewController" bundle:nil]autorelease];
+    
+    [self.navigationController pushViewController:adaugaLocatieViewController animated:YES];
     
 }
 

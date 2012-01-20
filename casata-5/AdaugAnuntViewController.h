@@ -43,5 +43,6 @@
 
 
 -(IBAction)adaugaImagini:(id)sender;
+-(IBAction)adaugaLocatie:(id)sender;
 
 @end

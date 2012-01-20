@@ -87,6 +87,8 @@
 								<string key="NSReuseIdentifierKey">_NS:273</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+								<int key="IBUIContentHorizontalAlignment">0</int>
+								<int key="IBUIContentVerticalAlignment">0</int>
 								<int key="IBSegmentControlStyle">2</int>
 								<int key="IBNumberOfSegments">2</int>
 								<int key="IBSelectedSegmentIndex">0</int>
@@ -300,7 +302,7 @@
 								<string key="NSFrame">{{18, 379}, {112, 26}}</string>
 								<reference key="NSSuperview" ref="822503623"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
+								<reference key="NSNextKeyView" ref="877043404"/>
 								<string key="NSReuseIdentifierKey">_NS:225</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -316,14 +318,38 @@
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MSAwLjggMAA</bytes>
 								</object>
-								<object class="NSColor" key="IBUINormalTitleShadowColor">
+								<object class="NSColor" key="IBUINormalTitleShadowColor" id="940786179">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MC41AA</bytes>
 								</object>
-								<object class="NSCustomResource" key="IBUINormalBackgroundImage">
+								<object class="NSCustomResource" key="IBUINormalBackgroundImage" id="596315894">
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">butonWide.png</string>
 								</object>
+								<reference key="IBUIFontDescription" ref="934458780"/>
+								<reference key="IBUIFont" ref="1011884385"/>
+							</object>
+							<object class="IBUIButton" id="877043404">
+								<reference key="NSNextResponder" ref="822503623"/>
+								<int key="NSvFlags">292</int>
+								<string key="NSFrame">{{185, 379}, {112, 26}}</string>
+								<reference key="NSSuperview" ref="822503623"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
+								<string key="NSReuseIdentifierKey">_NS:225</string>
+								<bool key="IBUIOpaque">NO</bool>
+								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+								<int key="IBUIContentHorizontalAlignment">0</int>
+								<int key="IBUIContentVerticalAlignment">0</int>
+								<int key="IBUIButtonType">1</int>
+								<string key="IBUINormalTitle">Adauga Locatie</string>
+								<reference key="IBUIHighlightedTitleColor" ref="466135976"/>
+								<object class="NSColor" key="IBUINormalTitleColor">
+									<int key="NSColorSpace">1</int>
+									<bytes key="NSRGB">MSAwLjggMAA</bytes>
+								</object>
+								<reference key="IBUINormalTitleShadowColor" ref="940786179"/>
+								<reference key="IBUINormalBackgroundImage" ref="596315894"/>
 								<reference key="IBUIFontDescription" ref="934458780"/>
 								<reference key="IBUIFont" ref="1011884385"/>
 							</object>
@@ -666,6 +692,15 @@
 					</object>
 					<int key="connectionID">80</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">adaugaLocatie:</string>
+						<reference key="source" ref="877043404"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">84</int>
+				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -712,6 +747,7 @@
 							<reference ref="388445429"/>
 							<reference ref="435500979"/>
 							<reference ref="548015546"/>
+							<reference ref="877043404"/>
 						</array>
 						<reference key="parent" ref="191373211"/>
 					</object>
@@ -785,6 +821,11 @@
 						<reference key="object" ref="548015546"/>
 						<reference key="parent" ref="822503623"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">82</int>
+						<reference key="object" ref="877043404"/>
+						<reference key="parent" ref="822503623"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -811,12 +852,13 @@
 				<string key="58.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="59.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="60.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="82.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">81</int>
+			<int key="maxID">84</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -825,12 +867,17 @@
 					<string key="superclassName">UIViewController</string>
 					<dictionary class="NSMutableDictionary" key="actions">
 						<string key="adaugaImagini:">id</string>
+						<string key="adaugaLocatie:">id</string>
 						<string key="backgroundTouched:">id</string>
 						<string key="textFieldReturn:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
 						<object class="IBActionInfo" key="adaugaImagini:">
 							<string key="name">adaugaImagini:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="adaugaLocatie:">
+							<string key="name">adaugaLocatie:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 						<object class="IBActionInfo" key="backgroundTouched:">

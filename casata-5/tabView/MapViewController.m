@@ -286,7 +286,6 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     NSLog(@" ADS FOUND %d",found.intValue);
 }
 
-
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation{
     NSLog(@"in annotation method");
     

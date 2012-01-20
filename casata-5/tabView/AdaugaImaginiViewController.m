@@ -236,6 +236,8 @@
     self.currentImageNr =0 ;  
     self.totalImages=0;
 
+    self.imgView.contentMode = UIViewContentModeScaleAspectFit;
+    
     [self.generalScrollView setContentSize:CGSizeMake(320, 530)];
 }
 
@@ -282,7 +284,7 @@
     img1.description=@"";
     img1.name=@"";
     [self.theImageList addImage:img1];
-    [img1 release];
+    img1=nil;//
 
     self.descriereImagineTextField.text=@"";
     self.titluImagineTextField.text=@"";
@@ -321,23 +323,87 @@
     //self.imgView.image = [UIImage imageNamed:@"imgtest1.jpg"];
 }
 
+//stergerea unei imagini - tratarea tuturor cazurilor, inlocuirea tag-urilor pt butoanele ramase dupa stergere
+
 -(IBAction)stergeImagineCurenta:(id)sender
 { if(self.totalImages>0)
 {
-    /*
-    //de tratat toate cazurile if currrent image==0 &&nrtotal ==1
-    TImage *theImag =  [self.theImageList getImageAtIndex:currentImageNr+1];
-    self.imgView.image=theImag.image;
-    theImag=nil;
+    if(self.totalImages==1)
+    {
+        self.imgView.image = [UIImage imageNamed:@"emptyImage.png"];
+        self.titluImagineTextField.text=@"";
+        self.descriereImagineTextField.text=@"";
+        self.valoareDefault.on= NO;
+        
+        [[self.buttonsArray objectAtIndex:self.currentImageNr] removeFromSuperview];
+        
+        [self.buttonsArray removeObjectAtIndex:self.currentImageNr];
+       [self.theImageList removeImageAtIndex:self.currentImageNr];
+        self.totalImages--;
+        self.currentImageNr=0;        
+        NSLog(@"just one image");
+            }
+    else
+    {
+        if(self.currentImageNr==(self.totalImages-1))
+        {
+             
+            
+            TImage *theImag =  [self.theImageList getImageAtIndex:(self.currentImageNr-1)];
+            self.imgView.image=theImag.image;
+            self.titluImagineTextField.text=theImag.name;
+            self.descriereImagineTextField.text=theImag.description;
+            if(theImag.defaultValue==0)
+                self.valoareDefault.on = NO;
+            else
+                self.valoareDefault.on=YES;
+            theImag=nil;
+           
+            [[self.buttonsArray objectAtIndex:self.currentImageNr] removeFromSuperview];
+            [self.buttonsArray removeObjectAtIndex:self.currentImageNr];
+            [self.theImageList removeImageAtIndex:self.currentImageNr];
+            self.totalImages--;
+            self.currentImageNr--;
+            
+            
+            [self.imgScrollView setContentSize:CGSizeMake((self.totalImages*50), 50)];
+            
+            
+            
+            NSLog(@"last image");
+        }
     
+        else
+        {
+       
+   
+    TImage *theImag =  [self.theImageList getImageAtIndex:(self.currentImageNr+1)];
+            self.imgView.image=theImag.image;
+            self.titluImagineTextField.text=theImag.name;
+            self.descriereImagineTextField.text=theImag.description;
+            if(theImag.defaultValue==0)
+                self.valoareDefault.on = NO;
+            else
+                self.valoareDefault.on=YES;
+    theImag=nil;
+    [[self.buttonsArray objectAtIndex:self.currentImageNr] removeFromSuperview];
     [self.buttonsArray removeObjectAtIndex:self.currentImageNr];
     [self.theImageList removeImageAtIndex:self.currentImageNr];
+    self.totalImages--;        
     int x;
     for(x=self.currentImageNr;x<self.totalImages;x++)
-        [[self.buttonsArray objectAtIndex:x] setFrame:CGRectMake(((x-1)*50), 0, 50, 50)];
-    self.totalImages--;
-    */
+    {[[self.buttonsArray objectAtIndex:x] setFrame:CGRectMake((x*50), 0, 50, 50)];
+        [[self.buttonsArray objectAtIndex:x] setTag:x];
+    }
+    
+            [self.imgScrollView setContentSize:CGSizeMake((self.totalImages*50), 50)];
+            
+             
+            
+        }
+    }
 }   
+    
 }
 -(IBAction)switchChangedForCurrentImage:(id)sender
 {if(self.totalImages>0)

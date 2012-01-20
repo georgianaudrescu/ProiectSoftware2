@@ -111,6 +111,8 @@
 -(void) dealloc
 {
     
+    [image release];
+    //
     self.url = nil;
     self.image=nil;
     self.description=nil;

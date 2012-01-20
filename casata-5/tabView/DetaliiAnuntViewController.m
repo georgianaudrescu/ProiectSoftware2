@@ -61,7 +61,7 @@
 -(void)loadAdWithId:(int)theAdId
 {
     self.theAd = [apdelegate.appSession.globalAdList getAdWithId:theAdId];
-    
+    self.imgView.contentMode = UIViewContentModeScaleAspectFit;
    
     
     

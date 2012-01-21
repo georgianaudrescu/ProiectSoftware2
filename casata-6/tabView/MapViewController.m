@@ -442,7 +442,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
         [self.mapView deselectAnnotation:selectedAnnotation animated:NO];
         
         //in cazul in care scrollul este dat in jos(nu mai este vizibila harta) si se apasa pe butonul de fav, mutam scolul automat pentru a se vedea harta-putem sa schimbam daca nu este nevoie de asta
-        [self.scrollView setContentOffset: CGPointMake(0, 0) animated:YES];
+        [self.scrollView setContentOffset: CGPointMake(0, 0) animated:YES];    
     }
     else 
     {NSLog(@"Show all ads on map/deselect fav button");

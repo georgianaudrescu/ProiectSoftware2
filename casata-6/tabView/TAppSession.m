@@ -43,7 +43,7 @@
     currentSearch = [TSearch alloc];
     globalSettings = [[TSettings alloc]init];
     filtre = [[NSMutableDictionary alloc]init];
-    favorites = [[TFav alloc]init];
+    favorites = [[TAdList alloc]init];
     currentLocation = [TLocation alloc];
     statistics = [[TStatisticsList alloc]init];
 }

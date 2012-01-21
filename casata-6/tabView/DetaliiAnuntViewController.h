@@ -24,15 +24,19 @@
     UILabel *contactNameLabel;
     UILabel *contactPhoneLabel;
     UIImageView *thumbnailImageView;
+    UIButton *favButton;
     //
     UIScrollView *imgScrollView;
     UIImageView *imgView;
     NSMutableArray *buttonsArray;
     TImageList *imgList;
+   
+    
 }
 @property(nonatomic,retain) TAd *theAd;
 @property(nonatomic,retain) IBOutlet UILabel *nameLabel,*propertyTypeLabel, *adTextLabel, *adressLineLabel, *pretLabel, *monedaLabel, *contactNameLabel, *contactPhoneLabel, *anuntTypeLabel; 
 @property(nonatomic,retain) IBOutlet UIImageView *thumbnailImageView;
+@property(nonatomic,retain) IBOutlet UIButton *favButton;
 //
 @property(nonatomic,retain) IBOutlet UIScrollView *imgScrollView;
 @property(nonatomic,retain) IBOutlet UIImageView *imgView;
@@ -42,5 +46,9 @@
 
 -(void)loadAdWithId:(int)theAdId;
 -(void)changeCurrentViewedImageToImageWithIndex:(id) sender;
+
+-(IBAction)favButtonPressed:(UIButton*)sender;
+
+
 
 @end

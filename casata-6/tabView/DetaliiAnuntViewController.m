@@ -13,7 +13,7 @@
 
 @implementation DetaliiAnuntViewController
 @synthesize theAd;
-@synthesize pretLabel, propertyTypeLabel, monedaLabel, contactNameLabel, contactPhoneLabel, adTextLabel, adressLineLabel,nameLabel, anuntTypeLabel;
+@synthesize pretLabel, propertyTypeLabel, monedaLabel, contactNameLabel, contactPhoneLabel, adTextLabel, adressLineLabel,nameLabel, anuntTypeLabel, favButton;
 @synthesize thumbnailImageView;
 @synthesize imgView, imgScrollView,buttonsArray, imgList;
 
@@ -62,7 +62,7 @@
 {
     self.theAd = [apdelegate.appSession.globalAdList getAdWithId:theAdId];
     self.imgView.contentMode = UIViewContentModeScaleAspectFit;
-   
+    
     
     
     NSLog(@"Judetul ad-ului selectat:%@", [self.theAd.ad objectForKey:@"judet"]);
@@ -103,7 +103,35 @@
      else 
      {[self.adTextLabel setFont:[UIFont fontWithName:@"Helvetica" size:12]];
     [self.adTextLabel sizeToFit];}
-             
+    
+    //verificare daca este favorit sau nu si setarea imaginii pt butonul de adaugare/inlaturare din favorite in functie de asta
+    if(apdelegate.appSession.favorites.count !=0) 
+        
+    {   NSLog(@"avem favorite");
+        TAd *testAd = [apdelegate.appSession.favorites getAdWithId:theAdId];
+        if (testAd==nil)
+        {
+            NSLog(@"si nu este favorit");
+            [self.favButton setImage:[UIImage imageNamed:@"starfavDeactivat.png"] forState:UIControlStateNormal];
+            //[self.favButton setBackgroundImage:[UIImage imageNamed:@"starfavDeactivat.png"] forState:UIControlStateNormal];
+            self.favButton.tag=0;
+
+        }
+        else 
+        {
+            NSLog(@"si este favorit");
+        [self.favButton setImage:[UIImage imageNamed:@"starfav.png"] forState:UIControlStateNormal];
+            self.favButton.tag=1;
+        }
+    }  
+        
+    else //nu exista favorite in lista si nu are rost sa verificam
+    {  NSLog(@"nu avem favorite");
+        [self.favButton setImage:[UIImage imageNamed:@"starfavDeactivat.png"] forState:UIControlStateNormal];
+        self.favButton.tag=0;
+    }
+        
+    
     //test thumnails in scrollview de unde sa selectezi ce sa-ti apara in imageview
     self.imgList = [[TImageList alloc] init];
     TImage *img1 = [TImage alloc];
@@ -180,6 +208,27 @@
        //self.imgView.image = [UIImage imageNamed:@"imgtest1.jpg"];
 }
 
+-(IBAction)favButtonPressed:(UIButton*)sender
+{
+    if(sender.tag==0) //adaugam in favorite !!!-sa punem conditie pt nr maxim de favorite
+    {
+        NSLog(@"add to fav:");
+        [apdelegate.appSession.favorites addAd:self.theAd];
+        sender.tag=1;
+       [sender setImage:[UIImage imageNamed:@"starfav.png"] forState:UIControlStateNormal];
+    }
+    else //stergem din favorite
+    {
+        NSLog(@"remove from fav");
+        [apdelegate.appSession.favorites removeAd:self.theAd];
+        sender.tag=0;
+        [sender setImage:[UIImage imageNamed:@"starfavDeactivat.png"] forState:UIControlStateNormal];
+    }
+    
+    
+
+}
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
@@ -211,6 +260,7 @@
     [pretLabel release];
     [anuntTypeLabel release];
     [thumbnailImageView release];
+    [favButton release];
     [imgView release];
     [imgScrollView release];
     [buttonsArray release];

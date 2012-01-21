@@ -40,6 +40,7 @@
 
 -(void)dealloc
 {
+    /*
     [titluTextField release];
     [pretTextField release];
     [suprafataTextField release];
@@ -49,7 +50,7 @@
     //[scrollView release];
     [tableImobil release];
     [propertyTypes release];
-     
+     */
     [super dealloc];
 }
 

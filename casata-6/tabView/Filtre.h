@@ -22,14 +22,20 @@
     NSMutableArray *propertyTypes;
     UILabel *pMinLabel, *pMaxLabel;
     UILabel *supMinLabel, *supMaxLabel;
-    int selectedPropertyType;
+    //int selectedPropertyType;
     //UIButton *aplicaFiltreButton;
    UITableView  *tableImobil;
     NSMutableArray * selectedRowsArray;
+    
+    int flag_filtre;
+    int filters_exist;
 
 
 }
-@property(nonatomic,assign) int selectedPropertyType;
+@property (nonatomic, readwrite) int flag_filtre;
+@property (nonatomic, readwrite) int filters_exist;
+//@property(nonatomic,assign) int selectedPropertyType;
+@property (nonatomic, retain) NSMutableArray * selectedRowsArray;	
 //@property(nonatomic,retain) IBOutlet UIPickerView *pickerView;
 @property (nonatomic, retain) IBOutlet UITableView *tableImobil;
 @property(nonatomic,retain) IBOutlet UISegmentedControl *segmentedControl;
@@ -50,8 +56,9 @@
 -(IBAction)backToStatistics:(id)sender ;
 
 //-(void)clearFilters;
-//-(void)applyFilters;
+-(NSMutableDictionary *)applyFilters;
 
-//-(IBAction)aplicaFiltre:(id)sender;
+-(IBAction)aplicaFiltre:(id)sender;
+-(IBAction)clearFiltre:(id)sender;
 
 @end

@@ -15,7 +15,8 @@
 
 
 @implementation Filtre
-@synthesize sliderPretMax,sliderPretMin, segmentedControl,pMaxLabel,pMinLabel,selectedPropertyType;
+@synthesize sliderPretMax,sliderPretMin, segmentedControl,pMaxLabel,pMinLabel,selectedRowsArray, flag_filtre, filters_exist;
+
 @synthesize tableImobil;
 @synthesize supMaxLabel,supMinLabel, sliderSuprafataMax,sliderSuprafataMin;
 
@@ -75,10 +76,38 @@
     ///TODO
 }
 
--(void)applyFilters{
-    ///TODO
+-(NSMutableDictionary *)applyFilters{
+    NSUInteger type = [self.segmentedControl selectedSegmentIndex];
+    NSString *types = [self.segmentedControl titleForSegmentAtIndex:type];
+    //NSNumber *typenr = [NSNumber numberWithInt:type];
+    NSMutableArray *propertyy = self.selectedRowsArray;
+    NSString *pmin = self.pMinLabel.text;
+    NSString * pmax = self.pMaxLabel.text;
+    NSString * smin = self.supMinLabel.text;
+    NSString * smax = self.supMaxLabel.text;
+    NSLog(@"in applyfil %@ , %@, %@ , %@ , %@", types, pmin, pmax, smin, smax);
+    NSMutableDictionary *filtre = [NSMutableDictionary alloc];
+    filtre = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+               types,@"types",
+               propertyy,@"propertyy", 
+               pmin,@"pmin",
+               pmax,@"pmax",
+               smin,@"smin",
+               smax,@"smax",
+               nil];
+    return filtre;
+}
+-(IBAction)aplicaFiltre:(id)sender
+{
+    NSLog(@"apasat");
+    self.flag_filtre = 1;
 }
 
+-(IBAction)clearFiltre:(id)sender
+{
+    NSLog(@"clear");
+    self.filters_exist = 0;
+}
 
 #pragma mark Table view methods
 
@@ -104,7 +133,8 @@
     
     if ([selectedRowsArray containsObject:[propertyTypes objectAtIndex:indexPath.row]]) {
         cell.imageView.image = [UIImage imageNamed:@"checkbox_ticked.png"];
-    }
+        	
+           }
         else {
              cell.imageView.image = [UIImage imageNamed:@"checkbox_not_ticked.png"];
         }
@@ -148,7 +178,7 @@
         cell.imageView.image = [UIImage imageNamed:@"checkbox_ticked.png"];
         [selectedRowsArray addObject:cell.textLabel.text];
     }
-    NSLog(@"%@",selectedRowsArray);
+   // NSLog(@"%@",selectedRowsArray);
     UIView *backgroundView = [[UIView alloc] init];
     backgroundView.backgroundColor = [UIColor blackColor];
     
@@ -270,7 +300,7 @@
     [scrollView setContentSize:CGSizeMake(320, 580)];
     // Do any additional setup after loading the view from its nib.
     
-    selectedPropertyType=0;
+    //selectedPropertyType=0;
     
     propertyTypes = [[NSMutableArray alloc] init];
     [propertyTypes addObject:@"Garsoniera"];

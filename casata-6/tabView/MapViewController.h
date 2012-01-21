@@ -16,6 +16,7 @@
 #import "StatsViewController.h"
 #import "DetaliiAnuntViewController.h"
 #import "AdaugAnuntViewController.h"
+#import "Filtre.h"
 
 
 @interface MapViewController : UIViewController <MKMapViewDelegate, UINavigationBarDelegate>{
@@ -43,6 +44,8 @@
     NSThread * threadRequest;
     //NSConditionLock *lock;
     int flag;
+    Filtre *filtru;
+    
     
 }
 @property (retain, nonatomic) IBOutlet MKMapView *mapView;
@@ -65,6 +68,9 @@ extern NSString *const GMAP_ANNOTATION_SELECTED;
 -(void) showFavAdsOnMap;
 -(void) showAdsFromData:(NSData *)data;
 -(void) getParamForReq;
-
+-(void) ProcessRequest:(NSMutableDictionary *)filtre2 
+              atString:(NSMutableString *) postString 
+            withfiltru: (NSString *) filtru 
+              andparam:(NSString *) param;
 
 @end

@@ -27,6 +27,7 @@
 }
 @property (nonatomic,retain) IBOutlet UILabel *avgAreaPriceLabel;
 @property(nonatomic,retain) IBOutlet UIButton *trendForAvgAreaPriceButton;
+@property (nonatomic, retain) Filtre *filters;
 
 
 -(void)clearChartStatistici;

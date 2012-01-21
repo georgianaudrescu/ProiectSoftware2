@@ -13,7 +13,7 @@
 #import "MyAdsViewController.h"
 
 @implementation StatsViewController
-@synthesize avgAreaPriceLabel, trendForAvgAreaPriceButton;
+@synthesize avgAreaPriceLabel, trendForAvgAreaPriceButton, filters;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

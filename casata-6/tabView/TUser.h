@@ -11,7 +11,6 @@
 
 #import <Foundation/Foundation.h>
 
-#import "TFav.h"
 #import "TSettings.h"
 #import "TAdList.h"
 
@@ -22,7 +21,7 @@
     NSString *phone;
     NSString *email;
     TAdList *personalAds;
-    TFav *favorites;
+    TAdList *favorites;
     TSettings *settings;
     TRequest *request;
 }
@@ -33,7 +32,7 @@
 @property (nonatomic, copy)NSString *phone;
 @property (nonatomic, copy)NSString *email;
 @property (nonatomic, retain)TAdList *personalAds;
-@property (nonatomic, copy)TFav *favorites;
+@property (nonatomic, copy)TAdList *favorites;
 @property (nonatomic, copy)TSettings *settings;
 @property (nonatomic,copy) TRequest *request;
 
@@ -51,8 +50,8 @@
 
 - (void)addToFav:(TAd *)ad;
 - (void)removeFromFav:(TAd *)ad;
-- (void)addLocationToFav:(TLocation *)aLocation;
-- (void)removeLocationFromFav:(TLocation *)aLocation;
+//- (void)addLocationToFav:(TLocation *)aLocation;
+//- (void)removeLocationFromFav:(TLocation *)aLocation;
 
 -(void) setMySettings;
 

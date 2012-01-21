@@ -28,23 +28,23 @@
     int x;
    
     NSNumber *nr_anunt = [[NSNumber alloc]autorelease];
-    NSLog(@"nr cautat: %d",index);
+    //NSLog(@"nr cautat: %d",index);
     
     for(x=0;x<count;x++)
     {rezultat = [adList objectAtIndex:x];
        
         nr_anunt = [rezultat.ad objectForKey:@"id"];
-        NSLog (@"---- la indexul: %d este id %d",x, nr_anunt.intValue);
+       // NSLog (@"---- la indexul: %d este id %d",x, nr_anunt.intValue);
         if (nr_anunt.intValue==index)
         {
-               NSLog (@"------match-----");            
+               //NSLog (@"------match-----");            
             return [adList objectAtIndex:x];}
     }
-       NSLog (@"------nonmatch-----");    
+      // NSLog (@"------nonmatch-----");    
     //rezultat=nil;
     
       
-    return [adList objectAtIndex:0];
+    return nil; //changed from return [adList objectAtIndex:0];
 }
 -(void)addAd:(TAd *)ad
 { 

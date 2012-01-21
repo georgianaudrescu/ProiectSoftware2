@@ -8,7 +8,7 @@
 
 #import "AdaugaImaginiViewController.h"
 #import "TImage.h" //just for test
-#import "TFav.h"//just for test
+//#import "TFav.h"//just for test
 #import "AppDelegate.h"//just for test
 #import "TImage.h"
 #import "TImageList.h"

@@ -534,29 +534,69 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
 -(void) showFavAdsOnMap
 {
     if(self.navigationItem.rightBarButtonItem.tag == 0)
-    { NSLog(@"Show fav ads on map");
-      self.navigationItem.rightBarButtonItem.tag=1;
+    { if(apdelegate.appSession.favorites.count !=0)//daca avem favorite in lista
+    {
+        NSLog(@"Show fav ads on map");
+        self.navigationItem.rightBarButtonItem.tag=1;
         self.navigationItem.rightBarButtonItem.image = [UIImage imageNamed:@"starfav.png"];
-
+        
         //deselectam pinul curent selectat(poate nu este in favorite)
         [self.mapView deselectAnnotation:selectedAnnotation animated:NO];
         
         //in cazul in care scrollul este dat in jos(nu mai este vizibila harta) si se apasa pe butonul de fav, mutam scolul automat pentru a se vedea harta-putem sa schimbam daca nu este nevoie de asta
         [self.scrollView setContentOffset: CGPointMake(0, 0) animated:YES];
+        
+        //ascundem anunturile care nu sunt favorite
+        int totalFav=apdelegate.appSession.favorites.count;
+        int totalAds=apdelegate.appSession.globalAdList.count;
+        int isFav;
+        for(int j=0;j<totalAds;j++)
+        {    TAd *gAd = [apdelegate.appSession.globalAdList getAdAtIndex:j];
+            isFav=0;
+            for(int i=0; i<totalFav;i++)
+            {   
+                TAd *tempAd = [apdelegate.appSession.favorites getAdAtIndex:i];
+                if(gAd == tempAd)
+                {isFav=1;}
+                tempAd=nil;
+            } 
+            if(isFav==0) { [[self.mapView viewForAnnotation:gAd.adlocation] setHidden:YES];}
+            gAd=nil;
+        }  
+    }
+    else
+    {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:@"Nu ai anunturi favorite." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        [alertView show];
+        [alertView release];
+    }        
+        
+        
+        
     }
     else 
     {NSLog(@"Show all ads on map/deselect fav button");
-     self.navigationItem.rightBarButtonItem.tag=0;
+        self.navigationItem.rightBarButtonItem.tag=0;
         self.navigationItem.rightBarButtonItem.image = [UIImage imageNamed:@"starfavDeactivat.png"];
         
         //deselectat pinul curent selectat
-    [self.mapView deselectAnnotation:selectedAnnotation animated:NO];
+        [self.mapView deselectAnnotation:selectedAnnotation animated:NO];
         
         //in cazul in care scrollul este dat in jos(nu mai este vizibila harta) si se apasa pe butonul de fav, mutam scolul automat pentru a se vedea harta-putem sa schimbam daca nu este nevoie de asta
         [self.scrollView setContentOffset: CGPointMake(0, 0) animated:YES];
+        
+        //facem vizibile toate pinurile
+        int totalAds = apdelegate.appSession.globalAdList.count;
+        for(int j=0;j<totalAds;j++)
+        {    TAd *gAd = [apdelegate.appSession.globalAdList getAdAtIndex:j];
+            [[self.mapView viewForAnnotation:gAd.adlocation]setHidden:NO];
+            gAd=nil;
+        }
     }
     
 }
+
+
 
 -(void)goToAdaugaAnunt{
     NSLog(@"Goto adauga anunt");

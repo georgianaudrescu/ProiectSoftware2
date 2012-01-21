@@ -49,7 +49,7 @@
         username=name;
         password=pass; 
         //initializare liste: fav, persAds, settings
-        favorites = [[TFav alloc]init];
+        favorites = [[TAdList alloc]init];
         personalAds = [[TAdList alloc] init];
         settings = [[TSettings alloc] init];
     }
@@ -192,15 +192,15 @@
 - (void)removeFromFav:(TAd *)ad{
     //req pentru remFav (nu este deocamdata pe server)
     //se actualizeaza lista de favAd salvata local
-    [favorites deleteAd:ad];
+    [favorites removeAd:ad];
 }
-- (void)addLocationToFav:(TLocation *)aLocation{
+/*- (void)addLocationToFav:(TLocation *)aLocation{
     [favorites addLocation:aLocation];
 }
 - (void)removeLocationFromFav:(TLocation *)aLocation{
     [favorites deleteLocation:aLocation];
 }
-
+*/
 -(void) setMySettings{
     //TO DO
 }

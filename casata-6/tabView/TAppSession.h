@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "TFav.h"
 #import "TLocation.h"
 #import "TAdList.h"
 #import "TUser.h"
@@ -22,7 +21,7 @@
     TUser *user;
     TSearch *currentSearch;
     TSettings *globalSettings;
-    TFav *favorites;
+    TAdList *favorites;
     TStatisticsList *statistics;
     NSMutableDictionary *filtre; 
     TLocation *currentLocation;
@@ -33,7 +32,7 @@
 @property(nonatomic,retain) TSettings *globalSettings;
 @property(nonatomic,retain) TStatisticsList *statistics;
 @property(nonatomic,retain) NSMutableDictionary *filtre;;
-@property(nonatomic,retain) TFav *favorites;
+@property(nonatomic,retain) TAdList *favorites;
 @property(nonatomic,retain) TLocation *currentLocation;
 
 //global variables initalization

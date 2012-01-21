@@ -84,7 +84,6 @@
 		8CAF1E3014B39AE60098F56B /* PersonalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CAF1E2B14B39AE60098F56B /* PersonalViewController.xib */; };
 		8CAF1E3114B39AE60098F56B /* PrefTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CAF1E2D14B39AE60098F56B /* PrefTableViewController.m */; };
 		8CAF1E3214B39AE60098F56B /* PrefTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CAF1E2E14B39AE60098F56B /* PrefTableViewController.xib */; };
-		8CB0F6C614B722A400562FBE /* TFav.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB0F6C514B722A400562FBE /* TFav.m */; };
 		8CB0F6CA14B75CBE00562FBE /* TAppSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB0F6C914B75CBE00562FBE /* TAppSession.m */; };
 		8CB22C4B14C3AE51006C6EFC /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CB22C4A14C3AE50006C6EFC /* MapViewController.xib */; };
 		8CB22C4D14C3AE9A006C6EFC /* StatsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CB22C4C14C3AE9A006C6EFC /* StatsViewController.xib */; };
@@ -328,8 +327,6 @@
 		8CAF1E2C14B39AE60098F56B /* PrefTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefTableViewController.h; sourceTree = "<group>"; };
 		8CAF1E2D14B39AE60098F56B /* PrefTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrefTableViewController.m; sourceTree = "<group>"; };
 		8CAF1E2E14B39AE60098F56B /* PrefTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrefTableViewController.xib; sourceTree = "<group>"; };
-		8CB0F6C414B722A400562FBE /* TFav.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFav.h; sourceTree = "<group>"; };
-		8CB0F6C514B722A400562FBE /* TFav.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFav.m; sourceTree = "<group>"; };
 		8CB0F6C814B75CBC00562FBE /* TAppSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAppSession.h; sourceTree = "<group>"; };
 		8CB0F6C914B75CBE00562FBE /* TAppSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAppSession.m; sourceTree = "<group>"; };
 		8CB22C4A14C3AE50006C6EFC /* MapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
@@ -690,8 +687,6 @@
 				8CB0F6C914B75CBE00562FBE /* TAppSession.m */,
 				3AF767E514B8D57100E7906E /* TAvgPrice.h */,
 				3AF767E614B8D57100E7906E /* TAvgPrice.m */,
-				8CB0F6C414B722A400562FBE /* TFav.h */,
-				8CB0F6C514B722A400562FBE /* TFav.m */,
 				8C56451A14B64A5600540286 /* TImage.h */,
 				8C56451B14B64A5600540286 /* TImage.m */,
 				8CC3D08214B79C1C001B0F86 /* TImageList.h */,
@@ -969,7 +964,6 @@
 				8C56451C14B64A5600540286 /* TImage.m in Sources */,
 				AC02995714B70CBC0025BBF9 /* TAd.m in Sources */,
 				3A7D807414B71178004EE453 /* TLocation.m in Sources */,
-				8CB0F6C614B722A400562FBE /* TFav.m in Sources */,
 				8CB0F6CA14B75CBE00562FBE /* TAppSession.m in Sources */,
 				8CC3D08414B79C1C001B0F86 /* TImageList.m in Sources */,
 				AC7BF55814B87C6B00DDEEE4 /* TSearch.m in Sources */,

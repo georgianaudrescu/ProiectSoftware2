@@ -282,7 +282,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
         TAd *anAd = [TAd alloc];
         [anAd TAd:row];
         [apdelegate.appSession.globalAdList addAd:anAd];
-        [anAd release];
+        //[anAd release];
         
         NSNumber * latitude = [ row objectForKey:@"lat"];
         NSNumber * longitude = [row objectForKey:@"long"];        
@@ -298,11 +298,14 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
         TLocation *annotation = [[TLocation alloc]  initWithTitle:name andSubtitle:subName andCoord:coordinate];
         //annotation.coordinate = coordinate;
         annotation.locationId = ad_id.intValue; 
-        NSLog(@"idul %d",annotation.locationId);
+        anAd.adlocation=annotation;
+        [annotation release];
+        
+        NSLog(@"idul %d",anAd.adlocation.locationId);
        
         
-        [_mapView addAnnotation:annotation]; 
-        [annotation release];        
+        [_mapView addAnnotation:anAd.adlocation]; 
+        [anAd release];       
         
     }
     NSNumber *found = [json objectForKey:@"ads_found"];

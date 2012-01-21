@@ -54,7 +54,7 @@
      price          int
      moneda	
      previewImage	TImage */
-    NSMutableDictionary *adx = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+    self.ad = [NSMutableDictionary dictionaryWithObjectsAndKeys:
             adid,@"id",
             latitude,@"lat", 
             longitude,@"long",
@@ -72,6 +72,7 @@
             moneda,@"moneda",
           //  previewImage,@"previewImage",
                 nil];
+    /*
  ////   ad = adx;
     self.ad = [NSMutableDictionary alloc];//
     self.ad=adx; //
@@ -79,6 +80,7 @@
     adlocation =[TLocation alloc];
     //adlocation.coordinate = coordinate;
     [adlocation initWithTitle:name andSubtitle:propertyType andCoord:coordinate]; 
+     */
 /* //nu avem inca thumbnail de la server, lasa comentat!!!
    //add thumbnail
     thumb =[TImage alloc];

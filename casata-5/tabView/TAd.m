@@ -54,7 +54,7 @@
      price          int
      moneda	
      previewImage	TImage */
-    NSMutableDictionary *adx = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+    self.ad = [NSMutableDictionary dictionaryWithObjectsAndKeys:
             adid,@"id",
             latitude,@"lat", 
             longitude,@"long",
@@ -73,8 +73,8 @@
           //  previewImage,@"previewImage",
                 nil];
  ////   ad = adx;
-    self.ad = [NSMutableDictionary alloc];//
-    self.ad=adx; //
+    ///     self.ad = [NSMutableDictionary alloc];//
+    ///     self.ad=adx; //
     //add location implementation
     adlocation =[TLocation alloc];
     //adlocation.coordinate = coordinate;

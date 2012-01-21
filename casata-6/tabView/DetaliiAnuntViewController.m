@@ -16,6 +16,8 @@
 @synthesize pretLabel, propertyTypeLabel, monedaLabel, contactNameLabel, contactPhoneLabel, adTextLabel, adressLineLabel,nameLabel, anuntTypeLabel, favButton;
 @synthesize thumbnailImageView;
 @synthesize imgView, imgScrollView,buttonsArray, imgList;
+@synthesize delegate, hidePinIfRemovedFromFav; //pt a seta map ca delegate
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -210,12 +212,20 @@
 
 -(IBAction)favButtonPressed:(UIButton*)sender
 {
-    if(sender.tag==0) //adaugam in favorite !!!-sa punem conditie pt nr maxim de favorite
+    if(sender.tag==0) //adaugam in favorite 
     {
+        if(apdelegate.appSession.favorites.count <50) //adauga doar daca nu a depasit nr maxim de favorite
+        {
         NSLog(@"add to fav:");
         [apdelegate.appSession.favorites addAd:self.theAd];
         sender.tag=1;
        [sender setImage:[UIImage imageNamed:@"starfav.png"] forState:UIControlStateNormal];
+        }
+        else
+        {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:@"Nu poti salva mai mult de 50 de anunturi ca favorite." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+            [alertView show];
+            [alertView release];        }
     }
     else //stergem din favorite
     {
@@ -223,6 +233,7 @@
         [apdelegate.appSession.favorites removeAd:self.theAd];
         sender.tag=0;
         [sender setImage:[UIImage imageNamed:@"starfavDeactivat.png"] forState:UIControlStateNormal];
+        [delegate performSelector:hidePinIfRemovedFromFav];
     }
     
     

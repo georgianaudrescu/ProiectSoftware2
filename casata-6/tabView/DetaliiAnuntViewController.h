@@ -30,8 +30,8 @@
     UIImageView *imgView;
     NSMutableArray *buttonsArray;
     TImageList *imgList;
-   
-    
+    id delegate;
+    SEL hidePinIfRemovedFromFav;
 }
 @property(nonatomic,retain) TAd *theAd;
 @property(nonatomic,retain) IBOutlet UILabel *nameLabel,*propertyTypeLabel, *adTextLabel, *adressLineLabel, *pretLabel, *monedaLabel, *contactNameLabel, *contactPhoneLabel, *anuntTypeLabel; 
@@ -42,7 +42,8 @@
 @property(nonatomic,retain) IBOutlet UIImageView *imgView;
 @property(nonatomic, retain) NSMutableArray *buttonsArray;
 @property(nonatomic, retain) TImageList *imgList;
-
+@property (assign) id delegate;
+@property (assign) SEL hidePinIfRemovedFromFav;
 
 -(void)loadAdWithId:(int)theAdId;
 -(void)changeCurrentViewedImageToImageWithIndex:(id) sender;

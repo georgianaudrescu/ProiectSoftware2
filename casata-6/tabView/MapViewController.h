@@ -43,7 +43,7 @@
     NSThread * threadRequest;
     //NSConditionLock *lock;
     int flag;
-    
+    BOOL onlyFavAdsVisible;
 }
 @property (retain, nonatomic) IBOutlet MKMapView *mapView;
 @property (nonatomic,retain) UINavigationItem *mapNavItem;
@@ -65,6 +65,6 @@ extern NSString *const GMAP_ANNOTATION_SELECTED;
 -(void) showFavAdsOnMap;
 -(void) showAdsFromData:(NSData *)data;
 -(void) getParamForReq;
-
+-(void) hidePinWhenFavesVisibleAndCurrentAdRemovedFromFav;
 
 @end

@@ -73,7 +73,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
         hasLoadView = 0;
         
         apdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-        
+        onlyFavAdsVisible=NO;
         
     }
     
@@ -131,6 +131,9 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     
       
     self.detaliiAnuntViewController =[[DetaliiAnuntViewController alloc] initWithNibName:@"DetaliiAnuntViewController" bundle:nil];
+    self.detaliiAnuntViewController.delegate=self;//
+    self.detaliiAnuntViewController.hidePinIfRemovedFromFav= @selector(hidePinWhenFavesVisibleAndCurrentAdRemovedFromFav);//
+    
                                  
     touchView = [[TTouchView alloc] initWithFrame:CGRectMake(0, 0, 320, 460)];
 	touchView.delegate = self;
@@ -436,6 +439,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     if(self.navigationItem.rightBarButtonItem.tag == 0)
     { if(apdelegate.appSession.favorites.count !=0)//daca avem favorite in lista
     {
+        onlyFavAdsVisible=YES;
         NSLog(@"Show fav ads on map");
         self.navigationItem.rightBarButtonItem.tag=1;
         self.navigationItem.rightBarButtonItem.image = [UIImage imageNamed:@"starfav.png"];
@@ -464,7 +468,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
             gAd=nil;
         }  
     }
-    else
+    else //daca nu avem favorite, afisam un mesaj corespunzator
     {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:@"Nu ai anunturi favorite." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alertView show];
@@ -475,7 +479,8 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
         
     }
     else 
-    {NSLog(@"Show all ads on map/deselect fav button");
+    {   onlyFavAdsVisible=NO;
+        NSLog(@"Show all ads on map/deselect fav button");
         self.navigationItem.rightBarButtonItem.tag=0;
         self.navigationItem.rightBarButtonItem.image = [UIImage imageNamed:@"starfavDeactivat.png"];
         
@@ -494,6 +499,17 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
         }
     }
     
+}
+
+-(void) hidePinWhenFavesVisibleAndCurrentAdRemovedFromFav
+{
+
+    if(onlyFavAdsVisible==YES)
+    {
+ [self.mapView deselectAnnotation:selectedAnnotation animated:NO];
+        [[self.mapView viewForAnnotation:selectedAnnotation] setHidden:YES];
+    
+    }
 }
 
 

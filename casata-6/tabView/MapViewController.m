@@ -118,7 +118,8 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     
     //lock = [[NSConditionLock alloc] initWithCondition:0];
     flag=0;
-    threadRequest = [[NSThread alloc] initWithTarget:self selector:@selector(getParamForReq) object:nil];
+   
+        threadRequest = [[NSThread alloc] initWithTarget:self selector:@selector(getParamForReq) object:nil];
     //[lock  lockWhenCondition:0];
     [threadRequest start];
     
@@ -146,6 +147,11 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     self.statisticsView.view.frame = CGRectMake(0, 366,self.statisticsView.view.frame.size.width, self.statisticsView.view.frame.size.height);
     [self.scrollView addSubview:self.statisticsView.view];
    
+    //filtru
+     filtru = self.statisticsView.filters;
+    filtru.flag_filtre = 0;
+    filtru.filters_exist = 0;
+
     
     /*
     self.subScroll.frame = CGRectMake(0,300, self.subScroll.frame.size.width, self.subScroll.frame.size.height);
@@ -210,13 +216,14 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
 
 - (void) getParamForReq{
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc]init];
-    
     while (TRUE) {
         NSLog(@"IN THREAD");
     //[lock lockWhenCondition:0];
-        while (flag==0) {
+        while (flag==0 && filtru.flag_filtre == 0) {
             [NSThread sleepForTimeInterval:0.005];
         }
+        if(flag != 0)
+        {
         flag=0;
     MKMapRect visibleRegion = _mapView.visibleMapRect;
     
@@ -235,7 +242,32 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     ///
     ///request data
     ///
-    NSString *postString = [NSString stringWithFormat:@"left=%f&sessionTime=1325693857685&right=%f&bottom=%f&top=%f&currency=euro&request=get_ads&zoom=5000&sid=session1",left,right,bottom,top];
+    NSMutableString *postString = [NSMutableString stringWithFormat:@"left=%f&sessionTime=1325693857685&right=%f&bottom=%f&top=%f&currency=euro&request=get_ads&zoom=5000&sid=session1",left,right,bottom,top];
+            
+            if (filtru.filters_exist)
+            {
+                //apply additional parameters
+                //take filters
+                NSMutableDictionary *fil = [filtru applyFilters];
+                //add filters to string
+                NSMutableString *ad_type = [fil objectForKey: @"types"];
+                if(ad_type != nil)
+                {
+                    if([ad_type isEqualToString:@"Vanzare"])
+                        ad_type = [NSMutableString stringWithString:@"sale"];
+                    else if([ad_type isEqualToString:@"Inchiriere"]) 
+                        ad_type = [NSMutableString stringWithString:@"rent"];
+                    
+                    [postString appendString:[NSMutableString stringWithFormat:@"&ad_type=%@", ad_type]]; 
+                }
+                /*        [self ProcessRequest:fil atString:postString withfiltru:@"propertyy" andparam:@"&property_type=%@"];*/
+                [self ProcessRequest:fil atString:postString withfiltru:@"smin" andparam:@"&size_min=%@"];
+                [self ProcessRequest:fil atString:postString withfiltru:@"smax" andparam:@"&size_max=%@"];
+                [self ProcessRequest:fil atString:postString withfiltru:@"pmin" andparam:@"&p_min=%@"];
+                [self ProcessRequest:fil atString:postString withfiltru:@"pmax" andparam:@"&p_max=%@"];
+                
+                NSLog(@"in thread GetAds with filter postString: %@", postString);
+            }
     
     if(flag==1) continue;
     mapRequest = [TRequest alloc] ;
@@ -246,13 +278,81 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
         data=[mapRequest requestData];
         
         [self showAdsFromData:data];
+        
     }
     [mapRequest release];
     //[lock unlockWithCondition:0];
-        flag=0;
+            flag=0;
+        }
+        
+        if(filtru.flag_filtre != 0)
+        {
+            NSLog(@"thread filtre");
+            filtru.flag_filtre = 0;
+            //take coord for request
+            MKMapRect visibleRegion = _mapView.visibleMapRect;
+            
+            MKMapPoint cornerPointNE = MKMapPointMake(visibleRegion.origin.x + visibleRegion.size.width, visibleRegion.origin.y);
+            CLLocationCoordinate2D cornerCoordinateNE = MKCoordinateForMapPoint(cornerPointNE);
+            NSLog(@"%f",cornerCoordinateNE.latitude);
+            MKMapPoint cornerPointSW = MKMapPointMake(visibleRegion.origin.x, visibleRegion.origin.y + visibleRegion.size.height);
+            CLLocationCoordinate2D cornerCoordinateSW = MKCoordinateForMapPoint(cornerPointSW);
+            top = cornerCoordinateNE.latitude;
+            bottom = cornerCoordinateSW.latitude;
+            left = cornerCoordinateSW.longitude;
+            right = cornerCoordinateNE.longitude;
+            NSLog(@"%f, %f, %f, %f",left,right,top,bottom);
+            //TODO zoom level;
+            
+            ///
+            ///request data
+            ///
+            //string for request
+            NSMutableString *postString = [NSMutableString stringWithFormat:@"left=%f&sessionTime=1325693857685&right=%f&bottom=%f&top=%f&currency=euro&request=get_ads&zoom=5000&sid=session1",left,right,bottom,top];
+            //take filters
+            NSMutableDictionary *fil = [filtru applyFilters];
+            //add filters to string
+            NSMutableString *ad_type = [fil objectForKey: @"types"];
+            if(ad_type != nil)
+            {
+                if([ad_type isEqualToString:@"Vanzare"])
+                    ad_type = [NSMutableString stringWithString:@"sale"];
+            else if([ad_type isEqualToString:@"Inchiriere"]) 
+                ad_type = [NSMutableString stringWithString:@"rent"];
+                
+            [postString appendString:[NSMutableString stringWithFormat:@"&ad_type=%@", ad_type]]; 
+            }
+    /*        [self ProcessRequest:fil atString:postString withfiltru:@"propertyy" andparam:@"&property_type=%@"];*/
+            [self ProcessRequest:fil atString:postString withfiltru:@"smin" andparam:@"&size_min=%@"];
+             [self ProcessRequest:fil atString:postString withfiltru:@"smax" andparam:@"&size_max=%@"];
+             [self ProcessRequest:fil atString:postString withfiltru:@"pmin" andparam:@"&p_min=%@"];
+             [self ProcessRequest:fil atString:postString withfiltru:@"pmax" andparam:@"&p_max=%@"];
+            NSLog(@"In filtre thread post string: %@", postString);
+            TRequest *mapRequestFiltru = [TRequest alloc] ;
+            [mapRequestFiltru initWithHost:@"http://flapptest.comule.com"];
+            
+            filtru.filters_exist = 1;
+            
+            NSData * data;
+            if([mapRequestFiltru makeRequestWithString:postString]!=0){
+                data=[mapRequestFiltru requestData];
+                
+                [self showAdsFromData:data];
+            }
+        }
     }
     
     [pool release];
+}
+-(void) ProcessRequest:(NSMutableDictionary *)filtre2 
+              atString:(NSMutableString *) postString 
+            withfiltru: (NSString *) filtruz andparam:(NSString *) param
+{
+    if([filtre2 objectForKey:filtruz] != nil)
+    {
+        NSMutableString *ceva = [filtre2 objectForKey:filtruz];
+        [postString appendString:[NSMutableString stringWithFormat:param,ceva]]; 
+    }
 }
 
 -(void) showAdsFromData:(NSData *)data{

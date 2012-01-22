@@ -44,6 +44,7 @@
     NSThread * threadRequest;
     //NSConditionLock *lock;
     int flag;
+    int flag_get_more_ads;
     
     BOOL onlyFavAdsVisible;
     Filtre *filtru;
@@ -75,5 +76,7 @@ extern NSString *const GMAP_ANNOTATION_SELECTED;
               atString:(NSMutableString *) postString 
             withfiltru: (NSString *) filtru 
               andparam:(NSString *) param;
+
+-(void) getMoreAds: (NSString *) postString;
 
 @end

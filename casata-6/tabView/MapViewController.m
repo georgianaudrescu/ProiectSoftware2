@@ -118,6 +118,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     
     //lock = [[NSConditionLock alloc] initWithCondition:0];
     flag=0;
+    flag_get_more_ads=0;
    
         threadRequest = [[NSThread alloc] initWithTarget:self selector:@selector(getParamForReq) object:nil];
     //[lock  lockWhenCondition:0];
@@ -209,7 +210,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     
    // [self getParamForReq];
     flag=1;
-    
+    flag_get_more_ads=1;
     
     hasLoadView = 1;
     
@@ -285,9 +286,18 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
         data=[mapRequest requestData];
         
         [self showAdsFromData:data];
+        flag_get_more_ads=1;
         
     }
     [mapRequest release];
+    
+    postString = [NSString stringWithFormat:@"sessionTime=1327150364534&request=get_more_ads&sid=session1"];    
+    while (flag_get_more_ads==1)
+    {
+        postString = [NSString stringWithFormat:@"sessionTime=1327150364534&request=get_more_ads&sid=session1"];
+        [self getMoreAds:postString];
+    }
+            
     //[lock unlockWithCondition:0];
             flag=0;
         }
@@ -351,6 +361,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     
     [pool release];
 }
+
 -(void) ProcessRequest:(NSMutableDictionary *)filtre2 
               atString:(NSMutableString *) postString 
             withfiltru: (NSString *) filtruz andparam:(NSString *) param
@@ -361,6 +372,45 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
         [postString appendString:[NSMutableString stringWithFormat:param,ceva]]; 
     }
 }
+
+-(void) getMoreAds: (NSString *) postString
+{
+    
+    NSLog(@"GET MORE ADS");
+    NSData * get_more_ads_data;
+    TRequest *moreAdsRequest = [TRequest alloc] ;
+    [moreAdsRequest initWithHost:@"http://flapptest.comule.com"];
+    
+    if([moreAdsRequest makeRequestWithString:postString]!=0)
+    {
+        get_more_ads_data=[[moreAdsRequest requestData] retain];
+        NSString *string = [[NSString alloc] initWithData:get_more_ads_data encoding:NSUTF8StringEncoding];
+        //NSLog(@"All the data received in NSString format: %@",string );
+        NSLog(@"GET MORE ADS string : %@",string);
+        //NSNumber * ads_per_pack = [moreAdsRequest getAdsPerPack]; 
+        
+        NSError* error;
+        NSDictionary* json2 = [NSJSONSerialization 
+                               JSONObjectWithData:get_more_ads_data 
+                               options:kNilOptions 
+                               error:&error];
+        NSLog(@"data JSON from: %@", json2); 
+        //nr = [json objectForKey:@"ads_per_pack"];
+        NSNumber * ads_per_pack = [json2 objectForKey:@"new_ads_sent"];
+        if (ads_per_pack.integerValue ==0) 
+        {
+            flag_get_more_ads=0;
+            //return;
+        }
+        else{
+            
+            [self showAdsFromData:get_more_ads_data];
+            
+        }
+    }
+    [moreAdsRequest release];
+}
+
 
 -(void) showAdsFromData:(NSData *)data{
     if ([data length]==0)
@@ -650,6 +700,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     if(hasLoadView==1){
         //[lock unlockWithCondition:1];
         flag=1;
+        flag_get_more_ads=0;
         
         // get data for thread 
         //wake up thread

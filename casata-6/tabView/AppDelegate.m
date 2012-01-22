@@ -21,6 +21,8 @@
 @synthesize viewController = _viewController;
 @synthesize navigationController= _navigationController;
 @synthesize appSession;
+@synthesize locationManager;
+
 
 
 - (void)dealloc
@@ -34,6 +36,17 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+    if (!self.locationManager) 
+	{
+		self.locationManager = [[[CLLocationManager alloc] init] autorelease];
+		self.locationManager.headingFilter = kCLHeadingFilterNone;
+		self.locationManager.distanceFilter = kCLDistanceFilterNone;
+		self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
+	}
+	self.locationManager.delegate = self; 
+    [locationManager startUpdatingLocation];
+    
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     
     

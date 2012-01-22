@@ -197,11 +197,15 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     
     
     CLLocationCoordinate2D zoomLocation;
-    zoomLocation.latitude=44.4;
-    zoomLocation.longitude=26.1;
+    //zoomLocation.latitude=44.4;
+    //zoomLocation.longitude=26.1;
+    zoomLocation.longitude = apdelegate.locationManager.location.coordinate.longitude;
+    zoomLocation.latitude = apdelegate.locationManager.location.coordinate.latitude;
+    
     MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation,50000,50000);
     MKCoordinateRegion adjustedRegion = [_mapView regionThatFits:viewRegion];
     [_mapView setRegion:adjustedRegion animated:YES];
+    _mapView.showsUserLocation=YES;
     
    // [self getParamForReq];
     flag=1;
@@ -417,6 +421,10 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation{
     NSLog(@"in annotation method");
+    
+    // Return nil for the user's locatio
+    if ([annotation isKindOfClass:[MKUserLocation class]])
+        return nil;
     
     
     static NSString *identifier = @"TLocation";   

@@ -15,7 +15,7 @@
 
 
 @implementation Filtre
-@synthesize sliderPretMax,sliderPretMin, segmentedControl,pMaxLabel,pMinLabel,selectedRowsArray, flag_filtre, filters_exist;
+@synthesize sliderPretMax,sliderPretMin, segmentedControl,pMaxLabel,pMinLabel,selectedRowsArray;
 
 @synthesize tableImobil;
 @synthesize supMaxLabel,supMinLabel, sliderSuprafataMax,sliderSuprafataMin;
@@ -29,8 +29,7 @@
         //self.tabBarItem.image = [UIImage imageNamed:@"filter"];
         // Custom initialization
         [self setTitle:@"Filtre"];
-        
-        
+        apdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];        
         
         tableImobil = [[UITableView alloc] init];
         [tableImobil setAutoresizesSubviews:YES];
@@ -76,6 +75,7 @@
     ///TODO
 }
 
+/*
 -(NSMutableDictionary *)applyFilters{
     NSUInteger type = [self.segmentedControl selectedSegmentIndex];
     NSString *types = [self.segmentedControl titleForSegmentAtIndex:type];
@@ -97,17 +97,39 @@
                nil];
     return filtre;
 }
+*/
+
+
 -(IBAction)aplicaFiltre:(id)sender
-{
+{   
+    NSUInteger type = [self.segmentedControl selectedSegmentIndex];
+    NSString *types;
+    if(type==0)
+   types = @"sell";
+    else types=@"rent";
+   
+    
+    NSMutableArray *property =[NSMutableArray arrayWithArray:self.selectedRowsArray];
+    
+    NSNumber *pmin = [NSNumber numberWithInt:([self.pMinLabel.text intValue])];
+    NSNumber * pmax = [NSNumber numberWithInt:([self.pMaxLabel.text intValue])];
+    NSNumber * smin = [NSNumber numberWithInt:([self.supMinLabel.text intValue])];
+    NSNumber * smax = [NSNumber numberWithInt:([self.supMaxLabel.text intValue])];  
+    
+    
+    apdelegate.appSession.filtre = [NSMutableDictionary dictionaryWithObjectsAndKeys:types, @"ad_type", property, @"property_type", pmin, @"p_min", pmax, @"p_max", smin, @"size_min", smax, @"size_max", nil];
+    
     NSLog(@"apasat");
-    self.flag_filtre = 1;
+    NSLog(@"FILTRE nsdict: %@",apdelegate.appSession.filtre);
+    
     [delegate performSelector:seAplicaFiltre]; //pt a ajunge in mapViewcontroller
 }
 
 -(IBAction)clearFiltre:(id)sender
 {
+    apdelegate.appSession.filtre=nil;
     NSLog(@"clear");
-    self.filters_exist = 0;
+   
     [delegate performSelector:seStergFiltre];
 }
 

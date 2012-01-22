@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 //#import "TableWithCheckBox.h"
+#import "AppDelegate.h"
 
 @interface Filtre : UIViewController <UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate>
 {
@@ -27,18 +28,17 @@
    UITableView  *tableImobil;
     NSMutableArray * selectedRowsArray;
     
-    int flag_filtre;
-    int filters_exist;
+   
     
     //pt map ca delegate
     id delegate;
     SEL seAplicaFiltre;
     SEL seStergFiltre;
 
+ AppDelegate *apdelegate;
 
 }
-@property (nonatomic, readwrite) int flag_filtre;
-@property (nonatomic, readwrite) int filters_exist;
+
 //@property(nonatomic,assign) int selectedPropertyType;
 @property (nonatomic, retain) NSMutableArray * selectedRowsArray;	
 //@property(nonatomic,retain) IBOutlet UIPickerView *pickerView;
@@ -64,7 +64,7 @@
 -(IBAction)backToStatistics:(id)sender ;
 
 //-(void)clearFilters;
--(NSMutableDictionary *)applyFilters;
+//-(NSMutableDictionary *)applyFilters;
 
 -(IBAction)aplicaFiltre:(id)sender;
 -(IBAction)clearFiltre:(id)sender;

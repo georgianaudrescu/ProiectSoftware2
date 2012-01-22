@@ -38,4 +38,5 @@
 //global variables initalization
 -(void)globalVariablesInit;
 -(void)addCurrentSearchResultsToGlobalAdList;
+-(NSMutableString*)getStringForFilters;
 @end

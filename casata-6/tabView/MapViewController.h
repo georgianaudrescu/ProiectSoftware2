@@ -49,7 +49,6 @@
     BOOL onlyFavAdsVisible;
     BOOL onlyFilteredAdsVisible;
     
-    Filtre *filtru;
 }
 @property (retain, nonatomic) IBOutlet MKMapView *mapView;
 @property (nonatomic,retain) UINavigationItem *mapNavItem;
@@ -72,12 +71,11 @@ extern NSString *const GMAP_ANNOTATION_SELECTED;
 -(void) showAdsFromData:(NSData *)data;
 -(void) getParamForReq;
 
+-(void) threadReqMethod;
+
 
 -(void) hidePinWhenFavesVisibleAndCurrentAdRemovedFromFav;
--(void) ProcessRequest:(NSMutableDictionary *)filtre2 
-              atString:(NSMutableString *) postString 
-            withfiltru: (NSString *) filtru 
-              andparam:(NSString *) param;
+
 
 -(void) getMoreAds: (NSString *) postString;
 -(void) putAnnotationForAd:(TAd*) theAd;

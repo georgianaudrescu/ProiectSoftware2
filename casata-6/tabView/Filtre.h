@@ -29,6 +29,11 @@
     
     int flag_filtre;
     int filters_exist;
+    
+    //pt map ca delegate
+    id delegate;
+    SEL seAplicaFiltre;
+    SEL seStergFiltre;
 
 
 }
@@ -46,6 +51,9 @@
 @property(nonatomic,retain) IBOutlet UISlider *sliderSuprafataMax;
 @property(nonatomic,retain) IBOutlet UILabel *supMinLabel, *supMaxLabel;
 //@property(nonatomic,retain)IBOutlet UIButton *aplicaFiltreButton;
+@property(assign) id delegate;
+@property(assign) SEL seAplicaFiltre;
+@property(assign) SEL seStergFiltre;
 
 
 -(IBAction)sliderMinValueChanged:(UISlider *)sender;

@@ -19,7 +19,7 @@
 
 @synthesize tableImobil;
 @synthesize supMaxLabel,supMinLabel, sliderSuprafataMax,sliderSuprafataMin;
-
+@synthesize delegate, seAplicaFiltre, seStergFiltre;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -101,12 +101,14 @@
 {
     NSLog(@"apasat");
     self.flag_filtre = 1;
+    [delegate performSelector:seAplicaFiltre]; //pt a ajunge in mapViewcontroller
 }
 
 -(IBAction)clearFiltre:(id)sender
 {
     NSLog(@"clear");
     self.filters_exist = 0;
+    [delegate performSelector:seStergFiltre];
 }
 
 #pragma mark Table view methods

@@ -47,6 +47,8 @@
     int flag_get_more_ads;
     
     BOOL onlyFavAdsVisible;
+    BOOL onlyFilteredAdsVisible;
+    
     Filtre *filtru;
 }
 @property (retain, nonatomic) IBOutlet MKMapView *mapView;
@@ -79,4 +81,7 @@ extern NSString *const GMAP_ANNOTATION_SELECTED;
 
 -(void) getMoreAds: (NSString *) postString;
 -(void) putAnnotationForAd:(TAd*) theAd;
+
+-(void)seAplicaFiltrele;
+-(void) seStergFiltrele;
 @end

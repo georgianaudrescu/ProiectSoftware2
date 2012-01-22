@@ -74,7 +74,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
         
         apdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
         onlyFavAdsVisible=NO;
-        
+        onlyFilteredAdsVisible=NO;
     }
     
     
@@ -155,7 +155,9 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
      filtru = self.statisticsView.filters;
     filtru.flag_filtre = 0;
     filtru.filters_exist = 0;
-
+    filtru.delegate=self;
+    filtru.seAplicaFiltre = @selector(seAplicaFiltrele);
+    filtru.seStergFiltre =@selector(seStergFiltrele);
     
     /*
     self.subScroll.frame = CGRectMake(0,300, self.subScroll.frame.size.width, self.subScroll.frame.size.height);
@@ -375,6 +377,24 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     {
         NSMutableString *ceva = [filtre2 objectForKey:filtruz];
         [postString appendString:[NSMutableString stringWithFormat:param,ceva]]; 
+    }
+}
+
+-(void)seAplicaFiltrele
+{ //ascundem pinurile care nu corespund
+    onlyFilteredAdsVisible=YES;
+
+}
+-(void) seStergFiltrele
+{
+    onlyFilteredAdsVisible=NO;
+    
+    //facem toate pinurile vizibile -de tratat cazul in care fave apasat
+    int totalAds = apdelegate.appSession.globalAdList.count;
+    for(int j=0;j<totalAds;j++)
+    {    TAd *gAd = [apdelegate.appSession.globalAdList getAdAtIndex:j];
+        [[self.mapView viewForAnnotation:gAd.adlocation]setHidden:NO];
+        gAd=nil;
     }
 }
 

@@ -78,5 +78,5 @@ extern NSString *const GMAP_ANNOTATION_SELECTED;
               andparam:(NSString *) param;
 
 -(void) getMoreAds: (NSString *) postString;
-
+-(void) putAnnotationForAd:(TAd*) theAd;
 @end

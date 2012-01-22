@@ -291,15 +291,17 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     }
     [mapRequest release];
     
-    postString = [NSString stringWithFormat:@"sessionTime=1327150364534&request=get_more_ads&sid=session1"];    
-    while (flag_get_more_ads==1)
-    {
-        postString = [NSString stringWithFormat:@"sessionTime=1327150364534&request=get_more_ads&sid=session1"];
-        [self getMoreAds:postString];
-    }
+
             
     //[lock unlockWithCondition:0];
             flag=0;
+        }
+        
+        NSMutableString * postString = [NSMutableString stringWithFormat:@"sessionTime=1327150364534&request=get_more_ads&sid=session1"];    
+        while (flag_get_more_ads==1)
+        {
+            postString = [NSString stringWithFormat:@"sessionTime=1327150364534&request=get_more_ads&sid=session1"];
+            [self getMoreAds:postString];
         }
         
         if(filtru.flag_filtre != 0)
@@ -307,6 +309,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
             NSLog(@"thread filtre");
             filtru.flag_filtre = 0;
             //take coord for request
+            
             MKMapRect visibleRegion = _mapView.visibleMapRect;
             
             MKMapPoint cornerPointNE = MKMapPointMake(visibleRegion.origin.x + visibleRegion.size.width, visibleRegion.origin.y);
@@ -320,6 +323,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
             right = cornerCoordinateNE.longitude;
             NSLog(@"%f, %f, %f, %f",left,right,top,bottom);
             //TODO zoom level;
+            
             
             ///
             ///request data
@@ -355,6 +359,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
                 data=[mapRequestFiltru requestData];
                 
                 [self showAdsFromData:data];
+                flag_get_more_ads=1;
             }
         }
     }
@@ -405,6 +410,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
         else{
             
             [self showAdsFromData:get_more_ads_data];
+            //[self performSelectorOnMainThread:@selector(showAdsFromData:) withObject:get_more_ads_data waitUntilDone:NO];
             
         }
     }
@@ -461,12 +467,19 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
         NSLog(@"idul %d",anAd.adlocation.locationId);
        
         
-        [_mapView addAnnotation:anAd.adlocation]; 
+        [self performSelectorOnMainThread:@selector(putAnnotationForAd:) withObject:anAd waitUntilDone:NO];
+        
+        //[_mapView addAnnotation:anAd.adlocation]; 
         [anAd release];       
         
     }
     NSNumber *found = [json objectForKey:@"ads_found"];
     NSLog(@" ADS FOUND %d",found.intValue);
+}
+         
+ -(void) putAnnotationForAd:(TAd*) theAd
+{
+     [_mapView addAnnotation:theAd.adlocation];
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation{

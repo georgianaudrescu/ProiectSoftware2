@@ -36,6 +36,35 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     
+    ////close session////// 
+    
+    TRequest *req = [TRequest alloc] ;
+    [req initWithHost:@"http://flapptest.comule.com"];
+    // NSString * postString=[NSString stringWithFormat:@"sessionTime=1326040737022&request=close%5Fsession&sid= %d", appSession.user.userId];
+    NSString * postString=@"sessionTime=1326043272238&request=close%5Fsession&sid=session1";
+    NSData *responseData;
+    
+    if([req makeRequestWithString:postString]!=0){
+        responseData=[req requestData];
+    }
+    
+    //parse out the json data
+    NSError* error;
+    NSDictionary* json = [NSJSONSerialization 
+                          JSONObjectWithData:responseData
+                          options:kNilOptions 
+                          error:&error];
+    NSString *status=[json objectForKey:@"status"];  
+    if([status isEqualToString:@"OK"])
+    { NSLog(@"Session Closed");}
+    else
+    { NSLog(@"Session NOT Closed!");
+    }
+    [req release];    
+    
+   ////close session////// 
+    
+    
     if (!self.locationManager) 
 	{
 		self.locationManager = [[[CLLocationManager alloc] init] autorelease];
@@ -74,6 +103,9 @@
     
     //self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
+    
+
+    
     return YES;
 }
 
@@ -94,29 +126,7 @@
      If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
      */
     
-    TRequest *req = [TRequest alloc] ;
-    [req initWithHost:@"http://flapptest.comule.com"];
-   // NSString * postString=[NSString stringWithFormat:@"sessionTime=1326040737022&request=close%5Fsession&sid= %d", appSession.user.userId];
-    NSString * postString=@"sessionTime=1326043272238&request=close%5Fsession&sid=session1";
-    NSData *responseData;
-    
-    if([req makeRequestWithString:postString]!=0){
-        responseData=[req requestData];
-    }
-    
-    //parse out the json data
-    NSError* error;
-    NSDictionary* json = [NSJSONSerialization 
-                          JSONObjectWithData:responseData
-                          options:kNilOptions 
-                          error:&error];
-    NSString *status=[json objectForKey:@"status"];  
-    if([status isEqualToString:@"OK"])
-    { NSLog(@"Session Closed");}
-    else
-    { NSLog(@"Session NOT Closed!");
-    }
-    [req release];
+
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application

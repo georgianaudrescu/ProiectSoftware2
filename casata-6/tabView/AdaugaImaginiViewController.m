@@ -18,7 +18,7 @@
 @implementation AdaugaImaginiViewController
 @synthesize theImageList, imgView, imgScrollView, buttonsArray, generalScrollView;
 @synthesize preiaCuCamera, preiaDinGalerie, currentImageNr, totalImages;
-@synthesize titluImagineTextField, descriereImagineTextField, valoareDefault, stergeButton;
+@synthesize titluImagineTextField, valoareDefault, stergeButton;
 @synthesize picker;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -27,6 +27,11 @@
     if (self) {
         // Custom initialization
         [self setTitle:@"Adauga Imagini"];
+        
+        //setam butonul din dreapta navBar-ului -adauga imaginile la anunt
+        self.navigationItem.rightBarButtonItem =  [[[UIBarButtonItem alloc] initWithTitle:@"Adauga" style:UIBarButtonItemStylePlain target:self action:@selector(adaugaImaginiLaAnunt)]autorelease]; 
+        self.navigationItem.rightBarButtonItem.tintColor = [UIColor blackColor];
+
     }
     return self;
 }
@@ -238,7 +243,7 @@
 
     self.imgView.contentMode = UIViewContentModeScaleAspectFit;
     
-    [self.generalScrollView setContentSize:CGSizeMake(320, 530)];
+   [self.generalScrollView setContentSize:CGSizeMake(320, 500)];
 }
 
 -(IBAction)preiaImagine:(id)sender
@@ -281,12 +286,12 @@
     TImage *img1 = [TImage alloc];
     [img1 initWithImage:image];
     img1.defaultValue=0;
-    img1.description=@"";
+    //img1.description=@"";
     img1.name=@"";
     [self.theImageList addImage:img1];
     img1=nil;//
 
-    self.descriereImagineTextField.text=@"";
+    //self.descriereImagineTextField.text=@"";
     self.titluImagineTextField.text=@"";
     self.valoareDefault.on=NO;
     self.currentImageNr=self.totalImages;
@@ -312,7 +317,7 @@
     TImage *theImag =  [self.theImageList getImageAtIndex:x];
     self.imgView.image=theImag.image;
     self.titluImagineTextField.text=theImag.name;
-    self.descriereImagineTextField.text=theImag.description;
+    //self.descriereImagineTextField.text=theImag.description;
     if(theImag.defaultValue==0)
         self.valoareDefault.on = NO;
     else
@@ -328,11 +333,11 @@
 -(IBAction)stergeImagineCurenta:(id)sender
 { if(self.totalImages>0)
 {
-    if(self.totalImages==1)
+    if(self.totalImages==1)  //daca stergem singura imagine
     {
         self.imgView.image = [UIImage imageNamed:@"emptyImage.png"];
         self.titluImagineTextField.text=@"";
-        self.descriereImagineTextField.text=@"";
+        //self.descriereImagineTextField.text=@"";
         self.valoareDefault.on= NO;
         
         [[self.buttonsArray objectAtIndex:self.currentImageNr] removeFromSuperview];
@@ -345,14 +350,14 @@
             }
     else
     {
-        if(self.currentImageNr==(self.totalImages-1))
+        if(self.currentImageNr==(self.totalImages-1))  //stergerea ultimei imag
         {
              
             
             TImage *theImag =  [self.theImageList getImageAtIndex:(self.currentImageNr-1)];
             self.imgView.image=theImag.image;
             self.titluImagineTextField.text=theImag.name;
-            self.descriereImagineTextField.text=theImag.description;
+            //self.descriereImagineTextField.text=theImag.description;
             if(theImag.defaultValue==0)
                 self.valoareDefault.on = NO;
             else
@@ -375,12 +380,12 @@
     
         else
         {
-       
+       //stergerea unei imag care mai are imag dupa ea
    
     TImage *theImag =  [self.theImageList getImageAtIndex:(self.currentImageNr+1)];
             self.imgView.image=theImag.image;
             self.titluImagineTextField.text=theImag.name;
-            self.descriereImagineTextField.text=theImag.description;
+            //self.descriereImagineTextField.text=theImag.description;
             if(theImag.defaultValue==0)
                 self.valoareDefault.on = NO;
             else
@@ -424,32 +429,40 @@
 
 }
 
--(IBAction)enterEditingModeForTextFields:(id)sender
+-(IBAction)enterEditingModeForTextField:(id)sender
 {
     NSLog(@"editing did begin");
-    [self.generalScrollView setContentOffset:CGPointMake(0, 100) animated:YES];
+   [self.generalScrollView setContentOffset:CGPointMake(0, 25) animated:YES];
 }
 -(IBAction) textFieldReturn:(id)sender{
     if(self.totalImages>0)
     {   TImage *theImag =  [self.theImageList getImageAtIndex:self.currentImageNr];
-        theImag.description = self.descriereImagineTextField.text;
+        //theImag.description = self.descriereImagineTextField.text;
         theImag.name = self.titluImagineTextField.text;
         theImag=nil;
     }
+     [self.generalScrollView setContentOffset:CGPointMake(0, 0) animated:YES];
     [sender resignFirstResponder];
 }
+
 
 -(IBAction)backgroundTouched:(id)sender{
     if(self.totalImages>0)
     {   TImage *theImag =  [self.theImageList getImageAtIndex:self.currentImageNr];
-        theImag.description = self.descriereImagineTextField.text;
+       // theImag.description = self.descriereImagineTextField.text;
         theImag.name = self.titluImagineTextField.text;
         theImag=nil;
     }
     
     [self.titluImagineTextField resignFirstResponder];
-    [self.descriereImagineTextField resignFirstResponder];
+    //[self.descriereImagineTextField resignFirstResponder];
 }
+
+-(void)adaugaImaginiLaAnunt
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 
 - (void)viewDidUnload
 {
@@ -475,7 +488,7 @@
     [picker release];
     [stergeButton release];
     [titluImagineTextField release];
-    [descriereImagineTextField release];
+    //[descriereImagineTextField release];
     [super  dealloc];
 
 }

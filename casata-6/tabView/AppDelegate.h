@@ -22,8 +22,6 @@
 @property (nonatomic,retain) TAppSession *appSession;
 @property (nonatomic,retain) CLLocationManager * locationManager;
 
--(void)enterApplication;
-
 
 
 @end

@@ -10,7 +10,6 @@
 
 #import "MapViewController.h"
 
-#import "ViewController.h"
 #import "Informatii.h"
 #import "TAppSession.h"
 #import "TRequest.h"
@@ -54,10 +53,10 @@
     self.appSession = [[TAppSession alloc] init];
     [self.appSession globalVariablesInit];
     
-    
+   /* 
     //schimba culoarea status bar-ului de sus-din gri(default) in negru
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque animated:YES];
-    
+    */
     
     
     // Override point for customization after application launch.
@@ -70,22 +69,14 @@
     self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:0.976 green:0.827 blue:0.015 alpha:1.0]; 
      
     
-     
-    //view controllerul pt Home
-    self.viewController = [[[ViewController alloc] initWithNibName:@"ViewController" bundle:nil] autorelease];
     
-    
-   self.window.rootViewController = self.viewController;
+   self.window.rootViewController = self.navigationController;
     
     //self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
     return YES;
 }
 
--(void) enterApplication
-{
-    self.window.rootViewController=self.navigationController;
-}
 
 
 - (void)applicationWillResignActive:(UIApplication *)application

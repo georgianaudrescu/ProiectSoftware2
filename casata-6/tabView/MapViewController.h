@@ -82,4 +82,5 @@ extern NSString *const GMAP_ANNOTATION_SELECTED;
 
 -(void)seAplicaFiltrele;
 -(void) seStergFiltrele;
+-(void)aplicareFiltrePeLista:(TAdList*)theList;
 @end

@@ -20,6 +20,7 @@
 @synthesize tableImobil;
 @synthesize supMaxLabel,supMinLabel, sliderSuprafataMax,sliderSuprafataMin;
 @synthesize delegate, seAplicaFiltre, seStergFiltre;
+@synthesize headerText;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -104,10 +105,15 @@
 {   
     NSUInteger type = [self.segmentedControl selectedSegmentIndex];
     NSString *types;
+    
+    NSString *anuntType;
     if(type==0)
-   types = @"sell";
-    else types=@"rent";
-   
+    {types = @"sell";
+        anuntType=[NSString stringWithString:@"vanzare"];
+    }
+    else {types=@"rent";
+        anuntType = [NSString stringWithString:@"inchiriere"];
+    }
     
     NSMutableArray *property =[NSMutableArray arrayWithArray:self.selectedRowsArray];
     
@@ -115,6 +121,12 @@
     NSNumber * pmax = [NSNumber numberWithInt:([self.pMaxLabel.text intValue])];
     NSNumber * smin = [NSNumber numberWithInt:([self.supMinLabel.text intValue])];
     NSNumber * smax = [NSNumber numberWithInt:([self.supMaxLabel.text intValue])];  
+    
+    NSString *header =[NSString stringWithFormat:@"%@-%@ euro, %@-%@ mp, %@ ",pmin,pmax,smin,smax,anuntType];
+    //headerText.text= header;
+   
+    [self.headerText setText:header];
+    NSLog(@"%@",header);
     
     
     apdelegate.appSession.filtre = [NSMutableDictionary dictionaryWithObjectsAndKeys:types, @"ad_type", property, @"property_type", pmin, @"p_min", pmax, @"p_max", smin, @"size_min", smax, @"size_max", nil];
@@ -127,6 +139,7 @@
 
 -(IBAction)clearFiltre:(id)sender
 {
+    [self.headerText setText:@"Nici un filtru aplicat"];
     apdelegate.appSession.filtre=nil;
     NSLog(@"clear");
    
@@ -192,15 +205,15 @@
 	[alert release];
      */
     UITableViewCell *cell = [tableImobil cellForRowAtIndexPath:indexPath];
-    if([selectedRowsArray containsObject:cell.textLabel.text])
+    if([selectedRowsArray containsObject:[cell.textLabel.text lowercaseString]])
     {
         cell.imageView.image = [UIImage imageNamed:@"checkbox_not_ticked.png"];
-        [selectedRowsArray removeObject:cell.textLabel.text];
+        [selectedRowsArray removeObject:[cell.textLabel.text lowercaseString]];
     }
     else
     {
         cell.imageView.image = [UIImage imageNamed:@"checkbox_ticked.png"];
-        [selectedRowsArray addObject:cell.textLabel.text];
+        [selectedRowsArray addObject:[cell.textLabel.text lowercaseString]];
     }
    // NSLog(@"%@",selectedRowsArray);
     UIView *backgroundView = [[UIView alloc] init];

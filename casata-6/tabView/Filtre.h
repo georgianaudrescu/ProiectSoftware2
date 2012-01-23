@@ -27,6 +27,7 @@
     //UIButton *aplicaFiltreButton;
    UITableView  *tableImobil;
     NSMutableArray * selectedRowsArray;
+    UILabel * headerText;
     
    
     
@@ -54,6 +55,7 @@
 @property(assign) id delegate;
 @property(assign) SEL seAplicaFiltre;
 @property(assign) SEL seStergFiltre;
+@property(nonatomic, retain) IBOutlet UILabel * headerText;
 
 
 -(IBAction)sliderMinValueChanged:(UISlider *)sender;

@@ -299,22 +299,120 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
 -(void)seAplicaFiltrele
 { //ascundem pinurile care nu corespund
     onlyFilteredAdsVisible=YES;
-    NSMutableString *filtreString = [apdelegate.appSession getStringForFilters];
     
+    //mutam scolul automat pentru a se vedea harta-putem sa schimbam daca nu este nevoie de asta
+    [self.scrollView setContentOffset: CGPointMake(0, 0) animated:YES];  
+    
+    NSMutableString *filtreString = [apdelegate.appSession getStringForFilters];
     NSLog(@"filtre request params: %@", filtreString);
+    
+    if(onlyFavAdsVisible==YES) //aplicam filtre pe lista de favorite
+    {
+        [self aplicareFiltrePeLista:apdelegate.appSession.favorites];
+    
+    }
+    else
+    {
+        [self aplicareFiltrePeLista:apdelegate.appSession.globalAdList];        
+         
+    }
 
 }
+
+-(void)aplicareFiltrePeLista:(TAdList*)theList
+{
+    //afisam toate anunturile din Lista
+    [self seStergFiltrele];
+    onlyFilteredAdsVisible=YES;
+    
+    
+    int totalAds = theList.count; 
+    
+    //le ascundem pe cele care nu corespund
+    int adTypeCorespunde, propertyTypeCorespunde, priceCorespunde, suprafataCorespunde;
+    
+    for(int i=0;i<totalAds;i++)
+    {    TAd *oneAd = [theList getAdAtIndex:i];
+        adTypeCorespunde=0;
+        propertyTypeCorespunde=0;
+        priceCorespunde=0;
+        suprafataCorespunde=0;
+        
+        if ([[oneAd.ad objectForKey:@"ad_type"] isEqualToString:[apdelegate.appSession.filtre objectForKey:@"ad_type"]]) { adTypeCorespunde=1;NSLog(@"tipAnunt corespunde");}
+        
+        
+        if([[apdelegate.appSession.filtre objectForKey:@"property_type"] count] !=0)
+        { int x;
+            for(x=0;x<[[apdelegate.appSession.filtre objectForKey:@"property_type"] count];x++)
+            {
+                if ([[[apdelegate.appSession.filtre objectForKey:@"property_type"] objectAtIndex:x] isEqualToString:[oneAd.ad objectForKey:@"property_type"]])
+                { propertyTypeCorespunde=1;NSLog(@"tip proprietate corespunde");} 
+                
+                
+                else
+                { NSLog(@"nu corespunde cu %@", [[apdelegate.appSession.filtre objectForKey:@"property_type"] objectAtIndex:x]);
+                }
+            }
+        }
+        else
+        {propertyTypeCorespunde=1;
+        }
+        
+        int valoareMax,valoareMin, valoareAd;
+        valoareAd = [[oneAd.ad objectForKey:@"price"] intValue];
+        valoareMax = [[apdelegate.appSession.filtre objectForKey:@"p_max"] intValue];
+        valoareMin = [[apdelegate.appSession.filtre objectForKey:@"p_min"] intValue];
+        if((valoareAd>=valoareMin)&&(valoareAd<=valoareMax)) {priceCorespunde=1; NSLog(@"pret corespunde");}
+        
+        /*
+         valoareAd = [[fAd.ad objectForKey:@"suprafata"] intValue];
+         valoareMax = [[apdelegate.appSession.filtre objectForKey:@"size_max"] intValue];
+         valoareMin = [[apdelegate.appSession.filtre objectForKey:@"size_min"] intValue];
+         if((valoareAd>=valoareMin)&&(valoareAd<=valoareMax)) {suprafataCorespunde=1;}
+         */
+        suprafataCorespunde=1; //inca nu primim suprafata unei case
+        
+        if((adTypeCorespunde==0)||(propertyTypeCorespunde==0)||(priceCorespunde==0)||(suprafataCorespunde==0))
+        { [[self.mapView viewForAnnotation:oneAd.adlocation]setHidden:YES];
+           [[self.mapView viewForAnnotation:oneAd.adlocation]setEnabled:NO];
+        }
+        oneAd=nil;
+    }   
+
+
+
+}
+
 -(void) seStergFiltrele
 {
     onlyFilteredAdsVisible=NO;
     
+    //mutam scolul automat pentru a se vedea harta-putem sa schimbam daca nu este nevoie de asta
+    [self.scrollView setContentOffset: CGPointMake(0, 0) animated:YES];    
+    
+    if(onlyFavAdsVisible==YES) //aratam toate faves
+    {
+        int totalFav = apdelegate.appSession.favorites.count;
+        for(int i=0;i<totalFav;i++)
+        {    TAd *fAd = [apdelegate.appSession.favorites getAdAtIndex:i];
+            [[self.mapView viewForAnnotation:fAd.adlocation]setHidden:NO];
+            [[self.mapView viewForAnnotation:fAd.adlocation]setEnabled:YES];
+            fAd=nil;
+        }    
+    }
+    
+    else
+    {
     //facem toate pinurile vizibile -de tratat cazul in care fave apasat
     int totalAds = apdelegate.appSession.globalAdList.count;
     for(int j=0;j<totalAds;j++)
     {    TAd *gAd = [apdelegate.appSession.globalAdList getAdAtIndex:j];
         [[self.mapView viewForAnnotation:gAd.adlocation]setHidden:NO];
+        [[self.mapView viewForAnnotation:gAd.adlocation]setEnabled:YES];
         gAd=nil;
     }
+        
+    }     
 }
 
 -(void) getMoreAds: (NSString *) postString
@@ -444,22 +542,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
             annotationView.annotation = annotation;
         }
         
-        /* 
-         UIImageView *imgView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"house.jpg"]]autorelease];
-         //////
-         UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-         [rightButton addTarget:self
-         action:@selector(detaliiAnunt:)
-         forControlEvents:UIControlEventTouchUpInside];
-         TLocation *loc = (TLocation*)annotation;
-         rightButton.tag = loc.locationId;
-         annotationView.rightCalloutAccessoryView=rightButton;
-         //////                                                               
-         imgView.frame =CGRectMake(0, 0, 30, 30);
-         annotationView.leftCalloutAccessoryView = imgView;
-         */ 
-        // [imgView release];
-        annotationView.enabled = YES;
+         annotationView.enabled = YES;
         // annotationView.canShowCallout = YES;
         [annotationView addObserver:self
                          forKeyPath:@"selected"
@@ -560,24 +643,30 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
         //in cazul in care scrollul este dat in jos(nu mai este vizibila harta) si se apasa pe butonul de fav, mutam scolul automat pentru a se vedea harta-putem sa schimbam daca nu este nevoie de asta
         [self.scrollView setContentOffset: CGPointMake(0, 0) animated:YES];
         
-        //ascundem anunturile care nu sunt favorite
-        int totalFav=apdelegate.appSession.favorites.count;
-        int totalAds=apdelegate.appSession.globalAdList.count;
-        int isFav;
+        //ASCUNDEM TOATE ANUNTURILE SI LE AFISAM DOAR PE CELE FAVORITE       
+        int totalAds = apdelegate.appSession.globalAdList.count;
         for(int j=0;j<totalAds;j++)
         {    TAd *gAd = [apdelegate.appSession.globalAdList getAdAtIndex:j];
-            isFav=0;
-            for(int i=0; i<totalFav;i++)
-            {   
-                TAd *tempAd = [apdelegate.appSession.favorites getAdAtIndex:i];
-                if(gAd == tempAd)
-                {isFav=1;}
-                tempAd=nil;
-            } 
-            if(isFav==0) { [[self.mapView viewForAnnotation:gAd.adlocation] setHidden:YES];}
+            [[self.mapView viewForAnnotation:gAd.adlocation]setHidden:YES];
+            [[self.mapView viewForAnnotation:gAd.adlocation] setEnabled:NO];
             gAd=nil;
-        }  
+    
+        }
+        
+        int totalFav = apdelegate.appSession.favorites.count;
+        for(int i=0;i<totalFav;i++)
+        {    TAd *fAd = [apdelegate.appSession.favorites getAdAtIndex:i];
+            [[self.mapView viewForAnnotation:fAd.adlocation]setHidden:NO];
+            [[self.mapView viewForAnnotation:fAd.adlocation]setEnabled:YES];
+            fAd=nil;
+        }    
+        
+    if(onlyFilteredAdsVisible==YES)
+        [self aplicareFiltrePeLista:apdelegate.appSession.favorites];
+        
     }
+    
+   
     else //daca nu avem favorite, afisam un mesaj corespunzator
     {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:@"Nu ai anunturi favorite." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
@@ -605,8 +694,12 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
         for(int j=0;j<totalAds;j++)
         {    TAd *gAd = [apdelegate.appSession.globalAdList getAdAtIndex:j];
             [[self.mapView viewForAnnotation:gAd.adlocation]setHidden:NO];
+            [[self.mapView viewForAnnotation:gAd.adlocation]setEnabled:YES];
             gAd=nil;
         }
+        
+        if(onlyFilteredAdsVisible==YES)
+            [self aplicareFiltrePeLista:apdelegate.appSession.globalAdList];
     }
     
 }
@@ -618,6 +711,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     {
  [self.mapView deselectAnnotation:selectedAnnotation animated:NO];
         [[self.mapView viewForAnnotation:selectedAnnotation] setHidden:YES];
+        [[self.mapView viewForAnnotation:selectedAnnotation] setEnabled:NO];
     
     }
 }
@@ -649,7 +743,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
 
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated{
     NSLog(@"drag");
-    if(hasLoadView==1){
+    if(hasLoadView==1&&onlyFavAdsVisible==NO){
         //[lock unlockWithCondition:1];
         flag=1;
         flag_get_more_ads=0;
@@ -675,7 +769,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
-    return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 - (void)dealloc {

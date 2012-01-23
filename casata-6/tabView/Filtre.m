@@ -122,7 +122,30 @@
     NSNumber * smin = [NSNumber numberWithInt:([self.supMinLabel.text intValue])];
     NSNumber * smax = [NSNumber numberWithInt:([self.supMaxLabel.text intValue])];  
     
-    NSString *header =[NSString stringWithFormat:@"%@-%@ euro, %@-%@ mp, %@ ",pmin,pmax,smin,smax,anuntType];
+    NSMutableString * propString= [NSMutableString stringWithString:@""];
+    for(int x=0; x<property.count; x++)
+    {
+        if(x>0){ [propString appendString:@","]; }
+        
+        if([[property objectAtIndex:x] isEqual:@"apartament 4 camere"]){
+            [propString appendString:@"4camere"];
+        }
+        else 
+            if([[property objectAtIndex:x] isEqual:@"apartament 3 camere"]){
+                [propString appendString:@"3camere"];
+            }
+            else 
+                if([[property objectAtIndex:x] isEqual:@"apartament 2 camere"]){
+                    [propString appendString:@"2camere"];
+                }
+                else{
+                    [propString appendString:[property objectAtIndex:x]];
+                }
+        
+        
+    }
+    
+    NSString *header =[NSString stringWithFormat:@"%@-%@ euro, %@-%@ mp, %@, %@ ",pmin,pmax,smin,smax,anuntType,propString];
     //headerText.text= header;
    
     [self.headerText setText:header];

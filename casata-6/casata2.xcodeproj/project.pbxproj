@@ -16,6 +16,9 @@
 		3A1C870114CF0A5400670517 /* DetaliiAnuntViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A1C86FC14CF0A5400670517 /* DetaliiAnuntViewController.xib */; };
 		3A1C870214CF0A5400670517 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A1C86FE14CF0A5400670517 /* MapViewController.m */; };
 		3A1C870314CF0A5400670517 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A1C86FF14CF0A5400670517 /* MapViewController.xib */; };
+		3A1C870A14CF0DFC00670517 /* 75-phone.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A1C870914CF0DFC00670517 /* 75-phone.png */; };
+		3A1C870D14CF0E1500670517 /* headerDetalii.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A1C870B14CF0E1500670517 /* headerDetalii.png */; };
+		3A1C870E14CF0E1500670517 /* house2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3A1C870C14CF0E1500670517 /* house2.jpg */; };
 		3A2CAC1814BB00EA00D68F6C /* house.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3A2CAC1714BB00EA00D68F6C /* house.jpg */; };
 		3A30EB3714B62F11003C2264 /* TRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A30EB3614B62F11003C2264 /* TRequest.m */; };
 		3A37A40E149B6FF50053E39F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A37A40D149B6FF50053E39F /* UIKit.framework */; };
@@ -157,17 +160,20 @@
 		3A1C86FD14CF0A5400670517 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		3A1C86FE14CF0A5400670517 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		3A1C86FF14CF0A5400670517 /* MapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
+		3A1C870914CF0DFC00670517 /* 75-phone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "75-phone.png"; sourceTree = "<group>"; };
+		3A1C870B14CF0E1500670517 /* headerDetalii.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = headerDetalii.png; sourceTree = "<group>"; };
+		3A1C870C14CF0E1500670517 /* house2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = house2.jpg; sourceTree = "<group>"; };
 		3A2CAC1714BB00EA00D68F6C /* house.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = house.jpg; sourceTree = "<group>"; };
 		3A30EB3514B62F11003C2264 /* TRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRequest.h; sourceTree = "<group>"; };
 		3A30EB3614B62F11003C2264 /* TRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRequest.m; sourceTree = "<group>"; };
-		3A37A409149B6FF50053E39F /* casata.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = casata.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3A37A409149B6FF50053E39F /* casata2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = casata2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A37A40D149B6FF50053E39F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3A37A40F149B6FF50053E39F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3A37A411149B6FF50053E39F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		3A37A415149B6FF50053E39F /* casata-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "casata-Info.plist"; sourceTree = "<group>"; };
+		3A37A415149B6FF50053E39F /* casata2-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "casata2-Info.plist"; sourceTree = "<group>"; };
 		3A37A417149B6FF50053E39F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3A37A419149B6FF50053E39F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		3A37A41B149B6FF50053E39F /* casata-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "casata-Prefix.pch"; sourceTree = "<group>"; };
+		3A37A41B149B6FF50053E39F /* casata2-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "casata2-Prefix.pch"; sourceTree = "<group>"; };
 		3A37A41C149B6FF50053E39F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3A37A41D149B6FF50053E39F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		3A37A442149B774A0053E39F /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
@@ -428,7 +434,7 @@
 		3A37A40A149B6FF50053E39F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3A37A409149B6FF50053E39F /* casata.app */,
+				3A37A409149B6FF50053E39F /* casata2.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -474,10 +480,10 @@
 			isa = PBXGroup;
 			children = (
 				8C0A092014B4731100BD768E /* CorePlotHeaders */,
-				3A37A415149B6FF50053E39F /* casata-Info.plist */,
+				3A37A415149B6FF50053E39F /* casata2-Info.plist */,
 				3A37A416149B6FF50053E39F /* InfoPlist.strings */,
 				3A37A419149B6FF50053E39F /* main.m */,
-				3A37A41B149B6FF50053E39F /* casata-Prefix.pch */,
+				3A37A41B149B6FF50053E39F /* casata2-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -505,6 +511,9 @@
 		3A70A915149BB84700203169 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				3A1C870B14CF0E1500670517 /* headerDetalii.png */,
+				3A1C870C14CF0E1500670517 /* house2.jpg */,
+				3A1C870914CF0DFC00670517 /* 75-phone.png */,
 				8CFD893C14CECED100594273 /* Folder.png */,
 				8CFD893714CECC7000594273 /* camera.png */,
 				8CFD892E14CECA8000594273 /* galerie.png */,
@@ -799,9 +808,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		3A37A408149B6FF50053E39F /* casata */ = {
+		3A37A408149B6FF50053E39F /* casata2 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3A37A435149B6FF60053E39F /* Build configuration list for PBXNativeTarget "casata" */;
+			buildConfigurationList = 3A37A435149B6FF60053E39F /* Build configuration list for PBXNativeTarget "casata2" */;
 			buildPhases = (
 				3A37A405149B6FF50053E39F /* Sources */,
 				3A37A406149B6FF50053E39F /* Frameworks */,
@@ -811,9 +820,9 @@
 			);
 			dependencies = (
 			);
-			name = casata;
+			name = casata2;
 			productName = tabView;
-			productReference = 3A37A409149B6FF50053E39F /* casata.app */;
+			productReference = 3A37A409149B6FF50053E39F /* casata2.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -824,7 +833,7 @@
 			attributes = {
 				LastUpgradeCheck = 0420;
 			};
-			buildConfigurationList = 3A37A403149B6FF50053E39F /* Build configuration list for PBXProject "casata" */;
+			buildConfigurationList = 3A37A403149B6FF50053E39F /* Build configuration list for PBXProject "casata2" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -836,7 +845,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				3A37A408149B6FF50053E39F /* casata */,
+				3A37A408149B6FF50053E39F /* casata2 */,
 			);
 		};
 /* End PBXProject section */
@@ -936,6 +945,9 @@
 				3A1C86F914CF09D500670517 /* MyAdsViewController.xib in Resources */,
 				3A1C870114CF0A5400670517 /* DetaliiAnuntViewController.xib in Resources */,
 				3A1C870314CF0A5400670517 /* MapViewController.xib in Resources */,
+				3A1C870A14CF0DFC00670517 /* 75-phone.png in Resources */,
+				3A1C870D14CF0E1500670517 /* headerDetalii.png in Resources */,
+				3A1C870E14CF0E1500670517 /* house2.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1052,9 +1064,9 @@
 				);
 				CODE_SIGN_IDENTITY = "iPhone Developer: Radu Gramatovici (9TMK2J73BW)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "tabView/casata-Prefix.pch";
+				GCC_PREFIX_HEADER = "tabView/casata2-Prefix.pch";
 				GCC_VERSION = "";
-				INFOPLIST_FILE = "tabView/casata-Info.plist";
+				INFOPLIST_FILE = "tabView/casata2-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1070,7 +1082,7 @@
 					"-ObjC",
 					"-all_load",
 				);
-				PRODUCT_NAME = casata;
+				PRODUCT_NAME = casata2;
 				PROVISIONING_PROFILE = "B4BDB8E6-63A4-4BB3-A9AA-B0A40D97C5BA";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1085,9 +1097,9 @@
 				);
 				CODE_SIGN_IDENTITY = "iPhone Developer: Radu Gramatovici (9TMK2J73BW)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "tabView/casata-Prefix.pch";
+				GCC_PREFIX_HEADER = "tabView/casata2-Prefix.pch";
 				GCC_VERSION = "";
-				INFOPLIST_FILE = "tabView/casata-Info.plist";
+				INFOPLIST_FILE = "tabView/casata2-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1103,7 +1115,7 @@
 					"-ObjC",
 					"-all_load",
 				);
-				PRODUCT_NAME = casata;
+				PRODUCT_NAME = casata2;
 				PROVISIONING_PROFILE = "B4BDB8E6-63A4-4BB3-A9AA-B0A40D97C5BA";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1112,7 +1124,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3A37A403149B6FF50053E39F /* Build configuration list for PBXProject "casata" */ = {
+		3A37A403149B6FF50053E39F /* Build configuration list for PBXProject "casata2" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3A37A433149B6FF60053E39F /* Debug */,
@@ -1121,7 +1133,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3A37A435149B6FF60053E39F /* Build configuration list for PBXNativeTarget "casata" */ = {
+		3A37A435149B6FF60053E39F /* Build configuration list for PBXNativeTarget "casata2" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3A37A436149B6FF60053E39F /* Debug */,

@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:casata.xcodeproj">
+      location = "self:casata2.xcodeproj">
    </FileRef>
 </Workspace>

@@ -37,7 +37,7 @@
         [tableImobil setAutoresizingMask:(UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight)];
         selectedRowsArray = [[NSMutableArray alloc] initWithCapacity:0];
     }
-
+    
     return self;
 }
 -(void)setTitle:(NSString *)title
@@ -77,28 +77,28 @@
 }
 
 /*
--(NSMutableDictionary *)applyFilters{
-    NSUInteger type = [self.segmentedControl selectedSegmentIndex];
-    NSString *types = [self.segmentedControl titleForSegmentAtIndex:type];
-    //NSNumber *typenr = [NSNumber numberWithInt:type];
-    NSMutableArray *propertyy = self.selectedRowsArray;
-    NSString *pmin = self.pMinLabel.text;
-    NSString * pmax = self.pMaxLabel.text;
-    NSString * smin = self.supMinLabel.text;
-    NSString * smax = self.supMaxLabel.text;
-    NSLog(@"in applyfil %@ , %@, %@ , %@ , %@", types, pmin, pmax, smin, smax);
-    NSMutableDictionary *filtre = [NSMutableDictionary alloc];
-    filtre = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-               types,@"types",
-               propertyy,@"propertyy", 
-               pmin,@"pmin",
-               pmax,@"pmax",
-               smin,@"smin",
-               smax,@"smax",
-               nil];
-    return filtre;
-}
-*/
+ -(NSMutableDictionary *)applyFilters{
+ NSUInteger type = [self.segmentedControl selectedSegmentIndex];
+ NSString *types = [self.segmentedControl titleForSegmentAtIndex:type];
+ //NSNumber *typenr = [NSNumber numberWithInt:type];
+ NSMutableArray *propertyy = self.selectedRowsArray;
+ NSString *pmin = self.pMinLabel.text;
+ NSString * pmax = self.pMaxLabel.text;
+ NSString * smin = self.supMinLabel.text;
+ NSString * smax = self.supMaxLabel.text;
+ NSLog(@"in applyfil %@ , %@, %@ , %@ , %@", types, pmin, pmax, smin, smax);
+ NSMutableDictionary *filtre = [NSMutableDictionary alloc];
+ filtre = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+ types,@"types",
+ propertyy,@"propertyy", 
+ pmin,@"pmin",
+ pmax,@"pmax",
+ smin,@"smin",
+ smax,@"smax",
+ nil];
+ return filtre;
+ }
+ */
 
 
 -(IBAction)aplicaFiltre:(id)sender
@@ -147,7 +147,7 @@
     
     NSString *header =[NSString stringWithFormat:@"%@-%@ euro, %@-%@ mp, %@, %@ ",pmin,pmax,smin,smax,anuntType,propString];
     //headerText.text= header;
-   
+    
     [self.headerText setText:header];
     NSLog(@"%@",header);
     
@@ -165,7 +165,7 @@
     [self.headerText setText:@"Nici un filtru aplicat"];
     apdelegate.appSession.filtre=nil;
     NSLog(@"clear");
-   
+    
     [delegate performSelector:seStergFiltre];
 }
 
@@ -193,24 +193,24 @@
     
     if ([selectedRowsArray containsObject:[propertyTypes objectAtIndex:indexPath.row]]) {
         cell.imageView.image = [UIImage imageNamed:@"checkbox_ticked.png"];
-        	
-           }
-        else {
-             cell.imageView.image = [UIImage imageNamed:@"checkbox_not_ticked.png"];
-        }
-         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleChecking:)];
-         [cell.imageView addGestureRecognizer:tap];
-         [tap release];
-                                        
-            cell.textLabel.text = [ propertyTypes objectAtIndex:[indexPath row]];
-                                      //  return cell;
+        
+    }
+    else {
+        cell.imageView.image = [UIImage imageNamed:@"checkbox_not_ticked.png"];
+    }
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleChecking:)];
+    [cell.imageView addGestureRecognizer:tap];
+    [tap release];
+    
+    cell.textLabel.text = [ propertyTypes objectAtIndex:[indexPath row]];
+    //  return cell;
     UIView *backgroundView = [[UIView alloc] init];
     backgroundView.backgroundColor = [UIColor blackColor];
     
     cell.selectedBackgroundView = backgroundView;
     [backgroundView release];
     
-     
+    
     //cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:15];
     //cell.textLabel.text = [NSString	 stringWithFormat:@"Cell Row #%d", [indexPath row]];
     //cell.textLabel.text = [ propertyTypes objectAtIndex:[indexPath row]];
@@ -222,10 +222,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	// open a alert with an OK and cancel button
 	/*
-    NSString *alertString = [NSString stringWithFormat:@"Clicked on row #%d", [indexPath row]];
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:alertString message:@"" delegate:self cancelButtonTitle:@"Done" otherButtonTitles:nil];
-	[alert show];
-	[alert release];
+     NSString *alertString = [NSString stringWithFormat:@"Clicked on row #%d", [indexPath row]];
+     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:alertString message:@"" delegate:self cancelButtonTitle:@"Done" otherButtonTitles:nil];
+     [alert show];
+     [alert release];
      */
     UITableViewCell *cell = [tableImobil cellForRowAtIndexPath:indexPath];
     if([selectedRowsArray containsObject:[cell.textLabel.text lowercaseString]])
@@ -238,7 +238,7 @@
         cell.imageView.image = [UIImage imageNamed:@"checkbox_ticked.png"];
         [selectedRowsArray addObject:[cell.textLabel.text lowercaseString]];
     }
-   // NSLog(@"%@",selectedRowsArray);
+    // NSLog(@"%@",selectedRowsArray);
     UIView *backgroundView = [[UIView alloc] init];
     backgroundView.backgroundColor = [UIColor blackColor];
     
@@ -287,27 +287,27 @@
 ///warningul nu este important, se returneaza optiuni harta viewcontroller
 
 /*
--(IBAction)aplicaFiltre:(id)sender
-{
-    //if(segmentedControl.selectedSegmentIndex==0)
-    NSLog(@"selected seg index: %d", segmentedControl.selectedSegmentIndex);
-    NSLog(@"selected propertytype index: %d", selectedPropertyType); 
-    
-    NSLog(@"pret min %@",pMinLabel.text);
-    NSLog(@"pret max %@",pMaxLabel.text);
-    
-    
-    
-     
-    //UIViewController *mainViewController = [self.view.superview nextResponder];
-    //OptiuniHartaViewController *controller = self.view.superview.nextResponder;
-    
-    //if(controller && [controller isKindOfClass: [OptiuniHartaViewController class]])
-       // [controller.navigationController popToRootViewControllerAnimated:YES];
-    
-  // [mainViewController.navigationController popToRootViewControllerAnimated:YES];
-}
-*/
+ -(IBAction)aplicaFiltre:(id)sender
+ {
+ //if(segmentedControl.selectedSegmentIndex==0)
+ NSLog(@"selected seg index: %d", segmentedControl.selectedSegmentIndex);
+ NSLog(@"selected propertytype index: %d", selectedPropertyType); 
+ 
+ NSLog(@"pret min %@",pMinLabel.text);
+ NSLog(@"pret max %@",pMaxLabel.text);
+ 
+ 
+ 
+ 
+ //UIViewController *mainViewController = [self.view.superview nextResponder];
+ //OptiuniHartaViewController *controller = self.view.superview.nextResponder;
+ 
+ //if(controller && [controller isKindOfClass: [OptiuniHartaViewController class]])
+ // [controller.navigationController popToRootViewControllerAnimated:YES];
+ 
+ // [mainViewController.navigationController popToRootViewControllerAnimated:YES];
+ }
+ */
 
 
 
@@ -319,33 +319,33 @@
     [segmentedControl release];
     [pMaxLabel release];
     [pMinLabel release];
-
-
+    
+    
     [super dealloc];
 }
 /*
  -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
-{
-    return 1;
-
-}
--(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
-{
-    return [propertyTypes count];
-}
--(NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
-{
-
-    return [propertyTypes objectAtIndex:row];
-    
-}
-
-
--(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
-{
-    selectedPropertyType = row+1;
-    NSLog(@"selected picker line: %@, index: %i", [propertyTypes objectAtIndex:row], row);
-}
+ {
+ return 1;
+ 
+ }
+ -(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+ {
+ return [propertyTypes count];
+ }
+ -(NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+ {
+ 
+ return [propertyTypes objectAtIndex:row];
+ 
+ }
+ 
+ 
+ -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+ {
+ selectedPropertyType = row+1;
+ NSLog(@"selected picker line: %@, index: %i", [propertyTypes objectAtIndex:row], row);
+ }
  */
 
 #pragma mark - View lifecycle
@@ -353,7 +353,7 @@
 
 - (void)viewDidLoad
 {
-
+    
     
     [super viewDidLoad];
     [scrollView setScrollEnabled:YES];
@@ -369,7 +369,7 @@
     [propertyTypes addObject:@"Apartament 4 camere"];
     [propertyTypes addObject:@"Casa"];
     
-
+    
     
     //[self.view setClipsToBounds:YES];/////
 }

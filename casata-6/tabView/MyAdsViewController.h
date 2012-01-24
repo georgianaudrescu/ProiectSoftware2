@@ -19,5 +19,6 @@
 
 
 -(IBAction)backToStatistics:(id)sender ;
+-(void) publicaAnunt:(id)sender;
 
 @end

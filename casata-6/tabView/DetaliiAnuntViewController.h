@@ -28,10 +28,12 @@
     //
     UIScrollView *imgScrollView;
     UIImageView *imgView;
-    NSMutableArray *buttonsArray;
+    NSMutableArray *imageViewsArray;
     TImageList *imgList;
     id delegate;
     SEL hidePinIfRemovedFromFav;
+    UIView * popView;
+    UIView * popViewContact;
 }
 @property(nonatomic,retain) TAd *theAd;
 @property(nonatomic,retain) IBOutlet UILabel *nameLabel,*propertyTypeLabel, *adTextLabel, *adressLineLabel, *pretLabel, *monedaLabel, *contactNameLabel, *contactPhoneLabel, *anuntTypeLabel; 
@@ -40,15 +42,20 @@
 //
 @property(nonatomic,retain) IBOutlet UIScrollView *imgScrollView;
 @property(nonatomic,retain) IBOutlet UIImageView *imgView;
-@property(nonatomic, retain) NSMutableArray *buttonsArray;
+@property(nonatomic, retain) NSMutableArray *imageViewsArray;
 @property(nonatomic, retain) TImageList *imgList;
 @property (assign) id delegate;
 @property (assign) SEL hidePinIfRemovedFromFav;
+@property (nonatomic, retain) IBOutlet UIView * popView;
+@property (nonatomic, retain) IBOutlet UIView * popViewContact;
 
 -(void)loadAdWithId:(int)theAdId;
--(void)changeCurrentViewedImageToImageWithIndex:(id) sender;
+//-(void)changeCurrentViewedImageToImageWithIndex:(id) sender;
 
 -(IBAction)favButtonPressed:(UIButton*)sender;
+-(IBAction)detaliiButtonPressed:(id)sender;
+-(IBAction)closeView:(id)sender;
+-(IBAction)contactButtonPressed:(id)sender;
 
 
 

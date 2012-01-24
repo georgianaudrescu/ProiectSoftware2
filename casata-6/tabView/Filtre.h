@@ -12,7 +12,7 @@
 
 @interface Filtre : UIViewController <UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate>
 {
-   IBOutlet UIScrollView * scrollView;
+    IBOutlet UIScrollView * scrollView;
     
     //UIPickerView *pickerView;
     UISegmentedControl *segmentedControl;
@@ -25,19 +25,19 @@
     UILabel *supMinLabel, *supMaxLabel;
     //int selectedPropertyType;
     //UIButton *aplicaFiltreButton;
-   UITableView  *tableImobil;
+    UITableView  *tableImobil;
     NSMutableArray * selectedRowsArray;
     UILabel * headerText;
     
-   
+    
     
     //pt map ca delegate
     id delegate;
     SEL seAplicaFiltre;
     SEL seStergFiltre;
-
- AppDelegate *apdelegate;
-
+    
+    AppDelegate *apdelegate;
+    
 }
 
 //@property(nonatomic,assign) int selectedPropertyType;

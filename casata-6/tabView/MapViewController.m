@@ -588,41 +588,42 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
 - (void)showAnnotation:(TLocation*)annotation {
 	
     //NSLog(@"showing annotation");
-    
-    
+
 	[self.statisticsView.view addSubview:self.detaliiAnuntViewController.view];
     [self.detaliiAnuntViewController loadAdWithId:annotation.locationId];
-    self.detaliiAnuntViewController.view.frame = CGRectMake(0,400, self.statisticsView.view.frame.size.width, self.statisticsView.view.frame.size.height);
-    [UIView animateWithDuration:0.5 animations:^{
-        self.detaliiAnuntViewController.view.frame = CGRectMake(0,0, self.statisticsView.view.frame.size.width, self.statisticsView.view.frame.size.height);}];
 
+    
+    const int movementDistance = 316; // tweak as needed
+    const float movementDuration = 0.3f; // tweak as needed
+    
+    [UIView beginAnimations: @"anim" context: nil];
+    [UIView setAnimationBeginsFromCurrentState: YES];
+    [UIView setAnimationDuration: movementDuration];
+    self.statisticsView.view.frame = CGRectOffset(self.view.frame, 0, movementDistance);
+    [UIView commitAnimations];
+
+    [self.scrollView setContentSize:CGSizeMake(320, 732)];
 }
 
 - (void) stopFollowLocation {
 	
 	[self.mapView deselectAnnotation:selectedAnnotation animated:NO];
 	
-	
 	//[self hideAnnotation];
-    
 	
 }
 
 - (void)hideAnnotation {
     
-    //self.detaliiAnuntViewController.view.frame = CGRectMake(0,0, self.statisticsView.view.frame.size.width, self.statisticsView.view.frame.size.height);
-    [UIView animateWithDuration:0.5 animations:^{
-        self.detaliiAnuntViewController.view.frame = CGRectMake(0,500, self.statisticsView.view.frame.size.width, self.statisticsView.view.frame.size.height);}];    
-
-        
-	/*    
-	[UIView beginAnimations: @"moveCNGCalloutOff" context: nil];
-	[UIView setAnimationDelegate: self];
-	[UIView setAnimationDuration: 0.5];
-	[UIView setAnimationCurve: UIViewAnimationCurveEaseInOut];
-	self.customCalloutView.frame = CGRectMake(10.0, 250.0 + 300, self.customCalloutView.frame.size.width, self.customCalloutView.frame.size.height);
-	[UIView commitAnimations];
-     */
+      
+    const int movementDistance = 366; // tweak as needed
+    const float movementDuration = 0.001f; // tweak as needed
+    
+    
+    [UIView animateWithDuration:movementDuration
+                     animations:^{self.statisticsView.view.frame =CGRectOffset(self.view.frame, 0, movementDistance);}
+                     completion:^(BOOL completed){[self.detaliiAnuntViewController.view removeFromSuperview];}];
+    [self.scrollView setContentSize:CGSizeMake(320, 782)];
 }
 
 

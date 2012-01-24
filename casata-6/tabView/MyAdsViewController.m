@@ -43,7 +43,7 @@
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	//return [propertyTypes count];
-    return 5;
+    return 7;
 }
 
 // Customize the appearance of table view cells.
@@ -71,12 +71,30 @@
     
     
     cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:15];
-    cell.textLabel.text = [NSString	 stringWithFormat:@"Cell Row #%d", [indexPath row]];
+    cell.textLabel.text = [NSString	 stringWithFormat:@"Anuntul meu %d", [indexPath row]];
     //cell.textLabel.text = [ propertyTypes objectAtIndex:[indexPath row]];
     
+	//Create the button and add it to the cell
+    
+	UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+	[button addTarget:self
+			   action:@selector(publicaAnunt:)
+	 forControlEvents:UIControlEventTouchDown];
+	[button setTitle:@"Publica" forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+	button.frame = CGRectMake(240.0f, 5.0f, 70.0f, 30.0f);
+    //acest buton va fi numai in randurile in care anunturile au fost modificate...
+    if(([cell.textLabel.text isEqual:@"Anuntul meu 1"])||([cell.textLabel.text isEqual:@"Anuntul meu 5"])||([cell.textLabel.text isEqual:@"Anuntul meu 6"]))
+    {
+	[cell addSubview:button];
+    }
     return cell;
 }
 
+-(void) publicaAnunt:(id)sender{
+    //se publica anuntul selectat din lista
+    NSLog(@"Se publica anuntul selectat");
+}
 
 
 - (void)didReceiveMemoryWarning

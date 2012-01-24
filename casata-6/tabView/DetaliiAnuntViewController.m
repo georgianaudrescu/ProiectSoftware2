@@ -15,8 +15,9 @@
 @synthesize theAd;
 @synthesize pretLabel, propertyTypeLabel, monedaLabel, contactNameLabel, contactPhoneLabel, adTextLabel, adressLineLabel,nameLabel, anuntTypeLabel, favButton;
 @synthesize thumbnailImageView;
-@synthesize imgView, imgScrollView,buttonsArray, imgList;
+@synthesize imgView, imgScrollView,imageViewsArray, imgList;
 @synthesize delegate, hidePinIfRemovedFromFav; //pt a seta map ca delegate
+@synthesize popView, popViewContact; 
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -25,7 +26,7 @@
     if (self) {
         apdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
         //[self setTitle:@"Detalii anunt"];
-        buttonsArray = [[NSMutableArray alloc]init];
+        imageViewsArray = [[NSMutableArray alloc]init];
         
     }
     return self;
@@ -62,6 +63,9 @@
 
 -(void)loadAdWithId:(int)theAdId
 {
+    //[self.imageViewsArray release];
+    //self.imageViewsArray = [[NSMutableArray alloc]init];
+    
     self.theAd = [apdelegate.appSession.globalAdList getAdWithId:theAdId];
     self.imgView.contentMode = UIViewContentModeScaleAspectFit;
     
@@ -82,7 +86,7 @@
     self.contactPhoneLabel.text = [self.theAd.ad objectForKey:@"contact_phone"];
     self.anuntTypeLabel.text = [self.theAd.ad objectForKey:@"ad_type"];
     
-    self.thumbnailImageView.image = [UIImage imageNamed:@"house.jpg"];
+    self.thumbnailImageView.image = [UIImage imageNamed:@"house2.jpg"];
     
     
     
@@ -91,7 +95,7 @@
    
     if([[self.theAd.ad objectForKey:@"adress_line"] length] <=24)
     {[self.adressLineLabel sizeToFit];
-        self.adressLineLabel.frame = CGRectMake(20, 346, 281, self.adressLineLabel.frame.size.height);
+       // self.adressLineLabel.frame = CGRectMake(20, 346, 281, self.adressLineLabel.frame.size.height);
        
     }
     else
@@ -100,7 +104,7 @@
     
     if([[self.theAd.ad objectForKey:@"ad_text"] length] <=24)
     {[self.adTextLabel sizeToFit];
-     self.adTextLabel.frame = CGRectMake(20, 298, 280, self.adTextLabel.frame.size.height);
+     //self.adTextLabel.frame = CGRectMake(20, 298, 280, self.adTextLabel.frame.size.height);
     }
      else 
      {[self.adTextLabel setFont:[UIFont fontWithName:@"Helvetica" size:12]];
@@ -160,43 +164,43 @@
         
     
     int nr=4;
-    int start;
+    
     for(int x=0;x<nr;x++)
     {
         //daca sunt mai putin de 7 imagini, nu depasesc latimea scrolview-ului si ar fi ideal sa fie aliniate central, de aceea aflam o pozitie de start
-        if(nr<=6)
+       /* if(nr<=6)
         start = (300 - nr*50)/2;
-        else start=0;
+        else  start=0; */
         
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        [button setFrame:CGRectMake(start+(x*50), 0, 50, 50)];
-        button.tag=x;
-        [button addTarget:self action:@selector(changeCurrentViewedImageToImageWithIndex:) forControlEvents:UIControlEventTouchUpInside];
+       // UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        UIImageView *imageView = [[[UIImageView alloc] init] autorelease];
+        imageView.frame= CGRectMake((x*300), 0, 300, 200);
+        imageView.contentMode = UIViewContentModeScaleAspectFit;
         // 
         TImage *theImag =  [self.imgList getImageAtIndex:x];
         UIImage *butImage = theImag.image;
         if(x==0)self.imgView.image = theImag.image;
         theImag=nil;
         //
-        [button setBackgroundImage:butImage forState:UIControlStateNormal];
+        imageView.image = butImage;
         [butImage release];
         
-        [self.buttonsArray addObject:button];
-        [self.imgScrollView addSubview:[self.buttonsArray objectAtIndex:x]];
+        [self.imageViewsArray addObject:imageView];
+        [self.imgScrollView addSubview:[self.imageViewsArray objectAtIndex:x]];
         
         
     }       
     
-    if(nr<=6)
-        self.imgScrollView.contentSize = CGSizeMake(300, 50);
-    else
-        self.imgScrollView.contentSize = CGSizeMake(nr*50, 50);
+    
+     self.imgScrollView.contentSize = CGSizeMake(nr*300, 200);
+    [self.imgScrollView setPagingEnabled:YES];
+    [self.imgScrollView setBounces:NO];
     
     
 }
 
 
--(void) changeCurrentViewedImageToImageWithIndex:(id) sender
+/*-(void) changeCurrentViewedImageToImageWithIndex:(id) sender
 {
     UIButton *senderButton = (UIButton*)sender;
     
@@ -209,7 +213,7 @@
     
        //self.imgView.image = [UIImage imageNamed:@"imgtest1.jpg"];
 }
-
+*/
 -(IBAction)favButtonPressed:(UIButton*)sender
 {
     if(sender.tag==0) //adaugam in favorite 
@@ -240,6 +244,22 @@
 
 }
 
+-(IBAction)detaliiButtonPressed:(id)sender{
+    self.popView.frame = CGRectMake(0,100, 320, 250);
+   [self.view addSubview:self.popView];
+    
+}
+-(IBAction)closeView:(id)sender;
+{
+    [self.popView removeFromSuperview];
+    [self.popViewContact removeFromSuperview];
+}
+
+-(IBAction)contactButtonPressed:(id)sender{
+    self.popViewContact.frame= CGRectMake(0,100, 320, 250);
+    [self.view addSubview:self.popViewContact];
+}
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
@@ -247,7 +267,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    
+    self.imgScrollView.frame = CGRectMake(10, 180, 300, 200);    
 }
 
 - (void)viewDidUnload
@@ -274,7 +294,7 @@
     [favButton release];
     [imgView release];
     [imgScrollView release];
-    [buttonsArray release];
+    [imageViewsArray release];
     [imgList release]; 
     [super dealloc];
 }

@@ -14,6 +14,7 @@
 
 @implementation StatsViewController
 @synthesize avgAreaPriceLabel, trendForAvgAreaPriceButton, filters;
+@synthesize headerView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -29,7 +30,7 @@
 }
 
 
-- (IBAction)switchToFilter:(id)sender{
+- (void)switchToFilter{
     /*
      [self.statisticsView addSubview:someView.view];
      //for animation
@@ -50,7 +51,7 @@
     
     
 }
-- (IBAction)swithToMyAds:(id)sender{
+-(void)switchToMyAds{
     //MyAdsViewController *myAds = [[MyAdsViewController alloc] initWithNibName:@"MyAdsViewController" bundle:nil];
     [self.view addSubview:myAds.view];
     //for animation
@@ -220,6 +221,15 @@
    
     [self createTheGraph];
     
+    UISwipeGestureRecognizer *swipeLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(switchToFilter)];
+    swipeLeft.numberOfTouchesRequired=1;
+    swipeLeft.direction = UISwipeGestureRecognizerDirectionLeft;
+    [self.headerView addGestureRecognizer:swipeLeft];  
+    
+    UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(switchToMyAds)];
+    swipeRight.numberOfTouchesRequired=1;
+    swipeRight.direction = UISwipeGestureRecognizerDirectionRight;
+    [self.headerView addGestureRecognizer:swipeRight];
     
 }
 
@@ -249,6 +259,7 @@
     [barLineStyle release];
     [avgAreaPriceLabel release];
     [trendForAvgAreaPriceButton release];
+    [headerView release];
     [filters dealloc];
     [myAds dealloc];
     [super dealloc];

@@ -11,7 +11,7 @@
 #import "Filtre.h"
 #import "MyAdsViewController.h"
 
-@interface StatsViewController : UIViewController<CPTPlotDataSource, CPTPlotSpaceDelegate>
+@interface StatsViewController : UIViewController<CPTPlotDataSource, CPTPlotSpaceDelegate,UIGestureRecognizerDelegate>
 {
     IBOutlet CPTGraphHostingView *hostView;
     CPTXYGraph *graph;
@@ -24,12 +24,16 @@
     UIButton *trendForAvgAreaPriceButton;
     Filtre * filters;
     MyAdsViewController *myAds;
+    UIView *headerView;
 }
 @property (nonatomic,retain) IBOutlet UILabel *avgAreaPriceLabel;
 @property(nonatomic,retain) IBOutlet UIButton *trendForAvgAreaPriceButton;
 @property (nonatomic, retain) Filtre *filters;
+@property(nonatomic,retain) IBOutlet UIView *headerView;
 
 
 -(void)clearChartStatistici;
 -(void) createTheGraph;
+-(void)switchToFilter;
+-(void)switchToMyAds;
 @end

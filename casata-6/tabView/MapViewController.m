@@ -166,7 +166,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     */
     
     [self.scrollView setContentSize:CGSizeMake(320, 782)];
-
+    [self.scrollView setPagingEnabled:YES]; 
 	
     
     // Do any additional setup after loading the view, typically from a nib.

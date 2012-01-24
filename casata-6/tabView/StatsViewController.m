@@ -224,13 +224,14 @@
     UISwipeGestureRecognizer *swipeLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(switchToFilter)];
     swipeLeft.numberOfTouchesRequired=1;
     swipeLeft.direction = UISwipeGestureRecognizerDirectionLeft;
-    [self.headerView addGestureRecognizer:swipeLeft];  
+    [self.headerView addGestureRecognizer:swipeLeft]; 
+    [swipeLeft release];
     
     UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(switchToMyAds)];
     swipeRight.numberOfTouchesRequired=1;
     swipeRight.direction = UISwipeGestureRecognizerDirectionRight;
     [self.headerView addGestureRecognizer:swipeRight];
-    
+    [swipeRight release];
 }
 
 -(void)setTitle:(NSString *)title

@@ -20,7 +20,7 @@
 @synthesize tableImobil;
 @synthesize supMaxLabel,supMinLabel, sliderSuprafataMax,sliderSuprafataMin;
 @synthesize delegate, seAplicaFiltre, seStergFiltre;
-@synthesize headerText;
+@synthesize headerText, headerView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -58,7 +58,7 @@
     
     
 }
-- (IBAction)backToStatistics:(id)sender{
+- (void)backToStatistics{
     
     //for animation
     self.view.frame = CGRectMake(0,0, 320, 460);
@@ -319,7 +319,7 @@
     [segmentedControl release];
     [pMaxLabel release];
     [pMinLabel release];
-    
+    [headerView release];
     
     [super dealloc];
 }
@@ -370,6 +370,11 @@
     [propertyTypes addObject:@"Casa"];
     
     
+    UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(backToStatistics)];
+    swipeRight.numberOfTouchesRequired=1;
+    swipeRight.direction = UISwipeGestureRecognizerDirectionRight;
+    [self.headerView addGestureRecognizer:swipeRight]; 
+    [swipeRight release];
     
     //[self.view setClipsToBounds:YES];/////
 }

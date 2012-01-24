@@ -8,17 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MyAdsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface MyAdsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate>
 {
     
     UITableView *tableAds;
+    UIView *headerView;
     
 }
 
 @property (nonatomic, retain) IBOutlet UITableView *tableAds;
+@property(nonatomic,retain) IBOutlet UIView *headerView;
 
-
--(IBAction)backToStatistics:(id)sender ;
+-(void)backToStatistics;
 -(void) publicaAnunt:(id)sender;
 
 @end

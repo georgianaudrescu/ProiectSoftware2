@@ -10,7 +10,7 @@
 //#import "TableWithCheckBox.h"
 #import "AppDelegate.h"
 
-@interface Filtre : UIViewController <UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate>
+@interface Filtre : UIViewController <UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, UIGestureRecognizerDelegate>
 {
     IBOutlet UIScrollView * scrollView;
     
@@ -28,7 +28,7 @@
     UITableView  *tableImobil;
     NSMutableArray * selectedRowsArray;
     UILabel * headerText;
-    
+    UIView *headerView;
     
     
     //pt map ca delegate
@@ -56,6 +56,7 @@
 @property(assign) SEL seAplicaFiltre;
 @property(assign) SEL seStergFiltre;
 @property(nonatomic, retain) IBOutlet UILabel * headerText;
+@property(nonatomic, retain) IBOutlet UIView *headerView;
 
 
 -(IBAction)sliderMinValueChanged:(UISlider *)sender;
@@ -63,7 +64,7 @@
 -(IBAction)sliderSupMinValueChanged:(UISlider *)sender;
 -(IBAction)sliderSupMaxValueChanged:(UISlider *)sender;
 
--(IBAction)backToStatistics:(id)sender ;
+-(void)backToStatistics;
 
 //-(void)clearFilters;
 //-(NSMutableDictionary *)applyFilters;

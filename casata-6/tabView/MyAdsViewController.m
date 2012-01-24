@@ -10,6 +10,7 @@
 
 @implementation MyAdsViewController
 @synthesize tableAds;
+@synthesize headerView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -20,7 +21,7 @@
     return self;
 }
 
-- (IBAction)backToStatistics:(id)sender{
+- (void)backToStatistics{
     
     //for animation
     //pozitia de plecare
@@ -111,6 +112,11 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    UISwipeGestureRecognizer *swipeLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(backToStatistics)];
+    swipeLeft.numberOfTouchesRequired=1;
+    swipeLeft.direction = UISwipeGestureRecognizerDirectionLeft;
+    [self.headerView addGestureRecognizer:swipeLeft]; 
+    [swipeLeft release];
 }
 
 - (void)viewDidUnload
@@ -124,6 +130,13 @@
 {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+-(void) dealloc
+{
+    [tableAds release];
+    [headerView release];
+    [super dealloc];
+
 }
 
 @end

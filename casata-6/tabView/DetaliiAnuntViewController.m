@@ -17,8 +17,8 @@
 @synthesize thumbnailImageView;
 @synthesize imgView, imgScrollView,imageViewsArray, imgList;
 @synthesize delegate, hidePinIfRemovedFromFav; //pt a seta map ca delegate
-@synthesize popView, popViewContact; 
-
+//@synthesize popView, popViewContact; 
+@synthesize bigScroll;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -162,6 +162,20 @@
     [img4 release];
    
         
+        
+    //clear old images from scrollView
+    if(self.imageViewsArray.count>0)
+    {
+        for(UIView *view in self.imgScrollView.subviews)
+        { [view removeFromSuperview];
+        }
+        //[self.imgScrollView setNeedsDisplay];
+        [self.imageViewsArray removeAllObjects];
+    }
+
+     self.imgScrollView.contentSize = CGSizeMake(300, 230);
+    ////
+    
     
     int nr=4;
     
@@ -174,7 +188,7 @@
         
        // UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         UIImageView *imageView = [[[UIImageView alloc] init] autorelease];
-        imageView.frame= CGRectMake((x*300), 0, 300, 200);
+        imageView.frame= CGRectMake((x*300), 0, 300, 230);
         imageView.contentMode = UIViewContentModeScaleAspectFit;
         // 
         TImage *theImag =  [self.imgList getImageAtIndex:x];
@@ -192,7 +206,7 @@
     }       
     
     
-     self.imgScrollView.contentSize = CGSizeMake(nr*300, 200);
+     self.imgScrollView.contentSize = CGSizeMake(nr*300, 230);
     [self.imgScrollView setPagingEnabled:YES];
     [self.imgScrollView setBounces:NO];
     
@@ -245,19 +259,15 @@
 }
 
 -(IBAction)detaliiButtonPressed:(id)sender{
-    self.popView.frame = CGRectMake(0,100, 320, 250);
-   [self.view addSubview:self.popView];
+    [self.bigScroll setContentOffset:CGPointMake(0, 315) animated:YES];
     
 }
--(IBAction)closeView:(id)sender;
-{
-    [self.popView removeFromSuperview];
-    [self.popViewContact removeFromSuperview];
+-(IBAction)upToImg:(id)sender{
+    [self.bigScroll setContentOffset:CGPointMake(0, 0) animated:YES];
 }
 
 -(IBAction)contactButtonPressed:(id)sender{
-    self.popViewContact.frame= CGRectMake(0,100, 320, 250);
-    [self.view addSubview:self.popViewContact];
+    [self.bigScroll setContentOffset:CGPointMake(0, 630) animated:YES];
 }
 
 #pragma mark - View lifecycle
@@ -267,7 +277,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    self.imgScrollView.frame = CGRectMake(10, 180, 300, 200);    
+    //self.imgScrollView.frame = CGRectMake(10, 180, 300, 200);    
+    
+    self.bigScroll.frame = CGRectMake(0, 100, 320, 360);
+    [self.bigScroll setPagingEnabled:YES];
+    [self.bigScroll setContentSize:CGSizeMake(320, 945)];
+    [self.view addSubview:self.bigScroll];
 }
 
 - (void)viewDidUnload
@@ -275,6 +290,10 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+}
+-(void)viewWillAppear:(BOOL)animated
+{
+    
 }
 
 -(void) dealloc
@@ -296,6 +315,7 @@
     [imgScrollView release];
     [imageViewsArray release];
     [imgList release]; 
+    [bigScroll release];
     [super dealloc];
 }
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

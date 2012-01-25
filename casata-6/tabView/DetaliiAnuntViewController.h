@@ -32,8 +32,7 @@
     TImageList *imgList;
     id delegate;
     SEL hidePinIfRemovedFromFav;
-    UIView * popView;
-    UIView * popViewContact;
+    UIScrollView *bigScroll;
 }
 @property(nonatomic,retain) TAd *theAd;
 @property(nonatomic,retain) IBOutlet UILabel *nameLabel,*propertyTypeLabel, *adTextLabel, *adressLineLabel, *pretLabel, *monedaLabel, *contactNameLabel, *contactPhoneLabel, *anuntTypeLabel; 
@@ -46,16 +45,15 @@
 @property(nonatomic, retain) TImageList *imgList;
 @property (assign) id delegate;
 @property (assign) SEL hidePinIfRemovedFromFav;
-@property (nonatomic, retain) IBOutlet UIView * popView;
-@property (nonatomic, retain) IBOutlet UIView * popViewContact;
+@property (nonatomic, retain) IBOutlet UIScrollView * bigScroll;
 
 -(void)loadAdWithId:(int)theAdId;
 //-(void)changeCurrentViewedImageToImageWithIndex:(id) sender;
 
 -(IBAction)favButtonPressed:(UIButton*)sender;
 -(IBAction)detaliiButtonPressed:(id)sender;
--(IBAction)closeView:(id)sender;
 -(IBAction)contactButtonPressed:(id)sender;
+-(IBAction)upToImg:(id)sender;
 
 
 

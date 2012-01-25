@@ -14,7 +14,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "3A37A408149B6FF50053E39F"
-               BuildableName = "casata2.app"
+               BuildableName = "casata.app"
                BlueprintName = "casata"
                ReferencedContainer = "container:casata.xcodeproj">
             </BuildableReference>
@@ -32,7 +32,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3A37A408149B6FF50053E39F"
-            BuildableName = "casata2.app"
+            BuildableName = "casata.app"
             BlueprintName = "casata"
             ReferencedContainer = "container:casata.xcodeproj">
          </BuildableReference>
@@ -50,7 +50,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3A37A408149B6FF50053E39F"
-            BuildableName = "casata2.app"
+            BuildableName = "casata.app"
             BlueprintName = "casata"
             ReferencedContainer = "container:casata.xcodeproj">
          </BuildableReference>
@@ -68,7 +68,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3A37A408149B6FF50053E39F"
-            BuildableName = "casata2.app"
+            BuildableName = "casata.app"
             BlueprintName = "casata"
             ReferencedContainer = "container:casata.xcodeproj">
          </BuildableReference>

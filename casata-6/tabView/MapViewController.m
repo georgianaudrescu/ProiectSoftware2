@@ -136,6 +136,11 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     self.detaliiAnuntViewController.delegate=self;//
     self.detaliiAnuntViewController.hidePinIfRemovedFromFav= @selector(hidePinWhenFavesVisibleAndCurrentAdRemovedFromFav);//
     
+    ////resize detalii
+    self.detaliiAnuntViewController.view.frame = CGRectMake(0, 0, 320, 464);
+    
+    
+    
                                  
     touchView = [[TTouchView alloc] initWithFrame:CGRectMake(0, 0, 320, 460)];
 	touchView.delegate = self;

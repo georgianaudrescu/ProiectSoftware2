@@ -470,8 +470,8 @@
 				8C725FBF14AE4FF5002B26F4 /* Informatii.m */,
 				8CB239A014B36F22007BDFEE /* Optiuni - harta */,
 				3A70A922149BBABB00203169 /* MAP */,
-				3A56AD1914AB866A00C6B6B0 /* Profiles */,
 				3A56AD1E14AB893000C6B6B0 /* Statistics */,
+				3A56AD1914AB866A00C6B6B0 /* Profiles */,
 				3A37A414149B6FF50053E39F /* Supporting Files */,
 			);
 			name = casata;

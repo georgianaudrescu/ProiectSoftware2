@@ -26,7 +26,7 @@
        // self.tabBarItem.image = [UIImage imageNamed:@"adauga_anunt"];
        [self setTitle:@"Adauga anunt"];
         //butonul care va aparea ca back button pt view-ul child care va fi pus in stiva peste view-ul curent
-        UIBarButtonItem *anuleazaButton = [[UIBarButtonItem alloc] initWithTitle:@"Anuleaza" style:UIBarButtonItemStylePlain target:nil action:nil]; 
+        UIBarButtonItem *anuleazaButton = [[UIBarButtonItem alloc] initWithTitle:@"Inapoi" style:UIBarButtonItemStylePlain target:nil action:nil]; 
         
         anuleazaButton.tintColor = [UIColor blackColor];
         

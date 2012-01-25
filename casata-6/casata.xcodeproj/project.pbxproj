@@ -75,6 +75,7 @@
 		8C800B3914ADD59800F498A5 /* adauga_anunt.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C800B3814ADD59700F498A5 /* adauga_anunt.png */; };
 		8C800B4214ADD6EE00F498A5 /* AdaugAnuntViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C800B4014ADD6EC00F498A5 /* AdaugAnuntViewController.m */; };
 		8C800B4314ADD6EE00F498A5 /* AdaugAnuntViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C800B4114ADD6ED00F498A5 /* AdaugAnuntViewController.xib */; };
+		8C87E8DB14CF98E9009154B7 /* imagineDefault.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8C87E8DA14CF98E9009154B7 /* imagineDefault.jpg */; };
 		8CA9F8D714AE2D42008F7F42 /* FavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CA9F8D514AE2D42008F7F42 /* FavViewController.m */; };
 		8CA9F8D814AE2D42008F7F42 /* FavViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CA9F8D614AE2D42008F7F42 /* FavViewController.xib */; };
 		8CAD399214C6174D002472F3 /* sageataDreapta.png in Resources */ = {isa = PBXBuildFile; fileRef = 8CAD399014C6174D002472F3 /* sageataDreapta.png */; };
@@ -170,10 +171,10 @@
 		3A37A40D149B6FF50053E39F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3A37A40F149B6FF50053E39F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3A37A411149B6FF50053E39F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		3A37A415149B6FF50053E39F /* casata-Info.plist */ = {isa = PBXFileReference; path = "casata-Info.plist"; sourceTree = "<group>"; };
+		3A37A415149B6FF50053E39F /* casata-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "casata-Info.plist"; sourceTree = "<group>"; };
 		3A37A417149B6FF50053E39F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3A37A419149B6FF50053E39F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		3A37A41B149B6FF50053E39F /* casata-Prefix.pch */ = {isa = PBXFileReference; path = "casata-Prefix.pch"; sourceTree = "<group>"; };
+		3A37A41B149B6FF50053E39F /* casata-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "casata-Prefix.pch"; sourceTree = "<group>"; };
 		3A37A41C149B6FF50053E39F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3A37A41D149B6FF50053E39F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		3A37A442149B774A0053E39F /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
@@ -318,6 +319,7 @@
 		8C800B3F14ADD6EB00F498A5 /* AdaugAnuntViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AdaugAnuntViewController.h; path = ../AdaugAnuntViewController.h; sourceTree = "<group>"; };
 		8C800B4014ADD6EC00F498A5 /* AdaugAnuntViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AdaugAnuntViewController.m; path = ../AdaugAnuntViewController.m; sourceTree = "<group>"; };
 		8C800B4114ADD6ED00F498A5 /* AdaugAnuntViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AdaugAnuntViewController.xib; path = ../AdaugAnuntViewController.xib; sourceTree = "<group>"; };
+		8C87E8DA14CF98E9009154B7 /* imagineDefault.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = imagineDefault.jpg; sourceTree = "<group>"; };
 		8CA9F8D414AE2D42008F7F42 /* FavViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavViewController.h; sourceTree = "<group>"; };
 		8CA9F8D514AE2D42008F7F42 /* FavViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavViewController.m; sourceTree = "<group>"; };
 		8CA9F8D614AE2D42008F7F42 /* FavViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FavViewController.xib; sourceTree = "<group>"; };
@@ -511,6 +513,7 @@
 		3A70A915149BB84700203169 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				8C87E8DA14CF98E9009154B7 /* imagineDefault.jpg */,
 				3A1C870B14CF0E1500670517 /* headerDetalii.png */,
 				3A1C870C14CF0E1500670517 /* house2.jpg */,
 				3A1C870914CF0DFC00670517 /* 75-phone.png */,
@@ -948,6 +951,7 @@
 				3A1C870A14CF0DFC00670517 /* 75-phone.png in Resources */,
 				3A1C870D14CF0E1500670517 /* headerDetalii.png in Resources */,
 				3A1C870E14CF0E1500670517 /* house2.jpg in Resources */,
+				8C87E8DB14CF98E9009154B7 /* imagineDefault.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

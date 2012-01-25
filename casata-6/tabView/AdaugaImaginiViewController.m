@@ -17,8 +17,8 @@
 
 @implementation AdaugaImaginiViewController
 @synthesize theImageList, imgScrollView, imageViewsArray, generalScrollView;
-@synthesize preiaCuCamera, preiaDinGalerie, currentImageNr, totalImages, viewModal;
-@synthesize titluImagineTextField, toolBar;
+@synthesize currentImageNr, totalImages, defaultImageIndex;
+@synthesize titluImagineTextField, toolBar, disabledView, defaultView;
 @synthesize picker;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -233,6 +233,17 @@
    */
     
     self.theImageList = [[TImageList alloc] init];
+    self.defaultView.frame = CGRectMake(10, 0, 300, 372);
+    
+    //daca nu avem inca nici o imagine in lista, dam disable la butonul de sters, texfield-ul si butonul de default
+    if(self.theImageList.count==0)
+    {[[self.toolBar.items objectAtIndex:2] setEnabled:NO];
+    [[self.toolBar.items objectAtIndex:3] setEnabled:NO];
+    [self.navigationItem.rightBarButtonItem setEnabled:NO];
+    [self.generalScrollView addSubview:self.defaultView];   
+    }
+    
+    
     self.picker = [[UIImagePickerController alloc] init];
     self.picker.delegate=self;
     //self.picker.navigationBar.tintColor = [UIColor colorWithRed:0.976 green:0.827 blue:0.015 alpha:1.0]; 
@@ -240,19 +251,16 @@
     self.imageViewsArray = [[NSMutableArray alloc]init];
     self.currentImageNr =0 ;  
     self.totalImages=0;
-    
-    
-    self.preiaCuCamera.imageView.contentMode = UIViewContentModeScaleAspectFit;
-    self.preiaDinGalerie.imageView.contentMode = UIViewContentModeScaleAspectFit;
-
+    self.defaultImageIndex=-1;   
     //self.imgView.contentMode = UIViewContentModeScaleAspectFit;
     [self.imgScrollView setPagingEnabled:YES];
     self.imgScrollView.delegate = self;
    [self.generalScrollView setContentSize:CGSizeMake(320, 750)];
+
 }
 
 
--(IBAction)preiaImagine:(id)sender
+-(IBAction)preiaImagineCuCamera:(id)sender
 {
    if(self.totalImages ==10)
    {
@@ -261,23 +269,36 @@
    }
     else
     {
-        if((UIButton *) sender == self.preiaDinGalerie)
-        {
-            self.picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-        }
-        else
-        {
-            self.picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-        }
-    
+        self.picker.sourceType = UIImagePickerControllerSourceTypeCamera;
         [self presentModalViewController:picker animated:YES];
     }
+}
+
+-(IBAction)preiaImagineDinGalerie:(id)sender
+{
+    if(self.totalImages ==10)
+    {
+        UIAlertView *alertView = [[[UIAlertView alloc] initWithTitle:@"Nu mai poti adauga imagini" message:@"Ai deja numarul maxim de 10 imagini care pot fi adaugate unui anunt!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil] autorelease];
+        [alertView show];
+    }
+    else
+    {
+        self.picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        [self presentModalViewController:picker animated:YES];
+    }
+
 }
 
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
 {
     //self.imgView.image = image;
-    
+    if(self.totalImages==0)
+    { //cand se adauga prima imagine, se fac enabled butonul de sterge, texfield-ul si butonul de default
+        [[self.toolBar.items objectAtIndex:2] setEnabled:YES];
+        [[self.toolBar.items objectAtIndex:3] setEnabled:YES];
+        [self.navigationItem.rightBarButtonItem setEnabled:YES];
+        [self.defaultView removeFromSuperview]; 
+    }
     
     UIImageView *imageView = [[[UIImageView alloc] init]autorelease];
     imageView.image = image;
@@ -308,40 +329,10 @@
     
     //muta automat scrollul cand adaugam
     if(self.totalImages>1)[self.imgScrollView setContentOffset: CGPointMake((self.totalImages-1)*300, 0) animated:YES];  
-    
-    
-    [self.viewModal removeFromSuperview];
-    [[self.toolBar.items objectAtIndex:0] setEnabled:YES];
-    [[self.toolBar.items objectAtIndex:1] setEnabled:YES];
-    [[self.toolBar.items objectAtIndex:2] setEnabled:YES];
+     
     [self dismissModalViewControllerAnimated:YES];
 }
 
-
-
-/*
--(void) changeCurrentViewedImageToImageWithIndex:(id) sender
-{
-    UIButton *senderButton = (UIButton*)sender;
-    
-    NSLog(@"buton tag: %d", senderButton.tag);
-    int x =senderButton.tag;
-    self.currentImageNr = x;
-    
-    TImage *theImag =  [self.theImageList getImageAtIndex:x];
-    self.imgView.image=theImag.image;
-    self.titluImagineTextField.text=theImag.name;
-    //self.descriereImagineTextField.text=theImag.description;
-    if(theImag.defaultValue==0)
-        self.valoareDefault.on = NO;
-    else
-        self.valoareDefault.on=YES;
-    theImag=nil;
-    
-    
-    //self.imgView.image = [UIImage imageNamed:@"imgtest1.jpg"];
-}
-*/
 
 //stergerea unei imagini - tratarea tuturor cazurilor, inlocuirea tag-urilor pt butoanele ramase dupa stergere
 
@@ -369,7 +360,13 @@
         self.totalImages--;
         self.currentImageNr=0;        
         NSLog(@"just one image");
-            }
+        
+        [[self.toolBar.items objectAtIndex:2] setEnabled:NO];
+        [[self.toolBar.items objectAtIndex:3] setEnabled:NO];
+        [self.navigationItem.rightBarButtonItem setEnabled:NO];
+        [self.generalScrollView addSubview:self.defaultView]; 
+        
+     }
     else
     {
         CGFloat a = self.imgScrollView.contentOffset.x;
@@ -431,57 +428,45 @@
     
 }
 
-
-/*
--(IBAction)switchChangedForCurrentImage:(id)sender
-{if(self.totalImages>0)
-{
-     TImage *theImag =  [self.theImageList getImageAtIndex:self.currentImageNr];
-    if([self.valoareDefault isOn])
-    {
-    theImag.defaultValue=1;
-         NSLog(@"Switch is on %d", theImag.defaultValue);
-    }
-    else
-    {
-       theImag.defaultValue=0;
-         NSLog(@"Switch is off %d", theImag.defaultValue);
-    }
-    theImag = nil;
-} 
-
-}
-*/
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
 
-    NSLog(@"AAAAAAAAAAAA");
+   
     CGFloat a = self.imgScrollView.contentOffset.x;
     int b = (unsigned int) a;
     self.currentImageNr = b/300;
     
     TImage *theImag =  [self.theImageList getImageAtIndex:self.currentImageNr];
-    // theImag.description = self.descriereImagineTextField.text;
     self.titluImagineTextField.text=theImag.name;
     theImag=nil;
     
-
+    if(self.currentImageNr==self.defaultImageIndex)
+    {[self.navigationItem.rightBarButtonItem setEnabled:NO];
+    }
+    else
+    {[self.navigationItem.rightBarButtonItem setEnabled:YES];
+    }
 
 }
 
 
 -(IBAction)enterEditingModeForTextField:(id)sender
 {
-    [self.viewModal removeFromSuperview];
+   
     [[self.toolBar.items objectAtIndex:0] setEnabled:NO];
-    [[self.toolBar.items objectAtIndex:2] setEnabled:NO];
+    [[self.toolBar.items objectAtIndex:1] setEnabled:NO];
+    [[self.toolBar.items objectAtIndex:3] setEnabled:NO];
+    [self.navigationItem.rightBarButtonItem setEnabled:NO];
     NSLog(@"editing did begin");
+    [self.generalScrollView addSubview:self.disabledView];
    [self.generalScrollView setContentOffset:CGPointMake(0, 216) animated:YES];
+    
 }
 -(IBAction) textFieldReturn:(id)sender{
     [[self.toolBar.items objectAtIndex:0] setEnabled:YES];
-    [[self.toolBar.items objectAtIndex:2] setEnabled:YES];
-    
+    [[self.toolBar.items objectAtIndex:1] setEnabled:YES];
+    [[self.toolBar.items objectAtIndex:3] setEnabled:YES];
+    [self.navigationItem.rightBarButtonItem setEnabled:YES];
     
     if(self.totalImages>0)
         
@@ -494,6 +479,7 @@
         theImag.name = self.titluImagineTextField.text;
         theImag=nil;
     }
+    [self.disabledView removeFromSuperview]; 
      [self.generalScrollView setContentOffset:CGPointMake(0, 0) animated:YES];
     [sender resignFirstResponder];
 }
@@ -522,36 +508,21 @@
 {  CGFloat a = self.imgScrollView.contentOffset.x;
     int b = (unsigned int) a;
     self.currentImageNr = b/300;
-    
-    for(int x=0;x<totalImages;x++)
-       {TImage *theImag =  [self.theImageList getImageAtIndex:x];
-        theImag.defaultValue=0;
-        theImag=nil;
-       }
-    
+   
+    if(self.defaultImageIndex!=-1)
+    {TImage *theImag =  [self.theImageList getImageAtIndex:self.defaultImageIndex];
+    theImag.defaultValue=0;
+    theImag=nil;
+        //NSLog(@"imag de la index: %d nu mai e default", self.defaultImageIndex);
+    }
     
     TImage *theImag =  [self.theImageList getImageAtIndex:self.currentImageNr];
     theImag.defaultValue=1;
     theImag=nil;
+    self.defaultImageIndex=self.currentImageNr;
+    [self.navigationItem.rightBarButtonItem setEnabled:NO];
+    //NSLog(@"acum imag de la indexul: %d e default", self.defaultImageIndex);
 }    
-}
-
-
--(IBAction)prezintaViewModal:(id)sender
-
-{  self.viewModal.frame =CGRectMake(35, 120, self.viewModal.frame.size.width, self.viewModal.frame.size.height);    
-    [self.view addSubview:self.viewModal];
-    [[self.toolBar.items objectAtIndex:0] setEnabled:NO];
-    [[self.toolBar.items objectAtIndex:1] setEnabled:NO];
-    [[self.toolBar.items objectAtIndex:2] setEnabled:NO];
-}
-
--(IBAction)getRightOfModalMenu:(id)sender
-{
-    [self.viewModal removeFromSuperview];
-    [[self.toolBar.items objectAtIndex:0] setEnabled:YES];
-    [[self.toolBar.items objectAtIndex:1] setEnabled:YES];
-    [[self.toolBar.items objectAtIndex:2] setEnabled:YES];
 }
 
 - (void)viewDidUnload
@@ -576,12 +547,11 @@
     [imgScrollView release];
     [toolBar release];
     [generalScrollView release];
-    [viewModal release];
     [imageViewsArray release];
-    [preiaDinGalerie release];
-    [preiaCuCamera release];
     [picker release];
     [titluImagineTextField release];
+    [disabledView release];
+    [defaultView release];
     //[descriereImagineTextField release];
     [super  dealloc];
 

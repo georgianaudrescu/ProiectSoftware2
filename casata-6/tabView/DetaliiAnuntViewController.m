@@ -69,6 +69,7 @@
     self.theAd = [apdelegate.appSession.globalAdList getAdWithId:theAdId];
     self.imgView.contentMode = UIViewContentModeScaleAspectFit;
     
+    [self.bigScroll setContentOffset:CGPointMake(0, 0)];
     
     
     NSLog(@"Judetul ad-ului selectat:%@", [self.theAd.ad objectForKey:@"judet"]);

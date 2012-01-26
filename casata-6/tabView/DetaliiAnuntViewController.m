@@ -18,7 +18,7 @@
 @synthesize imgView, imgScrollView,imageViewsArray, imgList;
 @synthesize delegate, hidePinIfRemovedFromFav; //pt a seta map ca delegate
 //@synthesize popView, popViewContact; 
-@synthesize bigScroll;
+@synthesize bigScroll, adTextView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -76,8 +76,8 @@
     //punerea textului anuntului in label-urile corespunzatoare
     self.nameLabel.text = [self.theAd.ad objectForKey:@"name"];
     self.propertyTypeLabel.text =[self.theAd.ad objectForKey:@"property_type"];
-    self.adTextLabel.text = [NSString stringWithFormat:@"Descriere:  %@", [self.theAd.ad objectForKey:@"ad_text"]];
-    self.adressLineLabel.text = [NSString stringWithFormat:@"Adresa:  %@", [self.theAd.ad objectForKey:@"adress_line"]];
+    //self.adTextLabel.text = [NSString stringWithFormat:@"Descriere:  %@", [self.theAd.ad objectForKey:@"ad_text"]];
+    self.adressLineLabel.text = [NSString stringWithFormat:@"%@", [self.theAd.ad objectForKey:@"adress_line"]];
     NSNumber *pret = [self.theAd.ad objectForKey:@"pret"];
     
     self.pretLabel.text = [NSString stringWithFormat:@"%d %@",pret.intValue, [self.theAd.ad objectForKey:@"moneda"]];
@@ -89,26 +89,37 @@
     self.thumbnailImageView.image = [UIImage imageNamed:@"house2.jpg"];
     
     
-    
+    /*
     //ajustarea dimensiunii textului/label-ului
     NSLog(@"nr charactere adresa: %d", [[self.theAd.ad objectForKey:@"adress_line"] length]);
    
+    
     if([[self.theAd.ad objectForKey:@"adress_line"] length] <=24)
     {[self.adressLineLabel sizeToFit];
        // self.adressLineLabel.frame = CGRectMake(20, 346, 281, self.adressLineLabel.frame.size.height);
        
     }
     else
-    {[self.adressLineLabel setFont:[UIFont fontWithName:@"Helvetica" size:12]];
-        [self.adressLineLabel sizeToFit];}
+    {[self.adressLineLabel setFont:[UIFont boldSystemFontOfSize:17]];
+        [self.adressLineLabel sizeToFit];
+    }
     
+   
     if([[self.theAd.ad objectForKey:@"ad_text"] length] <=24)
     {[self.adTextLabel sizeToFit];
-     //self.adTextLabel.frame = CGRectMake(20, 298, 280, self.adTextLabel.frame.size.height);
+     
+        //self.adTextLabel.frame = CGRectMake(20, 298, 280, self.adTextLabel.frame.size.height);
     }
      else 
-     {[self.adTextLabel setFont:[UIFont fontWithName:@"Helvetica" size:12]];
-    [self.adTextLabel sizeToFit];}
+     {[self.adTextLabel setFont:[UIFont fontWithName:@"Helvetica" size:17]];
+    [self.adTextLabel sizeToFit];
+     }
+     */
+    
+    /// detalii text in textview:
+    self.adTextView .delegate = self;
+    self.adTextView.text = [self.theAd.ad objectForKey:@"ad_text"];
+    self.adTextView.editable = NO;
     
     //verificare daca este favorit sau nu si setarea imaginii pt butonul de adaugare/inlaturare din favorite in functie de asta
     if(apdelegate.appSession.favorites.count !=0) 
@@ -316,6 +327,7 @@
     [imageViewsArray release];
     [imgList release]; 
     [bigScroll release];
+    [adTextView release];
     [super dealloc];
 }
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

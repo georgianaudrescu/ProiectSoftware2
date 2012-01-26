@@ -15,7 +15,8 @@
 #define kOFFSET_FOR_KEYBOARD 160.0
 
 @implementation AdaugAnuntViewController
-@synthesize pretTextField,suprafataTextField,tableImobil,titluTextField,camereTextField,detaliiTextView;
+@synthesize pretTextField,tableImobil,titluTextField,detaliiTextView,suprafataTextField;
+@synthesize pickerView;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -51,7 +52,10 @@
     [tableImobil release];
     [propertyTypes release];
      */
+    [pickerView release];
+    [tableValues release];
     [super dealloc];
+    
 }
 
 -(void)setTitle:(NSString *)title
@@ -79,7 +83,7 @@
 
 -(void) backgroundTouched:(id)sender{
     [pretTextField resignFirstResponder];
-    [suprafataTextField resignFirstResponder];
+  //[suprafataTextField resignFirstResponder];
     [pretTextField resignFirstResponder];
     [titluTextField resignFirstResponder];
     [detaliiTextView resignFirstResponder];
@@ -87,12 +91,14 @@
 
 - (IBAction)textFieldDidBeginEditing:(UITextField *)textField
 {
+    [self.tableImobil setUserInteractionEnabled:NO];
     [self animateTextField: textField up: YES];
 }
 
 
 - (IBAction)textFieldDidEndEditing:(UITextField *)textField
 {
+    [self.tableImobil setUserInteractionEnabled:YES];
     [self animateTextField: textField up: NO];
 }
 
@@ -111,12 +117,16 @@
 }
 - (void)textViewDidBeginEditing:(UITextView *)textView
 {
+    textView.text=@"";
+    [self.tableImobil setUserInteractionEnabled:NO];
     [self animateTextView: textView up: YES];
 }
 
 
 - (void)textViewDidEndEditing:(UITextView *)textView
 {
+    
+    [self.tableImobil setUserInteractionEnabled:YES];
     [self animateTextView: textView up: NO];
 }
 
@@ -171,8 +181,8 @@
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return [propertyTypes count];
-    //return 5;
+	return [tableItems count];
+    //return 3;
 }
 
 // Customize the appearance of table view cells.
@@ -182,24 +192,23 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];;
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];;
     }
-        if ([selectedPropType isEqual:[propertyTypes objectAtIndex:indexPath.row]]) {
-        cell.imageView.image = [UIImage imageNamed:@"checkbox_ticked.png"];
-    }
-    else {
-        cell.imageView.image = [UIImage imageNamed:@"checkbox_not_ticked.png"];
-    }
-    
-    cell.textLabel.text = [ propertyTypes objectAtIndex:[indexPath row]];
-    //  return cell;
 
+    
+    cell.textLabel.text = [ tableItems objectAtIndex:[indexPath row]];
+    
+    cell.detailTextLabel.text = [ tableValues objectAtIndex:[indexPath row]];
+    
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+
+    /*
     UIView *backgroundView = [[UIView alloc] init];
     backgroundView.backgroundColor = [UIColor blackColor];
     
     cell.selectedBackgroundView = backgroundView;
     [backgroundView release];
-    
+    */
     return cell;
 }
 
@@ -207,30 +216,86 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {   
 
     UITableViewCell *cell = [tableImobil cellForRowAtIndexPath:indexPath];
+   
+    if(([cell.textLabel.text isEqual:@"Tip Imobil"])||([cell.textLabel.text isEqual:@"Numar Camere"])){
+        [self showTipImobilPicker];
+    }
+ 
     
-    if([selectedPropType isEqual:[propertyTypes objectAtIndex:indexPath.row]])
-    {
-        cell.imageView.image = [UIImage imageNamed:@"checkbox_not_ticked.png"];
-        selectedPropType  =nil;
-    }
-    else
-    {
-        selectedPropType=nil;
-        [tableImobil reloadData];
-        cell.imageView.image = [UIImage imageNamed:@"checkbox_ticked.png"];
-        selectedPropType  =cell.textLabel.text;
-        selectedIndex = indexPath;
-    }
-    NSLog(@"%@",selectedPropType);
+    //////////////////////////
+    /*
     UIView *backgroundView = [[UIView alloc] init];
     backgroundView.backgroundColor = [UIColor blackColor];
     
     cell.selectedBackgroundView = backgroundView;
     [backgroundView release];
+     */
 
 
 }
+-(void) showTipImobilPicker{
+    UIActionSheet *menu = [[UIActionSheet alloc] initWithTitle:@"Tip Imobil si Numar Camere" 
+                                                      delegate:self
+                                             cancelButtonTitle:nil
+                                        destructiveButtonTitle:@"Done"
+                                             otherButtonTitles:nil];
+    [menu showInView:self.view];
+     menu.frame = CGRectMake(0, 100, 320, 420);
+    
+//    pickerView = [[UIPickerView alloc] init];
+//    pickerView.showsSelectionIndicator = YES;
+//    pickerView.delegate=self ;
+//    
+    pickerView.frame = CGRectMake(0, 100, 320, 320);
+    [menu addSubview:pickerView];
+    
+    //[pickerView release];
+    [menu release];
+}
 
+-(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    return 2;
+}
+- (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component {
+  if(component == tipImobil)
+      return 230;
+    return 70;
+}
+
+
+-(NSInteger)pickerView:(UIPickerView *)pickerView
+numberOfRowsInComponent:(NSInteger)component
+{
+    if(component == tipImobil)
+    {return [propertyTypes count];}
+    
+    if(component == nrCamere)
+    {return  [camere count];}
+            
+    return 0;
+}
+
+-(NSString *) pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    if (component == tipImobil)
+    {   return [propertyTypes objectAtIndex:row];}
+    
+    if (component == nrCamere)
+    { return [camere objectAtIndex:row];}
+    
+    return 0;
+}
+
+-(void) pickerView:(UIPickerView *)thePickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    NSString * imobil = [propertyTypes objectAtIndex:[thePickerView selectedRowInComponent:0]];
+    NSString * rooms = [camere objectAtIndex:[thePickerView selectedRowInComponent:1]];
+    NSLog(@"Tip imobil: %@, %@ camere", imobil,rooms);
+    [tableValues replaceObjectAtIndex:0 withObject:imobil];
+    [tableValues replaceObjectAtIndex:1 withObject:rooms];
+    [tableImobil reloadData];
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -269,12 +334,28 @@
     [super viewDidLoad];
     
     //selectedPropType = nil;
+    tableItems = [[NSMutableArray alloc] initWithObjects:@"Tip Imobil",@"Numar Camere", nil];
+
+    tableValues = [[NSMutableArray alloc] initWithObjects:@"Garsoniera",@"1", nil];
+    
+    pickerView = [[UIPickerView alloc] init];
+    pickerView.showsSelectionIndicator = YES;
+    pickerView.delegate=self ;
+    pickerView.dataSource = self;
     
     propertyTypes = [[NSMutableArray alloc] init];
     [propertyTypes addObject:@"Garsoniera"];
     [propertyTypes addObject:@"Apartament"];
     [propertyTypes addObject:@"Casa"];
     [propertyTypes addObject:@"Spatiu Comercial"];
+    
+    camere = [[NSMutableArray alloc] init];
+    [camere addObject:@"0"];
+    [camere addObject:@"1"];
+    [camere addObject:@"2"];
+    [camere addObject:@"3"];
+    [camere addObject:@"4"];
+    [camere addObject:@"5+"];
     
     self.detaliiTextView.delegate = self;
     
@@ -285,6 +366,7 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
+    
 }
 
 

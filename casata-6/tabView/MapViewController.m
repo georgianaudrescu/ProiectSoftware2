@@ -29,6 +29,7 @@
 @synthesize touchView, selectedAnnotation;
 @synthesize statisticsView,detaliiAnuntViewController;
 @synthesize scrollView,subScroll;
+@synthesize locationManager;
 
 NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
 
@@ -75,6 +76,17 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
         apdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
         onlyFavAdsVisible=NO;
         onlyFilteredAdsVisible=NO;
+        
+        if (!self.locationManager) 
+        {
+            self.locationManager = [[[CLLocationManager alloc] init] autorelease];
+            self.locationManager.headingFilter = kCLHeadingFilterNone;
+            self.locationManager.distanceFilter = kCLDistanceFilterNone;
+            self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
+        }
+        self.locationManager.delegate = self; 
+        [locationManager startUpdatingLocation];
+        flag_user_location=0;
     }
     
     
@@ -195,6 +207,23 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     
 }
 
+-(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
+{
+    if(flag_user_location == 0){
+    CLLocationCoordinate2D zoomLocation;
+    zoomLocation.longitude =newLocation.coordinate.longitude;
+    zoomLocation.latitude = newLocation.coordinate.latitude;
+    
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation,50000,50000);
+    MKCoordinateRegion adjustedRegion = [_mapView regionThatFits:viewRegion];
+    [_mapView setRegion:adjustedRegion animated:YES];
+    _mapView.showsUserLocation=YES;
+    NSLog(@"NEW LOCATION");
+        flag_user_location=1;
+    }
+}
+
+
 - (void)viewWillAppear:(BOOL)animated
 {
     // AppDelegate *apdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
@@ -204,8 +233,8 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     CLLocationCoordinate2D zoomLocation;
     //zoomLocation.latitude=44.4;
     //zoomLocation.longitude=26.1;
-    zoomLocation.longitude = apdelegate.locationManager.location.coordinate.longitude;
-    zoomLocation.latitude = apdelegate.locationManager.location.coordinate.latitude;
+    zoomLocation.longitude =self.locationManager.location.coordinate.longitude;
+    zoomLocation.latitude = self.locationManager.location.coordinate.latitude;
     
     MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation,50000,50000);
     MKCoordinateRegion adjustedRegion = [_mapView regionThatFits:viewRegion];
@@ -220,6 +249,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     
     
 }
+
 
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -792,6 +822,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     [subScroll release];
     //[adaugAnuntView release];
     
+    [locationManager release];
     [super dealloc];
 }
 @end

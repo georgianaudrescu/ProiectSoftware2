@@ -10,7 +10,7 @@
 #import "AppDelegate.h"
 #import "TAd.h"
 #import "TImageList.h"
-@interface DetaliiAnuntViewController : UIViewController
+@interface DetaliiAnuntViewController : UIViewController <UITextViewDelegate>
 {
     //int ad_id;
     TAd *theAd;
@@ -33,6 +33,7 @@
     id delegate;
     SEL hidePinIfRemovedFromFav;
     UIScrollView *bigScroll;
+    UITextView *adTextView;
 }
 @property(nonatomic,retain) TAd *theAd;
 @property(nonatomic,retain) IBOutlet UILabel *nameLabel,*propertyTypeLabel, *adTextLabel, *adressLineLabel, *pretLabel, *monedaLabel, *contactNameLabel, *contactPhoneLabel, *anuntTypeLabel; 
@@ -46,6 +47,7 @@
 @property (assign) id delegate;
 @property (assign) SEL hidePinIfRemovedFromFav;
 @property (nonatomic, retain) IBOutlet UIScrollView * bigScroll;
+@property (nonatomic,retain) IBOutlet UITextView * adTextView;
 
 -(void)loadAdWithId:(int)theAdId;
 //-(void)changeCurrentViewedImageToImageWithIndex:(id) sender;

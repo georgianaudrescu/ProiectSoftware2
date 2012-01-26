@@ -19,7 +19,8 @@
 #import "Filtre.h"
 
 
-@interface MapViewController : UIViewController <MKMapViewDelegate, UINavigationBarDelegate>{
+@interface MapViewController : UIViewController <MKMapViewDelegate, UINavigationBarDelegate, CLLocationManagerDelegate>
+{
     BOOL _doneInitialZoom;
     IBOutlet MKMapView *mapView;
     UINavigationItem *mapNavItem;
@@ -45,9 +46,12 @@
     //NSConditionLock *lock;
     int flag;
     int flag_get_more_ads;
+    int flag_user_location;
     
     BOOL onlyFavAdsVisible;
     BOOL onlyFilteredAdsVisible;
+    // pentru user location:
+    CLLocationManager *locationManager;
     
 }
 @property (retain, nonatomic) IBOutlet MKMapView *mapView;
@@ -60,6 +64,9 @@
 @property(nonatomic,retain) DetaliiAnuntViewController *detaliiAnuntViewController;
 @property(nonatomic,retain) IBOutlet UIScrollView *scrollView;
 @property(nonatomic,retain) IBOutlet UIScrollView *subScroll;
+// pentru user location:
+@property (nonatomic, retain) CLLocationManager * locationManager;
+
           
 /////
 extern NSString *const GMAP_ANNOTATION_SELECTED;

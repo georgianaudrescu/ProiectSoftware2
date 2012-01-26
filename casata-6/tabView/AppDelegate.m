@@ -20,7 +20,7 @@
 @synthesize viewController = _viewController;
 @synthesize navigationController= _navigationController;
 @synthesize appSession;
-@synthesize locationManager;
+//@synthesize locationManager;
 
 
 
@@ -30,6 +30,7 @@
     [_navigationController release];
     [_viewController release];
     [appSession release];
+    //[locationManager release];
     [super dealloc];
 }
 
@@ -64,7 +65,7 @@
     
    ////close session////// 
     
-    
+    /*
     if (!self.locationManager) 
 	{
 		self.locationManager = [[[CLLocationManager alloc] init] autorelease];
@@ -74,6 +75,7 @@
 	}
 	self.locationManager.delegate = self; 
     [locationManager startUpdatingLocation];
+    */
     
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     
@@ -108,6 +110,7 @@
     
     return YES;
 }
+
 
 
 

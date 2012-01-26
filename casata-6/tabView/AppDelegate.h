@@ -10,17 +10,17 @@
 #import "TAppSession.h"
 #import <CoreLocation/CoreLocation.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate, UINavigationControllerDelegate, CLLocationManagerDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, UINavigationControllerDelegate>
 {   
     TAppSession *appSession;
-    IBOutlet CLLocationManager * locationManager;
+    //IBOutlet CLLocationManager * locationManager;
 }
 @property (strong, nonatomic) UIWindow *window;
 
 @property (strong, nonatomic) UINavigationController *navigationController;
 @property (strong, nonatomic) UIViewController *viewController;
 @property (nonatomic,retain) TAppSession *appSession;
-@property (nonatomic,retain) CLLocationManager * locationManager;
+//@property (nonatomic,retain) CLLocationManager * locationManager;
 
 
 

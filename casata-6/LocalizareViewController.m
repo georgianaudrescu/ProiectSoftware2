@@ -11,12 +11,20 @@
 @implementation LocalizareViewController
 @synthesize mapView=_mapView;
 
+@synthesize dropPin;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
         [self setTitle:@"Locatie"];
+        
+        //setam butonul din dreapta navBar-ului -adauga imaginile la anunt
+        self.navigationItem.rightBarButtonItem =  [[[UIBarButtonItem alloc] initWithTitle:@"Selecteaza" style:UIBarButtonItemStylePlain target:self action:@selector(selLocatieNoua)]autorelease]; 
+        self.navigationItem.rightBarButtonItem.tintColor = [UIColor blackColor];
+        
+        
     }
     return self;
 }
@@ -60,6 +68,65 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    UILongPressGestureRecognizer *longPressGesture=[[UILongPressGestureRecognizer alloc] initWithTarget: self action: @selector(handleLongPressGesture:)];
+    [self.mapView addGestureRecognizer:longPressGesture];
+    [longPressGesture release];
+
+    dropPin=[TLocation alloc];
+}
+
+-(void) handleLongPressGesture: ( UIGestureRecognizer*)sender {
+    
+    NSLog(@"in gesture");
+    
+    NSNumber *lat=[NSNumber alloc];
+    NSNumber *longit=[NSNumber alloc];
+    NSString *name1=[NSString alloc];
+    NSString *name2=[NSString alloc];
+    name1=@"locatie noua";
+    name2=@"locatie noua";
+    
+    if((sender.state==UIGestureRecognizerStateEnded)||(sender.state==UIGestureRecognizerStateChanged))
+       { //[self.mapView removeGestureRecognizer:sender];
+        NSLog(@"if gesutre");
+        return;
+       }
+    else
+    {   
+        CGPoint point=[sender locationInView:self.mapView];
+        CLLocationCoordinate2D locCoord = [self.mapView convertPoint:point toCoordinateFromView:self.mapView];
+        CLLocationCoordinate2D pinCoord;
+    
+        if((lat!=nil)&&(longit!=nil))
+        {
+            NSLog(@"remove ann");
+            
+            [self.mapView removeAnnotation:dropPin];
+         
+            //TLocation *dropPin= [TLocation alloc];
+            
+        }
+        
+        lat=[NSNumber numberWithDouble:locCoord.latitude];
+        longit=[ NSNumber numberWithDouble:locCoord.longitude];
+        
+        pinCoord.latitude=lat.doubleValue;
+        pinCoord.longitude=longit.doubleValue;
+               
+        [dropPin initWithTitle:name1 andSubtitle:name2 andCoord:pinCoord];
+        
+        NSLog(@"latitudine: @%f longitudine:@%f", lat.doubleValue,longit.doubleValue);
+        [self.mapView addAnnotation:dropPin];
+                                 
+    }
+}
+
+-(void) selLocatieNoua 
+{
+
+    
+    [self.navigationController popToRootViewControllerAnimated:YES];
+
 }
 
 - (void)viewDidUnload

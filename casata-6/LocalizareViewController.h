@@ -8,12 +8,19 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
-
+#import "TLocation.h"
 @interface LocalizareViewController : UIViewController<MKMapViewDelegate>
 {
 IBOutlet MKMapView *mapView;
     
+TLocation *dropPin;
+    
 }
+//UILongPressGestureREcognizer *longPressGesture=[[UILongPressGestureREcognizer alloc] initWithTarget: self action: @selector(handleLongPressGesture:)];
+
 @property (retain, nonatomic) IBOutlet MKMapView *mapView;
 
+@property(nonatomic, retain) TLocation *dropPin;
+
+-(void)selLocatieNoua;
 @end

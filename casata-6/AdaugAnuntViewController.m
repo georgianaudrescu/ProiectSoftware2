@@ -44,15 +44,15 @@
 
 -(void)salveazaAnunt
 {/* NSNumber *adid = [row objectForKey:@"id"];
-  NSNumber * latitude = [ row objectForKey:@"long"];
-  NSNumber * longitude = [row objectForKey:@"lat"];
+  NSNumber * latitude = [ row objectForKey:@"long"];///
+  NSNumber * longitude = [row objectForKey:@"lat"];////
   CLLocationCoordinate2D coordinate;
   coordinate.latitude = latitude.doubleValue;
   coordinate.longitude = longitude.doubleValue; 
   NSString * name = [row objectForKey:@"name"];///
   NSString * description = [row objectForKey:@"ad_text"];///
   NSString * type = [row objectForKey:@"ad_type"];///
-  NSString * propertyType = [row objectForKey:@"property_type"];
+  NSString * propertyType = [row objectForKey:@"property_type"];////
   NSString * contactName = [row objectForKey:@"contact_name"];
   NSString * contactPhone = [row objectForKey:@"contact_phone"];
   NSString * contactEmail = [row objectForKey:@"contact_mail"];
@@ -63,38 +63,42 @@
   NSString * moneda = [row objectForKey:@"moneda"];///
   */
    
-/*    
+  
     
   //de pus un flag, daca oricare din campurile obligatorii sunt necompletate (sau nu are aleasa o locatie) sa apara un alerview cand se apasa "salveza" cu mesajul "datele anuntului sunt incomplete"  
     NSString *name = [NSString stringWithString:self.titluTextField.text];
     NSString *ad_text = [NSString stringWithString:self.detaliiTextView.text];
     NSString *pret = [NSString stringWithString:self.pretTextField.text];
     NSString *size = [NSString stringWithString:self.suprafataTextField.text];
-    
+    NSString *property_type =[NSString stringWithFormat:@"%@ %@ camere", [tableValues objectAtIndex:0], [tableValues objectAtIndex:1]];
    
+    
     NSString *latitude = [NSString stringWithFormat:@"%f", newAd.adlocation.coordinate.latitude];
     NSString *longitude = [NSString stringWithFormat:@"%f", newAd.adlocation.coordinate.longitude];
     
     NSString *ad_type;
-    if(self.tipAnuntSegmentedControl.selectedSegmentIndex==0)
-    {ad_type = [NSString stringWithString:@"sale"];} 
+    if([self.tipAnuntSegmentedControl selectedSegmentIndex]==0)
+    {ad_type = @"sale";} 
     else
-    {ad_type = [NSString stringWithString:@"rent"];}
+    {ad_type = @"rent";}
     
     NSString *moneda;
-    if(self.monedaSegmentedControl.selectedSegmentIndex==0)
-    {moneda = [NSString stringWithString:@"lei"];} 
+    if([self.monedaSegmentedControl selectedSegmentIndex]==0)
+    {moneda = @"lei";} 
     else
-    {moneda = [NSString stringWithString:@"euro"];}
+    {moneda = @"euro";}
     
     
-    NSDictionary *tempDictionary = [[[NSDictionary alloc] initWithObjectsAndKeys:name, @"name", ad_text, @"ad_text", ad_type, @"ad_type", pret, @"pret", size, "@size", moneda, @"moneda",latitude, @"lat", longitude, @"long", nil]autorelease];
+ NSDictionary *tempDictionary = [[[NSDictionary alloc] initWithObjectsAndKeys:name, @"name", ad_text, @"ad_text", ad_type, @"ad_type", pret, @"pret", size, @"size", moneda, @"moneda",latitude, @"lat", longitude, @"long", property_type, @"property_type", nil]autorelease];
     
+  //NSDictionary *tempDictionary = [[NSDictionary alloc] initWithObjectsAndKeys:name, @"name",ad_text, @"ad_text",ad_type,@"ad_type",  pret, @"pret",size, @"size",latitude, @"lat", longitude, @"long", moneda, @"moneda", nil];
+   
     NSLog(@"here");
     [newAd TAd:tempDictionary];
+    
     //[tempDictionary release];
  
- */
+ 
 }
 
 -(void)dealloc

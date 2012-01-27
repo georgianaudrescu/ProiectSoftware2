@@ -31,6 +31,7 @@
     NSMutableArray *propertyTypes;
     NSMutableArray *camere;
     TAd *newAd;
+    int flagDateNecompletate;
 }
 
 //@property (nonatomic,retain) IBOutlet UIScrollView * scrollView;

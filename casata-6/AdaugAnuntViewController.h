@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "AdaugaImaginiViewController.h"
+#import "TAd.h"
 
 #define tipImobil 0
 #define nrCamere 1
@@ -19,6 +20,8 @@
     //IBOutlet UITextField * camereTextField;
     IBOutlet UITextField * suprafataTextField;
     IBOutlet UITextView * detaliiTextView;
+    UISegmentedControl *tipAnuntSegmentedControl;
+    UISegmentedControl *monedaSegmentedControl;
     UITableView  *tableImobil;
     NSString * selectedPropType;
     NSIndexPath *selectedIndex;
@@ -27,13 +30,15 @@
     UIPickerView * pickerView;
     NSMutableArray *propertyTypes;
     NSMutableArray *camere;
+    TAd *newAd;
 }
 
 //@property (nonatomic,retain) IBOutlet UIScrollView * scrollView;
 @property (nonatomic, retain) IBOutlet UITableView *tableImobil;
 @property (nonatomic, strong) IBOutlet UITextField * pretTextField;
 @property (nonatomic, strong) IBOutlet UITextField * titluTextField;
-//@property (nonatomic, strong) IBOutlet UITextField * camereTextField;
+@property (nonatomic, retain) IBOutlet  UISegmentedControl *tipAnuntSegmentedControl;
+@property (nonatomic, retain) IBOutlet  UISegmentedControl *monedaSegmentedControl;//@property (nonatomic, strong) IBOutlet UITextField * camereTextField;
 @property (nonatomic, strong) IBOutlet UITextField * suprafataTextField;
 @property (nonatomic, strong) IBOutlet UITextView * detaliiTextView;
 @property (nonatomic, retain) UIPickerView * pickerView;
@@ -46,6 +51,7 @@
 - (void) animateTextView: (UITextView*) textView up: (BOOL) up;
 
 -(void) showTipImobilPicker;
+-(void)salveazaAnunt;
 
 
 -(IBAction)adaugaImagini:(id)sender;

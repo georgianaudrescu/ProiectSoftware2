@@ -10,7 +10,7 @@
 
 @implementation LocalizareViewController
 @synthesize mapView=_mapView;
-
+@synthesize tempAd;
 @synthesize dropPin;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -49,7 +49,8 @@
 }
 
 -(void) dealloc
-{
+{   [dropPin release];///
+    [tempAd release];
     [mapView release];
     [super dealloc];
 }
@@ -71,8 +72,16 @@
     UILongPressGestureRecognizer *longPressGesture=[[UILongPressGestureRecognizer alloc] initWithTarget: self action: @selector(handleLongPressGesture:)];
     [self.mapView addGestureRecognizer:longPressGesture];
     [longPressGesture release];
-
     dropPin=[TLocation alloc];
+    
+    if(tempAd.adlocation==nil)
+   { NSLog(@"NU ARE LOCATIE");
+       flag=0;
+   }
+    else
+    {   flag=1;
+        NSLog(@"ARE DEJA LOCATIE");
+     [self.mapView addAnnotation:tempAd.adlocation];}
 }
 
 -(void) handleLongPressGesture: ( UIGestureRecognizer*)sender {
@@ -96,7 +105,13 @@
         CGPoint point=[sender locationInView:self.mapView];
         CLLocationCoordinate2D locCoord = [self.mapView convertPoint:point toCoordinateFromView:self.mapView];
         CLLocationCoordinate2D pinCoord;
-    
+        
+        if(flag==1)
+        {flag=0;
+            [self.mapView removeAnnotation:tempAd.adlocation];
+        }
+        
+        
         if((lat!=nil)&&(longit!=nil))
         {
             NSLog(@"remove ann");
@@ -124,7 +139,8 @@
 -(void) selLocatieNoua 
 {
 
-    
+    tempAd.adlocation = dropPin;
+    NSLog(@"salveaza");
     //[self.navigationController popToRootViewControllerAnimated:YES];
     [self.navigationController popViewControllerAnimated:YES];
 

@@ -112,7 +112,7 @@
 }
 -(void)initImageList
 {
-    self.imageList = [[TImageList alloc] init];
+    imageList = [[TImageList alloc] init];
 }
 
 -(id) GetAdImage:(int)ad_id
@@ -138,7 +138,7 @@
 }
 -(void) dealloc{
   [self.ad release];
-  [self.imageList release];//    
+  [imageList release];//[self.timageList release];    
     
     [super dealloc];
 }

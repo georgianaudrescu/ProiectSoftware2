@@ -27,4 +27,6 @@ TLocation *tempLocation;
 @property(nonatomic, retain) TAd *tempAd;
 
 -(void)selLocatieNoua;
+-(void) reverseGeocoding: (TLocation * ) aPin;
+
 @end

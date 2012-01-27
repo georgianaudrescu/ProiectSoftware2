@@ -10,8 +10,9 @@
 #import "TRequest.h"
 
 @implementation TUser
-@synthesize userId, username, password,phone,email;
-@synthesize favorites, settings,personalAds,request;
+@synthesize userId, username,phone,email;
+@synthesize favorites,personalAds,request;
+@synthesize  password, settings;
 
 -(id) init{
     self=[super init];

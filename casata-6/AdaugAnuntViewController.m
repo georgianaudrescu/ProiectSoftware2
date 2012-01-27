@@ -16,6 +16,7 @@
 
 @implementation AdaugAnuntViewController
 @synthesize pretTextField,tableImobil,titluTextField,detaliiTextView,suprafataTextField;
+@synthesize tipAnuntSegmentedControl, monedaSegmentedControl;
 @synthesize pickerView;
 
 
@@ -27,33 +28,92 @@
        // self.tabBarItem.image = [UIImage imageNamed:@"adauga_anunt"];
        [self setTitle:@"Adauga anunt"];
         //butonul care va aparea ca back button pt view-ul child care va fi pus in stiva peste view-ul curent
-        UIBarButtonItem *anuleazaButton = [[UIBarButtonItem alloc] initWithTitle:@"Inapoi" style:UIBarButtonItemStylePlain target:nil action:nil]; 
+        UIBarButtonItem *anuleazaButton = [[[UIBarButtonItem alloc] initWithTitle:@"Inapoi" style:UIBarButtonItemStylePlain target:nil action:nil]autorelease]; 
         
         anuleazaButton.tintColor = [UIColor blackColor];
         
         self.navigationItem.backBarButtonItem= anuleazaButton;  
         
+        self.navigationItem.rightBarButtonItem =  [[[UIBarButtonItem alloc] initWithTitle:@"Salveaza" style:UIBarButtonItemStylePlain target:self action:@selector(salveazaAnunt)]autorelease]; 
+        self.navigationItem.rightBarButtonItem.tintColor = [UIColor blackColor];
+    
+        newAd = [TAd alloc];
     }
     return self;
 }
 
-
+-(void)salveazaAnunt
+{/* NSNumber *adid = [row objectForKey:@"id"];
+  NSNumber * latitude = [ row objectForKey:@"long"];
+  NSNumber * longitude = [row objectForKey:@"lat"];
+  CLLocationCoordinate2D coordinate;
+  coordinate.latitude = latitude.doubleValue;
+  coordinate.longitude = longitude.doubleValue; 
+  NSString * name = [row objectForKey:@"name"];///
+  NSString * description = [row objectForKey:@"ad_text"];///
+  NSString * type = [row objectForKey:@"ad_type"];///
+  NSString * propertyType = [row objectForKey:@"property_type"];
+  NSString * contactName = [row objectForKey:@"contact_name"];
+  NSString * contactPhone = [row objectForKey:@"contact_phone"];
+  NSString * contactEmail = [row objectForKey:@"contact_mail"];
+  NSString * address = [row objectForKey:@"adress_line"];
+  NSString * judet = [row objectForKey:@"judet"];
+  NSString * oras = [row objectForKey:@"oras"];
+  NSNumber * price = [row objectForKey:@"pret"];///
+  NSString * moneda = [row objectForKey:@"moneda"];///
+  */
+   
+/*    
+    
+  //de pus un flag, daca oricare din campurile obligatorii sunt necompletate (sau nu are aleasa o locatie) sa apara un alerview cand se apasa "salveza" cu mesajul "datele anuntului sunt incomplete"  
+    NSString *name = [NSString stringWithString:self.titluTextField.text];
+    NSString *ad_text = [NSString stringWithString:self.detaliiTextView.text];
+    NSString *pret = [NSString stringWithString:self.pretTextField.text];
+    NSString *size = [NSString stringWithString:self.suprafataTextField.text];
+    
+   
+    NSString *latitude = [NSString stringWithFormat:@"%f", newAd.adlocation.coordinate.latitude];
+    NSString *longitude = [NSString stringWithFormat:@"%f", newAd.adlocation.coordinate.longitude];
+    
+    NSString *ad_type;
+    if(self.tipAnuntSegmentedControl.selectedSegmentIndex==0)
+    {ad_type = [NSString stringWithString:@"sale"];} 
+    else
+    {ad_type = [NSString stringWithString:@"rent"];}
+    
+    NSString *moneda;
+    if(self.monedaSegmentedControl.selectedSegmentIndex==0)
+    {moneda = [NSString stringWithString:@"lei"];} 
+    else
+    {moneda = [NSString stringWithString:@"euro"];}
+    
+    
+    NSDictionary *tempDictionary = [[[NSDictionary alloc] initWithObjectsAndKeys:name, @"name", ad_text, @"ad_text", ad_type, @"ad_type", pret, @"pret", size, "@size", moneda, @"moneda",latitude, @"lat", longitude, @"long", nil]autorelease];
+    
+    NSLog(@"here");
+    [newAd TAd:tempDictionary];
+    //[tempDictionary release];
+ 
+ */
+}
 
 -(void)dealloc
 {
-    /*
+    [tipAnuntSegmentedControl release];
+    [monedaSegmentedControl release];
     [titluTextField release];
     [pretTextField release];
     [suprafataTextField release];
-    [pretTextField release];
     [detaliiTextView release];
-    [camereTextField release];
+    //[camereTextField release];
     //[scrollView release];
     [tableImobil release];
     [propertyTypes release];
-     */
+     
     [pickerView release];
     [tableValues release];
+    [newAd release];
+        
     [super dealloc];
     
 }
@@ -159,7 +219,11 @@
 
 - (IBAction)adaugaImagini:(id)sender{
 
+    if(newAd.imageList==nil){ [newAd initImageList];}/////
+    
     AdaugaImaginiViewController *adaugaImaginiViewController = [[[AdaugaImaginiViewController alloc] initWithNibName:@"AdaugaImaginiViewController" bundle:nil]autorelease];
+    
+    adaugaImaginiViewController.tempAd = newAd;
     
     [self.navigationController pushViewController:adaugaImaginiViewController animated:YES];
     
@@ -168,6 +232,8 @@
 - (IBAction)adaugaLocatie:(id)sender{
     
     LocalizareViewController *adaugaLocatieViewController = [[[LocalizareViewController alloc] initWithNibName:@"LocalizareViewController" bundle:nil]autorelease];
+    
+    adaugaLocatieViewController.tempAd=newAd;
     
     [self.navigationController pushViewController:adaugaLocatieViewController animated:YES];
     

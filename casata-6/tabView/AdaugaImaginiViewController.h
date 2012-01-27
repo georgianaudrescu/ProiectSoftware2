@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "TImageList.h"
+#import "TAd.h"
 
 @interface AdaugaImaginiViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIScrollViewDelegate>
 {
-    TImageList *theImageList;
+    //TImageList *theImageList;
+    
+    TAd *tempAd;
     UIScrollView *generalScrollView;
     UIScrollView *imgScrollView;
     //UIImageView *imgView;
@@ -28,7 +31,7 @@
     UIView *disabledView;
     UIView *defaultView;
    }
-@property (nonatomic, retain) TImageList *theImageList;
+//@property (nonatomic, retain) TImageList *theImageList;
 @property (nonatomic, retain) IBOutlet UIScrollView *imgScrollView;
 @property (nonatomic, retain) IBOutlet UIScrollView *generalScrollView;
 //@property (nonatomic, retain) IBOutlet UIImageView *imgView;
@@ -42,6 +45,7 @@
 @property(nonatomic,retain) IBOutlet UIToolbar *toolBar;
 @property(nonatomic,retain) IBOutlet UIView *disabledView;
 @property(nonatomic,retain) IBOutlet UIView *defaultView;
+@property(nonatomic,retain) TAd *tempAd;
 
 -(IBAction)preiaImagineCuCamera:(id)sender;
 -(IBAction)preiaImagineDinGalerie:(id)sender;
@@ -50,5 +54,6 @@
 -(IBAction) backgroundTouched:(id)sender;
 -(IBAction)enterEditingModeForTextField:(id)sender;
 -(void)setCurrentImageAsDefault;
+-(void)showAlreadyExistentImages;
 
 @end

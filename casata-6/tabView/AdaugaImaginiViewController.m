@@ -16,10 +16,11 @@
 
 
 @implementation AdaugaImaginiViewController
-@synthesize theImageList, imgScrollView, imageViewsArray, generalScrollView;
+@synthesize imgScrollView, imageViewsArray, generalScrollView;
 @synthesize currentImageNr, totalImages, defaultImageIndex;
 @synthesize titluImagineTextField, toolBar, disabledView, defaultView;
 @synthesize picker;
+@synthesize tempAd;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -232,17 +233,8 @@
     }
    */
     
-    self.theImageList = [[TImageList alloc] init];
+    //self.theImageList = [[TImageList alloc] init];
     self.defaultView.frame = CGRectMake(10, 0, 300, 372);
-    
-    //daca nu avem inca nici o imagine in lista, dam disable la butonul de sters, texfield-ul si butonul de default
-    if(self.theImageList.count==0)
-    {[[self.toolBar.items objectAtIndex:2] setEnabled:NO];
-    [[self.toolBar.items objectAtIndex:3] setEnabled:NO];
-    [self.navigationItem.rightBarButtonItem setEnabled:NO];
-    [self.generalScrollView addSubview:self.defaultView];   
-    }
-    
     
     self.picker = [[UIImagePickerController alloc] init];
     self.picker.delegate=self;
@@ -256,6 +248,18 @@
     [self.imgScrollView setPagingEnabled:YES];
     self.imgScrollView.delegate = self;
    [self.generalScrollView setContentSize:CGSizeMake(320, 750)];
+    
+    
+    //daca nu avem inca nici o imagine in lista, dam disable la butonul de sters, texfield-ul si butonul de default
+    if(tempAd.imageList.count==0)
+    {[[self.toolBar.items objectAtIndex:2] setEnabled:NO];
+        [[self.toolBar.items objectAtIndex:3] setEnabled:NO];
+        [self.navigationItem.rightBarButtonItem setEnabled:NO];
+        [self.generalScrollView addSubview:self.defaultView];   
+    }
+    else //daca avem , afisam imaginile existente
+    {[self showAlreadyExistentImages];}    
+    
 
 }
 
@@ -314,7 +318,7 @@
     img1.defaultValue=0;
     //img1.description=@"";
     img1.name=@"";
-    [self.theImageList addImage:img1];
+    [tempAd.imageList addImage:img1];
     img1=nil;//
 
     
@@ -350,13 +354,14 @@
         
         //self.imgView.image = [UIImage imageNamed:@"emptyImage.png"];
         self.titluImagineTextField.text=@"";
+        self.defaultImageIndex=-1;
         //self.descriereImagineTextField.text=@"";
         
         
         [[self.imageViewsArray objectAtIndex:self.currentImageNr] removeFromSuperview];
         
         [self.imageViewsArray removeObjectAtIndex:self.currentImageNr];
-       [self.theImageList removeImageAtIndex:self.currentImageNr];
+       [tempAd.imageList removeImageAtIndex:self.currentImageNr];
         self.totalImages--;
         self.currentImageNr=0;        
         NSLog(@"just one image");
@@ -373,11 +378,16 @@
         int b = (unsigned int) a;
         self.currentImageNr = b/300;
         
+        //daca imaginea era imagine default, resetam indexul
+        if(self.currentImageNr==self.defaultImageIndex)
+        {self.defaultImageIndex=-1;
+         [self.navigationItem.rightBarButtonItem setEnabled:YES];
+        }
+        
         if(self.currentImageNr==(self.totalImages-1))  //stergerea ultimei imag
         {
-             
-            
-            TImage *theImag =  [self.theImageList getImageAtIndex:(self.currentImageNr-1)];
+                        
+            TImage *theImag =  [tempAd.imageList getImageAtIndex:(self.currentImageNr-1)];
            
             self.titluImagineTextField.text=theImag.name;
             //self.descriereImagineTextField.text=theImag.description;
@@ -386,9 +396,13 @@
            
             [[self.imageViewsArray objectAtIndex:self.currentImageNr] removeFromSuperview];
             [self.imageViewsArray removeObjectAtIndex:self.currentImageNr];
-            [self.theImageList removeImageAtIndex:self.currentImageNr];
+            [tempAd.imageList removeImageAtIndex:self.currentImageNr];
             self.totalImages--;
             self.currentImageNr--;
+            
+            //daca cea care devine imag curenta dupa stergere e imag default=>disable but de default
+            if(self.currentImageNr==self.defaultImageIndex)
+            {[self.navigationItem.rightBarButtonItem setEnabled:NO];}
             
             
             [self.imgScrollView setContentSize:CGSizeMake((self.totalImages*300), 300)];
@@ -402,7 +416,7 @@
         {
        //stergerea unei imag care mai are imag dupa ea
    
-    TImage *theImag =  [self.theImageList getImageAtIndex:(self.currentImageNr+1)];
+    TImage *theImag =  [tempAd.imageList getImageAtIndex:(self.currentImageNr+1)];
            
             self.titluImagineTextField.text=theImag.name;
             //self.descriereImagineTextField.text=theImag.description;
@@ -410,8 +424,16 @@
     theImag=nil;
     [[self.imageViewsArray objectAtIndex:self.currentImageNr] removeFromSuperview];
     [self.imageViewsArray removeObjectAtIndex:self.currentImageNr];
-    [self.theImageList removeImageAtIndex:self.currentImageNr];
-    self.totalImages--;        
+    [tempAd.imageList removeImageAtIndex:self.currentImageNr];
+    self.totalImages--;  
+            
+  //daca cea stearsa nu era default, ci una de dupa cea stearsa
+   if(self.defaultImageIndex!=-1&&self.defaultImageIndex>=self.currentImageNr)     {self.defaultImageIndex--;}
+            //daca cea care devine imag curenta dupa stergere e imag default=>disable but de default
+            if(self.currentImageNr==self.defaultImageIndex)
+            {[self.navigationItem.rightBarButtonItem setEnabled:NO];}
+        
+            
     int x;
     for(x=self.currentImageNr;x<self.totalImages;x++)
     {[[self.imageViewsArray objectAtIndex:x] setFrame:CGRectMake((x*300), 0, 300, 300)];
@@ -436,7 +458,7 @@
     int b = (unsigned int) a;
     self.currentImageNr = b/300;
     
-    TImage *theImag =  [self.theImageList getImageAtIndex:self.currentImageNr];
+    TImage *theImag =  [tempAd.imageList getImageAtIndex:self.currentImageNr];
     self.titluImagineTextField.text=theImag.name;
     theImag=nil;
     
@@ -474,7 +496,7 @@
         int b = (unsigned int) a;
         self.currentImageNr = b/300;
         
-        TImage *theImag =  [self.theImageList getImageAtIndex:self.currentImageNr];
+        TImage *theImag =  [tempAd.imageList getImageAtIndex:self.currentImageNr];
         //theImag.description = self.descriereImagineTextField.text;
         theImag.name = self.titluImagineTextField.text;
         theImag=nil;
@@ -492,7 +514,7 @@
         int b = (unsigned int) a;
         self.currentImageNr = b/300;        
         
-        TImage *theImag =  [self.theImageList getImageAtIndex:self.currentImageNr];
+        TImage *theImag =  [tempAd.imageList getImageAtIndex:self.currentImageNr];
        // theImag.description = self.descriereImagineTextField.text;
         theImag.name = self.titluImagineTextField.text;
         theImag=nil;
@@ -510,13 +532,13 @@
     self.currentImageNr = b/300;
    
     if(self.defaultImageIndex!=-1)
-    {TImage *theImag =  [self.theImageList getImageAtIndex:self.defaultImageIndex];
+    {TImage *theImag =  [tempAd.imageList getImageAtIndex:self.defaultImageIndex];
     theImag.defaultValue=0;
     theImag=nil;
         //NSLog(@"imag de la index: %d nu mai e default", self.defaultImageIndex);
     }
     
-    TImage *theImag =  [self.theImageList getImageAtIndex:self.currentImageNr];
+    TImage *theImag =  [tempAd.imageList getImageAtIndex:self.currentImageNr];
     theImag.defaultValue=1;
     theImag=nil;
     self.defaultImageIndex=self.currentImageNr;
@@ -538,12 +560,54 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-
+-(void)showAlreadyExistentImages
+{
+    for(int x=0;x<tempAd.imageList.count;x++)
+    {
+        UIImageView *imageView = [[[UIImageView alloc] init]autorelease];
+        TImage *img1 = [tempAd.imageList getImageAtIndex:x];
+        imageView.image = img1.image;
+        
+        if(img1.defaultValue==1) {self.defaultImageIndex=x;}
+        
+                           
+        [imageView setFrame:CGRectMake((self.totalImages*300), 0, 300, 300)];
+        
+        imageView.contentMode = UIViewContentModeScaleAspectFit;
+        
+        [self.imageViewsArray addObject:imageView]; 
+        
+       
+        
+        
+        self.titluImagineTextField.text=img1.name;
+        
+        self.currentImageNr=self.totalImages;
+        
+        
+        [self.imgScrollView addSubview:[self.imageViewsArray objectAtIndex:self.totalImages]];
+        self.totalImages++;  
+        [self.imgScrollView setContentSize:CGSizeMake((self.totalImages*300), 300)];
+        
+        //muta automat scrollul cand adaugam - va ramane ultima imag vizibila, putem schimba sa ramana prima imag din lista vizibila(cand ereau deja imagini in lista)
+        if(self.totalImages>1)[self.imgScrollView setContentOffset: CGPointMake((self.totalImages-1)*300, 0) animated:NO];  
+    
+        
+        img1=nil;
+    
+    
+    }
+    
+    
+    
+}
 
 
 -(void) dealloc
 {
-    self.theImageList=nil;
+    [tempAd release];
+    //self.theImageList=nil;
+    
     [imgScrollView release];
     [toolBar release];
     [generalScrollView release];

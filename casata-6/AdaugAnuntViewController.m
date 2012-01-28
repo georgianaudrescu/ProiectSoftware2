@@ -18,7 +18,8 @@
 @synthesize pretTextField,tableImobil,titluTextField,detaliiTextView,suprafataTextField;
 @synthesize tipAnuntSegmentedControl, monedaSegmentedControl;
 @synthesize pickerView;
-
+@synthesize orasTextField, judetTextField, adresaTextField;
+@synthesize delegate, refreshMyAdsTable;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -37,6 +38,8 @@
         self.navigationItem.rightBarButtonItem =  [[[UIBarButtonItem alloc] initWithTitle:@"Salveaza" style:UIBarButtonItemStylePlain target:self action:@selector(salveazaAnunt)]autorelease]; 
         self.navigationItem.rightBarButtonItem.tintColor = [UIColor blackColor];
     
+        
+        apdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
         newAd = [TAd alloc];
     }
     return self;
@@ -56,9 +59,9 @@
   NSString * contactName = [row objectForKey:@"contact_name"];
   NSString * contactPhone = [row objectForKey:@"contact_phone"];
   NSString * contactEmail = [row objectForKey:@"contact_mail"];
-  NSString * address = [row objectForKey:@"adress_line"];
-  NSString * judet = [row objectForKey:@"judet"];
-  NSString * oras = [row objectForKey:@"oras"];
+  NSString * address = [row objectForKey:@"adress_line"];//
+  NSString * judet = [row objectForKey:@"judet"];//
+  NSString * oras = [row objectForKey:@"oras"];//
   NSNumber * price = [row objectForKey:@"pret"];///
   NSString * moneda = [row objectForKey:@"moneda"];///
   */
@@ -70,7 +73,12 @@
     NSString *ad_text = [NSString stringWithString:self.detaliiTextView.text];
     NSString *pret = [NSString stringWithString:self.pretTextField.text];
     NSString *size = [NSString stringWithString:self.suprafataTextField.text];
-    NSString *property_type =[NSString stringWithFormat:@"%@ %@ camere", [tableValues objectAtIndex:0], [tableValues objectAtIndex:1]];
+    
+    NSString *judet = [NSString stringWithString:self.judetTextField.text];
+    NSString *oras = [NSString stringWithString:self.orasTextField.text];
+    NSString *adress_line = [NSString stringWithString:self.adresaTextField.text];
+    
+    NSString *property_type =[NSString stringWithFormat:@"%@", [tableValues objectAtIndex:0]];
    
     
     NSString *latitude = [NSString stringWithFormat:@"%f", newAd.adlocation.coordinate.latitude];
@@ -89,18 +97,54 @@
     {moneda = @"euro";}
     
     
- NSDictionary *tempDictionary = [[[NSDictionary alloc] initWithObjectsAndKeys:name, @"name", ad_text, @"ad_text", ad_type, @"ad_type", pret, @"pret", size, @"size", moneda, @"moneda",latitude, @"lat", longitude, @"long", property_type, @"property_type", nil]autorelease];
+ NSDictionary *tempDictionary = [[[NSDictionary alloc] initWithObjectsAndKeys:name, @"name", ad_text, @"ad_text", ad_type, @"ad_type", pret, @"pret", size, @"size", moneda, @"moneda",latitude, @"lat", longitude, @"long", property_type, @"property_type",oras, @"oras", judet, @"judet", adress_line, @"adress_line", nil]autorelease];
     
   //NSDictionary *tempDictionary = [[NSDictionary alloc] initWithObjectsAndKeys:name, @"name",ad_text, @"ad_text",ad_type,@"ad_type",  pret, @"pret",size, @"size",latitude, @"lat", longitude, @"long", moneda, @"moneda", nil];
    
-    NSLog(@"here");
-    [newAd TAd:tempDictionary];
     
-    //[tempDictionary release];
+    
+    
+    [newAd createAd:tempDictionary];
+    
+    NSLog(@"name from texfield: %@", name);
+    NSLog(@"name from ad: %@", [newAd.ad objectForKey:@"name"]);
+    NSLog(@"name from dictionary: %@", [tempDictionary objectForKey:@"name"]);
+    
+    [apdelegate.appSession.user.personalAds addAd:newAd];
+     NSLog(@"%d",apdelegate.appSession.user.personalAds.count);
+    
+    [delegate performSelector:refreshMyAdsTable];  
+    
+    [self.navigationController popViewControllerAnimated:YES];
  
  
 }
 
+/*
+- (BOOL) validateTextField:(UITextField *)textFiled
+{
+
+    return [textFiled.text isKindOfClass:NSNumberFormatterNoStyle];
+}
+ */
+
+-(BOOL) isNumeric:(NSString *)s
+{
+    NSScanner *sc = [NSScanner scannerWithString: s];
+    if ( [sc scanFloat:NULL] )
+    {
+        return [sc isAtEnd];
+    }
+    return NO;
+}
+
+
+/*
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string { 
+    NSCharacterSet *nonNumberSet = [[NSCharacterSet decimalDigitCharacterSet] invertedSet];
+    return ([string stringByTrimmingCharactersInSet:nonNumberSet].length > 0);
+}
+*/
 -(void)dealloc
 {
     [tipAnuntSegmentedControl release];
@@ -117,6 +161,9 @@
     [pickerView release];
     [tableValues release];
     [newAd release];
+    [orasTextField release];
+    [judetTextField release];
+    [adresaTextField release];
         
     [super dealloc];
     
@@ -159,9 +206,20 @@
     [self animateTextField: textField up: YES];
 }
 
+-(IBAction)validateTextFiled:(UITextField *)textField
+{
+    if( [self isNumeric:textField.text]==NO)
+    {
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"EROARE" message:@"Nu este numeric" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+    
+}
+
 
 - (IBAction)textFieldDidEndEditing:(UITextField *)textField
 {
+    
     [self.tableImobil setUserInteractionEnabled:YES];
     [self animateTextField: textField up: NO];
 }
@@ -181,7 +239,10 @@
 }
 - (void)textViewDidBeginEditing:(UITextView *)textView
 {
+    if([textView.text isEqualToString:@"Detalii anunt:"])
+    {
     textView.text=@"";
+    }
     [self.tableImobil setUserInteractionEnabled:NO];
     [self animateTextView: textView up: YES];
 }
@@ -238,10 +299,46 @@
     LocalizareViewController *adaugaLocatieViewController = [[[LocalizareViewController alloc] initWithNibName:@"LocalizareViewController" bundle:nil]autorelease];
     
     adaugaLocatieViewController.tempAd=newAd;
+    adaugaLocatieViewController.delegate = self;
+    adaugaLocatieViewController.geocoder = @selector(reverseGeocoding);
     
     [self.navigationController pushViewController:adaugaLocatieViewController animated:YES];
     
 }
+
+-(void) reverseGeocoding
+{
+    CLLocation *location = [[[CLLocation alloc] initWithLatitude:newAd.adlocation.coordinate.latitude longitude:newAd.adlocation.coordinate.longitude] autorelease];
+    CLGeocoder * geocoder = [[[CLGeocoder alloc] init]autorelease];
+    [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error) {
+        CLPlacemark * placemark = [placemarks objectAtIndex:0];
+        
+        NSString * formattedAddressLines = [[[placemark addressDictionary]objectForKey:@"FormattedAddressLines"]objectAtIndex:0]; 
+        NSString * a = [[[NSString alloc] initWithData:[formattedAddressLines dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES] encoding:NSASCIIStringEncoding] autorelease];
+        NSLog(@"Adresa: %@", a);
+        
+        NSString *locality = [[placemark addressDictionary]objectForKey:@"SubLocality"];
+        NSString * b = [[[NSString alloc] initWithData:[locality dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES] encoding:NSASCIIStringEncoding] autorelease];
+        NSLog(@"Localitate: %@", b);
+        
+        NSString * state = [[placemark addressDictionary]objectForKey:@"State"];
+        NSString * c = [[[NSString alloc] initWithData:[state dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES] encoding:NSASCIIStringEncoding] autorelease];
+        NSLog(@"Judet: %@", c);
+        
+        //[tempAd.ad setObject:a forKey:@"adress_line"];
+        //[tempAd.ad setObject:b forKey:@"oras"];
+        //[tempAd.ad setObject:c forKey:@"judet"];
+        if([c isEqualToString:@"Bucharest"])
+        {c=@"Bucuresti";}
+        
+        adresaTextField.text = a;
+        orasTextField.text = b;
+        judetTextField.text = c;
+    }];
+    
+    
+}
+
 
 #pragma mark Table view methods
 
@@ -267,8 +364,10 @@
 
     
     cell.textLabel.text = [ tableItems objectAtIndex:[indexPath row]];
+    cell.textLabel.font =[UIFont fontWithName:@"Helvetica" size:16]; 
     
     cell.detailTextLabel.text = [ tableValues objectAtIndex:[indexPath row]];
+    cell.detailTextLabel.font = [UIFont fontWithName:@"Helvetica" size:15];
     
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
@@ -316,7 +415,7 @@
 //    pickerView.showsSelectionIndicator = YES;
 //    pickerView.delegate=self ;
 //    
-    pickerView.frame = CGRectMake(0, 100, 320, 320);
+    pickerView.frame = CGRectMake(0, 100, 320, 216);
     [menu addSubview:pickerView];
     
     //[pickerView release];
@@ -325,18 +424,22 @@
 
 -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
-    return 2;
+    //return 2;
+    return 1;
+    
 }
+/*
 - (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component {
   if(component == tipImobil)
       return 230;
     return 70;
 }
-
+*/
 
 -(NSInteger)pickerView:(UIPickerView *)pickerView
 numberOfRowsInComponent:(NSInteger)component
 {
+    /*
     if(component == tipImobil)
     {return [propertyTypes count];}
     
@@ -344,26 +447,31 @@ numberOfRowsInComponent:(NSInteger)component
     {return  [camere count];}
             
     return 0;
+     */
+    if(component == tipImobil)
+    {return [propertyTypes count];}
+    return 0;
+
 }
 
 -(NSString *) pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
     if (component == tipImobil)
     {   return [propertyTypes objectAtIndex:row];}
-    
+    /*
     if (component == nrCamere)
     { return [camere objectAtIndex:row];}
-    
+    */
     return 0;
 }
 
 -(void) pickerView:(UIPickerView *)thePickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
     NSString * imobil = [propertyTypes objectAtIndex:[thePickerView selectedRowInComponent:0]];
-    NSString * rooms = [camere objectAtIndex:[thePickerView selectedRowInComponent:1]];
-    NSLog(@"Tip imobil: %@, %@ camere", imobil,rooms);
+   // NSString * rooms = [camere objectAtIndex:[thePickerView selectedRowInComponent:1]];
+   // NSLog(@"Tip imobil: %@, %@ camere", imobil,rooms);
     [tableValues replaceObjectAtIndex:0 withObject:imobil];
-    [tableValues replaceObjectAtIndex:1 withObject:rooms];
+    //[tableValues replaceObjectAtIndex:1 withObject:rooms];
     [tableImobil reloadData];
 }
 
@@ -402,11 +510,13 @@ numberOfRowsInComponent:(NSInteger)component
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    //self.pretTextField.delegate = self;
+    //self.suprafataTextField.delegate = self;
     
     //selectedPropType = nil;
-    tableItems = [[NSMutableArray alloc] initWithObjects:@"Tip Imobil",@"Numar Camere", nil];
+    tableItems = [[NSMutableArray alloc] initWithObjects:@"Tip Imobil", nil];
 
-    tableValues = [[NSMutableArray alloc] initWithObjects:@"Garsoniera",@"1", nil];
+    tableValues = [[NSMutableArray alloc] initWithObjects:@"Garsoniera", nil];
     
     pickerView = [[UIPickerView alloc] init];
     pickerView.showsSelectionIndicator = YES;
@@ -415,9 +525,12 @@ numberOfRowsInComponent:(NSInteger)component
     
     propertyTypes = [[NSMutableArray alloc] init];
     [propertyTypes addObject:@"Garsoniera"];
-    [propertyTypes addObject:@"Apartament"];
+    [propertyTypes addObject:@"Apartament 2 camere"];
+    [propertyTypes addObject:@"Apartament 3 camere"];
+    [propertyTypes addObject:@"Apartament 4 camere"];
+    //[propertyTypes addObject:@"Apartament 5+ camere"];
     [propertyTypes addObject:@"Casa"];
-    [propertyTypes addObject:@"Spatiu Comercial"];
+    //[propertyTypes addObject:@"Spatiu Comercial"];
     
     camere = [[NSMutableArray alloc] init];
     [camere addObject:@"0"];

@@ -10,7 +10,7 @@
 
 @implementation TAd
 
-@synthesize ad, imageList, adlocation, request,thumb;//, user;//
+@synthesize ad, imageList, adlocation, request,thumb, uploaded;//, user;//
 
 
 -(void)TAd{
@@ -136,6 +136,47 @@
     [imageList getImagesFromData:data forAd: (int)ad_id];
     return self.imageList;
 }
+
+
+-(NSMutableDictionary *) getDetailsFromAd
+{
+    return self.ad ;
+}
+-(void)createAd:(NSDictionary *)row
+{
+    NSString * latitude = [ row objectForKey:@"long"];
+    NSString * longitude = [row objectForKey:@"lat"];
+    NSString * name = [row objectForKey:@"name"];
+    NSString * description = [row objectForKey:@"ad_text"];
+    NSString * type = [row objectForKey:@"ad_type"];
+    NSString * propertyType = [row objectForKey:@"property_type"];
+    NSString * address = [row objectForKey:@"adress_line"];
+    NSString * judet = [row objectForKey:@"judet"];
+    NSString * oras = [row objectForKey:@"oras"];
+    NSString * price = [row objectForKey:@"pret"];
+    NSString * moneda = [row objectForKey:@"moneda"];
+    NSString * size = [row objectForKey:@"size"];
+    
+    self.ad = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+               latitude,@"lat", 
+               longitude,@"long",
+               name,@"name",
+               description,@"ad_text",
+               type,@"ad_type",
+               propertyType,@"property_type",
+               address,@"adress_line",
+               judet,@"judet",
+               oras,@"oras",
+               price,@"pret",
+               moneda,@"moneda",
+               size, @"size",
+               nil];
+    uploaded = NO;
+    
+}
+
+
+
 -(void) dealloc{
   [self.ad release];
   [imageList release];//[self.timageList release];    

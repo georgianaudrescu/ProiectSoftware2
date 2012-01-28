@@ -29,6 +29,7 @@
 @property (nonatomic,retain) IBOutlet UILabel *avgAreaPriceLabel;
 @property(nonatomic,retain) IBOutlet UIButton *trendForAvgAreaPriceButton;
 @property (nonatomic, retain) Filtre *filters;
+@property(nonatomic, retain) MyAdsViewController *myAds;
 @property(nonatomic,retain) IBOutlet UIView *headerView;
 
 

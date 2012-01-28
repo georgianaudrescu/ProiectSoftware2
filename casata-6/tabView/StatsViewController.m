@@ -13,7 +13,7 @@
 #import "MyAdsViewController.h"
 
 @implementation StatsViewController
-@synthesize avgAreaPriceLabel, trendForAvgAreaPriceButton, filters;
+@synthesize avgAreaPriceLabel, trendForAvgAreaPriceButton, filters, myAds;
 @synthesize headerView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -261,8 +261,8 @@
     [avgAreaPriceLabel release];
     [trendForAvgAreaPriceButton release];
     [headerView release];
-    [filters dealloc];
-    [myAds dealloc];
+    [filters release];
+    [myAds release];
     [super dealloc];
 
 }

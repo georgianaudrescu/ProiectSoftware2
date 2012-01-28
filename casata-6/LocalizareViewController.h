@@ -18,6 +18,9 @@ TLocation *dropPin;
 TLocation *tempLocation;
     TAd *tempAd; 
     int flag;
+
+    id delegate;
+    SEL geocoder;
 }
 //UILongPressGestureREcognizer *longPressGesture=[[UILongPressGestureREcognizer alloc] initWithTarget: self action: @selector(handleLongPressGesture:)];
 
@@ -25,8 +28,10 @@ TLocation *tempLocation;
 
 @property(nonatomic, retain) TLocation *dropPin;
 @property(nonatomic, retain) TAd *tempAd;
+@property(assign) id delegate;
+@property(assign) SEL geocoder;
 
 -(void)selLocatieNoua;
--(void) reverseGeocoding: (TLocation * ) aPin;
+//
 
 @end

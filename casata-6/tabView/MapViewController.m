@@ -766,7 +766,11 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
      */
     
     AdaugAnuntViewController * adaugAnuntView = [[[AdaugAnuntViewController alloc] initWithNibName:@"AdaugAnuntViewController" bundle:nil]autorelease];
-    //[self.view addSubview:adaugAnuntView.view];
+    
+    adaugAnuntView.delegate=statisticsView.myAds;
+    adaugAnuntView.refreshMyAdsTable=@selector(refreshMyAdsTable);
+    
+    
     [self.navigationController pushViewController:adaugAnuntView animated:YES];
      
 }

@@ -26,6 +26,7 @@
     TRequest *request;   
     TImage *thumb;
  //   TUser *user;
+    BOOL uploaded;
     
 }
 @property (nonatomic,retain) NSMutableDictionary *ad;
@@ -33,6 +34,7 @@
 @property (nonatomic, retain) TLocation *adlocation;
 @property (nonatomic, retain) TRequest *request;
 @property (nonatomic, retain) TImage *thumb;
+@property (assign) BOOL uploaded;
 //@property (nonatomic, retain) TUser *user;
 
 -(void)TAd;
@@ -42,6 +44,8 @@
 -(void)initImageList;
 -(void) dealloc;
 
+-(NSMutableDictionary *) getDetailsFromAd;
+-(void)createAd:(NSDictionary *)row;
 @end
 
 #endif //TAD

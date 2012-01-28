@@ -41,5 +41,5 @@
 -(void) animateTextField: (UITextField*) textField up: (BOOL) up;
 -(IBAction)salveazaDateContact:(id)sender;
 -(BOOL) validateTextField:(UITextField *)textFiled;
-
+-(void) refreshMyAdsTable;
 @end

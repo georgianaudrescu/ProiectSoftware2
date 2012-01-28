@@ -12,6 +12,7 @@
 @synthesize mapView=_mapView;
 @synthesize tempAd;
 @synthesize dropPin;
+@synthesize delegate, geocoder;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -141,38 +142,13 @@
 
     tempAd.adlocation = dropPin;
     NSLog(@"salveaza");
-    [self reverseGeocoding:dropPin];
+    [delegate performSelector:geocoder];
+    //[self reverseGeocoding:dropPin];
     //[self.navigationController popToRootViewControllerAnimated:YES];
     [self.navigationController popViewControllerAnimated:YES];
 
 }
 
--(void) reverseGeocoding: (TLocation * ) aPin
-{
-    CLLocation *location = [[[CLLocation alloc] initWithLatitude:aPin.coordinate.latitude longitude:aPin.coordinate.longitude] autorelease];
-    CLGeocoder * geocoder = [[[CLGeocoder alloc] init]autorelease];
-    [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error) {
-        CLPlacemark * placemark = [placemarks objectAtIndex:0];
-        
-        NSString * formattedAddressLines = [[[placemark addressDictionary]objectForKey:@"FormattedAddressLines"]objectAtIndex:0]; 
-        NSString * a = [[[NSString alloc] initWithData:[formattedAddressLines dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES] encoding:NSASCIIStringEncoding] autorelease];
-        NSLog(@"Adresa: %@", a);
-        
-        NSString *locality = [[placemark addressDictionary]objectForKey:@"SubLocality"];
-        NSString * b = [[[NSString alloc] initWithData:[locality dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES] encoding:NSASCIIStringEncoding] autorelease];
-        NSLog(@"Localitate: %@", b);
-        
-        NSString * state = [[placemark addressDictionary]objectForKey:@"State"];
-        NSString * c = [[[NSString alloc] initWithData:[state dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES] encoding:NSASCIIStringEncoding] autorelease];
-        NSLog(@"Judet: %@", c);
-        
-        //[tempAd.ad setObject:a forKey:@"adress_line"];
-        //[tempAd.ad setObject:b forKey:@"oras"];
-        //[tempAd.ad setObject:c forKey:@"judet"];
-    }];
-    
-    
-}
 
 - (void)viewDidUnload
 {

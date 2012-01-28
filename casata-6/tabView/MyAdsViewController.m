@@ -142,7 +142,10 @@
     self.view.frame = CGRectOffset(self.view.frame, 0, movement);
     [UIView commitAnimations];
 }
-
+-(void) refreshMyAdsTable
+{
+    [self.tableAds reloadData];
+}
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -152,13 +155,25 @@
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	//return [propertyTypes count];
-    return 10;
+    //return 10;
+    if ([apdelegate.appSession.user.personalAds count] ==0)
+        return 1;
+    return [apdelegate.appSession.user.personalAds count] ;
 }
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *CellIdentifier = @"Cell";
+    TAd *tempAd;
+    
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+	[button addTarget:self
+			   action:@selector(publicaAnunt:)
+	 forControlEvents:UIControlEventTouchDown];
+	[button setTitle:@"Publica" forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+	button.frame = CGRectMake(240.0f, 5.0f, 70.0f, 30.0f);
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
@@ -180,29 +195,37 @@
     
     
     cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:15];
-    cell.textLabel.text = [NSString	 stringWithFormat:@"Anuntul meu %d", [indexPath row]];
-    //cell.textLabel.text = [ propertyTypes objectAtIndex:[indexPath row]];
-    
-	//Create the button and add it to the cell
-    
-	UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-	[button addTarget:self
-			   action:@selector(publicaAnunt:)
-	 forControlEvents:UIControlEventTouchDown];
-	[button setTitle:@"Publica" forState:UIControlStateNormal];
-    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-	button.frame = CGRectMake(240.0f, 5.0f, 70.0f, 30.0f);
-    //acest buton va fi numai in randurile in care anunturile au fost modificate...
-    if(([cell.textLabel.text isEqual:@"Anuntul meu 1"])||([cell.textLabel.text isEqual:@"Anuntul meu 5"])||([cell.textLabel.text isEqual:@"Anuntul meu 6"]))
+    if ([apdelegate.appSession.user.personalAds count] == 0)
     {
-	[cell addSubview:button];
+        cell.textLabel.text = @"Nu exita anunturi in lista";
     }
+    else
+    {
+        tempAd = [apdelegate.appSession.user.personalAds getAdAtIndex:[indexPath row]];
+        NSString *titlu = [tempAd.ad objectForKey:@"name"];
+        //tempAd=nil;
+        cell.textLabel.text = titlu;
+        NSLog(@"%@",titlu);
+        NSLog(@"%d",[indexPath row]);
+        
+        //acest buton va fi numai in randurile in care anunturile au fost modificate...
+        if(tempAd.uploaded == NO)
+        {
+            button.tag=[indexPath row];
+            [cell addSubview:button];
+        }
+    }
+    
+	
+    
+
     return cell;
 }
 
--(void) publicaAnunt:(id)sender{
+-(void) publicaAnunt:(UIButton*)sender{
     //se publica anuntul selectat din lista
     NSLog(@"Se publica anuntul selectat");
+    [apdelegate.appSession.user uploadAd:sender.tag];
 }
 
 
@@ -240,7 +263,7 @@
     
     //tableView size
     [self.scrollView addSubview:tableAds];
-    tableAds.frame = CGRectMake(7, 0, 313, 310);
+    tableAds.frame = CGRectMake(0, 0, 320, 310);
     
     
     //date de contact adaugat ca subview

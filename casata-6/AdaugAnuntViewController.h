@@ -9,11 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "AdaugaImaginiViewController.h"
 #import "TAd.h"
+#import "AppDelegate.h"
 
 #define tipImobil 0
 #define nrCamere 1
 
-@interface AdaugAnuntViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextViewDelegate, UIActionSheetDelegate, UIPickerViewDelegate, UIPickerViewDataSource>
+@interface AdaugAnuntViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextViewDelegate, UIActionSheetDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate>
 {
     IBOutlet UITextField * titluTextField;
     IBOutlet UITextField * pretTextField;
@@ -32,6 +33,13 @@
     NSMutableArray *camere;
     TAd *newAd;
     int flagDateNecompletate;
+    IBOutlet UITextField * orasTextField;
+    IBOutlet UITextField * judetTextField;
+    IBOutlet UITextField * adresaTextField;
+    AppDelegate *apdelegate;
+    id delegate;
+    SEL refreshMyAdsTable;
+
 }
 
 //@property (nonatomic,retain) IBOutlet UIScrollView * scrollView;
@@ -43,7 +51,9 @@
 @property (nonatomic, strong) IBOutlet UITextField * suprafataTextField;
 @property (nonatomic, strong) IBOutlet UITextView * detaliiTextView;
 @property (nonatomic, retain) UIPickerView * pickerView;
-
+@property (nonatomic, strong) IBOutlet UITextField * orasTextField, *judetTextField, * adresaTextField;
+@property(assign) id delegate;
+@property(assign) SEL refreshMyAdsTable;
 
 
 -(IBAction)textFieldReturn:(id)sender;
@@ -57,5 +67,8 @@
 
 -(IBAction)adaugaImagini:(id)sender;
 -(IBAction)adaugaLocatie:(id)sender;
+
+-(void) reverseGeocoding;
+//- (BOOL) validateTextField:(UITextField *)textFiled;
 
 @end

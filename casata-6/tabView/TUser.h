@@ -61,6 +61,8 @@
 
 //-(void) setMySettings;
 
+-(void) uploadAd:(int)adIndex;
+
 @end
 
 #endif //TUSER

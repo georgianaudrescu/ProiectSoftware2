@@ -20,6 +20,7 @@
         request = [TRequest alloc];
         [request initWithHost:@"http://flapptest.comule.com"];
         userId=0;
+        personalAds = [[TAdList alloc] init];
     }
     return self;
 }
@@ -114,6 +115,65 @@
 - (void) Logout{
     //req logout
 }
+
+-(void) uploadAd:(int)adIndex
+{
+    TAd *anAd = [personalAds getAdAtIndex:adIndex];
+    request = [TRequest alloc] ;
+    [request initWithHost:@"http://flapptest.comule.com"];
+    NSString *judet, *oras , *price,*coord_x, *ad_name, *coord_y, *ad_text, *size, *adress;
+    //ad_type, property_type, currency
+    
+    
+    int tip_proprietate;
+    if([[anAd.ad objectForKey:@"property_type"] isEqualToString:@"Garsoniera"])
+    { tip_proprietate=1;}
+    else if([[anAd.ad objectForKey:@"property_type"] isEqualToString:@"Apartament 2 camere"])
+    { tip_proprietate=2;}
+    else if([[anAd.ad objectForKey:@"property_type"] isEqualToString:@"Apartament 3 camere"])
+    { tip_proprietate=3;}
+    else if([[anAd.ad objectForKey:@"property_type"] isEqualToString:@"Apartament 4 camere"])
+    { tip_proprietate=4;}
+    else 
+    { tip_proprietate=5;}
+    
+    
+    int tip_anunt;
+    if([[anAd.ad objectForKey:@"ad_type"] isEqualToString:@"rent"])
+    { tip_anunt=1;}
+    else 
+    { tip_anunt=2;}
+    
+    
+    int moneda;
+    if([[anAd.ad objectForKey:@"moneda"] isEqualToString:@"euro"])
+    { moneda=1;}
+        else 
+    { moneda=2;}
+    
+    
+    
+    judet = [anAd.ad objectForKey:@"judet"];
+    oras = [anAd.ad objectForKey:@"oras"];
+    price = [anAd.ad objectForKey:@"pret"];
+    coord_x = [anAd.ad objectForKey:@"lat"];
+    coord_y = [anAd.ad objectForKey:@"long"];
+    ad_name = [anAd.ad objectForKey:@"name"];
+    ad_text = [anAd.ad objectForKey:@"ad_text"];
+    size = [anAd.ad objectForKey:@"size"];
+    adress= [anAd.ad objectForKey:@"adress_line"];
+    NSString * postString = [[NSString alloc] initWithFormat:@"judet=%@&oras=%@&ad_type=%d&request=add_ad&property_type=%d&sessionTime=1327715431897&sid=2&price=%@&currency=%d&coord_x=%@&ad_name=%@&coord_y=%@&ad_text=%@&size=%@&adress=%@",judet,oras,tip_anunt,tip_proprietate,price,moneda,coord_x,ad_name,coord_y,ad_text,size,adress];
+    NSLog(@"POST STRING: %@", postString);
+    
+    NSData * data;
+    if ([request makeRequestWithString:postString]!=0)
+    {
+        data = [request requestData];
+        NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSLog(@"%@",string);
+    }
+}
+
 
 -(void) NewAd:(TAd *)newad //WithImageList:(TImageList *)imgLst
 {  

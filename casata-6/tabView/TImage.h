@@ -30,4 +30,6 @@
 -(void)uploadImage:(int)adId;
 
 
+-(NSDictionary *) getDictionaryForImage;
+
 @end

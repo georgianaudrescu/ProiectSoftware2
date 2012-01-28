@@ -26,7 +26,7 @@
     NSMutableDictionary *filtre; 
     TLocation *currentLocation;
 }
-@property(nonatomic, retain) TAdList *globalAdList;
+@property(nonatomic,retain) TAdList *globalAdList;
 @property(nonatomic,retain) TUser *user;
 @property(nonatomic,retain) TSearch *currentSearch;
 @property(nonatomic,retain) TSettings *globalSettings;
@@ -39,4 +39,9 @@
 -(void)globalVariablesInit;
 -(void)addCurrentSearchResultsToGlobalAdList;
 -(NSMutableString*)getStringForFilters;
+
+-(NSDictionary *) getDataForLocalSave;
+-(void) saveLocalData;
+-(void) readLocalData;
+
 @end

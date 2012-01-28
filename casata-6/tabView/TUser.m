@@ -19,8 +19,11 @@
     if(self){
         request = [TRequest alloc];
         [request initWithHost:@"http://flapptest.comule.com"];
-        userId=0;
+        userId= [NSNumber numberWithInt:0];
         personalAds = [[TAdList alloc] init];
+        username =@"";
+        phone =@"";
+        email=@"";
     }
     return self;
 }

@@ -10,7 +10,7 @@
 #import <MapKit/MapKit.h>
 #import "TLocation.h"
 #import "TAd.h"
-@interface LocalizareViewController : UIViewController<MKMapViewDelegate>
+@interface LocalizareViewController : UIViewController<MKMapViewDelegate, CLLocationManagerDelegate>
 {
 IBOutlet MKMapView *mapView;
     
@@ -21,6 +21,8 @@ TLocation *tempLocation;
 
     id delegate;
     SEL geocoder;
+    
+    CLLocationManager *locationManager;
 }
 //UILongPressGestureREcognizer *longPressGesture=[[UILongPressGestureREcognizer alloc] initWithTarget: self action: @selector(handleLongPressGesture:)];
 
@@ -30,6 +32,8 @@ TLocation *tempLocation;
 @property(nonatomic, retain) TAd *tempAd;
 @property(assign) id delegate;
 @property(assign) SEL geocoder;
+
+@property (nonatomic, retain) CLLocationManager * locationManager;
 
 -(void)selLocatieNoua;
 //

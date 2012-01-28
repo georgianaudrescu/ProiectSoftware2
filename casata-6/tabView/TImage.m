@@ -105,8 +105,14 @@
    
 
 }
-
-
+-(NSDictionary *) getDictionaryForImage
+{
+    NSData *dataImag =  UIImagePNGRepresentation(self.image);
+    NSString *valDefault = [NSString stringWithFormat:@"%d",self.defaultValue];
+    NSDictionary *imageDict = [[[NSDictionary alloc] initWithObjectsAndKeys:name,@"name",valDefault,@"default", dataImag, @"dataImag",nil]autorelease];
+    
+    return imageDict;
+}
 
 -(void) dealloc
 {

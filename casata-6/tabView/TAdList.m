@@ -118,6 +118,13 @@ for(NSDictionary *row in allAds)
     
 }
 
+
+-(void) removeAllAds
+{
+    [adList removeAllObjects];
+    count = 0;
+}
+
 -(void)dealloc
 {
     //[adList release];

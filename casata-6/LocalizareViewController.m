@@ -12,7 +12,7 @@
 @synthesize mapView=_mapView;
 @synthesize tempAd;
 @synthesize dropPin;
-@synthesize delegate, geocoder;
+@synthesize delegate, geocoder, locationManager;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -22,7 +22,7 @@
         [self setTitle:@"Locatie"];
         
         //setam butonul din dreapta navBar-ului -adauga imaginile la anunt
-        self.navigationItem.rightBarButtonItem =  [[[UIBarButtonItem alloc] initWithTitle:@"Selecteaza" style:UIBarButtonItemStylePlain target:self action:@selector(selLocatieNoua)]autorelease]; 
+        self.navigationItem.rightBarButtonItem =  [[[UIBarButtonItem alloc] initWithTitle:@"Salveaza" style:UIBarButtonItemStylePlain target:self action:@selector(selLocatieNoua)]autorelease]; 
         self.navigationItem.rightBarButtonItem.tintColor = [UIColor blackColor];
         
         
@@ -53,6 +53,7 @@
 {   [dropPin release];///
     [tempAd release];
     [mapView release];
+    [locationManager release];
     [super dealloc];
 }
 
@@ -77,12 +78,25 @@
     
     if(tempAd.adlocation==nil)
    { NSLog(@"NU ARE LOCATIE");
+       [self.navigationItem.rightBarButtonItem setEnabled:NO];
        flag=0;
    }
     else
     {   flag=1;
         NSLog(@"ARE DEJA LOCATIE");
+        [self.navigationItem.rightBarButtonItem setEnabled:NO];
      [self.mapView addAnnotation:tempAd.adlocation];}
+    
+    if (!self.locationManager) 
+    {
+        self.locationManager = [[[CLLocationManager alloc] init] autorelease];
+        self.locationManager.headingFilter = kCLHeadingFilterNone;
+        self.locationManager.distanceFilter = kCLDistanceFilterNone;
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
+    }
+    self.locationManager.delegate = self; 
+    [locationManager startUpdatingLocation];
+    
 }
 
 -(void) handleLongPressGesture: ( UIGestureRecognizer*)sender {
@@ -118,7 +132,7 @@
             NSLog(@"remove ann");
             
             [self.mapView removeAnnotation:dropPin];
-         
+             
             //TLocation *dropPin= [TLocation alloc];
             
         }
@@ -130,6 +144,7 @@
         pinCoord.longitude=longit.doubleValue;
                
         [dropPin initWithTitle:name1 andSubtitle:name2 andCoord:pinCoord];
+        [self.navigationItem.rightBarButtonItem setEnabled:YES];
         
         NSLog(@"latitudine: @%f longitudine:@%f", lat.doubleValue,longit.doubleValue);
         [self.mapView addAnnotation:dropPin];
@@ -160,8 +175,11 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     CLLocationCoordinate2D zoomLocation;
-    zoomLocation.latitude=44.4;
-    zoomLocation.longitude=26.1;
+    //zoomLocation.latitude=44.4;
+    //zoomLocation.longitude=26.1;
+    
+    zoomLocation.latitude = self.locationManager.location.coordinate.latitude;
+    zoomLocation.longitude = self.locationManager.location.coordinate.longitude;
     MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation,50000,50000);
     MKCoordinateRegion adjustedRegion = [_mapView regionThatFits:viewRegion];
     [_mapView setRegion:adjustedRegion animated:YES];

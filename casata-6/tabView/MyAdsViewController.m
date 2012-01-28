@@ -15,7 +15,7 @@
 
 @implementation MyAdsViewController
 @synthesize tableAds;
-@synthesize headerView,dateContact, headerDateContact,scrollView;
+@synthesize headerView,dateContact, headerDateContact,scrollView, headerLabel;
 @synthesize userName, phone, email;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -145,6 +145,11 @@
 -(void) refreshMyAdsTable
 {
     [self.tableAds reloadData];
+    int nrAnunt = [apdelegate.appSession.user.personalAds count];
+    if(nrAnunt==1)
+    {self.headerLabel.text =[NSString stringWithFormat:@"%d anunt", nrAnunt];}
+    else
+    {self.headerLabel.text =[NSString stringWithFormat:@"%d anunturi", nrAnunt];}
 }
 #pragma mark Table view methods
 
@@ -243,6 +248,7 @@
 {
     [super viewDidLoad];
     
+      
     
     // headerView
     headerView.frame = CGRectMake(0, 0, 320, 50);
@@ -273,13 +279,6 @@
     email.tag = 1001;
     phone.tag = 1002;
     tapHeader = 0;
-    // open Date de contact:
-   /*
-    UITapGestureRecognizer * tapDateContact = [[UITapGestureRecognizer alloc] initWithTarget:self  action:@selector(openDateContact)];
-    tapDateContact.numberOfTouchesRequired = 1;
-    [self.headerDateContact addGestureRecognizer:tapDateContact];
-    [tapDateContact release];
-    */
     
     // apdelegate pentru actualizare user info
     apdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
@@ -289,6 +288,8 @@
         phone.text = apdelegate.appSession.user.phone;
         email.text = apdelegate.appSession.user.email;
     }
+    
+     [self refreshMyAdsTable];
 }
 
 - (void)viewDidUnload
@@ -313,6 +314,7 @@
     [phone release];
     [email release];
     [scrollView release];
+    [headerLabel release];
     [super dealloc];
 
 }

@@ -22,6 +22,7 @@
     UITextField * phone;
     UITextField * email;
     UIScrollView * scrollView;
+    UILabel * headerLabel;
     
 }
 
@@ -33,6 +34,7 @@
 @property (nonatomic, retain) IBOutlet UITextField * phone;
 @property (nonatomic, retain) IBOutlet UITextField * email;
 @property (nonatomic,retain) IBOutlet UIScrollView *scrollView;
+@property (nonatomic, retain) IBOutlet UILabel * headerLabel;
 
 -(void)backToStatistics;
 -(void) publicaAnunt:(id)sender;

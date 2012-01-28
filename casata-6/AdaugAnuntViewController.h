@@ -39,7 +39,7 @@
     AppDelegate *apdelegate;
     id delegate;
     SEL refreshMyAdsTable;
-
+    int flagValidare;
 }
 
 //@property (nonatomic,retain) IBOutlet UIScrollView * scrollView;
@@ -69,6 +69,8 @@
 -(IBAction)adaugaLocatie:(id)sender;
 
 -(void) reverseGeocoding;
+-(BOOL) stringIsValid:(NSString *)string;
+
 //- (BOOL) validateTextField:(UITextField *)textFiled;
 
 @end

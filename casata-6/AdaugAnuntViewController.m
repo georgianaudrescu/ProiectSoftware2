@@ -68,6 +68,7 @@
    
   
     
+
   //de pus un flag, daca oricare din campurile obligatorii sunt necompletate (sau nu are aleasa o locatie) sa apara un alerview cand se apasa "salveza" cu mesajul "datele anuntului sunt incomplete"  
     NSString *name = [NSString stringWithString:self.titluTextField.text];
     NSString *ad_text = [NSString stringWithString:self.detaliiTextView.text];
@@ -96,13 +97,17 @@
     else
     {moneda = @"euro";}
     
-    
- NSDictionary *tempDictionary = [[[NSDictionary alloc] initWithObjectsAndKeys:name, @"name", ad_text, @"ad_text", ad_type, @"ad_type", pret, @"pret", size, @"size", moneda, @"moneda",latitude, @"lat", longitude, @"long", property_type, @"property_type",oras, @"oras", judet, @"judet", adress_line, @"adress_line", nil]autorelease];
-    
-  //NSDictionary *tempDictionary = [[NSDictionary alloc] initWithObjectsAndKeys:name, @"name",ad_text, @"ad_text",ad_type,@"ad_type",  pret, @"pret",size, @"size",latitude, @"lat", longitude, @"long", moneda, @"moneda", nil];
    
+    if(([self stringIsValid:name]==NO)||([self stringIsValid:ad_text]==NO)||([self stringIsValid:pret]==NO)||([self stringIsValid:size]==NO)||([self stringIsValid:judet]==NO)||([self stringIsValid:oras]==NO)||([self stringIsValid:adress_line]==NO)||([latitude intValue]==0)||([longitude intValue]==0)||[ad_text isEqualToString:@"Detalii anunt:"])
+    {
+        UIAlertView *atentionare = [[UIAlertView alloc] initWithTitle:@"Atentie" message:@"Datele anuntului sunt incomplete!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [atentionare show];
+        [atentionare release];
+    }
     
-    
+    else
+    {
+     NSDictionary *tempDictionary = [[[NSDictionary alloc] initWithObjectsAndKeys:name, @"name", ad_text, @"ad_text", ad_type, @"ad_type", pret, @"pret", size, @"size", moneda, @"moneda",latitude, @"lat", longitude, @"long", property_type, @"property_type",oras, @"oras", judet, @"judet", adress_line, @"adress_line", nil]autorelease];
     
     [newAd createAd:tempDictionary];
     
@@ -116,17 +121,27 @@
     [delegate performSelector:refreshMyAdsTable];  
     
     [self.navigationController popViewControllerAnimated:YES];
- 
+    }
  
 }
-
-/*
-- (BOOL) validateTextField:(UITextField *)textFiled
+-(BOOL) stringIsValid:(NSString *)string
 {
-
-    return [textFiled.text isKindOfClass:NSNumberFormatterNoStyle];
+    if([string isEqualToString:@""]){return NO;}
+    
+     
+    NSMutableString *trimmedString = [NSMutableString stringWithString:string];
+    trimmedString = (NSMutableString *)[trimmedString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    //NSLog(@"[After: %@]", trimmedString);    
+    
+   
+    
+    int length= trimmedString.length;
+    
+    if(length==0) {return NO;}    
+    
+    
+    return YES;
 }
- */
 
 -(BOOL) isNumeric:(NSString *)s
 {
@@ -210,8 +225,10 @@
 {
     if( [self isNumeric:textField.text]==NO)
     {
-        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"EROARE" message:@"Nu este numeric" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"EROARE" message:@"Valoarea introdusa nu este un numar, completeaza din nou!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alert show];
+        [alert release];
+        textField.text=@"";
     }
     
 }
@@ -330,6 +347,13 @@
         //[tempAd.ad setObject:c forKey:@"judet"];
         if([c isEqualToString:@"Bucharest"])
         {c=@"Bucuresti";}
+        
+        [self.orasTextField setEnabled:YES];
+        [self.judetTextField setEnabled:YES];
+        [self.adresaTextField setEnabled:YES];
+        self.orasTextField.backgroundColor = [UIColor whiteColor];
+        self.judetTextField.backgroundColor = [UIColor whiteColor];
+        self.adresaTextField.backgroundColor = [UIColor whiteColor];
         
         adresaTextField.text = a;
         orasTextField.text = b;
@@ -542,6 +566,12 @@ numberOfRowsInComponent:(NSInteger)component
     
     self.detaliiTextView.delegate = self;
     
+    [self.orasTextField setEnabled:NO];
+    [self.judetTextField setEnabled:NO];
+    [self.adresaTextField setEnabled:NO];
+    self.orasTextField.backgroundColor = [UIColor grayColor];
+    self.judetTextField.backgroundColor = [UIColor grayColor];
+    self.adresaTextField.backgroundColor = [UIColor grayColor];
 }
 
 

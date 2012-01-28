@@ -75,6 +75,20 @@
     return [imageList indexOfObject:image];
 }
 
+
+-(NSMutableArray*)getArrayOfDictionariesFromImageList
+{
+    NSMutableArray *mutableArray = [[[NSMutableArray alloc]init]autorelease];
+                                
+    int x;
+    for(x=0;x<count;x++)
+    {
+        TImage *tempImag=[self getImageAtIndex:x];        
+        [mutableArray addObject: [tempImag getDictionaryForImage]];
+    }
+    return mutableArray;
+}
+
 -(void)dealloc
 {  // [imageList release];
     self.imageList = nil;

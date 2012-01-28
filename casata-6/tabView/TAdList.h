@@ -33,6 +33,8 @@
 -(void)populateListWithRequest:(TRequest *)aRequest;
 -(TAd *)getAdWithId:(int)index;
 
+-(void) removeAllAds;
+
 @end
 
 #endif //TADLIST

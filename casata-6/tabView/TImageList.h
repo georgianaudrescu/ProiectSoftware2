@@ -28,4 +28,7 @@
 -(TImage *)getImageAtIndex:(int)index;//
 -(void)removeImageAtIndex:(int)index;//
 -(int)getIndexForImage:(TImage *)image;//
+
+-(NSMutableArray*)getArrayOfDictionariesFromImageList;
+
 @end

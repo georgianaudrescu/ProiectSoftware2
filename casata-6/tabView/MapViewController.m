@@ -173,6 +173,13 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     self.statisticsView.filters.seAplicaFiltre = @selector(seAplicaFiltrele);
     self.statisticsView.filters.seStergFiltre =@selector(seStergFiltrele);
     
+   
+    //my ads selected ad
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(goToEditAnunt:) name:@"AnuntPropriuSelectat" object:nil];     
+   
+    
+    
     /*
     self.subScroll.frame = CGRectMake(0,300, self.subScroll.frame.size.width, self.subScroll.frame.size.height);
     self.subScroll.pagingEnabled = YES;
@@ -773,6 +780,16 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     
     [self.navigationController pushViewController:adaugAnuntView animated:YES];
      
+}
+-(void)goToEditAnunt:(NSNotification*)notification
+{
+    AdaugAnuntViewController * adaugAnuntView = [[[AdaugAnuntViewController alloc] initWithNibName:@"AdaugAnuntViewController" bundle:nil]autorelease];
+    
+    NSString *idAnunt = [notification object];
+    
+    adaugAnuntView.theNewAd = [apdelegate.appSession.user.personalAds getAdWithId:[idAnunt intValue]];
+
+[self.navigationController pushViewController:adaugAnuntView animated:YES];
 }
 
 

@@ -31,7 +31,7 @@
     UIPickerView * pickerView;
     NSMutableArray *propertyTypes;
     NSMutableArray *camere;
-    TAd *newAd;
+    TAd *theNewAd;
     int flagDateNecompletate;
     IBOutlet UITextField * orasTextField;
     IBOutlet UITextField * judetTextField;
@@ -54,6 +54,7 @@
 @property (nonatomic, strong) IBOutlet UITextField * orasTextField, *judetTextField, * adresaTextField;
 @property(assign) id delegate;
 @property(assign) SEL refreshMyAdsTable;
+@property (nonatomic, retain) TAd * theNewAd;
 
 
 -(IBAction)textFieldReturn:(id)sender;

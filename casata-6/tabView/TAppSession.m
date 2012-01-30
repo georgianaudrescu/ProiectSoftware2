@@ -157,7 +157,10 @@
                     TAd * anAd = [TAd alloc];
                     [anAd createAd:[[personalAds objectAtIndex:x] objectForKey:@"detalii"]];
                     [anAd initImageList];
-                    
+                    CLLocationCoordinate2D coord = CLLocationCoordinate2DMake([[anAd.ad objectForKey:@"lat"] doubleValue], [[anAd.ad objectForKey:@"long"] doubleValue]) ;
+                    TLocation * tempLoc = [[TLocation alloc] initWithTitle:@"locatie" andSubtitle:@"curenta" andCoord:coord];
+                    anAd.adlocation = tempLoc;
+                    [tempLoc release];
                     // TImage *tempImg = [TImage alloc];
                     // tempImg initWithDictionary:[[personalAds objectAtIndex:x] objectForKey:@"imageList"]
                     // [anAd.imageList a

@@ -19,7 +19,7 @@
 @synthesize tipAnuntSegmentedControl, monedaSegmentedControl;
 @synthesize pickerView;
 @synthesize orasTextField, judetTextField, adresaTextField;
-@synthesize delegate, refreshMyAdsTable;
+@synthesize delegate, refreshMyAdsTable, theNewAd;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -40,7 +40,7 @@
     
         
         apdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-        newAd = [TAd alloc];
+        
     }
     return self;
 }
@@ -82,8 +82,8 @@
     NSString *property_type =[NSString stringWithFormat:@"%@", [tableValues objectAtIndex:0]];
    
     
-    NSString *latitude = [NSString stringWithFormat:@"%f", newAd.adlocation.coordinate.latitude];
-    NSString *longitude = [NSString stringWithFormat:@"%f", newAd.adlocation.coordinate.longitude];
+    NSString *latitude = [NSString stringWithFormat:@"%f", theNewAd.adlocation.coordinate.latitude];
+    NSString *longitude = [NSString stringWithFormat:@"%f", theNewAd.adlocation.coordinate.longitude];
     
     NSString *ad_type;
     if([self.tipAnuntSegmentedControl selectedSegmentIndex]==0)
@@ -109,13 +109,13 @@
     {
      NSDictionary *tempDictionary = [[[NSDictionary alloc] initWithObjectsAndKeys:name, @"name", ad_text, @"ad_text", ad_type, @"ad_type", pret, @"pret", size, @"size", moneda, @"moneda",latitude, @"lat", longitude, @"long", property_type, @"property_type",oras, @"oras", judet, @"judet", adress_line, @"adress_line", nil]autorelease];
     
-    [newAd createAd:tempDictionary];
+    [theNewAd createAd:tempDictionary];
     
     NSLog(@"name from texfield: %@", name);
-    NSLog(@"name from ad: %@", [newAd.ad objectForKey:@"name"]);
+    NSLog(@"name from ad: %@", [theNewAd.ad objectForKey:@"name"]);
     NSLog(@"name from dictionary: %@", [tempDictionary objectForKey:@"name"]);
     
-    [apdelegate.appSession.user.personalAds addAd:newAd];
+    [apdelegate.appSession.user.personalAds addAd:theNewAd];
      NSLog(@"%d",apdelegate.appSession.user.personalAds.count);
     
     [delegate performSelector:refreshMyAdsTable];  
@@ -175,10 +175,12 @@
      
     [pickerView release];
     [tableValues release];
-    [newAd release];
+    [theNewAd release];
     [orasTextField release];
     [judetTextField release];
     [adresaTextField release];
+    
+    
         
     [super dealloc];
     
@@ -301,11 +303,11 @@
 
 - (IBAction)adaugaImagini:(id)sender{
 
-    if(newAd.imageList==nil){ [newAd initImageList];}/////
+    if(theNewAd.imageList==nil){ [theNewAd initImageList];}/////
     
     AdaugaImaginiViewController *adaugaImaginiViewController = [[[AdaugaImaginiViewController alloc] initWithNibName:@"AdaugaImaginiViewController" bundle:nil]autorelease];
     
-    adaugaImaginiViewController.tempAd = newAd;
+    adaugaImaginiViewController.tempAd = theNewAd;
     
     [self.navigationController pushViewController:adaugaImaginiViewController animated:YES];
     
@@ -315,7 +317,7 @@
     
     LocalizareViewController *adaugaLocatieViewController = [[[LocalizareViewController alloc] initWithNibName:@"LocalizareViewController" bundle:nil]autorelease];
     
-    adaugaLocatieViewController.tempAd=newAd;
+    adaugaLocatieViewController.tempAd=theNewAd;
     adaugaLocatieViewController.delegate = self;
     adaugaLocatieViewController.geocoder = @selector(reverseGeocoding);
     
@@ -325,7 +327,7 @@
 
 -(void) reverseGeocoding
 {
-    CLLocation *location = [[[CLLocation alloc] initWithLatitude:newAd.adlocation.coordinate.latitude longitude:newAd.adlocation.coordinate.longitude] autorelease];
+    CLLocation *location = [[[CLLocation alloc] initWithLatitude:theNewAd.adlocation.coordinate.latitude longitude:theNewAd.adlocation.coordinate.longitude] autorelease];
     CLGeocoder * geocoder = [[[CLGeocoder alloc] init]autorelease];
     [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error) {
         CLPlacemark * placemark = [placemarks objectAtIndex:0];
@@ -537,10 +539,46 @@ numberOfRowsInComponent:(NSInteger)component
     //self.pretTextField.delegate = self;
     //self.suprafataTextField.delegate = self;
     
+    
+    if(theNewAd==nil)
+    {theNewAd = [TAd alloc];
+        [self.orasTextField setEnabled:NO];
+        [self.judetTextField setEnabled:NO];
+        [self.adresaTextField setEnabled:NO];
+        self.orasTextField.backgroundColor = [UIColor grayColor];
+        self.judetTextField.backgroundColor = [UIColor grayColor];
+        self.adresaTextField.backgroundColor = [UIColor grayColor];    
+        
+        tableValues = [[NSMutableArray alloc] initWithObjects:@"Garsoniera", nil];
+    }
+    else
+    {
+        // labels with infos
+        self.titluTextField.text = [theNewAd.ad objectForKey:@"name"];
+        if([[theNewAd.ad objectForKey:@"ad_type"] isEqualToString:@"sale"])
+        { self.tipAnuntSegmentedControl.selectedSegmentIndex=0;}
+        else
+        {self.tipAnuntSegmentedControl.selectedSegmentIndex=1;} 
+        self.pretTextField.text=[theNewAd.ad objectForKey:@"pret"];
+    
+        if([[theNewAd.ad objectForKey:@"moneda"] isEqualToString:@"lei"])
+        { self.monedaSegmentedControl.selectedSegmentIndex=0;}
+        else
+        {self.monedaSegmentedControl.selectedSegmentIndex=1;} 
+        
+        self.suprafataTextField.text = [theNewAd.ad objectForKey:@"size"];
+        self.orasTextField.text = [theNewAd.ad objectForKey:@"oras"];
+        self.judetTextField.text = [theNewAd.ad objectForKey:@"judet"];
+        self.adresaTextField.text = [theNewAd.ad objectForKey:@"adress_line"];
+        self.detaliiTextView.text = [theNewAd.ad objectForKey:@"ad_text"];
+        tableValues = [[NSMutableArray alloc]  initWithObjects:[theNewAd.ad objectForKey:@"property_type"],nil];
+        
+    }
+    
     //selectedPropType = nil;
     tableItems = [[NSMutableArray alloc] initWithObjects:@"Tip Imobil", nil];
 
-    tableValues = [[NSMutableArray alloc] initWithObjects:@"Garsoniera", nil];
+    
     
     pickerView = [[UIPickerView alloc] init];
     pickerView.showsSelectionIndicator = YES;
@@ -555,7 +593,8 @@ numberOfRowsInComponent:(NSInteger)component
     //[propertyTypes addObject:@"Apartament 5+ camere"];
     [propertyTypes addObject:@"Casa"];
     //[propertyTypes addObject:@"Spatiu Comercial"];
-    
+   
+    /* 
     camere = [[NSMutableArray alloc] init];
     [camere addObject:@"0"];
     [camere addObject:@"1"];
@@ -563,15 +602,10 @@ numberOfRowsInComponent:(NSInteger)component
     [camere addObject:@"3"];
     [camere addObject:@"4"];
     [camere addObject:@"5+"];
-    
+  */  
     self.detaliiTextView.delegate = self;
     
-    [self.orasTextField setEnabled:NO];
-    [self.judetTextField setEnabled:NO];
-    [self.adresaTextField setEnabled:NO];
-    self.orasTextField.backgroundColor = [UIColor grayColor];
-    self.judetTextField.backgroundColor = [UIColor grayColor];
-    self.adresaTextField.backgroundColor = [UIColor grayColor];
+    
 }
 
 

@@ -220,12 +220,18 @@
             [cell addSubview:button];
         }
     }
-    
-	
-    
 
     return cell;
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+ 
+    [[NSNotificationCenter defaultCenter] 
+     postNotificationName:@"AnuntPropriuSelectat" 
+     object:[NSString stringWithFormat:@"%d", [indexPath row]]];
+
+}
+
 
 -(void) publicaAnunt:(UIButton*)sender{
     //se publica anuntul selectat din lista

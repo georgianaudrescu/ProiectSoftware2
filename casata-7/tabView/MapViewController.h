@@ -18,6 +18,7 @@
 #import "AdaugAnuntViewController.h"
 #import "Filtre.h"
 
+@class Reachability;
 
 @interface MapViewController : UIViewController <MKMapViewDelegate, UINavigationBarDelegate, CLLocationManagerDelegate>
 {
@@ -50,8 +51,14 @@
     
     BOOL onlyFavAdsVisible;
     BOOL onlyFilteredAdsVisible;
+    
     // pentru user location:
     CLLocationManager *locationManager;
+    
+    //pentru notificari legate de conexiunea la internet
+    Reachability* internetReachable;
+    Reachability* hostReachable;
+    BOOL internetActive;
     
 }
 @property (retain, nonatomic) IBOutlet MKMapView *mapView;
@@ -66,8 +73,9 @@
 @property(nonatomic,retain) IBOutlet UIScrollView *subScroll;
 // pentru user location:
 @property (nonatomic, retain) CLLocationManager * locationManager;
+@property (assign) BOOL internetActive;
 
-          
+
 /////
 extern NSString *const GMAP_ANNOTATION_SELECTED;
 - (void) showAnnotation:(TLocation*) annotation;
@@ -91,4 +99,7 @@ extern NSString *const GMAP_ANNOTATION_SELECTED;
 -(void)seAplicaFiltrele;
 -(void) seStergFiltrele;
 -(void)aplicareFiltrePeLista:(TAdList*)theList;
+
+- (void) checkNetworkStatus:(NSNotification *)notice;
+
 @end

@@ -18,6 +18,7 @@
 #import "Filtre.h" // for the switch
 #import "SomeView.h" //for switch test!
 #import "StatsViewController.h"
+#import "Reachability.h"
 
 //#define myURL [NSURL URLWithString:@"http://flapptest.comule.com/get_ads/"]
 
@@ -30,6 +31,7 @@
 @synthesize statisticsView,detaliiAnuntViewController;
 @synthesize scrollView,subScroll;
 @synthesize locationManager;
+@synthesize internetActive;
 
 NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
 
@@ -210,8 +212,17 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
             tempAd=nil;
         }
     }
-    ///////    
+    ///////   
     
+    // check for internet connection
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkNetworkStatus:) name:kReachabilityChangedNotification object:nil];
+    
+    internetReachable = [[Reachability reachabilityForInternetConnection] retain];
+    [internetReachable startNotifier];
+    
+    // check if a pathway to a random host exists
+    hostReachable = [[Reachability reachabilityWithHostName: @"flapptest.comule.com"] retain];
+    [hostReachable startNotifier];
     // Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -296,7 +307,10 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     right = cornerCoordinateNE.longitude;
     NSLog(@"%f, %f, %f, %f",left,right,top,bottom);
     //TODO zoom level;
-
+    MKMapPoint estMapPoint = MKMapPointMake(MKMapRectGetMinX(visibleRegion),MKMapRectGetMidY(visibleRegion));
+    MKMapPoint vestMapPoint = MKMapPointMake(MKMapRectGetMaxX(visibleRegion), MKMapRectGetMidY(visibleRegion));
+    int currentDist = MKMetersBetweenMapPoints(estMapPoint, vestMapPoint);
+    NSLog(@"_____ZOOM LEVEL____:%d", currentDist);
     
 }
 
@@ -839,7 +853,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
 
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated{
     NSLog(@"drag");
-    if(hasLoadView==1&&onlyFavAdsVisible==NO){
+    if((hasLoadView==1)&&(onlyFavAdsVisible==NO)&&(internetActive==YES)){
         //[lock unlockWithCondition:1];
         flag=1;
         flag_get_more_ads=0;
@@ -849,7 +863,6 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
         //[self getParamForReq];
     }
 }
-
 
 - (void)viewWillDisappear:(BOOL)animated
 {
@@ -866,6 +879,43 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
 {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+
+//modificari conexiune
+- (void) checkNetworkStatus:(NSNotification *)notice
+{
+    // called after network status changes
+    
+    NetworkStatus internetStatus = [internetReachable currentReachabilityStatus];
+    switch (internetStatus)
+    
+    {
+        case NotReachable:
+        {
+            NSLog(@"The internet is down.");
+            self.internetActive = NO;
+            
+            break;
+            
+        }
+        case ReachableViaWiFi:
+        {
+            NSLog(@"The internet is working via WIFI.");
+            self.internetActive = YES;
+            
+            break;
+            
+        }
+        case ReachableViaWWAN:
+        {
+            NSLog(@"The internet is working via WWAN.");
+            self.internetActive = YES;
+            
+            break;
+            
+        }
+    }
 }
 
 - (void)dealloc {

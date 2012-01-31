@@ -13,6 +13,11 @@
 #import "TSearch.h"
 #import "TSettings.h"
 #import "TStatisticsList.h"
+#include <sys/socket.h>
+#include <sys/sysctl.h>
+#include <net/if.h>
+#include <net/if_dl.h>
+
 
 @interface TAppSession : NSObject
 {
@@ -45,5 +50,5 @@
 -(void) readLocalData;
 
 -(NSString *)generateUniqueString;
-
+-(NSString*) getMacAddress;
 @end

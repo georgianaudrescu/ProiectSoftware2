@@ -32,4 +32,12 @@
 -(NSMutableArray*)getArrayOfDictionariesFromImageList;
 -(void)populateImageListFromArray:(NSArray*)array;
 -(int)indexOfDefaultImage;
+
+////////
+-(NSArray*)saveImagesToFolderForMyAdAtIndex:(int)index ;
+-(void)getImagesFromFolderForMyAdAtIndex:(int)index fromArray:(NSArray*)array;
+
+//-(void)saveImagesToFolderForFavAdWithId:(int)idul;
+//-(void)getImagesFromFolderForFavAdWithId:(int)idul;
+
 @end

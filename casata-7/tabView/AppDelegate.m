@@ -20,7 +20,7 @@
 @synthesize window = _window;
 @synthesize viewController = _viewController;
 @synthesize navigationController= _navigationController;
-@synthesize appSession, internetActive;
+@synthesize appSession;
 //@synthesize locationManager;
 
 
@@ -37,7 +37,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    
+    int activeInternet=1;
     ////close session////// 
     
     TRequest *req = [TRequest alloc] ;
@@ -62,7 +62,7 @@
         }
         [req release];  
     }
-    else {
+    else { activeInternet=0;
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Internet" message:@"Nu esti conectat la internet, vei avea acces doar la anunturile favorite salvate si anunturile proprii" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         
         [alert show];
@@ -101,9 +101,14 @@
     
     
     // Override point for customization after application launch.
-    UIViewController *mapViewController = [[[MapViewController alloc] initWithNibName:@"MapViewController" bundle:nil] autorelease];
+    MapViewController *mapViewController = [[[MapViewController alloc] initWithNibName:@"MapViewController" bundle:nil] autorelease];
     
-
+    ///
+    if(activeInternet==0){mapViewController.internetActive=NO;}
+    else {mapViewController.internetActive=YES;}
+    ///
+    
+    
     //Navigation controllerul principal-are ca radacina pagina de map
     self.navigationController = [[[UINavigationController alloc] initWithRootViewController:mapViewController] autorelease];
    
@@ -168,40 +173,6 @@
 
 }
 
-- (void) checkNetworkStatus:(NSNotification *)notice
-{
-    // called after network status changes
-    
-    NetworkStatus internetStatus = [internetReachable currentReachabilityStatus];
-    switch (internetStatus)
-    
-    {
-        case NotReachable:
-        {
-            NSLog(@"The internet is down.");
-            self.internetActive = NO;
-            
-            break;
-            
-        }
-        case ReachableViaWiFi:
-        {
-            NSLog(@"The internet is working via WIFI.");
-            self.internetActive = YES;
-            
-            break;
-            
-        }
-        case ReachableViaWWAN:
-        {
-            NSLog(@"The internet is working via WWAN.");
-            self.internetActive = YES;
-            
-            break;
-            
-        }
-    }
-}
 
 /*
 // Optional UITabBarControllerDelegate method.

@@ -185,11 +185,22 @@
     //zoomLocation.latitude=44.4;
     //zoomLocation.longitude=26.1;
     
+    if(flag==0)//nu avem o locatie=>locatie curenta
+    {
     zoomLocation.latitude = self.locationManager.location.coordinate.latitude;
     zoomLocation.longitude = self.locationManager.location.coordinate.longitude;
+    }
+    else //avem locatie=>zona vizibila este zona in care se afla anuntul
+    {
+    zoomLocation.latitude = tempAd.adlocation.coordinate.latitude;
+    zoomLocation.longitude = tempAd.adlocation.coordinate.longitude;
+
+    }    
+    
     MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation,50000,50000);
     MKCoordinateRegion adjustedRegion = [_mapView regionThatFits:viewRegion];
     [_mapView setRegion:adjustedRegion animated:YES];
+    
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

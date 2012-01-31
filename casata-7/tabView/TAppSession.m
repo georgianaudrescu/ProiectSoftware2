@@ -64,7 +64,7 @@
     for(int x=0;x<[user.personalAds count];x++)
     {
         TAd *tempAd = [user.personalAds getAdAtIndex:x];
-        NSArray * imageListArray = [tempAd.imageList getArrayOfDictionariesFromImageList];
+        NSArray * imageListArray = [tempAd.imageList saveImagesToFolderForMyAdAtIndex:x];//
        // NSData *thumbnailData = [tempAd.thumb getDictionaryForImage];
         NSDictionary * adDict = [[[NSDictionary alloc] initWithObjectsAndKeys:tempAd.ad,@"detalii",imageListArray,@"imageList",nil]autorelease] ;
         
@@ -101,8 +101,40 @@
     
     NSString *docDirectory = [arrayPaths objectAtIndex:0];
     
+    //cream foldere pt imagini
+    NSString *imageMyAdsFolderPath = [docDirectory stringByAppendingPathComponent:@"MyAdsImages"];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    if(![fileManager fileExistsAtPath:imageMyAdsFolderPath])
+    {[fileManager createDirectoryAtPath:imageMyAdsFolderPath withIntermediateDirectories:NO attributes:nil error:nil];}
+   
+    /*else
+    {NSDirectoryEnumerator *enumerator = [fileManager enumeratorAtPath:imageMyAdsFolderPath];
+        NSError *error =nil;
+        BOOL result;
+        NSString *file;
+        while (file = [enumerator nextObject]) {
+            result = [fileManager removeItemAtPath:[imageMyAdsFolderPath stringByAppendingPathComponent:file] error:&error];
+            if(!result&&error)
+                NSLog(@"eroare");
+        }
+    
+    }  
+    
+    */
+    
+    NSString *imageMyFavFolderPath = [docDirectory stringByAppendingPathComponent:@"MyFavImages"];
+    
+    if(![fileManager fileExistsAtPath:imageMyFavFolderPath])
+    {[fileManager createDirectoryAtPath:imageMyFavFolderPath withIntermediateDirectories:NO attributes:nil error:nil];}
+   /* else
+    {[fileAManager removeItemAtPath:imageMyAdsFolderPath error:nil];
+    [fileAManager createDirectoryAtPath:imageMyFavFolderPath withIntermediateDirectories:NO attributes:nil error:nil];} */
+    
+        
     //scriem datele in fisiser local:
     NSString *filePath = [docDirectory stringByAppendingString:@"/CasaTa.txt"];
+       
+    
     NSLog(@"PATH: %@",filePath);
     NSDictionary * dataToSave = [self getDataForLocalSave];
     NSLog(@"DATA TO SAVE; %@", dataToSave);
@@ -203,7 +235,7 @@
                     {NSLog(@"Are imagini");                    
                     [anAd initImageList];
                         
-                        [anAd.imageList populateImageListFromArray:[[personalAds objectAtIndex:x] objectForKey:@"imageList"]]; 
+                        [anAd.imageList getImagesFromFolderForMyAdAtIndex:x fromArray:[[personalAds objectAtIndex:x] objectForKey:@"imageList"]]; 
                         
                      //////////////thumbnail  
                         if([anAd.imageList count]>0)
@@ -232,10 +264,6 @@
                     [anAd.adlocation initWithTitle:@"locatie" andSubtitle:@"curenta" andCoord:coord];
                       NSLog(@"Creez locatia cu coord: %f si %f",coord.latitude, coord.longitude);
                     
-                    // TImage *tempImg = [TImage alloc];
-                    // tempImg initWithDictionary:[[personalAds objectAtIndex:x] objectForKey:@"imageList"]
-                    // [anAd.imageList a
-                    
                     [self.user.personalAds addAd:anAd];
                     [anAd release];
                 }
@@ -258,7 +286,7 @@
     
    else
    {
-       self.user.userId = [self generateUniqueString];
+       self.user.userId = [self getMacAddress];
        NSLog(@"no data in local memory, generate unique id=%@", self.user.userId);
        
    }
@@ -272,6 +300,75 @@
     [(NSString*) uString autorelease];
     return (NSString*)uString;
 }
+
+- (NSString *)getMacAddress
+{
+    int                 mgmtInfoBase[6];
+    char                *msgBuffer = NULL;
+    size_t              length;
+    unsigned char       macAddress[6];
+    struct if_msghdr    *interfaceMsgStruct;
+    struct sockaddr_dl  *socketStruct;
+    NSString            *errorFlag = NULL;
+    
+    // Setup the management Information Base (mib)
+    mgmtInfoBase[0] = CTL_NET;        // Request network subsystem
+    mgmtInfoBase[1] = AF_ROUTE;       // Routing table info
+    mgmtInfoBase[2] = 0;              
+    mgmtInfoBase[3] = AF_LINK;        // Request link layer information
+    mgmtInfoBase[4] = NET_RT_IFLIST;  // Request all configured interfaces
+    
+    // With all configured interfaces requested, get handle index
+    if ((mgmtInfoBase[5] = if_nametoindex("en0")) == 0) 
+        errorFlag = @"if_nametoindex failure";
+    else
+    {
+        // Get the size of the data available (store in len)
+        if (sysctl(mgmtInfoBase, 6, NULL, &length, NULL, 0) < 0) 
+            errorFlag = @"sysctl mgmtInfoBase failure";
+        else
+        {
+            // Alloc memory based on above call
+            if ((msgBuffer = malloc(length)) == NULL)
+                errorFlag = @"buffer allocation failure";
+            else
+            {
+                // Get system information, store in buffer
+                if (sysctl(mgmtInfoBase, 6, msgBuffer, &length, NULL, 0) < 0)
+                    errorFlag = @"sysctl msgBuffer failure";
+            }
+        }
+    }
+    
+    // Befor going any further...
+    if (errorFlag != NULL)
+    {
+        NSLog(@"Error: %@", errorFlag);
+        if (msgBuffer) free(msgBuffer);//
+        return errorFlag;
+    }
+    
+    // Map msgbuffer to interface message structure
+    interfaceMsgStruct = (struct if_msghdr *) msgBuffer;
+    
+    // Map to link-level socket structure
+    socketStruct = (struct sockaddr_dl *) (interfaceMsgStruct + 1);
+    
+    // Copy link layer address data in socket structure to an array
+    memcpy(&macAddress, socketStruct->sdl_data + socketStruct->sdl_nlen, 6);
+    
+    // Read from char array into a string object, into traditional Mac address format
+    NSString *macAddressString = [NSString stringWithFormat:@"%02X:%02X:%02X:%02X:%02X:%02X", 
+                                  macAddress[0], macAddress[1], macAddress[2], 
+                                  macAddress[3], macAddress[4], macAddress[5]];
+    NSLog(@"Mac Address: %@", macAddressString);
+    
+    // Release the buffer memory
+    free(msgBuffer);
+    
+    return macAddressString;
+}
+
 -(void)dealloc
 {
     self.globalAdList=nil; //variabile globale release

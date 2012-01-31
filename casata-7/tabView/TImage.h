@@ -32,4 +32,5 @@
 
 -(NSDictionary *) getDictionaryForImage;//localsave
 -(void)initWithData:(NSData*)data;//localsave
+//-(void)initWithImageFromFile:(UIImage*)img;
 @end

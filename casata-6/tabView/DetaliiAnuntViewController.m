@@ -76,7 +76,7 @@
     
     //punerea textului anuntului in label-urile corespunzatoare
     self.nameLabel.text = [self.theAd.ad objectForKey:@"name"];
-    self.propertyTypeLabel.text =[self.theAd.ad objectForKey:@"property_type"];
+       self.propertyTypeLabel.text =[self.theAd.ad objectForKey:@"property_type"];
     //self.adTextLabel.text = [NSString stringWithFormat:@"Descriere:  %@", [self.theAd.ad objectForKey:@"ad_text"]];
     self.adressLineLabel.text = [NSString stringWithFormat:@"%@", [self.theAd.ad objectForKey:@"adress_line"]];
     NSNumber *pret = [self.theAd.ad objectForKey:@"pret"];
@@ -85,7 +85,18 @@
    
     self.contactNameLabel.text = [self.theAd.ad objectForKey:@"contact_name"];
     self.contactPhoneLabel.text = [self.theAd.ad objectForKey:@"contact_phone"];
-    self.anuntTypeLabel.text = [self.theAd.ad objectForKey:@"ad_type"];
+    NSString *proptyp;
+    
+       if ([[self.theAd.ad objectForKey:@"ad_type"] isEqual:@"sell"])
+    {
+        proptyp =@"vanzare";
+        
+    } 
+    if ([[self.theAd.ad objectForKey:@"ad_type"] isEqual:@"rent"])
+    {
+        proptyp =@"inchiriere";
+    }
+    self.anuntTypeLabel.text = proptyp;
     
     self.thumbnailImageView.image = [UIImage imageNamed:@"house2.jpg"];
     

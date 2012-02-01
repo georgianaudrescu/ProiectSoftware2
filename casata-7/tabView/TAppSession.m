@@ -271,16 +271,21 @@
 
         }
     
-    NSString * userid = [dataDict objectForKey:@"userId"];
+    NSString * userid =[dataDict objectForKey:@"userId"];
     NSString * username = [dataDict objectForKey:@"username"];
     NSString * email = [dataDict objectForKey:@"email"];
     NSString * phone = [dataDict objectForKey:@"phone"];
+     
         
-    self.user.userId = userid;
+        
+    //self.user.userId = userid;
+        [self.user setid:userid];   
     self.user.username = username;
     self.user.email = email;
     self.user.phone = phone;
-    
+        
+    NSLog(@"user id:%@",self.user.userId);
+        
     NSLog(@"DATA from local memory: %@", dataDict);
     }
     
@@ -358,7 +363,11 @@
     memcpy(&macAddress, socketStruct->sdl_data + socketStruct->sdl_nlen, 6);
     
     // Read from char array into a string object, into traditional Mac address format
-    NSString *macAddressString = [NSString stringWithFormat:@"%02X:%02X:%02X:%02X:%02X:%02X", 
+    /*NSString *macAddressString = [NSString stringWithFormat:@"%02X:%02X:%02X:%02X:%02X:%02X", 
+                                  macAddress[0], macAddress[1], macAddress[2], 
+                                  macAddress[3], macAddress[4], macAddress[5]];
+     */
+    NSString *macAddressString = [NSString stringWithFormat:@"%02X-%02X-%02X-%02X-%02X-%02X", 
                                   macAddress[0], macAddress[1], macAddress[2], 
                                   macAddress[3], macAddress[4], macAddress[5]];
     NSLog(@"Mac Address: %@", macAddressString);

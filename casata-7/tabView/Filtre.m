@@ -30,12 +30,15 @@
         //self.tabBarItem.image = [UIImage imageNamed:@"filter"];
         // Custom initialization
         [self setTitle:@"Filtre"];
+        [self initsliders];
         apdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];        
         
         tableImobil = [[UITableView alloc] init];
         [tableImobil setAutoresizesSubviews:YES];
         [tableImobil setAutoresizingMask:(UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight)];
         selectedRowsArray = [[NSMutableArray alloc] initWithCapacity:0];
+       
+      
     }
     
     return self;
@@ -55,7 +58,7 @@
     }
     titleView.text = title;
     [titleView sizeToFit];
-    
+  
     
 }
 - (void)backToStatistics{
@@ -100,6 +103,62 @@
  }
  */
 
+-(void)initsliders
+{
+    NSLog(@"in slider");
+    
+    
+    
+    if([self.pMinLabel.text intValue] != 0) //daca s-a modificat pretul minim
+    {
+        //setez valoarea minima a pretului maxim
+        sliderPretMax.minimumValue = [self.pMinLabel.text intValue]/100;
+    }
+    if([self.supMinLabel.text intValue] != 0) //daca s-a modificat valoarea suprafetei minime
+    {
+        //setez valoarea minima a suprafetei maxim
+        sliderSuprafataMax.minimumValue = [self.supMinLabel.text intValue]/5;
+    }
+    
+    /*
+    //scriu in label int
+    int supmaxx =sliderSuprafataMax.maximumValue *5;
+    supMaxLabel.text = [NSString stringWithFormat:@"%d",supmaxx]; 
+    int pretmaxx = sliderPretMax.maximumValue *100;
+    pMaxLabel.text = [NSString stringWithFormat:@"%d", pretmaxx];
+    
+    */
+}
+
+-(IBAction)segmentedAnuntTypeChanged:(id)sender
+{
+    if(self.segmentedControl.selectedSegmentIndex == 0) //daca este de vanzare
+    {
+        //setez valoarea maxima a pretului minim
+         sliderPretMin.minimumValue=0;
+        sliderPretMin.maximumValue = 200;
+       [sliderPretMin setValue:0];
+        //setez valoarea maxima a pretului maxim
+        sliderPretMax.minimumValue=200;
+        sliderPretMax.maximumValue = 5000;
+        [sliderPretMax setValue:200];
+        self.pMinLabel.text=@"0";
+        self.pMaxLabel.text = @"20000";
+        
+    } else if (self.segmentedControl.selectedSegmentIndex == 1) //daca este de inchiriere
+    {
+        //setez alta valoare maxima a pretului minim
+        sliderPretMin.minimumValue=0;
+        sliderPretMin.maximumValue = 10;
+        [sliderPretMin setValue:0];
+        //setez alta valoarea maxima a pretului maxim
+        sliderPretMax.minimumValue=10;
+        sliderPretMax.maximumValue = 300;
+        [sliderPretMax setValue:10];
+        self.pMinLabel.text =@"0";
+         self.pMaxLabel.text = @"100";
+    }
+}
 
 -(IBAction)aplicaFiltre:(id)sender
 {   
@@ -250,28 +309,55 @@
 -(IBAction)sliderMinValueChanged:(UISlider *)sender
 
 {
+   if(self.segmentedControl.selectedSegmentIndex==1)
+   {
+       int discreteValue = round([sender value]);
+       NSLog(@"minim price %d", discreteValue);
+       discreteValue = discreteValue*10;
+       pMinLabel.text = [NSString stringWithFormat:@"%d", discreteValue];
+       sliderPretMax.minimumValue = [self.pMinLabel.text intValue]/10;
+   }
+   else{
     int discreteValue = round([sender value]);
-    discreteValue = discreteValue*1000;
+    NSLog(@"minim price %d", discreteValue);
+    discreteValue = discreteValue*100;
     pMinLabel.text = [NSString stringWithFormat:@"%d", discreteValue];
+    sliderPretMax.minimumValue = [self.pMinLabel.text intValue]/100;
+   }
 }
 -(IBAction)sliderMaxValueChanged:(UISlider *)sender
 
-{   int discreteValue = round([sender value]);
-    discreteValue=discreteValue*1000;
+{   if(self.segmentedControl.selectedSegmentIndex==1)
+
+{   
+    int discreteValue = round([sender value]);
+    NSLog(@"maxim price %d", discreteValue);
+    discreteValue=discreteValue*10;
     pMaxLabel.text = [NSString stringWithFormat:@"%d", discreteValue];
+}
+else{
+    
+    int discreteValue = round([sender value]);
+    NSLog(@"maxim price %d", discreteValue);
+    discreteValue=discreteValue*100;
+    pMaxLabel.text = [NSString stringWithFormat:@"%d", discreteValue];
+}
 }
 
 -(IBAction)sliderSupMinValueChanged:(UISlider *)sender
 
 {
     int discreteValue = round([sender value]);
-    discreteValue = discreteValue*1000;
+    NSLog(@"supmin price %d", discreteValue);
+    discreteValue = discreteValue*10;
     supMinLabel.text = [NSString stringWithFormat:@"%d", discreteValue];
+     sliderSuprafataMax.minimumValue = [self.supMinLabel.text intValue]/10;
 }
 -(IBAction)sliderSupMaxValueChanged:(UISlider *)sender
 
 {   int discreteValue = round([sender value]);
-    discreteValue=discreteValue*1000;
+    NSLog(@"supmax price %d", discreteValue);
+    discreteValue=discreteValue*10;
     supMaxLabel.text = [NSString stringWithFormat:@"%d", discreteValue];
 }
 

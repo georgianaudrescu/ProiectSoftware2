@@ -14,7 +14,7 @@
 #define tipImobil 0
 #define nrCamere 1
 
-@interface AdaugAnuntViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextViewDelegate, UIActionSheetDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate>
+@interface AdaugAnuntViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextViewDelegate, UIActionSheetDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate, UIAlertViewDelegate>
 {
     IBOutlet UITextField * titluTextField;
     IBOutlet UITextField * pretTextField;
@@ -74,5 +74,6 @@
 -(BOOL)isNumeric:(NSString*)s;//
 
 //- (BOOL) validateTextField:(UITextField *)textFiled;
-
+-(void) stergeAnunt;
+-(void) atentionareStergereAnunt;
 @end

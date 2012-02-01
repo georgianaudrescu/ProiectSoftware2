@@ -28,6 +28,7 @@
     }
     return self;
 }
+/*
 
 - (id) registerUserWithName:(NSString *)name WithPassword:(NSString*)pass WithPhone:(NSString *)aPhone AndEmail:(NSString *)someEmail{
   
@@ -111,17 +112,28 @@
     //[json release];
     //[loggedIn release];
 } 
-
+*/
+/*
 - (NSString *) getUserId{
     return userId;
 }
-
+*/
 - (void) Logout{
     //req logout
 }
 
 -(void) uploadAd:(int)adIndex
 {
+    
+    if([username isEqualToString:@""]||[phone isEqualToString:@""]||[email isEqualToString:@""])
+    {
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"ATENTIE" message:@"Nu poti publica anunturi. Completeaza datele de contact!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+       
+        [alert release];
+    }
+    else 
+    {
     TAd *anAd = [personalAds getAdAtIndex:adIndex];
     request = [TRequest alloc] ;
     [request initWithHost:@"http://flapptest.comule.com"];
@@ -160,8 +172,10 @@
     judet = [anAd.ad objectForKey:@"judet"];
     oras = [anAd.ad objectForKey:@"oras"];
     price = [anAd.ad objectForKey:@"pret"];
-    coord_x = [anAd.ad objectForKey:@"lat"];
-    coord_y = [anAd.ad objectForKey:@"long"];
+    //coord_x = [anAd.ad objectForKey:@"lat"];
+    //coord_y = [anAd.ad objectForKey:@"long"];
+    coord_x = [anAd.ad objectForKey:@"long"];
+    coord_y = [anAd.ad objectForKey:@"lat"];
     ad_name = [anAd.ad objectForKey:@"name"];
     ad_text = [anAd.ad objectForKey:@"ad_text"];
     size = [anAd.ad objectForKey:@"size"];
@@ -175,6 +189,34 @@
         data = [request requestData];
         NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         NSLog(@"%@",string);
+        // verificat STATUS = OK:
+        NSDictionary * raspuns = [request responseDictionaryOfRequest];
+        NSLog(@"RASPUNS DICTIONARY: %@",raspuns);
+        NSString* status = [raspuns objectForKey:@"status"];
+        NSLog(@"STATUS : %@", status);
+        if ([status isEqualToString:@"OK"])
+        {
+            NSLog(@"STATUS OK! ");
+        // primit id-ul anuntului si atribuit in Dict:
+            NSString * idul = [[[raspuns objectForKey:@"ads"] objectAtIndex:0] objectForKey:@"id"];
+            [anAd.ad setObject:idul forKey:@"id"];
+            NSLog(@"id anunt:%@", [anAd.ad objectForKey:@"id"]);
+        // upload de imagini
+        // upload STATUS = OK-metoda retuneaza yes(din imagelist)
+        // publicat = YES:
+           // NSString * publicat = [anAd.ad objectForKey:@"publicat"];
+           NSString *publicat = @"YES";
+            [anAd.ad setObject:publicat forKey:@"publicat"];
+            NSLog(@"Publicat : %@", [anAd.ad objectForKey:@"publicat"]);
+        }
+        
+    }
+    else
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Atentie!" message:@"Anuntul nu a putut fi publicat! Recomandam verificarea conexiunii la internet!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        [alert release];
+    }
     }
 }
 
@@ -268,6 +310,10 @@
 */
 -(void) setMySettings{
     //TO DO
+}
+-(void)setid:(NSString *)string
+{
+    self.userId = [[NSString alloc] initWithString:string];
 }
 
 -(void) dealloc{

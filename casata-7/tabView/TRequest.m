@@ -42,13 +42,24 @@
 -(NSData *)requestData{
     
     //remove track
-    NSString *string = [[NSString alloc] initWithData:resultData encoding:NSUTF8StringEncoding];
+    NSString *string = [[[NSString alloc] initWithData:resultData encoding:NSUTF8StringEncoding]autorelease];
     NSLog(@"All the data received in NSString format: %@",string );
     NSArray *arr =[string componentsSeparatedByString:@"<!--"];
     resultData=[[arr objectAtIndex:0] dataUsingEncoding: [NSString defaultCStringEncoding] ];
     
     
     return self.resultData;
+}
+
+
+-(NSDictionary *) responseDictionaryOfRequest{
+
+    NSError* error;
+    NSDictionary* json = [NSJSONSerialization 
+                          JSONObjectWithData:resultData
+                          options:kNilOptions 
+                          error:&error];
+    return json;
 }
 
 -(void) dealloc{

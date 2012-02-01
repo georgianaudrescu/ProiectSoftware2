@@ -64,6 +64,8 @@
 -(IBAction)sliderSupMinValueChanged:(UISlider *)sender;
 -(IBAction)sliderSupMaxValueChanged:(UISlider *)sender;
 
+-(void)initsliders;
+
 -(void)backToStatistics;
 
 //-(void)clearFilters;
@@ -71,5 +73,7 @@
 
 -(IBAction)aplicaFiltre:(id)sender;
 -(IBAction)clearFiltre:(id)sender;
+
+-(IBAction)segmentedAnuntTypeChanged:(id)sender;
 
 @end

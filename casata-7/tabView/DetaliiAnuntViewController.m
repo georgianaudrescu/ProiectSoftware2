@@ -13,12 +13,13 @@
 
 @implementation DetaliiAnuntViewController
 @synthesize theAd;
-@synthesize pretLabel, propertyTypeLabel, monedaLabel, contactNameLabel, contactPhoneLabel, adTextLabel, adressLineLabel,nameLabel, anuntTypeLabel, favButton;
+@synthesize pretLabel, propertyTypeLabel, monedaLabel, contactNameLabel, contactPhoneLabel, adTextLabel, adressLineLabel,nameLabel, anuntTypeLabel, favButton, contactEmailLabel;
 @synthesize thumbnailImageView;
 @synthesize imgView, imgScrollView,imageViewsArray, imgList;
 @synthesize delegate, hidePinIfRemovedFromFav; //pt a seta map ca delegate
 //@synthesize popView, popViewContact; 
 @synthesize bigScroll, adTextView;
+@synthesize callButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -84,11 +85,24 @@
     self.pretLabel.text = [NSString stringWithFormat:@"%d %@",[[self.theAd.ad objectForKey:@"pret"] intValue], [self.theAd.ad objectForKey:@"moneda"]];
    
     self.contactNameLabel.text = [self.theAd.ad objectForKey:@"contact_name"];
+    self.contactEmailLabel.text = [self.theAd.ad objectForKey:@"contact_mail"];
+    NSLog(@"email: %@", [self.theAd.ad objectForKey:@"contact_mail"]);
     self.contactPhoneLabel.text = [self.theAd.ad objectForKey:@"contact_phone"];
     self.anuntTypeLabel.text = [self.theAd.ad objectForKey:@"ad_type"];
     
     self.thumbnailImageView.image = [UIImage imageNamed:@"house2.jpg"];
     
+    NSString *proptyp;
+    if ([[self.theAd.ad objectForKey:@"ad_type"] isEqual:@"sell"])
+    {
+        proptyp =@"vanzare";
+        
+    } 
+    if ([[self.theAd.ad objectForKey:@"ad_type"] isEqual:@"rent"])
+    {
+        proptyp =@"inchiriere";
+    }
+    self.anuntTypeLabel.text = proptyp;
     
     /*
     //ajustarea dimensiunii textului/label-ului
@@ -151,24 +165,30 @@
         
     
     //test thumnails in scrollview de unde sa selectezi ce sa-ti apara in imageview
+    CGSize size = CGSizeMake(300, 230);
+    
     self.imgList = [[TImageList alloc] init];
     TImage *img1 = [TImage alloc];
-    [img1 initWithImage:[UIImage imageNamed:@"imgtest1.jpg"]];
+    img1.name = @"Imagine 1";
+    [img1 initWithImage:[self imageWithImage:[UIImage imageNamed:@"imgtest1.jpg"] scaledToSize:size]];
     
     [self.imgList addImage:img1];
     [img1 release];
     TImage *img2 = [TImage alloc];
-    [img2 initWithImage:[UIImage imageNamed:@"imgtest2.jpg"]];
+    img2.name = @"Imagine 2";
+    [img2 initWithImage:[self imageWithImage:[UIImage imageNamed:@"imgtest2.jpg"] scaledToSize:size]];
     
     [self.imgList addImage:img2];
     [img2 release];
     TImage *img3 = [TImage alloc];
-    [img3 initWithImage:[UIImage imageNamed:@"imgtest3.jpg"]];
+    img3.name = @"Imagine 3";
+    [img3 initWithImage:[self imageWithImage:[UIImage imageNamed:@"imgtest3.jpg"] scaledToSize:size]];
     
     [self.imgList addImage:img3];
     [img3 release];
     TImage *img4 = [TImage alloc];
-    [img4 initWithImage:[UIImage imageNamed:@"imgtest4.jpg"]];
+    img4.name = @"Imagine 4";
+    [img4 initWithImage:[self imageWithImage:[UIImage imageNamed:@"imgtest4.jpg"] scaledToSize:size]];
     
     [self.imgList addImage:img4];
     [img4 release];
@@ -201,11 +221,20 @@
        // UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         UIImageView *imageView = [[[UIImageView alloc] init] autorelease];
         imageView.frame= CGRectMake((x*300), 0, 300, 230);
-        imageView.contentMode = UIViewContentModeScaleAspectFit;
+        imageView.contentMode = UIViewContentModeCenter;
         // 
+       
         TImage *theImag =  [self.imgList getImageAtIndex:x];
         UIImage *butImage = theImag.image;
         if(x==0)self.imgView.image = theImag.image;
+        
+        UILabel *titluLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 210, 300, 20)]autorelease];
+        titluLabel.text=theImag.name;
+        titluLabel.textAlignment = UITextAlignmentCenter;
+        //titluLabel.backgroundColor= [UIColor redColor];
+        [titluLabel setFont:[UIFont boldSystemFontOfSize:15]];
+        [imageView addSubview:titluLabel];
+        
         theImag=nil;
         //
         imageView.image = butImage;
@@ -282,6 +311,29 @@
     [self.bigScroll setContentOffset:CGPointMake(0, 630) animated:YES];
 }
 
+-(IBAction)callOwner:(UIButton*)sender
+{
+    NSString *deviceType = [UIDevice currentDevice].model;
+    NSLog(@"device: %@", deviceType);
+    
+    if([deviceType isEqualToString:@"iPhone"])
+    {
+        NSString * callString = [NSString  stringWithFormat:@"tel:%@", [self.theAd.ad objectForKey:@"contact_phone"]];
+         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:callString]];
+        
+            
+            //NSURL *phoneNumber = [[NSURL alloc] initWithString: @"tel:867-5309"];
+            //[[UIApplication sharedApplication] openURL: phoneNumber];
+
+    }
+    else
+    {
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Atentie!" message:@"Functionalitate disponibila numai pentru iPhone!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        [alert release];
+    }
+}
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
@@ -308,6 +360,23 @@
     
 }
 
+-(UIImage*) imageWithImage:(UIImage*)image scaledToSize:(CGSize)newSize
+{
+    //pentru a pastra proportiile
+    float hfactor = image.size.width/newSize.width;
+    float vfactor = image.size.height/newSize.height;
+    float factor = MAX(hfactor, vfactor);
+    factor = MAX(factor, 1); //pt a nu redimesniona imagini care sunt deja <
+    
+    CGSize propotionalSize = CGSizeMake((image.size.width/factor), (image.size.height/factor));
+    
+    UIGraphicsBeginImageContext(propotionalSize);
+    [image drawInRect:CGRectMake(0, 0, propotionalSize.width, propotionalSize.height)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+}
+
 -(void) dealloc
 { 
     [theAd release];
@@ -329,6 +398,8 @@
     [imgList release]; 
     [bigScroll release];
     [adTextView release];
+    [contactEmailLabel release];
+    [callButton release];
     [super dealloc];
 }
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

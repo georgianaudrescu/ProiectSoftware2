@@ -184,10 +184,13 @@
     [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
 	button.frame = CGRectMake(240.0f, 5.0f, 70.0f, 30.0f);
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    //UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    UITableViewCell *cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];    
+   /*
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
+    */
     
         //cell.imageView.image = [UIImage imageNamed:@"house.jpg"];
     
@@ -221,11 +224,13 @@
         {cell.imageView.image = tempAd.thumb.image;}
         
         //acest buton va fi numai in randurile in care anunturile au fost modificate...
-        if(tempAd.uploaded == NO)
+        if([[tempAd.ad objectForKey:@"publicat"] isEqualToString:@"NO"])
         {
+           
             button.tag=[indexPath row];
             [cell addSubview:button];
         }
+         NSLog(@"Anuntul publicat %@",[tempAd.ad objectForKey:@"publicat"]);
     }
 
     return cell;
@@ -233,9 +238,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
  
+    
+    if ([apdelegate.appSession.user.personalAds count] !=0)
+    {
     [[NSNotificationCenter defaultCenter] 
      postNotificationName:@"AnuntPropriuSelectat" 
      object:[NSString stringWithFormat:@"%d", [indexPath row]]];
+    }
 
 }
 
@@ -244,6 +253,9 @@
     //se publica anuntul selectat din lista
     NSLog(@"Se publica anuntul selectat");
     [apdelegate.appSession.user uploadAd:sender.tag];
+    [self.tableAds reloadData];
+
+    
 }
 
 

@@ -23,6 +23,7 @@
     UILabel *monedaLabel;
     UILabel *contactNameLabel;
     UILabel *contactPhoneLabel;
+    UILabel *contactEmailLabel;
     UIImageView *thumbnailImageView;
     UIButton *favButton;
     //
@@ -34,9 +35,10 @@
     SEL hidePinIfRemovedFromFav;
     UIScrollView *bigScroll;
     UITextView *adTextView;
+    UIButton *callButton;
 }
 @property(nonatomic,retain) TAd *theAd;
-@property(nonatomic,retain) IBOutlet UILabel *nameLabel,*propertyTypeLabel, *adTextLabel, *adressLineLabel, *pretLabel, *monedaLabel, *contactNameLabel, *contactPhoneLabel, *anuntTypeLabel; 
+@property(nonatomic,retain) IBOutlet UILabel *nameLabel,*propertyTypeLabel, *adTextLabel, *adressLineLabel, *pretLabel, *monedaLabel, *contactNameLabel, *contactPhoneLabel, *anuntTypeLabel, *contactEmailLabel;; 
 @property(nonatomic,retain) IBOutlet UIImageView *thumbnailImageView;
 @property(nonatomic,retain) IBOutlet UIButton *favButton;
 //
@@ -48,6 +50,7 @@
 @property (assign) SEL hidePinIfRemovedFromFav;
 @property (nonatomic, retain) IBOutlet UIScrollView * bigScroll;
 @property (nonatomic,retain) IBOutlet UITextView * adTextView;
+@property(nonatomic,retain)IBOutlet UIButton *callButton;
 
 -(void)loadAdWithId:(int)theAdId;
 //-(void)changeCurrentViewedImageToImageWithIndex:(id) sender;
@@ -57,6 +60,6 @@
 -(IBAction)contactButtonPressed:(id)sender;
 -(IBAction)upToImg:(id)sender;
 
-
-
+-(UIImage*) imageWithImage:(UIImage*)image scaledToSize:(CGSize)newSize;
+-(IBAction)callOwner:(UIButton*)sender;
 @end

@@ -43,9 +43,9 @@
 
 - (id) init;
 
-- (NSString *) getUserId;
-- (id) registerUserWithName:(NSString *)name WithPassword:(NSString*)pass WithPhone:(NSString *)phone AndEmail:(NSString *)email;
--(void) LogInUser: (NSString *) usernameLogIn LogInPass: (NSString *) passwordLogIn;
+//- (NSString *) getUserId;
+//- (id) registerUserWithName:(NSString *)name WithPassword:(NSString*)pass WithPhone:(NSString *)phone AndEmail:(NSString *)email;
+//-(void) LogInUser: (NSString *) usernameLogIn LogInPass: (NSString *) passwordLogIn;
 
 //- (void) Logout;
 
@@ -62,6 +62,7 @@
 //-(void) setMySettings;
 
 -(void) uploadAd:(int)adIndex;
+-(void)setid:(NSString *)string;
 
 @end
 

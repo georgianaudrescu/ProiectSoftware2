@@ -67,7 +67,7 @@
             propertyType,@"property_type",
             contactName,@"contact_name",
             contactPhone,@"contact_phone",
-            contactEmail,@"contact_email",
+            contactEmail,@"contact_mail",
             address,@"adress_line",
             judet,@"judet",
             oras,@"oras",
@@ -159,6 +159,7 @@
     NSString * price = [row objectForKey:@"pret"];
     NSString * moneda = [row objectForKey:@"moneda"];
     NSString * size = [row objectForKey:@"size"];
+    NSString * publicat = [row objectForKey:@"publicat"];
     
     self.ad = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                latitude,@"lat", 
@@ -173,10 +174,47 @@
                price,@"pret",
                moneda,@"moneda",
                size, @"size",
+               publicat, @"publicat",
                nil];
     uploaded = NO;
     
 }
+
+-(int)modifyAd:(NSDictionary *)row
+{
+    int modificat =0;
+    NSString * latitude = [ row objectForKey:@"lat"];//
+    if(![latitude isEqualToString:[self.ad objectForKey:@"lat"]]){modificat=1;return 1;}
+    NSString * longitude = [row objectForKey:@"long"];//
+    if(![longitude isEqualToString:[self.ad objectForKey:@"long"]]){modificat=1;return 1;}
+    NSString * name = [row objectForKey:@"name"];
+    if(![name isEqualToString:[self.ad objectForKey:@"name"]]){modificat=1;return 1;}
+    NSString * description = [row objectForKey:@"ad_text"];
+    if(![description isEqualToString:[self.ad objectForKey:@"ad_text"]]){modificat=1;return 1;}
+    NSString * type = [row objectForKey:@"ad_type"];
+    if(![type isEqualToString:[self.ad objectForKey:@"ad_type"]]){modificat=1;return 1;}
+    NSString * propertyType = [row objectForKey:@"property_type"];
+    if(![propertyType isEqualToString:[self.ad objectForKey:@"property_type"]]){modificat=1;return 1;}
+    NSString * address = [row objectForKey:@"adress_line"];
+    if(![address isEqualToString:[self.ad objectForKey:@"adress_line"]]){modificat=1;return 1;}
+    NSString * judet = [row objectForKey:@"judet"];
+    if(![judet isEqualToString:[self.ad objectForKey:@"judet"]]){modificat=1;return 1;}
+    NSString * oras = [row objectForKey:@"oras"];
+    if(![oras isEqualToString:[self.ad objectForKey:@"oras"]]){modificat=1;return 1;}
+    NSString * price = [row objectForKey:@"pret"];
+    if(![price isEqualToString:[self.ad objectForKey:@"pret"]]){modificat=1;return 1;}
+    NSString * moneda = [row objectForKey:@"moneda"];
+    if(![moneda isEqualToString:[self.ad objectForKey:@"moneda"]]){modificat=1;return 1;}
+    NSString * size = [row objectForKey:@"size"];
+    if(![size isEqualToString:[self.ad objectForKey:@"size"]]){modificat=1;return 1;}
+  
+   return 0;
+    
+    // NSString * publicat = [row objectForKey:@"publicat"];
+    
+
+}
+
 -(void)thumbnailWithTImage:(TImage*)timage scaledToSize:(CGSize)newSize
 {
     //pentru a pastra proportiile

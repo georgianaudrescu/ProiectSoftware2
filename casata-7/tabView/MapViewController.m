@@ -224,6 +224,26 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     hostReachable = [[Reachability reachabilityWithHostName: @"flapptest.comule.com"] retain];
     [hostReachable startNotifier];
     // Do any additional setup after loading the view, typically from a nib.
+    
+    
+    CLLocationCoordinate2D zoomLocation;
+    //zoomLocation.latitude=44.4;
+    //zoomLocation.longitude=26.1;
+    zoomLocation.longitude =self.locationManager.location.coordinate.longitude;
+    zoomLocation.latitude = self.locationManager.location.coordinate.latitude;
+    
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation,50000,50000);
+    MKCoordinateRegion adjustedRegion = [_mapView regionThatFits:viewRegion];
+    [_mapView setRegion:adjustedRegion animated:YES];
+    _mapView.showsUserLocation=YES;
+    
+    // [self getParamForReq];
+    flag=1;
+    flag_get_more_ads=1;
+    
+    hasLoadView = 1;
+    
+
 }
 
 
@@ -266,7 +286,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     // AppDelegate *apdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     
     
-    
+    /*
     CLLocationCoordinate2D zoomLocation;
     //zoomLocation.latitude=44.4;
     //zoomLocation.longitude=26.1;
@@ -283,7 +303,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     flag_get_more_ads=1;
     
     hasLoadView = 1;
-    
+    */
     
 }
 
@@ -332,9 +352,16 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     ///
             
     [self getParamForReq];
+            
+            ///////
+          //  NSMutableString *idses = [NSMutableString stringWithString:@"sessionTime=1328057240360&request=close%5Fsession&sid="];
+           // [idses appendString:self.appSession.user.userId];
+           // NSString * postString=[NSString stringWithString:idses];
+
     
             
-    NSMutableString *postString = [NSMutableString stringWithFormat:@"left=%f&sessionTime=1325693857685&right=%f&bottom=%f&top=%f&currency=euro&request=get_ads&zoom=5000&sid=session1",left,right,bottom,top];
+    NSMutableString *postString = [NSMutableString stringWithFormat:@"left=%f&sessionTime=1325693857685&right=%f&bottom=%f&top=%f&currency=euro&request=get_ads&zoom=5000&sid=",left,right,bottom,top];
+            [postString appendString: apdelegate.appSession.user.userId];
      if(onlyFilteredAdsVisible==YES)
         {NSMutableString *filtreString = [apdelegate.appSession getStringForFilters];
         [postString appendString:filtreString];
@@ -359,10 +386,12 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
             flag=0;
      }
         
-        NSMutableString * postString = [NSMutableString stringWithFormat:@"sessionTime=1327150364534&request=get_more_ads&sid=session1"];    
+        NSMutableString * postString = [NSMutableString stringWithFormat:@"sessionTime=1327150364534&request=get_more_ads&sid="];   
+        [postString appendString:apdelegate.appSession.user.userId];
         while ((flag_get_more_ads==1)&&(onlyFavAdsVisible==NO))
         {
-            postString = [NSString stringWithFormat:@"sessionTime=1327150364534&request=get_more_ads&sid=session1"];
+            postString = [NSMutableString stringWithFormat:@"sessionTime=1327150364534&request=get_more_ads&sid="];
+            [postString appendString:apdelegate.appSession.user.userId];
             [self getMoreAds:postString];
         }
          }
@@ -434,9 +463,10 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
         }
         
         int valoareMax,valoareMin, valoareAd;
-        valoareAd = [[oneAd.ad objectForKey:@"price"] intValue];
+        valoareAd = [[oneAd.ad objectForKey:@"pret"] intValue];
         valoareMax = [[apdelegate.appSession.filtre objectForKey:@"p_max"] intValue];
         valoareMin = [[apdelegate.appSession.filtre objectForKey:@"p_min"] intValue];
+        
         if((valoareAd>=valoareMin)&&(valoareAd<=valoareMax)) {priceCorespunde=1; NSLog(@"pret corespunde");}
         
         /*

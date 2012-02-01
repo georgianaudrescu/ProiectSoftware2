@@ -24,4 +24,6 @@
 //-(void) addParamList:(NSSet *)objects;
 //-(void) addParamListObject:(NSString *)object;
 
+-(NSDictionary *) responseDictionaryOfRequest;
+
 @end

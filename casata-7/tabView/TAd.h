@@ -46,6 +46,7 @@
 
 -(NSMutableDictionary *) getDetailsFromAd;
 -(void)createAd:(NSDictionary *)row;
+-(int)modifyAd:(NSDictionary *)row;
 
 -(void)thumbnailWithTImage:(TImage*)timage scaledToSize:(CGSize)newSize;
 -(void)readFromMemory:(NSDictionary *)row;

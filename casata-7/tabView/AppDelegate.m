@@ -38,12 +38,23 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     int activeInternet=1;
-    ////close session////// 
+    
+    self.appSession = [[TAppSession alloc] init];
+    [self.appSession globalVariablesInit];
+    [self.appSession readLocalData];///+++
+    //NSLog(@"USERID: %@", self.appSession.user.userId);
+    //NSLog(@"USERID: %@", self.appSession.user.userId);    ////close session////// 
     
     TRequest *req = [TRequest alloc] ;
     [req initWithHost:@"http://flapptest.comule.com"];
-    // NSString * postString=[NSString stringWithFormat:@"sessionTime=1326040737022&request=close%5Fsession&sid= %d", appSession.user.userId];
-    NSString * postString=@"sessionTime=1326043272238&request=close%5Fsession&sid=session1";
+   
+    NSMutableString *idses = [NSMutableString stringWithString:@"sessionTime=1328057240360&request=close%5Fsession&sid="];
+    [idses appendString:self.appSession.user.userId];
+    NSString * postString=[NSString stringWithString:idses];
+    
+    // NSString * postString=@"sessionTime=1326043272238&request=close%5Fsession&sid=session1";
+    
+    NSLog(@"poststring: %@", postString);//
     NSData *responseData;
     
     if([req makeRequestWithString:postString]!=0){
@@ -90,9 +101,7 @@
     
     
   
-    self.appSession = [[TAppSession alloc] init];
-    [self.appSession globalVariablesInit];
-    [self.appSession readLocalData];///+++
+    
     
     /* 
     //schimba culoarea status bar-ului de sus-din gri(default) in negru

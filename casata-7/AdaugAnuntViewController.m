@@ -27,7 +27,7 @@
     if (self) {
        // self.title = NSLocalizedString(@"Adauga anunt", @"Adauga anunt");
        // self.tabBarItem.image = [UIImage imageNamed:@"adauga_anunt"];
-       [self setTitle:@"Adauga anunt"];
+       
         //butonul care va aparea ca back button pt view-ul child care va fi pus in stiva peste view-ul curent
         UIBarButtonItem *anuleazaButton = [[[UIBarButtonItem alloc] initWithTitle:@"Inapoi" style:UIBarButtonItemStylePlain target:nil action:nil]autorelease]; 
         
@@ -35,9 +35,7 @@
         
         self.navigationItem.backBarButtonItem= anuleazaButton;  
         
-        self.navigationItem.rightBarButtonItem =  [[[UIBarButtonItem alloc] initWithTitle:@"Salveaza" style:UIBarButtonItemStylePlain target:self action:@selector(salveazaAnunt)]autorelease]; 
-        self.navigationItem.rightBarButtonItem.tintColor = [UIColor blackColor];
-    
+          
         
         apdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
         
@@ -85,6 +83,10 @@
     NSString *latitude = [NSString stringWithFormat:@"%f", theNewAd.adlocation.coordinate.latitude];
     NSString *longitude = [NSString stringWithFormat:@"%f", theNewAd.adlocation.coordinate.longitude];
     
+    NSString *publicat = @"NO";
+    
+    
+    
     NSString *ad_type;
     if([self.tipAnuntSegmentedControl selectedSegmentIndex]==0)
     {ad_type = @"sale";} 
@@ -110,19 +112,26 @@
     
     else
     {
-     NSDictionary *tempDictionary = [[[NSDictionary alloc] initWithObjectsAndKeys:name, @"name", ad_text, @"ad_text", ad_type, @"ad_type", pret, @"pret", size, @"size", moneda, @"moneda",latitude, @"lat", longitude, @"long", property_type, @"property_type",oras, @"oras", judet, @"judet", adress_line, @"adress_line", nil]autorelease];
-    
-    [theNewAd createAd:tempDictionary];
+     NSDictionary *tempDictionary = [[[NSDictionary alloc] initWithObjectsAndKeys:name, @"name", ad_text, @"ad_text", ad_type, @"ad_type", pret, @"pret", size, @"size", moneda, @"moneda",latitude, @"lat", longitude, @"long", property_type, @"property_type",oras, @"oras", judet, @"judet", adress_line, @"adress_line", publicat, @"publicat", nil]autorelease];
+        
+        if(flagAnuntVechi==1)
+            {int modificat= [theNewAd modifyAd:tempDictionary];
+             NSLog(@"anunt vechi, modificat: %d", modificat);
+            if(modificat==1){ [theNewAd createAd:tempDictionary];}
+            }
+        else{[theNewAd createAd:tempDictionary];
+         NSLog(@"new ad with dict:%@ ",tempDictionary);
+            [apdelegate.appSession.user.personalAds addAd:theNewAd];
+        }    
     
    // NSLog(@"name from texfield: %@", name);
    // NSLog(@"name from ad: %@", [theNewAd.ad objectForKey:@"name"]);
    // NSLog(@"name from dictionary: %@", [tempDictionary objectForKey:@"name"]);
-        NSLog(@"new ad with dict:%@ ",tempDictionary);
+       
         
         //se adauga in lista doar daca e nou, altfel e deja in lista    
-    if(flagAnuntVechi==0){[apdelegate.appSession.user.personalAds addAd:theNewAd];}
-    else{NSLog(@"anunt vechi");}
-    
+   
+       
     ////
      if(theNewAd.imageList!=nil)
      {if([theNewAd.imageList count]>0)
@@ -212,7 +221,12 @@
     if(!titleView)
     {titleView = [[UILabel alloc] initWithFrame:CGRectZero];
         titleView.backgroundColor = [UIColor clearColor];
+        if(flagAnuntVechi==1)
+        {titleView.font = [UIFont boldSystemFontOfSize:14];
+            titleView.textAlignment = UITextAlignmentLeft;}
+        else{
         titleView.font = [UIFont boldSystemFontOfSize:20];
+        }
         //titleView.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
         titleView.textColor = [UIColor blackColor];
         self.navigationItem.titleView = titleView;
@@ -552,6 +566,34 @@ numberOfRowsInComponent:(NSInteger)component
    
 }
 
+-(void) atentionareStergereAnunt
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Atentie" message:@"Anuntul se va sterge definitv. Continuati?" delegate:self cancelButtonTitle:@"NU" otherButtonTitles:@"DA", nil];
+    [alert show];
+    [alert release];
+}
+-(void) stergeAnunt
+{
+    //request de stergere de pe server - metoda din user
+    
+    
+    [apdelegate.appSession.user.personalAds removeAd:theNewAd];
+    [delegate performSelector:refreshMyAdsTable];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if(buttonIndex==0)
+       {
+           
+       }
+    else
+    {
+        NSLog(@"Stergere");
+        [self stergeAnunt];
+    }
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -562,6 +604,12 @@ numberOfRowsInComponent:(NSInteger)component
     if(theNewAd==nil)
     {theNewAd = [TAd alloc];
      flagAnuntVechi=0;   
+        [self setTitle:@"Adauga anunt"];
+        self.navigationItem.rightBarButtonItem =  [[[UIBarButtonItem alloc] initWithTitle:@"Salveaza" style:UIBarButtonItemStylePlain target:self action:@selector(salveazaAnunt)]autorelease]; 
+        self.navigationItem.rightBarButtonItem.tintColor = [UIColor blackColor];
+        
+        
+        
         [self.orasTextField setEnabled:NO];
         [self.judetTextField setEnabled:NO];
         [self.adresaTextField setEnabled:NO];
@@ -593,6 +641,16 @@ numberOfRowsInComponent:(NSInteger)component
         self.adresaTextField.text = [theNewAd.ad objectForKey:@"adress_line"];
         self.detaliiTextView.text = [theNewAd.ad objectForKey:@"ad_text"];
         tableValues = [[NSMutableArray alloc]  initWithObjects:[theNewAd.ad objectForKey:@"property_type"],nil];
+        
+        
+        UIBarButtonItem *salveazaButton =[[[UIBarButtonItem alloc] initWithTitle:@"Salveaza" style:UIBarButtonItemStylePlain target:self action:@selector(salveazaAnunt)]autorelease]; 
+        salveazaButton.tintColor =[UIColor blackColor];        
+        
+        UIBarButtonItem *stergeButton = [[[UIBarButtonItem alloc] initWithTitle:@"Sterge" style:UIBarButtonItemStylePlain target:self action:@selector(atentionareStergereAnunt)]autorelease];
+        stergeButton.tintColor= [UIColor blackColor];
+        
+        NSArray *buttonsArray = [NSArray arrayWithObjects:stergeButton,salveazaButton,nil];
+        self.navigationItem.rightBarButtonItems = buttonsArray;
         
        }
     

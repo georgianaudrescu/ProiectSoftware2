@@ -69,7 +69,8 @@
 
   //de pus un flag, daca oricare din campurile obligatorii sunt necompletate (sau nu are aleasa o locatie) sa apara un alerview cand se apasa "salveza" cu mesajul "datele anuntului sunt incomplete"  
     NSString *name = [NSString stringWithString:self.titluTextField.text];
-    NSString *ad_text = [NSString stringWithString:self.detaliiTextView.text];
+    NSString *ad_temp_text = [NSString stringWithString:self.detaliiTextView.text];
+    NSString *ad_text = [[ad_temp_text componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]] componentsJoinedByString:@" "];
     NSString *pret = [NSString stringWithString:self.pretTextField.text];
     NSString *size = [NSString stringWithString:self.suprafataTextField.text];
     
@@ -117,7 +118,7 @@
         if(flagAnuntVechi==1)
             {int modificat= [theNewAd modifyAd:tempDictionary];
              NSLog(@"anunt vechi, modificat: %d", modificat);
-            if(modificat==1){ [theNewAd createAd:tempDictionary];}
+            if(modificat==1){ [theNewAd createAd:tempDictionary]; NSLog(@"old ad with new dict:%@ ",theNewAd.ad);}
             }
         else{[theNewAd createAd:tempDictionary];
          NSLog(@"new ad with dict:%@ ",tempDictionary);

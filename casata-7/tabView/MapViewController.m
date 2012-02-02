@@ -22,6 +22,8 @@
 
 //#define myURL [NSURL URLWithString:@"http://flapptest.comule.com/get_ads/"]
 
+#define MERCATOR_RADIUS 85445659.44705395
+
 
 @implementation MapViewController
 @synthesize mapView=_mapView;
@@ -153,7 +155,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     self.detaliiAnuntViewController.hidePinIfRemovedFromFav= @selector(hidePinWhenFavesVisibleAndCurrentAdRemovedFromFav);//
     
     ////resize detalii
-    self.detaliiAnuntViewController.view.frame = CGRectMake(0, 0, 320, 464);
+    self.detaliiAnuntViewController.view.frame = CGRectMake(0, 0, 320, 464);//464
     
     
     
@@ -327,10 +329,12 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     right = cornerCoordinateNE.longitude;
     NSLog(@"%f, %f, %f, %f",left,right,top,bottom);
     //TODO zoom level;
+    /*
     MKMapPoint estMapPoint = MKMapPointMake(MKMapRectGetMinX(visibleRegion),MKMapRectGetMidY(visibleRegion));
     MKMapPoint vestMapPoint = MKMapPointMake(MKMapRectGetMaxX(visibleRegion), MKMapRectGetMidY(visibleRegion));
     int currentDist = MKMetersBetweenMapPoints(estMapPoint, vestMapPoint);
     NSLog(@"_____ZOOM LEVEL____:%d", currentDist);
+     */
     
 }
 
@@ -681,18 +685,19 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     if([action isEqualToString:GMAP_ANNOTATION_SELECTED]){
 		BOOL annotationAppeared = [[change valueForKey:@"new"] boolValue];
 		if (annotationAppeared) {
-			NSLog(@"annotation selected %@", ((TAnnotationView*) object).annotation.title);
-			[self showAnnotation:((TAnnotationView*) object).annotation];
-			selectedAnnotation = ((TAnnotationView*) object).annotation;
+			//NSLog(@"annotation selected %@", ((TAnnotationView*) object).annotation.title);
 			((TAnnotationView*) object).image = [UIImage imageNamed:@"redhouse.png"];
+            [self showAnnotation:((TAnnotationView*) object).annotation];
+			selectedAnnotation = ((TAnnotationView*) object).annotation;
+			
 		}
 		else {
             //annotation deselected
-			NSLog(@"annotation deselected %@", ((TAnnotationView*) object).annotation.title);
+			//NSLog(@"annotation deselected %@", ((TAnnotationView*) object).annotation.title);
             [self hideAnnotation];
             ((TAnnotationView*) object).image = [UIImage imageNamed:@"bluehouse.png"];
 			//[self.detaliiAnuntViewController.view removeFromSuperview];
-            [self hideAnnotation];
+            //---[self hideAnnotation];
             
             // selectedAnnotation=nil;
             
@@ -709,7 +714,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
 
     
     const int movementDistance = 316; // tweak as needed
-    const float movementDuration = 0.3f; // tweak as needed
+    const float movementDuration = 0.1f; // tweak as needed // initial =0.3
     
     [UIView beginAnimations: @"anim" context: nil];
     [UIView setAnimationBeginsFromCurrentState: YES];
@@ -876,6 +881,14 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
 }
 
 
+-(float) Mapzoomlevel {
+    
+    //return 21- round(log2(_mapView.region.span.longitudeDelta * MERCATOR_RADIUS * M_PI / (180.0 * _mapView.bounds.size.width)));
+    return round (_mapView.region.span.longitudeDelta * MERCATOR_RADIUS * M_PI / (180.0 * _mapView.bounds.size.width));
+    
+}
+
+
 /////////////////////
 -(void) mapView:(MKMapView *)mapView regionWillChangeAnimated:(BOOL)animated{
     mapRequest = nil;
@@ -883,6 +896,8 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
 
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated{
     NSLog(@"drag");
+    float zoom = [self Mapzoomlevel];
+    NSLog(@"zoom: %f", zoom);
     if((hasLoadView==1)&&(onlyFavAdsVisible==NO)&&(internetActive==YES)){
         //[lock unlockWithCondition:1];
         flag=1;

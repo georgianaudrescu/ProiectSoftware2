@@ -125,7 +125,7 @@
     // Title
     CPTMutableTextStyle *textStyle = [CPTMutableTextStyle textStyle];
     textStyle.color                 = [CPTColor blackColor];
-    textStyle.fontSize              = 18.0f;
+    textStyle.fontSize              = 12.0f;//era 18
     textStyle.fontName              = @"Helvetica";
     graph.title                             = @"";
     graph.titleTextStyle    = textStyle;
@@ -133,15 +133,19 @@
     
     // Setup scatter plot space
     CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)graph.defaultPlotSpace;
-    NSTimeInterval xLow               = oneDay * 0.5f;
+    NSTimeInterval xLow               = oneDay * 0.5f;//era 0.5
     plotSpace.xRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(xLow) length:CPTDecimalFromFloat(oneDay * 5.0f)];
+    plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(-0.35) length:CPTDecimalFromFloat(3.0)];
+    
+    /*era 
     plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(1.0) length:CPTDecimalFromFloat(3.0)];
+    */
     
     // Axes
     CPTXYAxisSet *axisSet = (CPTXYAxisSet *)graph.axisSet;
     CPTXYAxis *x              = axisSet.xAxis;
     x.majorIntervalLength             = CPTDecimalFromFloat(oneDay);
-    x.orthogonalCoordinateDecimal = CPTDecimalFromString(@"2");
+    x.orthogonalCoordinateDecimal = CPTDecimalFromString(@"0"); //era 2
     x.minorTicksPerInterval           = 0;
     NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
     dateFormatter.dateStyle = kCFDateFormatterShortStyle;
@@ -150,7 +154,7 @@
     x.labelFormatter                        = timeFormatter;
     
     CPTXYAxis *y = axisSet.yAxis;
-    y.majorIntervalLength             = CPTDecimalFromString(@"0.5");
+    y.majorIntervalLength             = CPTDecimalFromString(@"0.5"); //era 0.5
     y.minorTicksPerInterval           = 5;
     y.orthogonalCoordinateDecimal = CPTDecimalFromFloat(oneDay);
     
@@ -163,7 +167,7 @@
     lineStyle.lineWidth                             = 1.0f;
     lineStyle.lineColor                             = [CPTColor greenColor];
     barLineStyle                                    = [lineStyle retain];
-    dataSourceLinePlot.barLineStyle = barLineStyle;
+    dataSourceLinePlot.barLineStyle = barLineStyle;;
     
     // Bar properties
     dataSourceLinePlot.barWidth       = 1.0f;
@@ -183,8 +187,8 @@
     NSMutableArray *newData = [NSMutableArray array];
     NSUInteger i;
     for ( i = 0; i < 5; i++ ) {
-        NSTimeInterval x = oneDay * (i + 1.0);
-        float y                  = 3.0f * rand() / (float)RAND_MAX + 1.2f;
+        NSTimeInterval x = oneDay * (i +1.0); 
+        float y                  = 3.0f * rand() / (float)RAND_MAX ; //+ 1.2f; 
         float rHigh              = rand() / (float)RAND_MAX * 0.05f + 0.025f;
         float rLow               = rand() / (float)RAND_MAX * 0.05f + 0.025f;
         float rLeft              = (rand() / (float)RAND_MAX * 0.0125f + 0.0125f) * oneDay;

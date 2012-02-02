@@ -161,6 +161,8 @@
     NSString * size = [row objectForKey:@"size"];
     NSString * publicat = [row objectForKey:@"publicat"];
     
+    NSLog(@"add/edit add with description: %@", description);
+    
     self.ad = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                latitude,@"lat", 
                longitude,@"long",

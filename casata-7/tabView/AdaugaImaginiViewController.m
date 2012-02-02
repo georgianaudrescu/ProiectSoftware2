@@ -19,7 +19,7 @@
 @implementation AdaugaImaginiViewController
 @synthesize imgScrollView, imageViewsArray, generalScrollView;
 @synthesize currentImageNr, totalImages, defaultImageIndex;
-@synthesize titluImagineTextField, toolBar, disabledView, defaultView;
+@synthesize toolBar, disabledView, defaultView;
 @synthesize picker;
 @synthesize tempAd;
 
@@ -345,7 +345,7 @@
     img1=nil;//
 
     
-    self.titluImagineTextField.text=@"";
+    //self.titluImagineTextField.text=@"";
    
     self.currentImageNr=self.totalImages;
     
@@ -376,7 +376,7 @@
         self.currentImageNr=0;
         
         //self.imgView.image = [UIImage imageNamed:@"emptyImage.png"];
-        self.titluImagineTextField.text=@"";
+        //self.titluImagineTextField.text=@"";
         self.defaultImageIndex=-1;
         //self.descriereImagineTextField.text=@"";
         
@@ -412,7 +412,7 @@
                         
             TImage *theImag =  [tempAd.imageList getImageAtIndex:(self.currentImageNr-1)];
            
-            self.titluImagineTextField.text=theImag.name;
+            //self.titluImagineTextField.text=theImag.name;
             //self.descriereImagineTextField.text=theImag.description;
            
             theImag=nil;
@@ -441,7 +441,7 @@
    
     TImage *theImag =  [tempAd.imageList getImageAtIndex:(self.currentImageNr+1)];
            
-            self.titluImagineTextField.text=theImag.name;
+            //self.titluImagineTextField.text=theImag.name;
             //self.descriereImagineTextField.text=theImag.description;
             
     theImag=nil;
@@ -482,7 +482,7 @@
     self.currentImageNr = b/300;
     
     TImage *theImag =  [tempAd.imageList getImageAtIndex:self.currentImageNr];
-    self.titluImagineTextField.text=theImag.name;
+    //self.titluImagineTextField.text=theImag.name;
     theImag=nil;
     
     if(self.currentImageNr==self.defaultImageIndex)
@@ -507,6 +507,7 @@
    [self.generalScrollView setContentOffset:CGPointMake(0, 216) animated:YES];
     
 }
+/*
 -(IBAction) textFieldReturn:(id)sender{
     [[self.toolBar.items objectAtIndex:0] setEnabled:YES];
     [[self.toolBar.items objectAtIndex:1] setEnabled:YES];
@@ -524,7 +525,7 @@
         
         TImage *theImag =  [tempAd.imageList getImageAtIndex:self.currentImageNr];
         //theImag.description = self.descriereImagineTextField.text;
-        theImag.name = self.titluImagineTextField.text;
+        //theImag.name = self.titluImagineTextField.text;
         theImag=nil;
     }
     [self.disabledView removeFromSuperview]; 
@@ -542,13 +543,14 @@
         
         TImage *theImag =  [tempAd.imageList getImageAtIndex:self.currentImageNr];
        // theImag.description = self.descriereImagineTextField.text;
-        theImag.name = self.titluImagineTextField.text;
+        //theImag.name = self.titluImagineTextField.text;
         theImag=nil;
     }
     
-    [self.titluImagineTextField resignFirstResponder];
+    //[self.titluImagineTextField resignFirstResponder];
     //[self.descriereImagineTextField resignFirstResponder];
 }
+*/
 
 -(void)setCurrentImageAsDefault
 {if(self.totalImages>0)
@@ -609,7 +611,7 @@
        
         
         
-        self.titluImagineTextField.text=img1.name;
+        //self.titluImagineTextField.text=img1.name;
         
         self.currentImageNr=self.totalImages;
         
@@ -642,7 +644,7 @@
     [generalScrollView release];
     [imageViewsArray release];
     [picker release];
-    [titluImagineTextField release];
+    //[titluImagineTextField release];
     [disabledView release];
     [defaultView release];
     //[descriereImagineTextField release];

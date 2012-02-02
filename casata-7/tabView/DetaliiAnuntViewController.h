@@ -36,6 +36,10 @@
     UIScrollView *bigScroll;
     UITextView *adTextView;
     UIButton *callButton;
+    UIView * headerView;
+    UIView * imaginiView;
+    UIView * detaliiView;
+    UIView * contactView;
 }
 @property(nonatomic,retain) TAd *theAd;
 @property(nonatomic,retain) IBOutlet UILabel *nameLabel,*propertyTypeLabel, *adTextLabel, *adressLineLabel, *pretLabel, *monedaLabel, *contactNameLabel, *contactPhoneLabel, *anuntTypeLabel, *contactEmailLabel;; 
@@ -51,6 +55,10 @@
 @property (nonatomic, retain) IBOutlet UIScrollView * bigScroll;
 @property (nonatomic,retain) IBOutlet UITextView * adTextView;
 @property(nonatomic,retain)IBOutlet UIButton *callButton;
+@property (nonatomic, retain)IBOutlet UIView * headerView;
+@property (nonatomic, retain)IBOutlet UIView * imaginiView;
+@property (nonatomic, retain)IBOutlet UIView * detaliiView;
+@property (nonatomic, retain)IBOutlet UIView * contactView;
 
 -(void)loadAdWithId:(int)theAdId;
 //-(void)changeCurrentViewedImageToImageWithIndex:(id) sender;

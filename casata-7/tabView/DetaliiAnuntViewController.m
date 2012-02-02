@@ -20,6 +20,7 @@
 //@synthesize popView, popViewContact; 
 @synthesize bigScroll, adTextView;
 @synthesize callButton;
+@synthesize headerView, imaginiView, detaliiView, contactView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -227,13 +228,13 @@
         TImage *theImag =  [self.imgList getImageAtIndex:x];
         UIImage *butImage = theImag.image;
         if(x==0)self.imgView.image = theImag.image;
-        
+        /*
         UILabel *titluLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 210, 300, 20)]autorelease];
         titluLabel.text=theImag.name;
         titluLabel.textAlignment = UITextAlignmentCenter;
         //titluLabel.backgroundColor= [UIColor redColor];
         [titluLabel setFont:[UIFont boldSystemFontOfSize:15]];
-        [imageView addSubview:titluLabel];
+        [imageView addSubview:titluLabel]; */
         
         theImag=nil;
         //
@@ -343,10 +344,29 @@
     
     //self.imgScrollView.frame = CGRectMake(10, 180, 300, 200);    
     
-    self.bigScroll.frame = CGRectMake(0, 100, 320, 360);
+    self.headerView.frame = CGRectMake(0, 0, 320, 100);
+    [self.view addSubview:self.headerView];
+    
+    self.bigScroll.frame = CGRectMake(0, 100, 320, 360); //360
     [self.bigScroll setPagingEnabled:YES];
     [self.bigScroll setContentSize:CGSizeMake(320, 945)];
     [self.view addSubview:self.bigScroll];
+    
+    
+    self.imaginiView.frame = CGRectMake(0, 0, 320, 360);//315
+    self.imgScrollView.frame = CGRectMake(10, 12, 300,230);
+    [self.imaginiView addSubview:self.imgScrollView];
+    [self.bigScroll addSubview:self.imaginiView];
+    
+
+    
+    self.detaliiView.frame = CGRectMake(0, 315, 320, 360);
+    [self.bigScroll addSubview:self.detaliiView];
+
+    self.contactView.frame = CGRectMake(0, 630, 320, 360);
+    [self.bigScroll addSubview:self.contactView];
+
+    
 }
 
 - (void)viewDidUnload
@@ -400,6 +420,10 @@
     [adTextView release];
     [contactEmailLabel release];
     [callButton release];
+    [headerView release];
+    [imaginiView release];
+    [detaliiView release];
+    [contactView release];
     [super dealloc];
 }
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

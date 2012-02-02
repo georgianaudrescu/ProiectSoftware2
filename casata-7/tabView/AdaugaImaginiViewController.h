@@ -20,7 +20,7 @@
     //UIImageView *imgView;
     NSMutableArray *imageViewsArray;
     //
-    UITextField *titluImagineTextField;
+    //UITextField *titluImagineTextField;
     //UITextField *descriereImagineTextField;
     //UISwitch *valoareDefault;
     UIImagePickerController *picker;
@@ -36,7 +36,7 @@
 @property (nonatomic, retain) IBOutlet UIScrollView *generalScrollView;
 //@property (nonatomic, retain) IBOutlet UIImageView *imgView;
 @property(nonatomic, retain) NSMutableArray *imageViewsArray;
-@property(nonatomic, retain) IBOutlet UITextField *titluImagineTextField;
+//@property(nonatomic, retain) IBOutlet UITextField *titluImagineTextField;
 //@property(nonatomic, retain) IBOutlet UISwitch *valoareDefault;
 @property(nonatomic, retain) UIImagePickerController *picker;
 @property(nonatomic, assign) int currentImageNr;

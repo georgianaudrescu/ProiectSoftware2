@@ -336,6 +336,21 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     NSLog(@"_____ZOOM LEVEL____:%d", currentDist);
      */
     
+    
+    //New Params:
+    /*
+    visibleRegion.origin.x
+    visibleRegion.origin.y
+    visibleRegion.size.width
+    visibleRegion.size.height
+     */
+    CLLocationCoordinate2D origineaZonei = MKCoordinateForMapPoint(visibleRegion.origin);
+    float latime = right-left;
+    float lungime = top-bottom;
+    NSLog(@"Coordonare x= %f, y= %f, height= %f, width= %f", origineaZonei.latitude, origineaZonei.longitude, lungime, latime);
+    NSLog(@"delta long = %f, delta lat =%f", _mapView.region.span.longitudeDelta,_mapView.region.span.latitudeDelta );
+    // catre noul server se vor trimite coordonatele punctuluid e origine(stanga sus) si intaltimea = latitudeDelta, latimea = longitudeDelta
+    
 }
 
 - (void) threadReqMethod{

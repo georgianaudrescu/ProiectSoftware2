@@ -76,7 +76,7 @@
     [self.bigScroll setContentOffset:CGPointMake(0, 0)];
     
     
-    NSLog(@"Judetul ad-ului selectat:%@", [self.theAd.ad objectForKey:@"judet"]);
+   // NSLog(@"Judetul ad-ului selectat:%@", [self.theAd.ad objectForKey:@"judet"]);
     
     //punerea textului anuntului in label-urile corespunzatoare
     self.nameLabel.text = [self.theAd.ad objectForKey:@"name"];
@@ -94,7 +94,7 @@
     self.anuntTypeLabel.text = [self.theAd.ad objectForKey:@"ad_type"];
     self.propertySize.text = [NSString stringWithFormat:@"%@ mp", [self.theAd.ad objectForKey:@"size"]];
     
-    self.thumbnailImageView.image = [UIImage imageNamed:@"house2.jpg"];
+    self.thumbnailImageView.image = [UIImage imageNamed:@"thumbAnuntDefault.png"];
     
     NSString *proptyp;
     if ([[self.theAd.ad objectForKey:@"ad_type"] isEqual:@"sell"])
@@ -143,12 +143,8 @@
         [self.favButton setImage:[UIImage imageNamed:@"starfavDeactivat.png"] forState:UIControlStateNormal];
         self.favButton.tag=0;
     }
-        
-    
-    //test thumnails in scrollview de unde sa selectezi ce sa-ti apara in imageview
-    //CGSize size = CGSizeMake(300, 230);
-    
-      //clear old images from scrollView
+      
+    //clear old images from scrollView
     if(self.imageViewsArray.count>0)
     {
         for(UIView *view in self.imgScrollView.subviews)
@@ -158,71 +154,87 @@
         [self.imageViewsArray removeAllObjects];
     }
     
+    self.imgScrollView.contentSize = CGSizeMake(300, 230);
+    ////
     
-    [self.imgScrollView setPagingEnabled:YES];
-    [self.imgScrollView setBounces:NO];
     
+    //get images or put default imag
     
     int nrImagini = [[self.theAd.ad objectForKey:@"num_pic"] intValue];
-    NSLog(@"NUMAR DE IMAGINI:%d", nrImagini);
-    if(nrImagini!=0){
-        
-        self.imgScrollView.contentSize = CGSizeMake(nrImagini*300, 230);
-        
-        if(self.theAd.imageList==nil)
-        { 
-            [self.theAd initImageList];
-            int idul = [[self.theAd.ad objectForKey:@"id"] intValue];
-        
-            for(int x=1;x<=nrImagini;x++)
-            {
-                TImage *img1 = [TImage alloc];
-            
-                [img1 initWithImageFromUrlString:[NSString stringWithFormat:@"http://unicode.ro/imobiliare/images/%d_%d.jpg", idul, x]];
-                NSLog(@"%@",[NSString stringWithFormat:@"http://unicode.ro/imobiliare/images/%d_%d.jpg", idul, x]);
-                
-            
-                [self.theAd.imageList addImage:img1];
-                [img1 release];
-
-            }   
-    
-        }
-    
-        
-        NSLog (@"nr de imagini din lista:%d", [self.theAd.imageList count]);
+    NSLog(@"numar imagini:%d", nrImagini);
+    int idul = [[self.theAd.ad objectForKey:@"id"] intValue];
+    if(nrImagini!=0)
+    {
+    if(self.theAd.imageList == nil)
+    {
+        [self.theAd initImageList];
         
         
+        int d = [[self.theAd.ad objectForKey:@"main_pic"] intValue];
         
-        //adaugare imagini in image scroll
-        for(int x=0;x<nrImagini;x++)
+        // NSLog(@"index default:%d", d);
+         CGSize thumbSize = CGSizeMake(101, 92);
+        TImage *thumbImag = [TImage alloc];
+        [thumbImag initWithImageFromUrlString:[NSString stringWithFormat:@"http://unicode.ro/imobiliare/images/%d_%d_th.jpg",idul, d]];   
+        
+        NSLog(@"thumbnail url:%@", [thumbImag.url absoluteString]);
+        
+         [self.theAd thumbnailWithTImage:thumbImag scaledToSize:thumbSize];
+        ///[thumbImag release];
+        thumbImag=nil; 
+        
+       
+        
+        for(int i=1;i<=nrImagini;i++)
         {
             
-            UIImageView *imageView = [[[UIImageView alloc] init] autorelease];
-            imageView.frame= CGRectMake((x*300), 0, 300, 230);
-            imageView.contentMode = UIViewContentModeCenter;
-            // 
-            
-            TImage *theImag =  [self.imgList getImageAtIndex:x];
-            UIImage *butImage = theImag.image;
-            if(x==0)self.imgView.image = theImag.image;
-            
-            theImag=nil;
-            imageView.image = butImage;
-            [butImage release];
-            
-            [self.imageViewsArray addObject:imageView];
-            [self.imgScrollView addSubview:[self.imageViewsArray objectAtIndex:x]];
-            self.imgScrollView.contentSize = CGSizeMake(300, 230);
-            
-        }       
-        NSLog(@"nr de imagini din array:%d", self.imageViewsArray.count);
+            TImage *img1 = [TImage alloc];
+            [img1 initWithImageFromUrlString:[NSString stringWithFormat:@"http://unicode.ro/imobiliare/images/%d_%d.jpg",idul,i]];
+
+            [self.theAd.imageList addImage:img1];
+            //[img1 release];
+            img1=nil;
+        }
+    }
+    
+     self.thumbnailImageView.image = self.theAd.thumb.image;//
+        
+    for(int x=0;x<nrImagini;x++)
+    {
+        //daca sunt mai putin de 7 imagini, nu depasesc latimea scrolview-ului si ar fi ideal sa fie aliniate central, de aceea aflam o pozitie de start
+        /* if(nr<=6)
+         start = (300 - nr*50)/2;
+         else  start=0; */
+        
+        // UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        UIImageView *imageView = [[[UIImageView alloc] init] autorelease];
+        imageView.frame= CGRectMake((x*300), 0, 300, 230);
+        imageView.contentMode = UIViewContentModeScaleAspectFit;
+        // 
+        TImage *theImag =  [self.theAd.imageList getImageAtIndex:x];
+        NSLog(@"mem adress of image:%@", theImag);
+        UIImage *butImage = theImag.image;
         
         
+        theImag=nil;
+        //
+        imageView.image = butImage;
+        //[butImage release];
+        
+        [self.imageViewsArray addObject:imageView];
+        [self.imgScrollView addSubview:[self.imageViewsArray objectAtIndex:x]];
+        
+        
+    }       
+    
+    
+    self.imgScrollView.contentSize = CGSizeMake(nrImagini*300, 230);
+    [self.imgScrollView setPagingEnabled:YES];
+    [self.imgScrollView setBounces:NO];
     }
     else
     {
-    //default images
+    //imagine default
         UIImageView *imageView = [[[UIImageView alloc] init] autorelease];
         imageView.frame= CGRectMake(0, 0, 300, 230);
         imageView.contentMode = UIViewContentModeCenter;   
@@ -231,12 +243,10 @@
         
         [self.imageViewsArray addObject:imageView];
         [self.imgScrollView addSubview:[self.imageViewsArray objectAtIndex:0]];
-
         
     }
-        
+    
 }
-
 
 /*-(void) changeCurrentViewedImageToImageWithIndex:(id) sender
 {

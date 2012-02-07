@@ -40,6 +40,7 @@
     NSString * moneda = [row objectForKey:@"moneda"];
     NSString *size = [row objectForKey:@"size"];
     NSString *imagesNumber = [row objectForKey:@"num_pic"];
+    NSString *mainPic = [row objectForKey:@"main_pic"];
    
   
     
@@ -76,7 +77,8 @@
             price,@"pret",
             moneda,@"moneda",
             size , @"size",
-            imagesNumber, @"num_pic",   
+            imagesNumber, @"num_pic",
+            mainPic, @"main_pic",   
           //  previewImage,@"previewImage",
                 nil];
     /*

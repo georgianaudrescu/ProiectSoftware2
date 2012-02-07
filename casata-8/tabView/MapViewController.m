@@ -223,7 +223,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     [internetReachable startNotifier];
     
     // check if a pathway to a random host exists
-    hostReachable = [[Reachability reachabilityWithHostName: @"flapptest.comule.com"] retain];
+    hostReachable = [[Reachability reachabilityWithHostName: @"http://unicode.ro/imobiliare/index.php"] retain];
     [hostReachable startNotifier];
     // Do any additional setup after loading the view, typically from a nib.
     
@@ -234,7 +234,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     zoomLocation.longitude =self.locationManager.location.coordinate.longitude;
     zoomLocation.latitude = self.locationManager.location.coordinate.latitude;
     
-    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation,50000,50000);
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation,700,700);
     MKCoordinateRegion adjustedRegion = [_mapView regionThatFits:viewRegion];
     [_mapView setRegion:adjustedRegion animated:YES];
     _mapView.showsUserLocation=YES;
@@ -273,7 +273,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     zoomLocation.longitude =newLocation.coordinate.longitude;
     zoomLocation.latitude = newLocation.coordinate.latitude;
     
-    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation,2500,2500);
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation,700,700);
     MKCoordinateRegion adjustedRegion = [_mapView regionThatFits:viewRegion];
     [_mapView setRegion:adjustedRegion animated:YES];
     _mapView.showsUserLocation=YES;
@@ -327,7 +327,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     bottom = cornerCoordinateSW.latitude;
     left = cornerCoordinateSW.longitude;
     right = cornerCoordinateNE.longitude;
-    NSLog(@"%f, %f, %f, %f",left,right,top,bottom);
+    NSLog(@"left = %f, right = %f, top = %f, bottom = %f",left,right,top,bottom);
     //TODO zoom level;
     /*
     MKMapPoint estMapPoint = MKMapPointMake(MKMapRectGetMinX(visibleRegion),MKMapRectGetMidY(visibleRegion));
@@ -379,8 +379,11 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
 
     
             
-    NSMutableString *postString = [NSMutableString stringWithFormat:@"left=%f&sessionTime=1325693857685&right=%f&bottom=%f&top=%f&currency=euro&request=get_ads&zoom=5000&sid=",left,right,bottom,top];
+    //NSMutableString *postString = [NSMutableString stringWithFormat:@"left=%f&sessionTime=1325693857685&right=%f&bottom=%f&top=%f&currency=euro&request=get_ads&zoom=5000&sid=",left,right,bottom,top];
+            NSMutableString *postString = [NSMutableString stringWithFormat:@"left=%f&sessionTime=1325693857685&right=%f&bottom=%f&top=%f&request=get_ads&sid=",left,right,bottom,top];
+            
             [postString appendString: apdelegate.appSession.user.userId];
+            NSLog(@"STRING REQ: %@",postString);
      if(onlyFilteredAdsVisible==YES)
         {NSMutableString *filtreString = [apdelegate.appSession getStringForFilters];
         [postString appendString:filtreString];
@@ -391,16 +394,16 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
             
     mapRequest = [TRequest alloc];
             testRequest = mapRequest;
-            NSLog(@"### ALOCARE  mapreq%@",mapRequest);
+           // NSLog(@"### ALOCARE  mapreq%@",mapRequest);
     //[mapRequest initWithHost:@"http://flapptest.comule.com"];
     [mapRequest initWithHost:@"http://unicode.ro/imobiliare/index.php"];
     
     NSData * data;
             
-            NSLog(@"########### INIT WITH HOST mapreq%@",mapRequest);
+            //NSLog(@"########### INIT WITH HOST mapreq%@",mapRequest);
     if([mapRequest makeRequestWithString:postString]!=0){
         mapRequest = testRequest;
-         NSLog(@"########### mapreq%@",mapRequest);
+        // NSLog(@"########### mapreq%@",mapRequest);
         data=[mapRequest requestData];
         //NSString *string = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]autorelease];
         //NSLog(@"++++  data from req:%@", string);
@@ -418,8 +421,13 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
             flag=0;
      }
         
-        NSMutableString *postString = [NSMutableString stringWithFormat:@"left=%f&sessionTime=1325693857685&right=%f&bottom=%f&top=%f&currency=euro&request=get_ads&zoom=5000&sid=",left,right,bottom,top];
+        //NSMutableString *postString = [NSMutableString stringWithFormat:@"left=%f&sessionTime=1325693857685&right=%f&bottom=%f&top=%f&currency=euro&request=get_ads&zoom=5000&sid=",left,right,bottom,top];
+        NSMutableString *postString = [NSMutableString stringWithFormat:@"left=%f&sessionTime=1325693857685&right=%f&bottom=%f&top=%f&request=get_ads&sid=",left,right,bottom,top];
+        
         [postString appendString: apdelegate.appSession.user.userId];
+        
+        NSLog(@"STRING REQ: %@",postString);
+        
         if(onlyFilteredAdsVisible==YES)
         {NSMutableString *filtreString = [apdelegate.appSession getStringForFilters];
             [postString appendString:filtreString];
@@ -584,7 +592,8 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
         //nr = [json objectForKey:@"ads_per_pack"];
         //NSNumber * ads_per_pack = [json2 objectForKey:@"new_ads_sent"];
         NSNumber * ads_per_pack = [json2 objectForKey:@"ads_per_pack"];
-        if (ads_per_pack.integerValue ==0) 
+        NSNumber * ads_found = [json2 objectForKey:@"ads_found"];
+        if ((ads_per_pack.integerValue ==0) || (ads_found.integerValue == 0))
         {
             flag_get_more_ads=0;
             //return;
@@ -607,7 +616,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
         NSLog(@"No data recieved from the server!");
         return;
     }
-    NSLog(@"data fetched from server %@",data);
+    //NSLog(@"data fetched from server %@",data);
     
     
     self.view.hidden = NO;
@@ -619,6 +628,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
                           error:&error];
     NSLog(@"data JSON: %@", json); 
     NSArray *allAds = [json objectForKey:@"ads"];
+    
     
     for(NSDictionary *row in allAds)
     {
@@ -675,7 +685,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation{
-    NSLog(@"in annotation method");
+    //NSLog(@"in annotation method");
     
     // Return nil for the user's locatio
     if ([annotation isKindOfClass:[MKUserLocation class]])
@@ -837,6 +847,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     }
     else 
     {   onlyFavAdsVisible=NO;
+        flag=1;
         NSLog(@"Show all ads on map/deselect fav button");
         self.navigationItem.rightBarButtonItem.tag=0;
         self.navigationItem.rightBarButtonItem.image = [UIImage imageNamed:@"starfavDeactivat.png"];
@@ -935,7 +946,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     NSLog(@"drag");
     float zoom = [self Mapzoomlevel];
     NSLog(@"zoom: %f", zoom);
-    if((hasLoadView==1)&&(onlyFavAdsVisible==NO)&&(internetActive==YES)){
+    if((hasLoadView==1)&&(onlyFavAdsVisible==NO)&&(internetActive==YES)&&(flag_user_location==1)){
         //[lock unlockWithCondition:1];
         flag=1;
         flag_get_more_ads=0;

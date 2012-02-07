@@ -14,10 +14,25 @@
 -(void)initWithImageFromUrlString:(NSString *) anURLString
 { 
     self.url = [NSURL URLWithString:anURLString];
+    
+    NSLog(@"url imagine: %@", [self.url absoluteString]);
+    
        NSData* imageData = [[NSData alloc]initWithContentsOfURL:self.url];
     
+    
+    
     //creeaza view-ul pt imaginea de la url
-    self.image = [[UIImage alloc] initWithData:imageData];
+    
+    UIImage *tempImag = [[[UIImage alloc] initWithData:imageData]autorelease];
+    CGSize size = CGSizeMake(300, 230);
+    
+    self.image = [self imageWithImage:tempImag scaledToSize:size];
+    
+    
+    //self.image = [[UIImage alloc] initWithData:imageData];
+    
+    //NSLog(@"%fX%f", self.image.size.width, self.image.size.height);
+    
     //[imageView setImage:image];
     
   

@@ -18,7 +18,7 @@
     self=[super init];
     if(self){
         request = [TRequest alloc];
-        [request initWithHost:@"http://flapptest.comule.com"];
+        [request initWithHost:@"http://unicode.ro/imobiliare/index.php"];
         userId= @""; //[NSNumber numberWithInt:0];
         personalAds = [[TAdList alloc] init];
         favorites= [[TAdList alloc] init];
@@ -136,7 +136,7 @@
     {
     TAd *anAd = [personalAds getAdAtIndex:adIndex];
     request = [TRequest alloc] ;
-    [request initWithHost:@"http://flapptest.comule.com"];
+    [request initWithHost:@"http://unicode.ro/imobiliare/index.php"];
     NSString *judet, *oras , *price,*coord_x, *ad_name, *coord_y, *ad_text, *size, *adress;
     //ad_type, property_type, currency
     
@@ -180,7 +180,8 @@
     ad_text = [anAd.ad objectForKey:@"ad_text"];
     size = [anAd.ad objectForKey:@"size"];
     adress= [anAd.ad objectForKey:@"adress_line"];
-    NSString * postString = [[NSString alloc] initWithFormat:@"judet=%@&oras=%@&ad_type=%d&request=add_ad&property_type=%d&sessionTime=1327715431897&sid=2&price=%@&currency=%d&coord_x=%@&ad_name=%@&coord_y=%@&ad_text=%@&size=%@&adress=%@",judet,oras,tip_anunt,tip_proprietate,price,moneda,coord_x,ad_name,coord_y,ad_text,size,adress];
+    NSMutableString * postString = [[NSMutableString alloc] initWithFormat:@"judet=%@&oras=%@&ad_type=%d&request=add_ad&property_type=%d&sessionTime=1327715431897&price=%@&moneda_id=%d&coord_x=%@&ad_name=%@&coord_y=%@&ad_text=%@&size=%@&address=%@&name=%@&phone=%@&mail=%@&main_pic=0&num_pic=0&sid=",judet,oras,tip_anunt,tip_proprietate,price,moneda,coord_x,ad_name,coord_y,ad_text,size,adress,self.username, self.phone, self.email];
+    [postString appendString: self.userId];
     NSLog(@"POST STRING: %@", postString);
     
     NSData * data;
@@ -188,7 +189,11 @@
     {
         data = [request requestData];
         NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        NSLog(@"%@",string);
+        NSLog(@"RASPUNS STRING %@",string);
+        
+        NSArray *arr =[string componentsSeparatedByString:@"<br />"];
+        request.resultData = [[arr objectAtIndex:[arr count]-1] dataUsingEncoding: [NSString defaultCStringEncoding] ];
+        
         // verificat STATUS = OK:
         NSDictionary * raspuns = [request responseDictionaryOfRequest];
         NSLog(@"RASPUNS DICTIONARY: %@",raspuns);

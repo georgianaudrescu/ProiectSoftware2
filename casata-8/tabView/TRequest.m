@@ -34,11 +34,11 @@
     self.resultData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:nil];
     if ([self.resultData length]==0){
         NSLog(@"No data received!");
-        NSLog(@"pe return 0: %@",self);
+        //NSLog(@"pe return 0: %@",self);
         return 0;
     }
     //NSLog(@"data received on connection! %@", resultData);
-    NSLog(@"pe return 1: %@",self);
+    NSLog(@"am primit datele de la server!");
     return 1;
 }
 

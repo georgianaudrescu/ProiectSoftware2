@@ -63,7 +63,7 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
--(void)loadAdWithId:(int)theAdId
+-(void)loadAdWithId:(int)theAdId internetActive:(BOOL)internetIsActive
 {
     //[self.imageViewsArray release];
     //self.imageViewsArray = [[NSMutableArray alloc]init];
@@ -167,6 +167,8 @@
     {
     if(self.theAd.imageList == nil)
     {
+        if(internetIsActive==YES)//avem conexiune
+        {
         [self.theAd initImageList];
         
         
@@ -182,23 +184,47 @@
          [self.theAd thumbnailWithTImage:thumbImag scaledToSize:thumbSize];
         ///[thumbImag release];
         thumbImag=nil; 
-        
-       
+            
+         //self.thumbnailImageView.image = self.theAd.thumb.image;//       
         
         for(int i=1;i<=nrImagini;i++)
         {
             
             TImage *img1 = [TImage alloc];
             [img1 initWithImageFromUrlString:[NSString stringWithFormat:@"http://unicode.ro/imobiliare/images/%d_%d.jpg",idul,i]];
-
+             
+            if(i==d)//daca este imaginea default, retinem asta
+            {img1.defaultValue=1;}
+            else
+            {img1.defaultValue=0;}
+            
             [self.theAd.imageList addImage:img1];
             //[img1 release];
             img1=nil;
         }
+        }
+        else
+        {
+            //imagine default
+            UIImageView *imageView = [[[UIImageView alloc] init] autorelease];
+            imageView.frame= CGRectMake(0, 0, 300, 230);
+            imageView.contentMode = UIViewContentModeCenter;   
+            
+            imageView.image = [UIImage imageNamed:@"bigAnuntDefault.png"];
+            
+            [self.imageViewsArray addObject:imageView];
+            [self.imgScrollView addSubview:[self.imageViewsArray objectAtIndex:0]];
+        
+        }
     }
     
-     self.thumbnailImageView.image = self.theAd.thumb.image;//
+    
         
+  if(self.theAd.imageList!=nil)
+  {     
+   
+  self.thumbnailImageView.image = self.theAd.thumb.image;//    
+      
     for(int x=0;x<nrImagini;x++)
     {
         //daca sunt mai putin de 7 imagini, nu depasesc latimea scrolview-ului si ar fi ideal sa fie aliniate central, de aceea aflam o pozitie de start
@@ -231,7 +257,8 @@
     self.imgScrollView.contentSize = CGSizeMake(nrImagini*300, 230);
     [self.imgScrollView setPagingEnabled:YES];
     [self.imgScrollView setBounces:NO];
-    }
+  }
+    }   
     else
     {
     //imagine default

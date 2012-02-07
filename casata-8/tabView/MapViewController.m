@@ -241,7 +241,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     
     // [self getParamForReq];
     flag=1;
-    flag_get_more_ads=1;
+    flag_get_more_ads=0;
     
     hasLoadView = 1;
     
@@ -358,12 +358,14 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc]init];
     while (TRUE) {
         NSLog(@"IN THREAD");
+        if(internetActive==NO)flag=0;
     //[lock lockWhenCondition:0];
         while (flag==0) {
             [NSThread sleepForTimeInterval:0.005];
         }
-        if(flag != 0)
+        if((flag != 0)&&(internetActive==YES)) //verificam si daca avem conexiune
         {
+            NSLog(@"internet activ");
         flag=0;
        
     ///
@@ -383,7 +385,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
             NSMutableString *postString = [NSMutableString stringWithFormat:@"left=%f&sessionTime=1325693857685&right=%f&bottom=%f&top=%f&request=get_ads&sid=",left,right,bottom,top];
             
             [postString appendString: apdelegate.appSession.user.userId];
-            NSLog(@"STRING REQ: %@",postString);
+            NSLog(@"STRING REQ in whiletrue: %@",postString);
      if(onlyFilteredAdsVisible==YES)
         {NSMutableString *filtreString = [apdelegate.appSession getStringForFilters];
         [postString appendString:filtreString];
@@ -420,7 +422,10 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     //[lock unlockWithCondition:0];
             flag=0;
      }
-        
+     
+    
+    if((internetActive==YES)&&(flag_get_more_ads==1))  
+    {
         //NSMutableString *postString = [NSMutableString stringWithFormat:@"left=%f&sessionTime=1325693857685&right=%f&bottom=%f&top=%f&currency=euro&request=get_ads&zoom=5000&sid=",left,right,bottom,top];
         NSMutableString *postString = [NSMutableString stringWithFormat:@"left=%f&sessionTime=1325693857685&right=%f&bottom=%f&top=%f&request=get_ads&sid=",left,right,bottom,top];
         
@@ -440,6 +445,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
             [self getMoreAds:postString];
         } 
          }
+    }
     
     [pool release];
 }
@@ -682,6 +688,13 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
  -(void) putAnnotationForAd:(TAd*) theAd
 {
      [_mapView addAnnotation:theAd.adlocation];
+    
+    if(onlyFavAdsVisible==YES)
+    {
+        [[self.mapView viewForAnnotation:theAd.adlocation]setHidden:YES];
+        [[self.mapView viewForAnnotation:theAd.adlocation] setEnabled:NO];
+    }
+    
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation{
@@ -757,7 +770,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
 
 	[self.statisticsView.view addSubview:self.detaliiAnuntViewController.view];
     NSLog(@"SELECTED AD ID:>>>>%d", annotation.locationId);
-    [self.detaliiAnuntViewController loadAdWithId:annotation.locationId];
+    [self.detaliiAnuntViewController loadAdWithId:annotation.locationId internetActive:internetActive];
 
     
     const int movementDistance = 316; // tweak as needed

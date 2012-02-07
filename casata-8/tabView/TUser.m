@@ -188,11 +188,28 @@
     if ([request makeRequestWithString:postString]!=0)
     {
         data = [request requestData];
-        NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSString *string = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]autorelease];
         NSLog(@"RASPUNS STRING %@",string);
         
+        
+        //verificam daca avem constructii de genul <br />
+        NSRange  range = [string rangeOfString:@"<br />"];
+        if(range.location!=NSNotFound)
+        {//avem in raspuns si altceva in afara de json si tb sa eliminam
+        
         NSArray *arr =[string componentsSeparatedByString:@"<br />"];
-        request.resultData = [[arr objectAtIndex:[arr count]-1] dataUsingEncoding: [NSString defaultCStringEncoding] ];
+        
+            for(int i=0;i<arr.count;i++)
+            {
+                NSLog(@"array, index:%d string:%@", i, [arr objectAtIndex:i]);
+            }
+            
+        request.resultData = [[arr objectAtIndex:(arr.count-1)] dataUsingEncoding: [NSString defaultCStringEncoding]];
+       
+            //verificam cum arata dupa stergere
+       NSString *tempString = [[[NSString alloc] initWithData:request.resultData encoding:NSUTF8StringEncoding]autorelease];     
+       NSLog(@"stringul dupa stergere:%@", tempString);   
+        }
         
         // verificat STATUS = OK:
         NSDictionary * raspuns = [request responseDictionaryOfRequest];

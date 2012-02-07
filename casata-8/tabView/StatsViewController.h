@@ -15,7 +15,8 @@
 {
     IBOutlet CPTGraphHostingView *hostView;
     CPTXYGraph *graph;
-    NSArray *plotData;
+    NSArray *plotDataFaraFiltre;
+    NSArray *plotDataCuFiltre;
     CPTFill *areaFill;
     CPTLineStyle *barLineStyle;
     

@@ -61,7 +61,7 @@
 @property (nonatomic, retain)IBOutlet UIView * detaliiView;
 @property (nonatomic, retain)IBOutlet UIView * contactView;
 
--(void)loadAdWithId:(int)theAdId;
+-(void)loadAdWithId:(int)theAdId internetActive:(BOOL)internetIsActive;
 //-(void)changeCurrentViewedImageToImageWithIndex:(id) sender;
 
 -(IBAction)favButtonPressed:(UIButton*)sender;

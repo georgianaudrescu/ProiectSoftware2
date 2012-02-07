@@ -27,7 +27,7 @@
     coordinate.latitude = latitude.doubleValue;
     coordinate.longitude = longitude.doubleValue; 
     NSString * name = [row objectForKey:@"name"];
-    //NSString * description = [row objectForKey:@"ad_text"];
+    NSString * description = [row objectForKey:@"ad_text"];
     NSString * type = [row objectForKey:@"ad_type"];
     NSString * propertyType = [row objectForKey:@"property_type"];
     NSString * contactName = [row objectForKey:@"contact_name"];
@@ -65,7 +65,7 @@
             latitude,@"lat", 
             longitude,@"long",
             name,@"name",
-            //description,@"ad_text",
+            description,@"ad_text",
             type,@"ad_type",
             propertyType,@"property_type",
             contactName,@"contact_name",

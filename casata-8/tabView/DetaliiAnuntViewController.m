@@ -114,7 +114,7 @@
     
     /// detalii text in textview:
     self.adTextView .delegate = self;
-    //self.adTextView.text = [self.theAd.ad objectForKey:@"ad_text"];
+    self.adTextView.text = [self.theAd.ad objectForKey:@"ad_text"];
     self.adTextView.editable = NO;
     
     //verificare daca este favorit sau nu si setarea imaginii pt butonul de adaugare/inlaturare din favorite in functie de asta
@@ -197,7 +197,7 @@
             {img1.defaultValue=1;}
             else
             {img1.defaultValue=0;}
-            
+            img1.name=@"";
             [self.theAd.imageList addImage:img1];
             //[img1 release];
             img1=nil;

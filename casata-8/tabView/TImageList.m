@@ -172,4 +172,55 @@
 
 }
 
+-(NSArray*)saveImagesToFolderForFavAdAtIndex:(int)index 
+{ NSMutableArray *mutableArray = [[[NSMutableArray alloc]init]autorelease];
+    NSArray *arrayPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    
+    NSString *docDirectory = [arrayPaths objectAtIndex:0]; 
+    
+    int x;
+    for(x=0;x<count;x++)
+    {
+        TImage *tempImag=[self getImageAtIndex:x];        
+        [mutableArray addObject: [tempImag getDictionaryForImage]];
+        NSString *filePath = [docDirectory stringByAppendingString:[NSString stringWithFormat:@"/MyFavImages/fav_%d_%d.png",index,x]];
+        [UIImagePNGRepresentation(tempImag.image) writeToFile:filePath atomically:YES];
+        
+        
+    }
+    return mutableArray;
+}
+-(void)getImagesFromFolderForFavAdAtIndex:(int)index fromArray:(NSArray*)array
+{
+    NSArray *arrayPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    
+    NSString *docDirectory = [arrayPaths objectAtIndex:0]; 
+    
+    for(int x=0;x<array.count;x++)
+    {
+        NSString *filePath = [docDirectory stringByAppendingString:[NSString stringWithFormat:@"/MyFavImages/fav_%d_%d.png",index,x]];
+        
+        
+        NSDictionary *tempDic = [array objectAtIndex:x];
+        TImage *img = [TImage alloc];
+        
+        //UIImage *imag = [[UIImage alloc] initWithContentsOfFile:filePath];
+        
+        //[img initWithImage:imag];
+        ////[imag release];
+        
+        img.image = [[UIImage alloc] initWithContentsOfFile:filePath];
+        
+        img.defaultValue = [[tempDic objectForKey:@"default"] intValue];
+        img.name = [tempDic objectForKey:@"name"];
+        
+        NSLog(@"default: %d", img.defaultValue);
+        
+        [self addImage:img];
+        [img release];
+        
+    }
+    
+}
+
 @end

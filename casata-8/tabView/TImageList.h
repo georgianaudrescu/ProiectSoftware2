@@ -37,7 +37,8 @@
 -(NSArray*)saveImagesToFolderForMyAdAtIndex:(int)index ;
 -(void)getImagesFromFolderForMyAdAtIndex:(int)index fromArray:(NSArray*)array;
 
-//-(void)saveImagesToFolderForFavAdWithId:(int)idul;
-//-(void)getImagesFromFolderForFavAdWithId:(int)idul;
+-(NSArray*)saveImagesToFolderForFavAdAtIndex:(int)index ;
+-(void)getImagesFromFolderForFavAdAtIndex:(int)index fromArray:(NSArray*)array;
+
 
 @end

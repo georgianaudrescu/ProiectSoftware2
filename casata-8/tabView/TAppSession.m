@@ -77,10 +77,11 @@
     for(int x=0;x<[user.favorites count];x++)
     {
         TAd *tempAd = [user.favorites getAdAtIndex:x];
+        NSArray * imageListArray = [tempAd.imageList saveImagesToFolderForFavAdAtIndex:x];
        // NSArray * imageListArray = [tempAd.imageList getArrayOfDictionariesFromImageList];
         // NSData *thumbnailData = [tempAd.thumb getDictionaryForImage];
         //NSDictionary * adDict = [[[NSDictionary alloc] initWithObjectsAndKeys:tempAd.ad,@"detalii",imageListArray,@"imageList",nil]autorelease] ;
-        NSDictionary * adDict = [[[NSDictionary alloc] initWithObjectsAndKeys:tempAd.ad,@"detalii",nil] autorelease];
+       NSDictionary * adDict = [[[NSDictionary alloc] initWithObjectsAndKeys:tempAd.ad,@"detalii",imageListArray,@"imageList",nil]autorelease] ;
         NSLog(@"FAVORITE AD NR %d : %@", x, adDict);
         [favoritesAdsArray addObject:adDict];
        
@@ -182,14 +183,14 @@
                 {NSLog(@"Are imagini");                    
                     [anAd initImageList];
                     
-                    [anAd.imageList populateImageListFromArray:[[favoritesAds objectAtIndex:x] objectForKey:@"imageList"]]; 
+                   [anAd.imageList getImagesFromFolderForFavAdAtIndex:x fromArray:[[favoritesAds objectAtIndex:x] objectForKey:@"imageList"]]; 
                     
                     //////////////thumbnail  
                     if([anAd.imageList count]>0)
                     { //NSLog(@"avem imagini pt anuntul din arhiva");
                         //cazul pt thumbnail, de pus in lista
                         int d = [anAd.imageList indexOfDefaultImage];
-                        CGSize thumbSize = CGSizeMake(100, 100);
+                        CGSize thumbSize = CGSizeMake(101, 92);
                         [anAd thumbnailWithTImage:[anAd.imageList getImageAtIndex:d] scaledToSize:thumbSize];
                     }
                     

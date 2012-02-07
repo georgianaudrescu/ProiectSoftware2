@@ -220,7 +220,8 @@
         {
             NSLog(@"STATUS OK! ");
         // primit id-ul anuntului si atribuit in Dict:
-            NSString * idul = [[[raspuns objectForKey:@"ads"] objectAtIndex:0] objectForKey:@"id"];
+            //NSString * idul = [[[raspuns objectForKey:@"ads"] objectAtIndex:0] objectForKey:@"id"];
+            NSString * idul = [raspuns objectForKey:@"id"];
             [anAd.ad setObject:idul forKey:@"id"];
             NSLog(@"id anunt:%@", [anAd.ad objectForKey:@"id"]);
         // upload de imagini

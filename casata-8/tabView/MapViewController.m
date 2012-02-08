@@ -711,16 +711,38 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
         
         
         TAnnotationView *annotationView = (TAnnotationView *) [_mapView dequeueReusableAnnotationViewWithIdentifier:identifier];
-        annotationView.image = [UIImage imageNamed:@"bluehouse"];
+        
+        
+        
+        //--------------modificari pt pin diferit al unui anunt propriu
+        int isMyAd=0;
+        
+        TLocation *tempLocation = annotation;
+        int theId = tempLocation.locationId;
+        tempLocation=nil;
+        
+        if([apdelegate.appSession.user.personalAds getAdWithId:theId]==nil)
+        {   
+            annotationView.image = [UIImage imageNamed:@"bluehouse"];
+        }
+        else
+        {isMyAd=1;
+            annotationView.image = [UIImage imageNamed:@"greenhouse"];
+            
+        }    
+        
         if (annotationView == nil) {
             annotationView = [[TAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
-            annotationView.image = [UIImage imageNamed:@"bluehouse"];
+            if(isMyAd==0)
+            {annotationView.image = [UIImage imageNamed:@"bluehouse"];}
+            else
+            {annotationView.image = [UIImage imageNamed:@"greenhouse"];}   
             
         } else {
             annotationView.annotation = annotation;
         }
         
-         annotationView.enabled = YES;
+        annotationView.enabled = YES;
         // annotationView.canShowCallout = YES;
         [annotationView addObserver:self
                          forKeyPath:@"selected"
@@ -733,6 +755,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     return nil;
     
 }
+
 ////////////////////
 - (void)observeValueForKeyPath:(NSString *)keyPath
                       ofObject:(id)object
@@ -754,7 +777,26 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
             //annotation deselected
 			//NSLog(@"annotation deselected %@", ((TAnnotationView*) object).annotation.title);
             [self hideAnnotation];
-            ((TAnnotationView*) object).image = [UIImage imageNamed:@"bluehouse.png"];
+            
+            
+            TLocation *tempLocation = ((TAnnotationView*) object).annotation;
+            int theId = tempLocation.locationId;
+            tempLocation=nil;
+            
+            if([apdelegate.appSession.user.personalAds getAdWithId:theId]==nil)
+            {   
+                ((TAnnotationView*) object).image = [UIImage imageNamed:@"bluehouse.png"];
+            }
+            else
+            {
+                ((TAnnotationView*) object).image = [UIImage imageNamed:@"greenhouse.png"];
+                
+            } 
+            
+            
+            
+            
+            //((TAnnotationView*) object).image = [UIImage imageNamed:@"bluehouse.png"];
 			//[self.detaliiAnuntViewController.view removeFromSuperview];
             //---[self hideAnnotation];
             

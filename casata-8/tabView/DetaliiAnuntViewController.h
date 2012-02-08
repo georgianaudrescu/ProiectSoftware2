@@ -41,6 +41,9 @@
     UIView * imaginiView;
     UIView * detaliiView;
     UIView * contactView;
+    NSThread *imagesThread;
+    int flagThread;
+    BOOL avemConexiune;
 }
 @property(nonatomic,retain) TAd *theAd;
 @property(nonatomic,retain) IBOutlet UILabel *nameLabel,*propertyTypeLabel, *adTextLabel, *adressLineLabel, *pretLabel, *monedaLabel, *contactNameLabel, *contactPhoneLabel, *anuntTypeLabel, *contactEmailLabel, *propertySize; 
@@ -71,4 +74,6 @@
 
 -(UIImage*) imageWithImage:(UIImage*)image scaledToSize:(CGSize)newSize;
 -(IBAction)callOwner:(UIButton*)sender;
+-(void) getImages;
+-(void) afisImages;
 @end

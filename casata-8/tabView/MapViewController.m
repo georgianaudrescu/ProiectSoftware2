@@ -770,6 +770,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
 			//NSLog(@"annotation selected %@", ((TAnnotationView*) object).annotation.title);
 			((TAnnotationView*) object).image = [UIImage imageNamed:@"redhouse.png"];
             [self showAnnotation:((TAnnotationView*) object).annotation];
+;
 			selectedAnnotation = ((TAnnotationView*) object).annotation;
 			
 		}
@@ -812,7 +813,7 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
 
 	[self.statisticsView.view addSubview:self.detaliiAnuntViewController.view];
     NSLog(@"SELECTED AD ID:>>>>%d", annotation.locationId);
-    [self.detaliiAnuntViewController loadAdWithId:annotation.locationId internetActive:internetActive];
+      [self.detaliiAnuntViewController loadAdWithId:annotation.locationId internetActive:internetActive];
 
     
     const int movementDistance = 316; // tweak as needed

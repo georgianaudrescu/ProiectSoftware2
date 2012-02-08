@@ -158,52 +158,49 @@
     ////
     
     
-    //get images or put default imag
+    //images selector 
+    avemConexiune=internetIsActive;
+    
+    
+    
+    
+    if(flagThread==1){flagThread=0;}
+    flagThread=1;
+    
+    
+    //[self performSelectorInBackground:@selector(getImages) withObject:nil];
     
     int nrImagini = [[self.theAd.ad objectForKey:@"num_pic"] intValue];
     NSLog(@"numar imagini:%d", nrImagini);
     int idul = [[self.theAd.ad objectForKey:@"id"] intValue];
     if(nrImagini!=0)
     {
-    if(self.theAd.imageList == nil)
-    {
-        if(internetIsActive==YES)//avem conexiune
+        if(self.theAd.thumb==nil)
         {
-        [self.theAd initImageList];
-        
-        
-        int d = [[self.theAd.ad objectForKey:@"main_pic"] intValue];
-        
-        // NSLog(@"index default:%d", d);
-         CGSize thumbSize = CGSizeMake(101, 92);
-        TImage *thumbImag = [TImage alloc];
-        [thumbImag initWithImageFromUrlString:[NSString stringWithFormat:@"http://unicode.ro/imobiliare/images/%d_%d_th.jpg",idul, d]];   
-        
-        NSLog(@"thumbnail url:%@", [thumbImag.url absoluteString]);
-        
-         [self.theAd thumbnailWithTImage:thumbImag scaledToSize:thumbSize];
-        ///[thumbImag release];
-        thumbImag=nil; 
-            
-         //self.thumbnailImageView.image = self.theAd.thumb.image;//       
-        
-        for(int i=1;i<=nrImagini;i++)
-        {
-            
-            TImage *img1 = [TImage alloc];
-            [img1 initWithImageFromUrlString:[NSString stringWithFormat:@"http://unicode.ro/imobiliare/images/%d_%d.jpg",idul,i]];
-             
-            if(i==d)//daca este imaginea default, retinem asta
-            {img1.defaultValue=1;}
-            else
-            {img1.defaultValue=0;}
-            img1.name=@"";
-            [self.theAd.imageList addImage:img1];
-            //[img1 release];
-            img1=nil;
+            NSLog(@"nu avem thumbnail descarcat inca");
+            if(avemConexiune==YES)//avem conexiune
+            {int d = [[self.theAd.ad objectForKey:@"main_pic"] intValue];
+                
+                // NSLog(@"index default:%d", d);
+                CGSize thumbSize = CGSizeMake(101, 92);
+                TImage *thumbImag = [TImage alloc];
+                [thumbImag initWithImageFromUrlString:[NSString stringWithFormat:@"http://unicode.ro/imobiliare/images/%d_%d_th.jpg",idul, d]];   
+                
+                NSLog(@"thumbnail url:%@", [thumbImag.url absoluteString]);
+                
+                [self.theAd thumbnailWithTImage:thumbImag scaledToSize:thumbSize];
+                ///[thumbImag release];
+                thumbImag=nil; 
+                
+                
+                
+            }
         }
-        }
-        else
+        
+        if(self.theAd.thumb!=nil)
+        {self.thumbnailImageView.image = self.theAd.thumb.image;}
+        
+        if(self.theAd.imageList==nil)
         {
             //imagine default
             UIImageView *imageView = [[[UIImageView alloc] init] autorelease];
@@ -217,16 +214,137 @@
         
         }
     }
-    
-    
+    else
+    {//imagine default
+        UIImageView *imageView = [[[UIImageView alloc] init] autorelease];
+        imageView.frame= CGRectMake(0, 0, 300, 230);
+        imageView.contentMode = UIViewContentModeCenter;   
         
-  if(self.theAd.imageList!=nil)
-  {     
-   
-  self.thumbnailImageView.image = self.theAd.thumb.image;//    
-      
-    for(int x=0;x<nrImagini;x++)
+        imageView.image = [UIImage imageNamed:@"bigAnuntDefault.png"];
+        
+        [self.imageViewsArray addObject:imageView];
+        [self.imgScrollView addSubview:[self.imageViewsArray objectAtIndex:0]];
+    }
+}
+
+
+-(void)getImages
+{
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    while (TRUE) {
+        NSLog(@"IN THREAD IMAGINI");
+        
+        while (flagThread==0) {
+            [NSThread sleepForTimeInterval:0.005];
+        }
+        
+    if(flagThread!=0)
+    {//flagThread=0;    
+    
+        NSLog(@"flagImagini=1");
+    
+    int nrImagini = [[self.theAd.ad objectForKey:@"num_pic"] intValue];
+    NSLog(@"numar imagini:%d", nrImagini);
+    int idul = [[self.theAd.ad objectForKey:@"id"] intValue];
+    if(nrImagini!=0)
     {
+        if(self.theAd.imageList == nil)
+        {
+            if(avemConexiune==YES)//avem conexiune
+            {
+                [self.theAd initImageList];
+                
+               
+                int d = [[self.theAd.ad objectForKey:@"main_pic"] intValue];
+                /* ----mutat mai sus for now 
+                 // NSLog(@"index default:%d", d);
+                CGSize thumbSize = CGSizeMake(101, 92);
+                TImage *thumbImag = [TImage alloc];
+                [thumbImag initWithImageFromUrlString:[NSString stringWithFormat:@"http://unicode.ro/imobiliare/images/%d_%d_th.jpg",idul, d]];   
+                
+                NSLog(@"thumbnail url:%@", [thumbImag.url absoluteString]);
+                
+                [self.theAd thumbnailWithTImage:thumbImag scaledToSize:thumbSize];
+                ///[thumbImag release];
+                thumbImag=nil; 
+                
+                
+                */
+                
+                //self.thumbnailImageView.image = self.theAd.thumb.image;//       
+                
+                for(int i=1;i<=nrImagini;i++)
+                {
+                    
+                    TImage *img1 = [TImage alloc];
+                    [img1 initWithImageFromUrlString:[NSString stringWithFormat:@"http://unicode.ro/imobiliare/images/%d_%d.jpg",idul,i]];
+                    
+                    if(i==d)//daca este imaginea default, retinem asta
+                    {img1.defaultValue=1;}
+                    else
+                    {img1.defaultValue=0;}
+                    img1.name=@"";
+                    [self.theAd.imageList addImage:img1];
+                    //[img1 release];
+                    img1=nil;
+                }
+            }
+            else
+            {
+                /*
+                //imagine default
+                UIImageView *imageView = [[[UIImageView alloc] init] autorelease];
+                imageView.frame= CGRectMake(0, 0, 300, 230);
+                imageView.contentMode = UIViewContentModeCenter;   
+                
+                imageView.image = [UIImage imageNamed:@"bigAnuntDefault.png"];
+                
+                [self.imageViewsArray addObject:imageView];
+                [self.imgScrollView addSubview:[self.imageViewsArray objectAtIndex:0]];
+             
+                 */
+            }
+        }
+        
+        
+        
+        if(self.theAd.imageList!=nil)
+        {     
+            [self performSelectorOnMainThread:@selector(afisImages) withObject:nil waitUntilDone:YES];
+           
+        }
+    }   
+    else
+    {
+        /*
+        //imagine default
+        UIImageView *imageView = [[[UIImageView alloc] init] autorelease];
+        imageView.frame= CGRectMake(0, 0, 300, 230);
+        imageView.contentMode = UIViewContentModeCenter;   
+        
+        imageView.image = [UIImage imageNamed:@"bigAnuntDefault.png"];
+        
+        [self.imageViewsArray addObject:imageView];
+        [self.imgScrollView addSubview:[self.imageViewsArray objectAtIndex:0]];
+        */
+    }
+    }
+        flagThread=0;
+    }
+    [pool release];
+    
+}
+
+-(void)afisImages
+{
+    // self.thumbnailImageView.image = self.theAd.thumb.image;//    
+    int nrImagini = [[self.theAd.ad objectForKey:@"num_pic"] intValue];
+    
+    
+    
+    for(int x=0;(x<[self.theAd.imageList count])&&(flagThread==1);x++)
+    {
+        
         //daca sunt mai putin de 7 imagini, nu depasesc latimea scrolview-ului si ar fi ideal sa fie aliniate central, de aceea aflam o pozitie de start
         /* if(nr<=6)
          start = (300 - nr*50)/2;
@@ -238,7 +356,7 @@
         imageView.contentMode = UIViewContentModeScaleAspectFit;
         // 
         TImage *theImag =  [self.theAd.imageList getImageAtIndex:x];
-        NSLog(@"mem adress of image:%@", theImag);
+        NSLog(@"mem adress of image:%@ index of image:%d, index of ad:%@", theImag,x, [self.theAd.ad objectForKey:@"id"]);
         UIImage *butImage = theImag.image;
         
         
@@ -254,25 +372,9 @@
     }       
     
     
-    self.imgScrollView.contentSize = CGSizeMake(nrImagini*300, 230);
+    self.imgScrollView.contentSize = CGSizeMake([self.theAd.imageList count]*300, 230);
     [self.imgScrollView setPagingEnabled:YES];
     [self.imgScrollView setBounces:NO];
-  }
-    }   
-    else
-    {
-    //imagine default
-        UIImageView *imageView = [[[UIImageView alloc] init] autorelease];
-        imageView.frame= CGRectMake(0, 0, 300, 230);
-        imageView.contentMode = UIViewContentModeCenter;   
-        
-        imageView.image = [UIImage imageNamed:@"bigAnuntDefault.png"];
-        
-        [self.imageViewsArray addObject:imageView];
-        [self.imgScrollView addSubview:[self.imageViewsArray objectAtIndex:0]];
-        
-    }
-    
 }
 
 /*-(void) changeCurrentViewedImageToImageWithIndex:(id) sender
@@ -386,6 +488,12 @@
 
     self.contactView.frame = CGRectMake(0, 630, 320, 360);
     [self.bigScroll addSubview:self.contactView];
+    
+    
+    imagesThread = [[NSThread alloc] initWithTarget:self selector:@selector(getImages) object:nil];
+    //[lock  lockWhenCondition:0];
+    flagThread=0;
+    [imagesThread start];
 
     
 }

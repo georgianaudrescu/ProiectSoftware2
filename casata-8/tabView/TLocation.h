@@ -16,6 +16,7 @@
 	NSString *title;
 	NSString *subtitle;
     int locationId;
+    int suntNumaiFavoritePeHarta;
     
 }
 
@@ -23,6 +24,7 @@
 @property (nonatomic, readonly, copy) NSString *title;
 @property (nonatomic, readonly, copy) NSString *subtitle;
 @property (nonatomic, assign) int locationId;
+@property(nonatomic, assign) int suntNumaiFavoritePeHarta;
 
 
 - (id)initWithTitle:(NSString *)aTitle andSubtitle:(NSString *)aSubtitle andCoord:(CLLocationCoordinate2D)aCoord;

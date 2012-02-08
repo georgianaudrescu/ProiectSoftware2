@@ -10,7 +10,7 @@
 
 
 @implementation TLocation
-@synthesize coordinate, title, subtitle, locationId;
+@synthesize coordinate, title, subtitle, locationId, suntNumaiFavoritePeHarta;
 
 
 -(id) initWithTitle:(NSString *)aTitle andSubtitle:(NSString *)aSubtitle andCoord:(CLLocationCoordinate2D)aCoord{

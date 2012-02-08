@@ -427,19 +427,19 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
     if((internetActive==YES)&&(flag_get_more_ads==1))  
     {
         //NSMutableString *postString = [NSMutableString stringWithFormat:@"left=%f&sessionTime=1325693857685&right=%f&bottom=%f&top=%f&currency=euro&request=get_ads&zoom=5000&sid=",left,right,bottom,top];
-        NSMutableString *postString = [NSMutableString stringWithFormat:@"left=%f&sessionTime=1325693857685&right=%f&bottom=%f&top=%f&request=get_ads&sid=",left,right,bottom,top];
-        
-        [postString appendString: apdelegate.appSession.user.userId];
-        
-        NSLog(@"STRING REQ: %@",postString);
-        
-        if(onlyFilteredAdsVisible==YES)
-        {NSMutableString *filtreString = [apdelegate.appSession getStringForFilters];
-            [postString appendString:filtreString];
-        }   
 
         while ((flag_get_more_ads==1)&&(onlyFavAdsVisible==NO))
         {
+            NSMutableString *postString = [NSMutableString stringWithFormat:@"left=%f&sessionTime=1325693857685&right=%f&bottom=%f&top=%f&request=get_ads&sid=",left,right,bottom,top];
+            
+            [postString appendString: apdelegate.appSession.user.userId];
+            
+            NSLog(@"STRING REQ: %@",postString);
+            
+            if(onlyFilteredAdsVisible==YES)
+            {NSMutableString *filtreString = [apdelegate.appSession getStringForFilters];
+                [postString appendString:filtreString];
+            }   
             //postString = [NSMutableString stringWithFormat:@"sessionTime=1327150364534&request=get_more_ads&sid="];
             //[postString appendString:apdelegate.appSession.user.userId];
             [self getMoreAds:postString];
@@ -669,6 +669,10 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
         TLocation *annotation = [[TLocation alloc]  initWithTitle:name andSubtitle:subName andCoord:coordinate];
         //annotation.coordinate = coordinate;
         annotation.locationId = ad_id.intValue; 
+           
+           if(onlyFavAdsVisible==YES){annotation.suntNumaiFavoritePeHarta=1;} 
+           else {annotation.suntNumaiFavoritePeHarta=0;}
+           
         anAd.adlocation=annotation;
         [annotation release];
         
@@ -689,10 +693,24 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
 {
      [_mapView addAnnotation:theAd.adlocation];
     
-    if(onlyFavAdsVisible==YES)
+     
+    
+    if(theAd.adlocation.suntNumaiFavoritePeHarta==1)
     {
-        [[self.mapView viewForAnnotation:theAd.adlocation]setHidden:YES];
-        [[self.mapView viewForAnnotation:theAd.adlocation] setEnabled:NO];
+        NSLog(@"*****!!!!!******only faves visible, we hide ad with id:%d", theAd.adlocation.locationId);
+        [[_mapView viewForAnnotation:theAd.adlocation] setHidden:YES];
+           
+       
+       if([[_mapView viewForAnnotation:theAd.adlocation] isHidden]==YES)
+           NSLog(@"chiar e ascunsa..cica");
+       else{NSLog(@"vrajeala...");
+       
+       }
+        
+      [[_mapView viewForAnnotation:theAd.adlocation] setEnabled:NO];
+    }
+    else
+    { NSLog(@"*****************all ads visible");
     }
     
 }
@@ -747,7 +765,11 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
         [annotationView addObserver:self
                          forKeyPath:@"selected"
                             options:NSKeyValueObservingOptionNew
-                            context:GMAP_ANNOTATION_SELECTED];        
+                            context:GMAP_ANNOTATION_SELECTED];   
+        if((onlyFavAdsVisible==YES)||(onlyFilteredAdsVisible==YES))
+        {[annotationView setHidden:YES];
+            [annotationView setEnabled:NO];
+        }
         
         return annotationView;
     }

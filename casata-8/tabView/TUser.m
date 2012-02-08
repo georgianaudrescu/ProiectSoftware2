@@ -309,8 +309,41 @@
 }
 - (void) removeMyAd:(TAd *)ad{
     //req remove_ad
+    
+    if([ad.ad objectForKey:@"id"]!=nil)
+    {
+    
+    TRequest *deleteReq = [TRequest alloc]; 
+    [deleteReq initWithHost:@"http://unicode.ro/imobiliare/index.php"];
+    NSMutableString *postString = [NSMutableString stringWithFormat:@"request=delete_ad&adId=%@&sid=", [ad.ad objectForKey:@"id"]];
+    [postString  appendString:self.userId];
+    NSLog(@"POST STRING FOR DELETE:%@", postString);
+    
+    if([deleteReq makeRequestWithString:postString]==1)
+    {
+        NSDictionary * raspuns;
+        raspuns = [deleteReq responseDictionaryOfRequest];
+        NSString * status = [raspuns objectForKey:@"status"];
+        if ([status isEqualToString:@"OK"])
+        {
+            NSLog(@"Stergere reustia");
+            [personalAds removeAd:ad];
+        }
+        else
+        {
+            NSLog(@" stergere nereusita, raspuns: %@",raspuns);
+        }
+    
+    }
+    else
+    {NSLog(@"pa");}
+    
+    }
+    else{
     //scot ad-ul din personalAds
     [personalAds removeAd:ad];
+    }
+
 }
 
 - (void)addToFav:(TAd *)ad{
@@ -338,6 +371,121 @@
 {
     self.userId = [[NSString alloc] initWithString:string];
 }
+
+-(void) updateAd:(int)adIndex
+{
+    TAd *anAd = [personalAds getAdAtIndex:adIndex];
+    request = [TRequest alloc] ;
+    [request initWithHost:@"http://unicode.ro/imobiliare/index.php"];
+    NSString *judet, *oras , *price,*coord_x, *ad_name, *coord_y, *ad_text, *size, *adress, *adId;
+    //ad_type, property_type, currency
+    
+    
+    int tip_proprietate;
+    if([[anAd.ad objectForKey:@"property_type"] isEqualToString:@"Garsoniera"])
+    { tip_proprietate=1;}
+    else if([[anAd.ad objectForKey:@"property_type"] isEqualToString:@"Apartament 2 camere"])
+    { tip_proprietate=2;}
+    else if([[anAd.ad objectForKey:@"property_type"] isEqualToString:@"Apartament 3 camere"])
+    { tip_proprietate=3;}
+    else if([[anAd.ad objectForKey:@"property_type"] isEqualToString:@"Apartament 4 camere"])
+    { tip_proprietate=4;}
+    else 
+    { tip_proprietate=5;}
+    int tip_anunt;
+    if([[anAd.ad objectForKey:@"ad_type"] isEqualToString:@"rent"])
+    { tip_anunt=1;}
+    else 
+    { tip_anunt=2;}
+    
+    
+    int moneda;
+    if([[anAd.ad objectForKey:@"moneda"] isEqualToString:@"euro"])
+    { moneda=1;}
+    else 
+    { moneda=2;}
+    
+    
+    
+    judet = [anAd.ad objectForKey:@"judet"];
+    oras = [anAd.ad objectForKey:@"oras"];
+    price = [anAd.ad objectForKey:@"pret"];
+    //coord_x = [anAd.ad objectForKey:@"lat"];
+    //coord_y = [anAd.ad objectForKey:@"long"];
+    coord_x = [anAd.ad objectForKey:@"long"];
+    coord_y = [anAd.ad objectForKey:@"lat"];
+    ad_name = [anAd.ad objectForKey:@"name"];
+    ad_text = [anAd.ad objectForKey:@"ad_text"];
+    size = [anAd.ad objectForKey:@"size"];
+    size = [anAd.ad objectForKey:@"size"];
+    adress= [anAd.ad objectForKey:@"adress_line"];
+    adId=[anAd.ad objectForKey:@"id"];
+    /* NSMutableString * postString = [[NSMutableString alloc] initWithFormat:@"judet=%@&oras=%@&ad_type=%d&request=add_ad&property_type=%d&sessionTime=1327715431897&price=%@&moneda_id=%d&coord_x=%@&ad_name=%@&coord_y=%@&ad_text=%@&size=%@&address=%@&name=%@&phone=%@&mail=%@&main_pic=0&num_pic=0&sid=",judet,oras,tip_anunt,tip_proprietate,price,moneda,coord_x,ad_name,coord_y,ad_text,size,adress,self.username, self.phone, self.email];*/
+    
+    //NSLog(@"judet %@ ,size %@, as_text %@, oras %@, ad_type %@, adId %@, property)type %@, coord_x %@, coord_y %@, adress %@, price %@, moneda %@, ad_name %@",judet,size,ad_text,oras,tip_anunt,adId,tip_proprietate,coord_x,coord_y,adress,price,moneda,ad_name);
+    
+    NSMutableString * postString = [[NSMutableString alloc] initWithFormat:@"judet=%@&oras=%@&ad_type=%d&request=update_ad&property_type=%d&sessionTime=1327715431897&price=%@&moneda_id=%d&coord_x=%@&ad_name=%@&coord_y=%@&ad_text=%@&size=%@&address=%@&name=%@&phone=%@&mail=%@&main_pic=0&num_pic=0&adId=%@&sid=",judet,oras,tip_anunt,tip_proprietate,price,moneda,coord_x,ad_name,coord_y,ad_text,size,adress,self.username, self.phone, self.email,adId];
+    [postString appendString: self.userId];
+    NSLog(@"UPDATE POST STRING: %@", postString);
+    
+    NSData * data;
+    if ([request makeRequestWithString:postString]!=0)
+    {
+        data = [request requestData];
+        NSString *string = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]autorelease];
+        NSLog(@"UPDATE RASPUNS STRING %@",string);
+        
+        
+        //verificam daca avem constructii de genul <br />
+        NSRange  range = [string rangeOfString:@"<br />"];
+        if(range.location!=NSNotFound)
+        {//avem in raspuns si altceva in afara de json si tb sa eliminam
+            
+            NSArray *arr =[string componentsSeparatedByString:@"<br />"];
+            
+            for(int i=0;i<arr.count;i++)
+            {
+                NSLog(@"array, index:%d string:%@", i, [arr objectAtIndex:i]);
+            }
+            
+            
+            request.resultData = [[arr objectAtIndex:(arr.count-1)] dataUsingEncoding: [NSString defaultCStringEncoding]];
+            
+            //verificam cum arata dupa stergere
+            NSString *tempString = [[[NSString alloc] initWithData:request.resultData encoding:NSUTF8StringEncoding]autorelease];     
+            NSLog(@"stringul dupa stergere:%@", tempString);   
+        }
+        
+        // verificat STATUS = OK:
+        NSDictionary * raspuns = [request responseDictionaryOfRequest];
+        NSLog(@"UPDATE RASPUNS DICTIONARY: %@",raspuns);
+        NSString* status = [raspuns objectForKey:@"status"];
+        NSLog(@"UPDATE STATUS : %@", status);
+        if ([status isEqualToString:@"OK"])
+        {
+            NSLog(@"UPDATE STATUS OK! ");
+            // primit id-ul anuntului si atribuit in Dict:
+            NSString * idul = [[[raspuns objectForKey:@"ads"] objectAtIndex:0] objectForKey:@"id"];
+            [anAd.ad setObject:idul forKey:@"id"];
+            NSLog(@"UPDATE id anunt:%@", [anAd.ad objectForKey:@"id"]);
+            // upload de imagini
+            // upload STATUS = OK-metoda retuneaza yes(din imagelist)
+            // publicat = YES:
+            // NSString * publicat = [anAd.ad objectForKey:@"publicat"];
+            NSString *publicat = @"YES";
+            [anAd.ad setObject:publicat forKey:@"publicat"];
+            NSLog(@"Publicat : %@", [anAd.ad objectForKey:@"publicat"]);
+        }
+        
+    }
+    else
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Atentie!" message:@"Anuntul editat nu a putut fi publicat! Recomandam verificarea conexiunii la internet!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        [alert release];
+    }
+}
+
 
 -(void) dealloc{
     [favorites release];

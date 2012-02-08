@@ -368,8 +368,10 @@
     
     self.bigScroll.frame = CGRectMake(0, 100, 320, 360); //360
     [self.bigScroll setPagingEnabled:YES];
+    [self.bigScroll setScrollEnabled:NO];
     [self.bigScroll setContentSize:CGSizeMake(320, 945)];
     [self.view addSubview:self.bigScroll];
+    
     
     
     self.imaginiView.frame = CGRectMake(0, 0, 320, 360);//315

@@ -167,6 +167,8 @@
     NSString * size = [row objectForKey:@"size"];
     NSString * publicat = [row objectForKey:@"publicat"];
     
+    NSString * adid= [row objectForKey:@"id"];
+    
     NSLog(@"add/edit add with description: %@", description);
     
     self.ad = [NSMutableDictionary dictionaryWithObjectsAndKeys:
@@ -184,6 +186,8 @@
                size, @"size",
                publicat, @"publicat",
                nil];
+    if (adid != nil)
+    {[self.ad setObject:adid forKey:@"id"];}
     uploaded = NO;
     
 }

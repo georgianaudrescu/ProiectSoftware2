@@ -118,7 +118,21 @@
         if(flagAnuntVechi==1)
             {int modificat= [theNewAd modifyAd:tempDictionary];
              NSLog(@"anunt vechi, modificat: %d", modificat);
-            if(modificat==1){ [theNewAd createAd:tempDictionary]; NSLog(@"old ad with new dict:%@ ",theNewAd.ad);}
+                
+            if(modificat==1){ 
+                if([theNewAd.ad objectForKey:@"id"]!=nil)
+                {
+                    NSLog(@"Adaug id la AD. ID= %@",[theNewAd.ad objectForKey:@"id"]);
+                    NSMutableDictionary * toSent = [NSMutableDictionary dictionaryWithDictionary:tempDictionary];
+                    [toSent setObject:[theNewAd.ad objectForKey:@"id"] forKey:@"id"];
+                    NSLog(@"mutable Dictionary with ID: %@", toSent);
+                    tempDictionary = toSent;
+                    NSLog(@"tempDictinary Dictionary with ID: %@", tempDictionary);
+                }
+                
+                [theNewAd createAd:tempDictionary]; 
+                NSLog(@"old ad with new dict:%@ ",theNewAd.ad);}
+  
             }
         else{[theNewAd createAd:tempDictionary];
          NSLog(@"new ad with dict:%@ ",tempDictionary);
@@ -574,11 +588,13 @@ numberOfRowsInComponent:(NSInteger)component
     [alert release];
 }
 -(void) stergeAnunt
-{
+{   //verificare daca e in global ad list si fav? si stergere si de acolo
+    
+    
     //request de stergere de pe server - metoda din user
+    [apdelegate.appSession.user removeMyAd:theNewAd];
     
-    
-    [apdelegate.appSession.user.personalAds removeAd:theNewAd];
+    //[apdelegate.appSession.user.personalAds removeAd:theNewAd];
     [delegate performSelector:refreshMyAdsTable];
     [self.navigationController popViewControllerAnimated:YES];
 }

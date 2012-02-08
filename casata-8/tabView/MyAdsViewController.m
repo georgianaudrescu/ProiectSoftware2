@@ -250,11 +250,38 @@
 
 
 -(void) publicaAnunt:(UIButton*)sender{
-    //se publica anuntul selectat din lista
+   
+    /*
+     //se publica anuntul selectat din lista
     NSLog(@"Se publica anuntul selectat");
     [apdelegate.appSession.user uploadAd:sender.tag];
     [self.tableAds reloadData];
-
+    */
+///////////////////
+    //se publica anuntul selectat din lista
+    NSLog(@"Se publica anuntul selectat");
+    //[apdelegate.appSession.user uploadAd:sender.tag];
+    //[self.tableAds reloadData];
+    
+    TAd *tmpAd;
+    tmpAd = [apdelegate.appSession.user.personalAds getAdAtIndex:sender.tag];
+    NSString *id_ad=[tmpAd.ad objectForKey:@"id"];
+    
+    NSLog(@"tmpad %@", id_ad);
+    if(id_ad==nil)
+    {
+        NSLog(@"in adaug add");
+        [apdelegate.appSession.user uploadAd:sender.tag];
+    }
+    else
+    {
+        NSLog(@"in update add");
+        [apdelegate.appSession.user updateAd:sender.tag];
+    }
+    
+    [self.tableAds reloadData];
+    
+    
     
 }
 

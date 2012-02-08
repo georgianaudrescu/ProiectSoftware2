@@ -63,6 +63,7 @@
 
 -(void) uploadAd:(int)adIndex;
 -(void)setid:(NSString *)string;
+-(void) updateAd:(int)adIndex;
 
 @end
 

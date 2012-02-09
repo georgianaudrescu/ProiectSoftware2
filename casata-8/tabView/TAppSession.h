@@ -24,21 +24,23 @@
     //global variables
     TAdList *globalAdList;
     TUser *user;
-    TSearch *currentSearch;
-    TSettings *globalSettings;
+    TSearch *currentSearch;// not needed
+    TSettings *globalSettings;// not needed
     //--TAdList *favorites;
-    TStatisticsList *statistics;
+    //TStatisticsList *statistics; // not needed
     NSMutableDictionary *filtre; 
     TLocation *currentLocation;
+    TStatistic *stats;
 }
 @property(nonatomic,retain) TAdList *globalAdList;
 @property(nonatomic,retain) TUser *user;
 @property(nonatomic,retain) TSearch *currentSearch;
 @property(nonatomic,retain) TSettings *globalSettings;
-@property(nonatomic,retain) TStatisticsList *statistics;
+//@property(nonatomic,retain) TStatisticsList *statistics;
 @property(nonatomic,retain) NSMutableDictionary *filtre;;
 //--@property(nonatomic,retain) TAdList *favorites;
 @property(nonatomic,retain) TLocation *currentLocation;
+@property(nonatomic,retain) TStatistic *stats;
 
 //global variables initalization
 -(void)globalVariablesInit;

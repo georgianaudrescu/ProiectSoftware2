@@ -11,6 +11,20 @@
 
 @interface TStatistic : NSObject{
     TRequest *statsReq;
+    NSArray * generalAvg;
+    NSArray * filterAvg;
+    
+    NSNumber * prevGeneralAvgTotal;
+    NSNumber * generalAvgTotal;
+    NSNumber * generalDif;
+    
+    NSNumber * prevFilterAvgTotal;
+    NSNumber * filterAvgTotal;
+    NSNumber * filterDif;
+    
+    NSString * status;
+    
+    /*
     NSDate *startDay;
     NSDate *endDay;
     NSInteger *unit;
@@ -21,13 +35,20 @@
     
     NSMutableOrderedSet *avgPriceList;
     double *avgTotal;
+     */
 }
+/*
 @property (nonatomic, readonly) double *avgTotal;
 @property (nonatomic, copy)NSMutableOrderedSet *avgPriceList;
+ */
+@property (nonatomic, retain)  TRequest *statsReq;
+@property (nonatomic, retain) NSArray * generalAvg, * filterAvg;
+@property (nonatomic, retain) NSNumber * prevGeneralAvgTotal,* generalAvgTotal, * generalDif,* prevFilterAvgTotal, * filterAvgTotal,* filterDif;
+@property (nonatomic, retain) NSString * status;
 
 
 -(id) init;
--(void)setParamForRequest:(NSDictionary *) paramList; 
--(void)parseDataRecieved:(NSData *) data;
+//-(void)setParamForRequest:(NSDictionary *) paramList; 
+-(int)parseDataRecieved:(NSData *) data;
 
 @end

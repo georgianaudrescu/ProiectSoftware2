@@ -374,43 +374,64 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
             
     [self getParamForReq];
             
-            ///////
-          //  NSMutableString *idses = [NSMutableString stringWithString:@"sessionTime=1328057240360&request=close%5Fsession&sid="];
-           // [idses appendString:self.appSession.user.userId];
-           // NSString * postString=[NSString stringWithString:idses];
 
-    
-            
-    //NSMutableString *postString = [NSMutableString stringWithFormat:@"left=%f&sessionTime=1325693857685&right=%f&bottom=%f&top=%f&currency=euro&request=get_ads&zoom=5000&sid=",left,right,bottom,top];
             NSMutableString *postString = [NSMutableString stringWithFormat:@"left=%f&sessionTime=1325693857685&right=%f&bottom=%f&top=%f&request=get_ads&sid=",left,right,bottom,top];
             
             [postString appendString: apdelegate.appSession.user.userId];
             NSLog(@"STRING REQ in whiletrue: %@",postString);
-     if(onlyFilteredAdsVisible==YES)
-        {NSMutableString *filtreString = [apdelegate.appSession getStringForFilters];
-        [postString appendString:filtreString];
-        }   
+                if(onlyFilteredAdsVisible==YES)
+                    {
+                        NSMutableString *filtreString = [apdelegate.appSession getStringForFilters];
+                        [postString appendString:filtreString];
+                    }   
             
        
     if(flag==1) continue;
             
-    mapRequest = [TRequest alloc];
+            mapRequest = [TRequest alloc];
             testRequest = mapRequest;
-           // NSLog(@"### ALOCARE  mapreq%@",mapRequest);
-    //[mapRequest initWithHost:@"http://flapptest.comule.com"];
-    [mapRequest initWithHost:@"http://unicode.ro/imobiliare/index.php"];
+            [mapRequest initWithHost:@"http://unicode.ro/imobiliare/index.php"];
     
     NSData * data;
             
-            //NSLog(@"########### INIT WITH HOST mapreq%@",mapRequest);
+            
     if([mapRequest makeRequestWithString:postString]!=0){
         mapRequest = testRequest;
-        // NSLog(@"########### mapreq%@",mapRequest);
         data=[mapRequest requestData];
-        //NSString *string = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]autorelease];
-        //NSLog(@"++++  data from req:%@", string);
-        
+                
         [self showAdsFromData:data];
+        
+        // send req for STATS:
+
+       // NSString * statsStringReq = [NSString stringWithString:postString];
+       // statsStringReq=[statsStringReq stringByReplacingOccurrencesOfString:@"get_ads" withString:@"get_stats"];
+        NSMutableString *statsStringReq = [NSMutableString stringWithFormat:@"left=%f&sessionTime=1325693857685&right=%f&bottom=%f&top=%f&request=get_stats&sid=",bottom,top,left,right];
+        
+        [statsStringReq appendString: apdelegate.appSession.user.userId];
+       
+        if(onlyFilteredAdsVisible==YES)
+        {
+            NSMutableString *filterString = [apdelegate.appSession getStringForFilters];
+            [statsStringReq appendString:filterString];
+        }   
+
+        
+        NSLog(@"get stats POSTstring DIN THREAD: %@", statsStringReq);
+        
+        if([apdelegate.appSession.stats.statsReq makeRequestWithString:statsStringReq]!=0)
+        {
+            NSData * data = [apdelegate.appSession.stats.statsReq requestData];
+            if([apdelegate.appSession.stats parseDataRecieved:data]==1)
+            {
+               
+                //refresh chart in statsView
+                //refresh header on statsView
+            
+                [self.statisticsView performSelectorOnMainThread:@selector(refreshStats) withObject:nil waitUntilDone:NO];
+            }
+        }
+        
+        
         flag_get_more_ads=1;
         
     }
@@ -471,7 +492,37 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
         [self aplicareFiltrePeLista:apdelegate.appSession.globalAdList];        
          
     }
+    
+  if(internetActive==YES)
+  {
+    //facem un request pentru stats cu filtre
+    NSMutableString *statsStringReq = [NSMutableString stringWithFormat:@"left=%f&sessionTime=1325693857685&right=%f&bottom=%f&top=%f&request=get_stats&sid=",bottom,top,left,right];
+    
+    [statsStringReq appendString: apdelegate.appSession.user.userId];
+    
+    if(onlyFilteredAdsVisible==YES)
+    {
+        NSMutableString *filterString = [apdelegate.appSession getStringForFilters];
+        [statsStringReq appendString:filterString];
+    }   
+    
+    
+    NSLog(@"get stats POSTstring DIN FILTRE ACTIVATE: %@", statsStringReq);
+    
+    if([apdelegate.appSession.stats.statsReq makeRequestWithString:statsStringReq]!=0)
+    {
+        NSData * data = [apdelegate.appSession.stats.statsReq requestData];
+        if([apdelegate.appSession.stats parseDataRecieved:data]==1)
+        {
+            
+            //refresh chart in statsView
+            //refresh header on statsView
+            
+            [self.statisticsView refreshStats];
+        }
+    }
 
+  }
 }
 
 -(void)aplicareFiltrePeLista:(TAdList*)theList
@@ -568,7 +619,9 @@ NSString * const GMAP_ANNOTATION_SELECTED = @"gmapselected";
         gAd=nil;
     }
         
-    }     
+    }   
+    
+    [self.statisticsView refreshStats];
 }
 
 -(void) getMoreAds: (NSString *) postString

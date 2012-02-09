@@ -11,7 +11,7 @@
 
 @implementation TAppSession
 @synthesize globalAdList,filtre,currentLocation,user, currentSearch;  
-@synthesize globalSettings,statistics;
+@synthesize globalSettings, stats;
 //variabilele globale
 
 
@@ -388,9 +388,13 @@
     self.user=nil;
     self.currentSearch=nil;
     self.globalSettings=nil;
-    self.statistics=nil;
+    //self.statistics=nil;
+    self.stats = nil;
     [super dealloc];
 }
+
+
+
 -(void)globalVariablesInit
 {  globalAdList = [[TAdList alloc]init];
     user = [[TUser alloc] init];
@@ -399,7 +403,8 @@
     //filtre = [[NSMutableDictionary alloc]init];
     //--favorites = [[TAdList alloc]init];
     currentLocation = [TLocation alloc];
-    statistics = [[TStatisticsList alloc]init];
+    //statistics = [[TStatisticsList alloc]init];
+    stats = [[TStatistic alloc] init];
 }
 
 @end

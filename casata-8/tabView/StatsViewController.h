@@ -15,27 +15,38 @@
 {
     IBOutlet CPTGraphHostingView *hostView;
     CPTXYGraph *graph;
-    NSArray *plotDataFaraFiltre;
-    NSArray *plotDataCuFiltre;
+    NSMutableArray *plotDataFaraFiltre;
+    NSMutableArray *plotDataCuFiltre;
     CPTFill *areaFill;
     CPTLineStyle *barLineStyle;
     
     ///pt header-la labels- schimbam doar textul, la butoane- in functie de valoarea negativa/pozitiva schimbam si imaginea:
     UILabel *avgAreaPriceLabel;
     UIButton *trendForAvgAreaPriceButton;
+    UILabel *generalAvgPriceLabel;
+    UILabel *filterAvgPriceLabel;
+    UIButton *generalTrendButton;
+    UIButton *filterTrendButton;
     Filtre * filters;
     MyAdsViewController *myAds;
     UIView *headerView;
+    AppDelegate *apdelegate;
+    UIView * filtreView;
+    UILabel *filtreLabel;
+    int min, max;
 }
-@property (nonatomic,retain) IBOutlet UILabel *avgAreaPriceLabel;
-@property(nonatomic,retain) IBOutlet UIButton *trendForAvgAreaPriceButton;
+@property (nonatomic,retain) IBOutlet UILabel *avgAreaPriceLabel,*generalAvgPriceLabel,*filterAvgPriceLabel,*filtreLabel;
+@property(nonatomic,retain) IBOutlet UIButton *trendForAvgAreaPriceButton,*generalTrendButton,*filterTrendButton;
 @property (nonatomic, retain) Filtre *filters;
 @property(nonatomic, retain) MyAdsViewController *myAds;
-@property(nonatomic,retain) IBOutlet UIView *headerView;
-
+@property(nonatomic,retain) IBOutlet UIView *headerView, *filtreView;
+@property (nonatomic, retain, readwrite) NSMutableArray *plotDataFaraFiltre,*plotDataCuFiltre;
 
 -(void)clearChartStatistici;
--(void) createTheGraph;
+-(void) createTheGraph:(BOOL)filtreleSuntActive;
 -(void)switchToFilter;
 -(void)switchToMyAds;
+-(void)refreshStats;
+-(void)loadPlotData:(BOOL)filtreleSuntActive;
+
 @end

@@ -8,10 +8,61 @@
 
 #import "TStatistic.h"
 #import "TAvgPrice.h"
+#import "TRequest.h"
 
 @implementation TStatistic
-@synthesize avgTotal,avgPriceList;
+//@synthesize avgTotal,avgPriceList;
+@synthesize statsReq, generalAvg, filterAvg, generalAvgTotal, generalDif, prevGeneralAvgTotal,filterAvgTotal, filterDif, prevFilterAvgTotal,status;
 
+-(id) init 
+{
+    self = [super init];
+    if (self) {
+        statsReq = [TRequest alloc];
+        [statsReq initWithHost:@"http://unicode.ro/imobiliare/index.php"];
+        status = @"";
+    }
+    return self;
+}
+
+
+-(int) parseDataRecieved:(NSData *)data
+{
+    NSError* error;
+    NSDictionary* json = [NSJSONSerialization 
+                          JSONObjectWithData:data
+                          options:kNilOptions 
+                          error:&error];
+    NSLog(@"data JSON: %@", json); 
+    
+    status = [json objectForKey:@"status"];
+    if([status isEqualToString:@"OK"])
+    {
+    self.generalAvg = [json objectForKey:@"general_avg_day"];
+    self.prevGeneralAvgTotal = [json objectForKey:@"prev_general_avg_total"];
+    self.generalAvgTotal = [json objectForKey:@"general_avg_total"];
+    self.generalDif = [json objectForKey:@"general_avg_diff"];
+    
+    self.filterAvg = [json objectForKey:@"filter_avg_day"];
+    self.prevFilterAvgTotal = [json objectForKey:@"prev_filter_avg_total"];
+    self.filterAvgTotal = [json objectForKey:@"filter_avg_total"];
+    self.filterDif = [json objectForKey:@"filter_avg_diff"];
+        //NSLog(@"generalAvg=%@, prevGenAvg=%f, genTotal=%f, generalDiff=%f,filterAvg=%@, prevFilterAvg=%f, filterTotal=%f, filterDiff=%f", self.generalAvg, [self.prevGeneralAvgTotal doubleValue], [self.generalAvgTotal doubleValue], [self.generalDif doubleValue], self.filterAvg, [self.prevFilterAvgTotal doubleValue], [self.filterAvgTotal doubleValue], [self.filterDif doubleValue]);
+    if([generalAvg count]==0)  {return 0;}
+        return 1;
+    }
+    else 
+    {
+        NSLog(@"EROARE LA STATISTICI: %@",[json objectForKey:@"desc"]);
+        return 0;
+    }
+    return 0;
+    
+}
+
+
+
+/*
 -(id) init{
     self = [super init];
     if(self) {
@@ -53,9 +104,20 @@
     [error release];
     
 }
+ */
 
 -(void) dealloc{
-    [avgPriceList dealloc];
+
+    [statsReq release];
+    [prevGeneralAvgTotal release];
+    [prevFilterAvgTotal release];
+    [generalAvgTotal release];
+    [filterAvgTotal release];
+    [generalDif release];
+    [filterDif release];
+    [generalAvg release];
+    [filterAvg release];
+    [status release];
     [super dealloc];
     
 }

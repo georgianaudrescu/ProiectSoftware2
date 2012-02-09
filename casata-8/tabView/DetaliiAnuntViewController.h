@@ -44,11 +44,13 @@
     NSThread *imagesThread;
     int flagThread;
     BOOL avemConexiune;
+    UIActivityIndicatorView *activityIndicator;
 }
 @property(nonatomic,retain) TAd *theAd;
 @property(nonatomic,retain) IBOutlet UILabel *nameLabel,*propertyTypeLabel, *adTextLabel, *adressLineLabel, *pretLabel, *monedaLabel, *contactNameLabel, *contactPhoneLabel, *anuntTypeLabel, *contactEmailLabel, *propertySize; 
 @property(nonatomic,retain) IBOutlet UIImageView *thumbnailImageView;
 @property(nonatomic,retain) IBOutlet UIButton *favButton;
+@property(nonatomic, retain) IBOutlet UIActivityIndicatorView *activityIndicator;
 //
 @property(nonatomic,retain) IBOutlet UIScrollView *imgScrollView;
 @property(nonatomic,retain) IBOutlet UIImageView *imgView;

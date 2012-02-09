@@ -21,6 +21,7 @@
 @synthesize bigScroll, adTextView;
 @synthesize callButton;
 @synthesize headerView, imaginiView, detaliiView, contactView;
+@synthesize activityIndicator;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -166,7 +167,9 @@
     
     if(flagThread==1){flagThread=0;}
     flagThread=1;
-    
+    [self.imgScrollView addSubview:self.activityIndicator];
+    [self.activityIndicator setHidden:NO];
+    [self.activityIndicator startAnimating];
     
     //[self performSelectorInBackground:@selector(getImages) withObject:nil];
     
@@ -200,8 +203,12 @@
         if(self.theAd.thumb!=nil)
         {self.thumbnailImageView.image = self.theAd.thumb.image;}
         
-        if(self.theAd.imageList==nil)
+       
+        /*if(self.theAd.imageList==nil)
         {
+            [self.activityIndicator removeFromSuperview];
+            [self.activityIndicator setHidden:YES];
+            [self.activityIndicator stopAnimating];
             //imagine default
             UIImageView *imageView = [[[UIImageView alloc] init] autorelease];
             imageView.frame= CGRectMake(0, 0, 300, 230);
@@ -213,9 +220,14 @@
             [self.imgScrollView addSubview:[self.imageViewsArray objectAtIndex:0]];
         
         }
+         */
     }
     else
-    {//imagine default
+    {
+        [self.activityIndicator removeFromSuperview];
+        [self.activityIndicator setHidden:YES];
+        [self.activityIndicator stopAnimating];   
+        //imagine default
         UIImageView *imageView = [[[UIImageView alloc] init] autorelease];
         imageView.frame= CGRectMake(0, 0, 300, 230);
         imageView.contentMode = UIViewContentModeCenter;   
@@ -248,10 +260,11 @@
     int idul = [[self.theAd.ad objectForKey:@"id"] intValue];
     if(nrImagini!=0)
     {
-        if(self.theAd.imageList == nil)
+        if((self.theAd.imageList == nil)||(self.theAd.imageList.count<nrImagini))
         {
             if(avemConexiune==YES)//avem conexiune
             {
+                 self.theAd.imageList =nil;
                 [self.theAd initImageList];
                 
                
@@ -291,18 +304,7 @@
             }
             else
             {
-                /*
-                //imagine default
-                UIImageView *imageView = [[[UIImageView alloc] init] autorelease];
-                imageView.frame= CGRectMake(0, 0, 300, 230);
-                imageView.contentMode = UIViewContentModeCenter;   
-                
-                imageView.image = [UIImage imageNamed:@"bigAnuntDefault.png"];
-                
-                [self.imageViewsArray addObject:imageView];
-                [self.imgScrollView addSubview:[self.imageViewsArray objectAtIndex:0]];
-             
-                 */
+               [self performSelectorOnMainThread:@selector(afisImages) withObject:nil waitUntilDone:YES];    
             }
         }
         
@@ -316,6 +318,7 @@
     }   
     else
     {
+            
         /*
         //imagine default
         UIImageView *imageView = [[[UIImageView alloc] init] autorelease];
@@ -338,9 +341,22 @@
 -(void)afisImages
 {
     // self.thumbnailImageView.image = self.theAd.thumb.image;//    
-    int nrImagini = [[self.theAd.ad objectForKey:@"num_pic"] intValue];
+   // int nrImagini = [[self.theAd.ad objectForKey:@"num_pic"] intValue];
+    [self.activityIndicator removeFromSuperview];
+    [self.activityIndicator setHidden:YES];
+    [self.activityIndicator stopAnimating];
     
-    
+    if((avemConexiune==NO)&&(self.theAd.imageList==nil))
+    {
+        UIImageView *imageView = [[[UIImageView alloc] init] autorelease];
+        imageView.frame= CGRectMake(0, 0, 300, 230);
+        imageView.contentMode = UIViewContentModeCenter;   
+        
+        imageView.image = [UIImage imageNamed:@"bigAnuntDefault.png"];
+        
+        [self.imageViewsArray addObject:imageView];
+        [self.imgScrollView addSubview:[self.imageViewsArray objectAtIndex:0]];
+    }
     
     for(int x=0;(x<[self.theAd.imageList count])&&(flagThread==1);x++)
     {
@@ -494,8 +510,11 @@
     //[lock  lockWhenCondition:0];
     flagThread=0;
     [imagesThread start];
-
     
+
+    self.activityIndicator.frame = CGRectMake(132, 96, self.activityIndicator.frame.size.width, self.activityIndicator.frame.size.height);
+    //[self.imgScrollView addSubview:self.activityIndicator];    
+
 }
 
 - (void)viewDidUnload
@@ -554,6 +573,7 @@
     [detaliiView release];
     [contactView release];
     [propertySize release];
+    [activityIndicator release];
     [super dealloc];
 }
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
